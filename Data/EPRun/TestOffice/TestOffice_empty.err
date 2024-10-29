@@ -1,0 +1,100 @@
+Program Version,EnergyPlus, Version 24.2.0-94a887817b, YMD=2024.10.29 11:01,
+   ** Warning ** Version: in IDF="22.2" not the same as expected="24.2"
+   ** Warning ** Version: in IDF="22.2" not the same as expected="24.2"
+   ** Severe  ** During Branch Input, Invalid Component Name input=PUMP VARIABLE SPEED 2
+   **   ~~~   ** Component type=PUMP:VARIABLESPEED
+   **   ~~~   ** Occurs on Branch=CHILLED WATER LOOP SUPPLY INLET BRANCH
+   ** Severe  ** During Branch Input, Invalid Component Name input=CHILLER ELECTRIC EIR 1
+   **   ~~~   ** Component type=CHILLER:ELECTRIC:EIR
+   **   ~~~   ** Occurs on Branch=CHILLED WATER LOOP SUPPLY BRANCH 1
+   ** Severe  ** During Branch Input, Invalid Component Name input=PIPE ADIABATIC 6
+   **   ~~~   ** Component type=PIPE:ADIABATIC
+   **   ~~~   ** Occurs on Branch=CHILLED WATER LOOP SUPPLY BRANCH 2
+   ** Severe  ** During Branch Input, Invalid Component Name input=PIPE ADIABATIC 7
+   **   ~~~   ** Component type=PIPE:ADIABATIC
+   **   ~~~   ** Occurs on Branch=CHILLED WATER LOOP SUPPLY OUTLET BRANCH
+   ** Severe  ** During Branch Input, Invalid Component Name input=PIPE ADIABATIC 9
+   **   ~~~   ** Component type=PIPE:ADIABATIC
+   **   ~~~   ** Occurs on Branch=CHILLED WATER LOOP DEMAND INLET BRANCH
+   ** Severe  ** During Branch Input, Invalid Component Name input=PIPE ADIABATIC 8
+   **   ~~~   ** Component type=PIPE:ADIABATIC
+   **   ~~~   ** Occurs on Branch=CHILLED WATER LOOP DEMAND BRANCH 2
+   ** Severe  ** During Branch Input, Invalid Component Name input=CHILLED WATER LOOP DEMAND BYPASS PIPE
+   **   ~~~   ** Component type=PIPE:ADIABATIC
+   **   ~~~   ** Occurs on Branch=CHILLED WATER LOOP DEMAND BYPASS BRANCH
+   ** Severe  ** During Branch Input, Invalid Component Name input=PIPE ADIABATIC 10
+   **   ~~~   ** Component type=PIPE:ADIABATIC
+   **   ~~~   ** Occurs on Branch=CHILLED WATER LOOP DEMAND OUTLET BRANCH
+   ** Severe  ** During Branch Input, Invalid Component Name input=PUMP VARIABLE SPEED 3
+   **   ~~~   ** Component type=PUMP:VARIABLESPEED
+   **   ~~~   ** Occurs on Branch=CONDENSER WATER LOOP SUPPLY INLET BRANCH
+   ** Severe  ** During Branch Input, Invalid Component Name input=COOLING TOWER SINGLE SPEED 1
+   **   ~~~   ** Component type=COOLINGTOWER:SINGLESPEED
+   **   ~~~   ** Occurs on Branch=CONDENSER WATER LOOP SUPPLY BRANCH 1
+   ** Severe  ** During Branch Input, Invalid Component Name input=PIPE ADIABATIC 11
+   **   ~~~   ** Component type=PIPE:ADIABATIC
+   **   ~~~   ** Occurs on Branch=CONDENSER WATER LOOP SUPPLY BRANCH 2
+   ** Severe  ** During Branch Input, Invalid Component Name input=PIPE ADIABATIC 12
+   **   ~~~   ** Component type=PIPE:ADIABATIC
+   **   ~~~   ** Occurs on Branch=CONDENSER WATER LOOP SUPPLY OUTLET BRANCH
+   ** Severe  ** During Branch Input, Invalid Component Name input=PIPE ADIABATIC 14
+   **   ~~~   ** Component type=PIPE:ADIABATIC
+   **   ~~~   ** Occurs on Branch=CONDENSER WATER LOOP DEMAND INLET BRANCH
+   ** Severe  ** During Branch Input, Invalid Component Name input=CHILLER ELECTRIC EIR 1
+   **   ~~~   ** Component type=CHILLER:ELECTRIC:EIR
+   **   ~~~   ** Occurs on Branch=CONDENSER WATER LOOP DEMAND BRANCH 1
+   ** Severe  ** During Branch Input, Invalid Component Name input=PIPE ADIABATIC 13
+   **   ~~~   ** Component type=PIPE:ADIABATIC
+   **   ~~~   ** Occurs on Branch=CONDENSER WATER LOOP DEMAND BRANCH 2
+   ** Severe  ** During Branch Input, Invalid Component Name input=CONDENSER WATER LOOP DEMAND BYPASS PIPE
+   **   ~~~   ** Component type=PIPE:ADIABATIC
+   **   ~~~   ** Occurs on Branch=CONDENSER WATER LOOP DEMAND BYPASS BRANCH
+   ** Severe  ** During Branch Input, Invalid Component Name input=PIPE ADIABATIC 15
+   **   ~~~   ** Component type=PIPE:ADIABATIC
+   **   ~~~   ** Occurs on Branch=CONDENSER WATER LOOP DEMAND OUTLET BRANCH
+   ** Severe  ** During Branch Input, Invalid Component Name input=PUMP VARIABLE SPEED 1
+   **   ~~~   ** Component type=PUMP:VARIABLESPEED
+   **   ~~~   ** Occurs on Branch=HOT WATER LOOP SUPPLY INLET BRANCH
+   ** Severe  ** During Branch Input, Invalid Component Name input=BOILER HOT WATER 1
+   **   ~~~   ** Component type=BOILER:HOTWATER
+   **   ~~~   ** Occurs on Branch=HOT WATER LOOP SUPPLY BRANCH 1
+   ** Severe  ** During Branch Input, Invalid Component Name input=PIPE ADIABATIC 1
+   **   ~~~   ** Component type=PIPE:ADIABATIC
+   **   ~~~   ** Occurs on Branch=HOT WATER LOOP SUPPLY BRANCH 2
+   ** Severe  ** During Branch Input, Invalid Component Name input=PIPE ADIABATIC 5
+   **   ~~~   ** Component type=PIPE:ADIABATIC
+   **   ~~~   ** Occurs on Branch=HOT WATER LOOP SUPPLY OUTLET BRANCH
+   ** Severe  ** During Branch Input, Invalid Component Name input=PIPE ADIABATIC 3
+   **   ~~~   ** Component type=PIPE:ADIABATIC
+   **   ~~~   ** Occurs on Branch=HOT WATER LOOP DEMAND INLET BRANCH
+   ** Severe  ** During Branch Input, Invalid Component Name input=PIPE ADIABATIC 2
+   **   ~~~   ** Component type=PIPE:ADIABATIC
+   **   ~~~   ** Occurs on Branch=HOT WATER LOOP DEMAND BRANCH 1
+   ** Severe  ** During Branch Input, Invalid Component Name input=HOT WATER LOOP DEMAND BYPASS PIPE
+   **   ~~~   ** Component type=PIPE:ADIABATIC
+   **   ~~~   ** Occurs on Branch=HOT WATER LOOP DEMAND BYPASS BRANCH
+   ** Severe  ** During Branch Input, Invalid Component Name input=PIPE ADIABATIC 4
+   **   ~~~   ** Component type=PIPE:ADIABATIC
+   **   ~~~   ** Occurs on Branch=HOT WATER LOOP DEMAND OUTLET BRANCH
+   ************* Beginning Zone Sizing Calculations
+   ** Warning ** Weather file location will be used rather than entered (IDF) Location object.
+   **   ~~~   ** ..Location object=SHANGHAI
+   **   ~~~   ** ..Weather File Location=San Francisco Intl Ap CA USA TMY3 WMO#=724940
+   **   ~~~   ** ..due to location differences, Latitude difference=[6.45] degrees, Longitude difference=[243.83] degrees.
+   **   ~~~   ** ..Time Zone difference=[16.0] hour(s), Elevation difference=[71.43] percent, [5.00] meters.
+   ** Warning ** ProcessScheduleInput: Schedule:Constant="ALWAYS OFF DISCRETE", Blank Schedule Type Limits Name input -- will not be validated.
+   ** Warning ** ProcessScheduleInput: Schedule:Constant="ALWAYS ON CONTINUOUS", Blank Schedule Type Limits Name input -- will not be validated.
+   ** Warning ** GetHTSurfaceData: Surfaces with interface to Ground found but no "Ground Temperatures" were input.
+   **   ~~~   ** Found first in surface=TEST_OFFICE_0_SRF_4
+   **   ~~~   ** Defaults, constant throughout the year of (18.0) will be used.
+   ************* Beginning System Sizing Calculations
+   ** Severe  ** Sizing:System: VAV WITH REHEAT references unknown AirLoopHVAC
+   **  Fatal  ** Errors found in Sizing:System input
+   ...Summary of Errors that led to program termination:
+   ..... Reference severe error count=26
+   ..... Last severe error=Sizing:System: VAV WITH REHEAT references unknown AirLoopHVAC
+   ************* Warning:  Node connection errors not checked - most system input has not been read (see previous warning).
+   ************* Fatal error -- final processing.  Program exited before simulations began.  See previous error messages.
+   ************* EnergyPlus Warmup Error Summary. During Warmup: 0 Warning; 0 Severe Errors.
+   ************* EnergyPlus Sizing Error Summary. During Sizing: 4 Warning; 1 Severe Errors.
+   ************* EnergyPlus Terminated--Fatal Error Detected. 6 Warning; 26 Severe Errors; Elapsed Time=00hr 00min  0.25sec

@@ -1,0 +1,7 @@
+{
+   "created_at" : "20241029T031943Z",
+   "seed_file" : "../TestOffice_VAV.osm",
+   "steps" : [],
+   "updated_at" : "20241029T031957Z",
+   "weather_file" : "CHN_Shanghai.Shanghai.583620_CSWD.epw"
+}
