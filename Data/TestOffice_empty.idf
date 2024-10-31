@@ -1644,6 +1644,72 @@ ThermostatSetpoint:DualSetpoint,
     Medium Office HtgSetp,    !- Heating Setpoint Temperature Schedule Name
     Medium Office ClgSetp;    !- Cooling Setpoint Temperature Schedule Name
 
+BRANCH,
+    chw_supply_inlet,         !- Name
+    ,                         !- Pressure Drop Curve Name
+    Pipe:Adiabatic,           !- Component 1 Object Type
+    chw_supply_inlet_pipe,    !- Component 1 Name
+    my_plant_loop Supply Inlet,    !- Component 1 Inlet Node Name
+    chw_supply_inlet_pipe_outlet;    !- Component 1 Outlet Node Name
+
+BRANCH,
+    chw_supply_branch1,       !- Name
+    ,                         !- Pressure Drop Curve Name
+    Pipe:Adiabatic,           !- Component 1 Object Type
+    chw_supply_branch1_pipe,    !- Component 1 Name
+    chw_supply_branch1_pipe_inlet,    !- Component 1 Inlet Node Name
+    chw_supply_branch1_pipe_outlet;    !- Component 1 Outlet Node Name
+
+BRANCH,
+    chw_supply_branch2,       !- Name
+    ,                         !- Pressure Drop Curve Name
+    Pipe:Adiabatic,           !- Component 1 Object Type
+    chw_supply_branch2_pipe,    !- Component 1 Name
+    chw_supply_branch2_pipe_inlet,    !- Component 1 Inlet Node Name
+    chw_supply_branch2_pipe_outlet;    !- Component 1 Outlet Node Name
+
+BRANCH,
+    chw_supply_outlet,        !- Name
+    ,                         !- Pressure Drop Curve Name
+    Pipe:Adiabatic,           !- Component 1 Object Type
+    chw_supply_outlet_pipe,    !- Component 1 Name
+    chw_supply_outlet_pipe_inlet,    !- Component 1 Inlet Node Name
+    my_plant_loop Supply Outlet;    !- Component 1 Outlet Node Name
+
+BRANCHLIST,
+    my_plant_loop Supply Branchs,    !- Name
+    chw_supply_inlet,         !- Branch 1 Name
+    chw_supply_branch1,       !- Branch 2 Name
+    chw_supply_branch2,       !- Branch 3 Name
+    chw_supply_outlet;        !- Branch 4 Name
+
+BRANCHLIST,
+    my_plant_loop Demand Branchs,    !- Name
+    chw_demand_inlet,         !- Branch 1 Name
+    chw_demand_branch1,       !- Branch 2 Name
+    chw_demand_branch2,       !- Branch 3 Name
+    chw_demand_outlet;        !- Branch 4 Name
+
+PIPE:ADIABATIC,
+    chw_supply_inlet_pipe,    !- Name
+    my_plant_loop Supply Inlet,    !- Inlet Node Name
+    chw_supply_inlet_pipe_outlet;    !- Outlet Node Name
+
+PIPE:ADIABATIC,
+    chw_supply_branch1_pipe,    !- Name
+    chw_supply_branch1_pipe_inlet,    !- Inlet Node Name
+    chw_supply_branch1_pipe_outlet;    !- Outlet Node Name
+
+PIPE:ADIABATIC,
+    chw_supply_branch2_pipe,    !- Name
+    chw_supply_branch2_pipe_inlet,    !- Inlet Node Name
+    chw_supply_branch2_pipe_outlet;    !- Outlet Node Name
+
+PIPE:ADIABATIC,
+    chw_supply_outlet_pipe,    !- Name
+    chw_supply_outlet_pipe_inlet,    !- Inlet Node Name
+    my_plant_loop Supply Outlet;    !- Outlet Node Name
+
 PLANTLOOP,
     my_plant_loop,            !- Name
     Water,                    !- Fluid Type
@@ -1655,14 +1721,14 @@ PLANTLOOP,
     ,                         !- Maximum Loop Flow Rate
     0,                        !- Minimum Loop Flow Rate
     Autocalculate,            !- Plant Loop Volume
-    ,                         !- Plant Side Inlet Node Name
-    ,                         !- Plant Side Outlet Node Name
-    ,                         !- Plant Side Branch List Name
-    ,                         !- Plant Side Connector List Name
-    ,                         !- Demand Side Inlet Node Name
-    ,                         !- Demand Side Outlet Node Name
-    ,                         !- Demand Side Branch List Name
-    ,                         !- Demand Side Connector List Name
+    my_plant_loop Supply Inlet,    !- Plant Side Inlet Node Name
+    my_plant_loop Supply Outlet,    !- Plant Side Outlet Node Name
+    my_plant_loop Supply Branchs,    !- Plant Side Branch List Name
+    my_plant_loop Supply Connectors,    !- Plant Side Connector List Name
+    my_plant_loop Demand Inlet,    !- Demand Side Inlet Node Name
+    my_plant_loop Demand Outlet,    !- Demand Side Outlet Node Name
+    my_plant_loop Demand Branchs,    !- Demand Side Branch List Name
+    my_plant_loop Demand Connectors,    !- Demand Side Connector List Name
     SequentialLoad,           !- Load Distribution Scheme
     ,                         !- Availability Manager List Name
     SingleSetpoint,           !- Plant Loop Demand Calculation Scheme

@@ -1,5 +1,5 @@
 {
-   "created_at" : "20241029T070035Z",
+   "created_at" : "20241030T010233Z",
    "seed_file" : "../TestOffice_empty.osm",
    "steps" : 
    [
@@ -11,6 +11,5 @@
          "name" : "OpenStudio Results"
       }
    ],
-   "updated_at" : "20241029T070214Z",
-   "weather_file" : "CHN_Shanghai.Shanghai.583620_CSWD.epw"
+   "updated_at" : "20241030T010259Z"
 }

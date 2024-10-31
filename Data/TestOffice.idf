@@ -1,6 +1,6 @@
 
 Version,
-  24.1;                                   !- Version Identifier
+  22.2;                                   !- Version Identifier
 
 Timestep,
   6;                                      !- Number of Timesteps per Hour
@@ -243,7 +243,7 @@ Lights,
   Office Bldg Light,                      !- Schedule Name
   Watts/Area,                             !- Design Level Calculation Method
   ,                                       !- Lighting Level {W}
-  11.8403571,                             !- Watts per Floor Area {W/m2}
+  11.8403571,                             !- Watts per Zone Floor Area {W/m2}
   ,                                       !- Watts per Person {W/person}
   ,                                       !- Return Air Fraction
   ,                                       !- Fraction Radiant
@@ -539,7 +539,7 @@ ElectricEquipment,
   Medium Office Bldg Equip,               !- Schedule Name
   Watts/Area,                             !- Design Level Calculation Method
   ,                                       !- Design Level {W}
-  7.64241231,                             !- Watts per Floor Area {W/m2}
+  7.64241231,                             !- Watts per Zone Floor Area {W/m2}
   ,                                       !- Watts per Person {W/person}
   ,                                       !- Fraction Latent
   ,                                       !- Fraction Radiant
@@ -1204,7 +1204,7 @@ SimulationControl,
   Yes,                                    !- Do Plant Sizing Calculation
   No,                                     !- Run Simulation for Sizing Periods
   Yes,                                    !- Run Simulation for Weather File Run Periods
-  ,                                       !- Do HVAC Sizing Simulation for Sizing Periods
+  No,                                     !- Do HVAC Sizing Simulation for Sizing Periods
   ;                                       !- Maximum Number of HVAC Sizing Simulation Passes
 
 HeatBalanceAlgorithm,
@@ -1374,31 +1374,8 @@ Construction,
   Material Air Gap 1,                     !- Layer 2
   M11 100mm lightweight concrete;         !- Layer 3
 
-Schedule:Constant,
-  Always Off Discrete,                    !- Name
-  OnOff 1,                                !- Schedule Type Limits Name
-  0;                                      !- Hourly Value
-
-Schedule:Constant,
-  Always On Continuous,                   !- Name
-  Fractional,                             !- Schedule Type Limits Name
-  1;                                      !- Hourly Value
-
-ScheduleTypeLimits,
-  Fractional,                             !- Name
-  0,                                      !- Lower Limit Value {BasedOnField A3}
-  1,                                      !- Upper Limit Value {BasedOnField A3}
-  Continuous;                             !- Numeric Type
-
 ScheduleTypeLimits,
   OnOff,                                  !- Name
-  0,                                      !- Lower Limit Value {BasedOnField A3}
-  1,                                      !- Upper Limit Value {BasedOnField A3}
-  Discrete,                               !- Numeric Type
-  availability;                           !- Unit Type
-
-ScheduleTypeLimits,
-  OnOff 1,                                !- Name
   0,                                      !- Lower Limit Value {BasedOnField A3}
   1,                                      !- Upper Limit Value {BasedOnField A3}
   Discrete,                               !- Numeric Type
@@ -1648,6 +1625,16 @@ Schedule:Year,
   12,                                     !- End Month 1
   31;                                     !- End Day 1
 
+Schedule:Constant,
+  Always Off Discrete,                    !- Name
+  ,                                       !- Schedule Type Limits Name
+  0;                                      !- Hourly Value
+
+Schedule:Constant,
+  Always On Continuous,                   !- Name
+  ,                                       !- Schedule Type Limits Name
+  1;                                      !- Hourly Value
+
 OutdoorAir:Node,
   Model Outdoor Air Node;                 !- Name
 
@@ -1809,8 +1796,7 @@ Controller:OutdoorAir,
   ,                                       !- Humidistat Control Zone Name
   ,                                       !- High Humidity Outdoor Air Flow Ratio
   Yes,                                    !- Control High Indoor Humidity Based on Outdoor Humidity Ratio
-  BypassWhenWithinEconomizerLimits,       !- Heat Recovery Bypass Control Type
-  InterlockedWithMechanicalCooling;       !- Economizer Operation Staging
+  BypassWhenWithinEconomizerLimits;       !- Heat Recovery Bypass Control Type
 
 AvailabilityManagerAssignmentList,
   Air Loop HVAC Outdoor Air System 1 Availability Manager List, !- Name
@@ -2044,35 +2030,10 @@ Pump:VariableSpeed,
 Branch,
   Chilled Water Loop Supply Branch 1,     !- Name
   ,                                       !- Pressure Drop Curve Name
-  Pump:ConstantSpeed,                     !- Component Object Type 1
-  Const Spd Pump,                         !- Component Name 1
+  Chiller:Electric:EIR,                   !- Component Object Type 1
+  Chiller Electric EIR 1,                 !- Component Name 1
   Node 30,                                !- Component Inlet Node Name 1
-  Node 44,                                !- Component Outlet Node Name 1
-  Chiller:Electric:EIR,                   !- Component Object Type 2
-  Chiller Electric EIR 1,                 !- Component Name 2
-  Node 44,                                !- Component Inlet Node Name 2
-  Node 35;                                !- Component Outlet Node Name 2
-
-Pump:ConstantSpeed,
-  Const Spd Pump,                         !- Name
-  Node 30,                                !- Inlet Node Name
-  Node 44,                                !- Outlet Node Name
-  Autosize,                               !- Design Flow Rate {m3/s}
-  179352,                                 !- Design Pump Head {Pa}
-  Autosize,                               !- Design Power Consumption {W}
-  0.9,                                    !- Motor Efficiency
-  0,                                      !- Fraction of Motor Inefficiencies to Fluid Stream
-  Intermittent,                           !- Pump Control Type
-  ,                                       !- Pump Flow Rate Schedule Name
-  ,                                       !- Pump Curve Name
-  ,                                       !- Impeller Diameter {m}
-  ,                                       !- Rotational Speed {rev/min}
-  ,                                       !- Zone Name
-  ,                                       !- Skin Loss Radiative Fraction
-  PowerPerFlowPerPressure,                !- Design Power Sizing Method
-  348701.1,                               !- Design Electric Power per Unit Flow Rate {W/(m3/s)}
-  1.282051282,                            !- Design Shaft Power per Unit Flow Rate per Unit Head {W-s/m3-Pa}
-  General;                                !- End-Use Subcategory
+  Node 35;                                !- Component Outlet Node Name 1
 
 Chiller:Electric:EIR,
   Chiller Electric EIR 1,                 !- Name
@@ -2089,7 +2050,7 @@ Chiller:Electric:EIR,
   1,                                      !- Maximum Part Load Ratio
   1,                                      !- Optimum Part Load Ratio
   0.2,                                    !- Minimum Unloading Ratio
-  Node 44,                                !- Chilled Water Inlet Node Name
+  Node 30,                                !- Chilled Water Inlet Node Name
   Node 35,                                !- Chilled Water Outlet Node Name
   Node 52,                                !- Condenser Inlet Node Name
   Node 58,                                !- Condenser Outlet Node Name
@@ -2692,10 +2653,9 @@ Boiler:HotWater,
   Node 19,                                !- Boiler Water Outlet Node Name
   99,                                     !- Water Outlet Upper Temperature Limit {C}
   ConstantFlow,                           !- Boiler Flow Mode
-  0,                                      !- On Cycle Parasitic Electric Load {W}
+  0,                                      !- Parasitic Electric Load {W}
   1,                                      !- Sizing Factor
-  General,                                !- End-Use Subcategory
-  0;                                      !- Off Cycle Parasitic Fuel Load {W}
+  General;                                !- End-Use Subcategory
 
 Curve:Biquadratic,
   Boiler Efficiency,                      !- Name
@@ -2854,11 +2814,11 @@ PlantEquipmentList,
   Boiler Hot Water 1;                     !- Equipment Name 1
 
 Site:Location,
-  Shanghai,                               !- Name
-  31.4,                                   !- Latitude {deg}
-  121.45,                                 !- Longitude {deg}
+  SHANGHAI,                               !- Name
+  31.17,                                  !- Latitude {deg}
+  121.43,                                 !- Longitude {deg}
   8,                                      !- Time Zone {hr}
-  5.5;                                    !- Elevation {m}
+  7;                                      !- Elevation {m}
 
 SizingPeriod:DesignDay,
   New York Laguardia Arpt Ann Clg .4% Condns DB=>MWB, !- Name

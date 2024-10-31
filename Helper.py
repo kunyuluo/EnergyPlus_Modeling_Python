@@ -1,3 +1,5 @@
+import copy
+
 from eppy.modeleditor import IDF
 from Obj_Structure import Obj_Tree
 
@@ -68,4 +70,50 @@ def delete_hvac_objs(idf_model: IDF, delete_keys: str | list=None):
             except Exception as e:
                 # print(e)
                 pass
+
+
+def flattencopy(lst):
+    """flatten and return a copy of the list
+    indefficient on large lists"""
+    # modified from
+    # http://stackoverflow.com/questions/2158395/flatten-an-irregular-list-of-lists-in-python
+    thelist = copy.deepcopy(lst)
+    list_is_nested = True
+    while list_is_nested:  # outer loop
+        keepchecking = False
+        atemp = []
+        for element in thelist:  # inner loop
+            if isinstance(element, list):
+                atemp.extend(element)
+                keepchecking = True
+            else:
+                atemp.append(element)
+        list_is_nested = keepchecking  # determine if outer loop exits
+        thelist = atemp[:]
+    return thelist
+
+
+def makepipecomponent(idf, pname):
+    """make a pipe component
+    generate inlet outlet names"""
+    apipe = idf.newidfobject("Pipe:Adiabatic".upper(), Name=pname)
+    apipe.Inlet_Node_Name = "%s_inlet" % (pname,)
+    apipe.Outlet_Node_Name = "%s_outlet" % (pname,)
+    return apipe
+
+
+def makepipebranch(idf, bname):
+    """make a branch with a pipe
+    use standard inlet outlet names"""
+    # make the pipe component first
+    pname = "%s_pipe" % (bname,)
+    apipe = makepipecomponent(idf, pname)
+    # now make the branch with the pipe in it
+    abranch = idf.newidfobject("BRANCH", Name=bname)
+    abranch.Component_1_Object_Type = "Pipe:Adiabatic"
+    abranch.Component_1_Name = pname
+    abranch.Component_1_Inlet_Node_Name = apipe.Inlet_Node_Name
+    abranch.Component_1_Outlet_Node_Name = apipe.Outlet_Node_Name
+    # abranch.Component_1_Branch_Control_Type = "Bypass"
+    return abranch
 
