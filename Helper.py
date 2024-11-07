@@ -28,8 +28,10 @@ class SomeFields(object):
         "Demand Side Connector List Name",
     ]
     a_fields = [
+        "Controller List Name",
+        'Availability Manager List Name',
         "Branch List Name",
-        "Connector List Name",
+        # "Connector List Name",
         "Supply Side Inlet Node Name",
         "Demand Side Outlet Node Name",
         "Demand Side Inlet Node Names",
@@ -92,28 +94,4 @@ def flattencopy(lst):
         thelist = atemp[:]
     return thelist
 
-
-def makepipecomponent(idf, pname):
-    """make a pipe component
-    generate inlet outlet names"""
-    apipe = idf.newidfobject("Pipe:Adiabatic".upper(), Name=pname)
-    apipe.Inlet_Node_Name = "%s_inlet" % (pname,)
-    apipe.Outlet_Node_Name = "%s_outlet" % (pname,)
-    return apipe
-
-
-def makepipebranch(idf, bname):
-    """make a branch with a pipe
-    use standard inlet outlet names"""
-    # make the pipe component first
-    pname = "%s_pipe" % (bname,)
-    apipe = makepipecomponent(idf, pname)
-    # now make the branch with the pipe in it
-    abranch = idf.newidfobject("BRANCH", Name=bname)
-    abranch.Component_1_Object_Type = "Pipe:Adiabatic"
-    abranch.Component_1_Name = pname
-    abranch.Component_1_Inlet_Node_Name = apipe.Inlet_Node_Name
-    abranch.Component_1_Outlet_Node_Name = apipe.Outlet_Node_Name
-    # abranch.Component_1_Branch_Control_Type = "Bypass"
-    return abranch
 

@@ -1,12 +1,16 @@
-2024/10/29 周二 10:37:37.46 ReadVars 
+2024/11/04 周一 11:49:29.75 ReadVars 
  ReadVarsESO
  getting all vars from:eplusout.eso
- too many variables requested, will go with first          255
-  number variables requested for output=         255
- ReadVars Run Time=00hr 00min  1.36sec
- ReadVarsESO program completed successfully.
+ EOF encountered during read of ESO header records
+ probable EnergyPlus error condition -- check eplusout.err
+ ReadVarsESO program terminated.
+ ReadVars Run Time=00hr 00min  0.00sec
  ReadVarsESO
  processing:test.mvi
- Requested ESO file=eplusout.mtr
- does not exist.  ReadVarsESO program terminated.
+ input file:eplusout.mtr
+ output file:eplusmtr.csv
+ getting all vars from:eplusout.mtr
+ EOF encountered during read of ESO header records
+ probable EnergyPlus error condition -- check eplusout.err
  ReadVarsESO program terminated.
+ ReadVars Run Time=00hr 00min  0.00sec
