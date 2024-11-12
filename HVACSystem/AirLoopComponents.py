@@ -359,3 +359,238 @@ class AirLoopComponent:
         }
 
         return component
+
+    @staticmethod
+    def heating_coil_electric(
+            idf: IDF,
+            name: str = None,
+            schedule: EpBunch | str = None,
+            efficiency=None,
+            capacity=None):
+        name = 'Heating Coil Electric' if name is None else name
+        coil = idf.newidfobject('Coil:Heating:Electric'.upper(), Name=name)
+
+        if schedule is not None:
+            if isinstance(schedule, EpBunch):
+                coil['Availability_Schedule_Name'] = schedule.Name
+            elif isinstance(schedule, str):
+                coil['Availability_Schedule_Name'] = schedule
+            else:
+                raise TypeError('Invalid type of schedule.')
+
+        if efficiency is not None:
+            coil['Efficiency'] = efficiency
+        if capacity is not None:
+            coil['Nominal_Capacity'] = capacity
+        else:
+            coil['Nominal_Capacity'] = 'Autosize'
+
+        component = {
+            'object': coil,
+            'type': 'Coil:Cooling:Electric'
+        }
+
+        return component
+
+    @staticmethod
+    def heat_exchanger_air_to_air(
+            idf: IDF,
+            name: str = None,
+            supply_air_flow_rate=None,
+            sensible_only: bool = False,
+            sensible_effectiveness_100_heating=0.75,
+            latent_effectiveness_100_heating=0.68,
+            sensible_effectiveness_75_heating=0.75,
+            latent_effectiveness_75_heating=0.68,
+            sensible_effectiveness_100_cooling=0.75,
+            latent_effectiveness_100_cooling=0.68,
+            sensible_effectiveness_75_cooling=0.75,
+            latent_effectiveness_75_cooling=0.68,
+            nominal_electric_power=0,
+            supply_air_outlet_temp_control: bool = True,
+            heat_exchanger_type: int = 0,
+            frost_control_type: int = 0,
+            threshold_temp=1.7,
+            initial_defrost_time_fraction=None,
+            rate_of_defrost_time_fraction_increase=None,
+            economizer_lockout: bool = False):
+        """
+        -Heat_exchanger_type: 1.Plate 2.Rotary \n
+        -Frost_control_type: \n
+        1.None 2.ExhaustAirRecirculation 3.ExhaustOnly 4.MinimumExhaustTemperature
+        """
+
+        types = {0: "Plate", 1: "Rotary"}
+        frost_types = {0: "None", 1: "ExhaustAirRecirculation", 2: "ExhaustOnly", 3: "MinimumExhaustTemperature"}
+
+        name = 'Plate Heat Recovery' if name is None else name
+        hx = idf.newidfobject('HeatExchanger:AirToAir:SensibleAndLatent'.upper(), Name=name)
+
+        hx['Nominal_Supply_Air_Flow_Rate'] = supply_air_flow_rate if supply_air_flow_rate is not None else 'Autosize'
+
+        if sensible_effectiveness_100_heating is not None:
+            hx['Sensible_Effectiveness_at_100_Heating_Air_Flow'] = sensible_effectiveness_100_heating
+        if sensible_effectiveness_100_cooling is not None:
+            hx['Sensible_Effectiveness_at_100_Cooling_Air_Flow'] = sensible_effectiveness_100_cooling
+        if sensible_effectiveness_75_heating is not None:
+            hx['Sensible_Effectiveness_at_75_Heating_Air_Flow'] = sensible_effectiveness_75_heating
+        if sensible_effectiveness_75_cooling is not None:
+            hx['Sensible_Effectiveness_at_75_Cooling_Air_Flow'] = sensible_effectiveness_75_cooling
+
+        if sensible_only:
+            hx['Latent_Effectiveness_at_100_Heating_Air_Flow'] = 0
+            hx['Latent_Effectiveness_at_75_Heating_Air_Flow'] = 0
+            hx['Latent_Effectiveness_at_100_Cooling_Air_Flow'] = 0
+            hx['Latent_Effectiveness_at_75_Cooling_Air_Flow'] = 0
+        else:
+            if latent_effectiveness_100_heating is not None:
+                hx['Latent_Effectiveness_at_100_Heating_Air_Flow'] = latent_effectiveness_100_heating
+            if latent_effectiveness_100_cooling is not None:
+                hx['Latent_Effectiveness_at_100_Cooling_Air_Flow'] = latent_effectiveness_100_cooling
+            if latent_effectiveness_75_heating is not None:
+                hx['Latent_Effectiveness_at_75_Heating_Air_Flow'] = latent_effectiveness_75_heating
+            if latent_effectiveness_75_cooling is not None:
+                hx['Latent_Effectiveness_at_75_Cooling_Air_Flow'] = latent_effectiveness_75_cooling
+
+        hx['Nominal_Electric_Power'] = nominal_electric_power
+        hx['Supply_Air_Outlet_Temperature_Control'] = 'Yes' if supply_air_outlet_temp_control else 'No'
+        hx['Heat_Exchanger_Type'] = types[heat_exchanger_type]
+        hx['Frost_Control_Type'] = frost_types[frost_control_type]
+        hx['Threshold_Temperature'] = threshold_temp
+
+        if initial_defrost_time_fraction is not None:
+            hx['Initial_Defrost_Time_Fraction'] = initial_defrost_time_fraction
+        if rate_of_defrost_time_fraction_increase is not None:
+            hx['Rate_of_Defrost_Time_Fraction_Increase'] = rate_of_defrost_time_fraction_increase
+
+        hx['Economizer_Lockout'] = 'Yes' if economizer_lockout else 'No'
+
+        component = {
+            'object': hx,
+            'type': 'HeatExchanger:AirToAir:SensibleAndLatent'
+        }
+
+        return component
+
+    @staticmethod
+    def outdoor_air_system(
+            idf: IDF,
+            name: str = None,
+            outdoor_air_stream_comp: dict | list[dict] = None,
+            heat_recovery: bool = False):
+        oa_sys_assembly = []
+
+        name = 'Outdoor Air System' if name is None else name
+        controller_list_name = f'{name} Controller List'
+        equipment_list_name = f'{name} Equipment List'
+
+        oa_sys = idf.newidfobject('AirLoopHVAC:OutdoorAirSystem'.upper(), Name=name)
+        oa_sys['Controller_List_Name'] = controller_list_name
+        oa_sys['Outdoor_Air_Equipment_List_Name'] = equipment_list_name
+        oa_sys_assembly.append(oa_sys)
+
+        # Controller List:
+        controller_name = f'{name} Controller'
+        controller_list = idf.newidfobject('AirLoopHVAC:ControllerList'.upper(), Name=controller_list_name)
+        controller_list['Controller_1_Object_Type'] = 'Controller:OutdoorAir'
+        controller_list['Controller_1_Name'] = controller_name
+        oa_sys_assembly.append(controller_list)
+
+        # Controller:
+        controller = Controller.controller_outdoor_air(idf, controller_name)
+        controller['Relief_Air_Outlet_Node_Name'] = f'{controller_name} relief_air_outlet'
+        controller['Return_Air_Node_Name'] = f'{controller_name} return_air'
+        controller['Mixed_Air_Node_Name'] = f'{controller_name} mixed_air'
+        controller['Actuator_Node_Name'] = f'{controller_name} outdoor_air_inlet'
+
+        oa_inlet_node_list = idf.newidfobject('OutdoorAir:NodeList'.upper())
+        oa_inlet_node_list['Node_or_NodeList_Name_1'] = controller.Actuator_Node_Name
+
+        oa_sys_assembly.append(controller)
+
+        # Equipment List:
+        os_sys_equip_list = idf.newidfobject('AirLoopHVAC:OutdoorAirSystem:EquipmentList'.upper(), Name=equipment_list_name)
+
+        mixer_name = f'{name} Outdoor Air Mixer'
+        os_sys_equip_list['Component_1_Object_Type'] = 'OutdoorAir:Mixer'
+        os_sys_equip_list['Component_1_Name'] = mixer_name
+        oa_sys_assembly.append(os_sys_equip_list)
+
+        mixer_oa_stream_name = controller.Actuator_Node_Name
+        mixer_ra_stream_name = controller.Relief_Air_Outlet_Node_Name
+
+        if outdoor_air_stream_comp is not None:
+            if isinstance(outdoor_air_stream_comp, list) and len(outdoor_air_stream_comp) > 1:
+                for i, comp in enumerate(outdoor_air_stream_comp):
+                    os_sys_equip_list[f'Component_{i+2}_Object_Type'] = comp['type']
+                    os_sys_equip_list[f'Component_{i+2}_Name'] = comp['object'].Name
+                    if i == 0:
+                        comp['object'].Air_Inlet_Node_Name = controller.Actuator_Node_Name
+                        comp['object'].Air_Outlet_Node_Name = comp['object'].Name + '_air_outlet'
+                    elif i == len(outdoor_air_stream_comp)-1:
+                        if comp['type'] != 'HeatExchanger:AirToAir:SensibleAndLatent':
+                            comp['object'].Air_Inlet_Node_Name = outdoor_air_stream_comp[i-1]['object'].Air_Outlet_Node_Name
+                            comp['object'].Air_Outlet_Node_Name = comp['object'].Name + '_air_outlet'
+
+                            mixer_oa_stream_name = comp['object'].Air_Outlet_Node_Name
+                        else:
+                            comp['object'].Supply_Air_Inlet_Node_Name = comp['object'].Name + '_supply_air_inlet'
+                            comp['object'].Supply_Air_Outlet_Node_Name = comp['object'].Name + '_supply_air_outlet'
+                            comp['object'].Exhaust_Air_Inlet_Node_Name = controller.Relief_Air_Outlet_Node_Name
+                            comp['object'].Exhaust_Air_Outlet_Node_Name = comp['object'].Name + '_exhaust_air_outlet'
+
+                            mixer_oa_stream_name = comp['object'].Supply_Air_Outlet_Node_Name
+                            mixer_ra_stream_name = comp['object'].Exhaust_Air_Inlet_Node_Name
+                    else:
+                        pass
+                    oa_sys_assembly.append(comp['object'])
+
+            elif isinstance(outdoor_air_stream_comp, dict):
+                os_sys_equip_list['Component_2_Object_Type'] = outdoor_air_stream_comp['type']
+                os_sys_equip_list['Component_2_Name'] = outdoor_air_stream_comp['object'].Name
+                if outdoor_air_stream_comp['type'] != 'HeatExchanger:AirToAir:SensibleAndLatent':
+                    outdoor_air_stream_comp['object'].Air_Inlet_Node_Name = controller.Actuator_Node_Name
+                    outdoor_air_stream_comp['object'].Air_Outlet_Node_Name = outdoor_air_stream_comp['object'].Name + '_air_outlet'
+
+                    mixer_oa_stream_name = outdoor_air_stream_comp['object'].Air_Outlet_Node_Name
+                else:
+                    outdoor_air_stream_comp['object'].Supply_Air_Inlet_Node_Name = controller.Actuator_Node_Name
+                    outdoor_air_stream_comp['object'].Supply_Air_Outlet_Node_Name = outdoor_air_stream_comp['object'].Name + '_supply_air_outlet'
+                    outdoor_air_stream_comp['object'].Exhaust_Air_Inlet_Node_Name = controller.Relief_Air_Outlet_Node_Name
+                    outdoor_air_stream_comp['object'].Exhaust_Air_Outlet_Node_Name = outdoor_air_stream_comp['object'].Name + '_exhaust_air_outlet'
+
+                    mixer_oa_stream_name = outdoor_air_stream_comp['object'].Supply_Air_Outlet_Node_Name
+                    mixer_ra_stream_name = outdoor_air_stream_comp['object'].Exhaust_Air_Inlet_Node_Name
+
+                oa_sys_assembly.append(outdoor_air_stream_comp['object'])
+            else:
+                raise TypeError('Invalid type of outdoor air stream components.')
+        else:
+            if heat_recovery:
+                hx_name = f'{name} Heat Exchanger'
+                hx = AirLoopComponent.heat_exchanger_air_to_air(idf, hx_name)
+                os_sys_equip_list['Component_2_Object_Type'] = hx['type']
+                os_sys_equip_list['Component_2_Name'] = hx['object'].Name
+
+                hx['object'].Supply_Air_Inlet_Node_Name = controller.Actuator_Node_Name
+                hx['object'].Supply_Air_Outlet_Node_Name = hx['object'].Name + '_supply_air_outlet'
+                hx['object'].Exhaust_Air_Inlet_Node_Name = controller.Relief_Air_Outlet_Node_Name
+                hx['object'].Exhaust_Air_Outlet_Node_Name = hx['object'].Name + '_exhaust_air_outlet'
+
+                mixer_oa_stream_name = hx['object'].Supply_Air_Outlet_Node_Name
+                mixer_ra_stream_name = hx['object'].Exhaust_Air_Inlet_Node_Name
+
+                oa_sys_assembly.append(hx['object'])
+
+        # Outdoor Air Mixer:
+        oa_mixer = idf.newidfobject('OutdoorAir:Mixer'.upper(), Name=mixer_name)
+        oa_mixer['Mixed_Air_Node_Name'] = controller.Mixed_Air_Node_Name
+        oa_mixer['Outdoor_Air_Stream_Node_Name'] = mixer_oa_stream_name
+        oa_mixer['Relief_Air_Stream_Node_Name'] = mixer_ra_stream_name
+        oa_mixer['Return_Air_Stream_Node_Name'] = controller.Return_Air_Node_Name
+        oa_sys_assembly.append(oa_mixer)
+
+        # Setpoint Manager:MixedAir at each node in outdoor air stream:
+
+
+        return oa_sys_assembly

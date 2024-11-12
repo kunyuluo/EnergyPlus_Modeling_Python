@@ -35,13 +35,10 @@ Obj_Tree = {
         'Site:Precipitation',
     ],
     'Schedules': [
-        'Day Type',
         'ScheduleTypeLimits',
-        'Day Schedules',
         'Schedule:Day:Hourly',
         'Schedule:Day:Interval',
         'Schedule:Day:List',
-        'Week Schedule(s)',
         'Schedule:Week:Daily',
         'Schedule:Week:Compact',
         'Schedule:Year',
@@ -421,6 +418,11 @@ Obj_Tree = {
         'Curve:RectangularHyperbola2',
         'Curve:ExponentialDecay',
         'Curve:DoubleExponentialDecay',
+    ],
+    'Performance_Tables': [
+        'Table:Lookup',
+        'Table:IndependentVariableList',
+        'Table:IndependentVariable',
     ],
     'Design_Objects': [
         'DesignSpecification:OutdoorAir',

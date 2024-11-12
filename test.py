@@ -23,15 +23,21 @@ my_model = IDF(file_path)
 # my_model = IDF(file_path)
 # my_model.printidf()
 
-# all_objs = my_model.idfobjects
+all_objs = my_model.idfobjects
 # print(all_objs.keys())
 # bldg = all_objs['BUILDING'][0]
 # print(bldg.Name)
 # print(bldg.North_Axis)
 
-# zones = all_objs['Sizing:System']
+# zones = all_objs['Zone']
 # print(zones)
 # print(len(zones))
+# zone_names = []
+# for zone in zones:
+#     name = zone.Name
+#     # name = zone.Name.split(' ')[0]
+#     zone_names.append(name)
+# print(zone_names)
 
 # Get all setpoint managers:
 #####################################################################
@@ -64,12 +70,18 @@ delete_hvac_objs(my_model)
 # # print(spm)
 # print(newplantloop)
 
+preheat_coil = AirLoopComponent.heating_coil_electric(my_model, 'Preheat Coil')
+hx = AirLoopComponent.heat_exchanger_air_to_air(my_model, 'HX')
 clg_coil = AirLoopComponent.cooling_coil_water(my_model, 'Cooling Coil')
 htg_coil = AirLoopComponent.heating_coil_water(my_model, 'Heating Coil')
-loop = AirLoop.air_loop_hvac(my_model, name='VAV System', supply_branches=[clg_coil, htg_coil])
+loop = AirLoop.air_loop_hvac(
+    my_model,
+    name='VAV System',
+    outdoor_air_stream_comp=[preheat_coil, hx],
+    supply_branches=[clg_coil, htg_coil])
 print(loop)
 
-# object = my_model.newidfobject('Controller:WaterCoil'.upper())
+# object = my_model.newidfobject('SetpointManager:MixedAir'.upper())
 # print(object.fieldnames)
 
 # Save to a new file:

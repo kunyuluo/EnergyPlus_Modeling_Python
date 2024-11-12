@@ -1930,7 +1930,7 @@ OS:Fan:VariableVolume,
   -0.07292612,                            !- Fan Power Coefficient 3
   0.943739823,                            !- Fan Power Coefficient 4
   0,                                      !- Fan Power Coefficient 5
-  {01048bea-d1b1-424a-9d09-fbccd93705d2}, !- Air Inlet Node Name
+  {d86e7354-e65e-4172-a4a8-6e855e93d4b9}, !- Air Inlet Node Name
   {3fd27c29-e40f-407b-8af3-7be8720d04fa}, !- Air Outlet Node Name
   ;                                       !- End-Use Subcategory
 
@@ -1942,8 +1942,8 @@ OS:Coil:Heating:Water,
   ,                                       !- Maximum Water Flow Rate {m3/s}
   {e87d8c7b-e946-492f-870a-fd66f6905ffe}, !- Water Inlet Node Name
   {605a4f02-acce-4c8a-9cc7-e8b5291d4cf8}, !- Water Outlet Node Name
-  ,                                       !- Air Inlet Node Name
-  ,                                       !- Air Outlet Node Name
+  {7ae92446-5207-4344-abd5-c2ef0e118f84}, !- Air Inlet Node Name
+  {1b0765e3-e875-4c5c-a272-17f26f8bee74}, !- Air Outlet Node Name
   ,                                       !- Performance Input Method
   ,                                       !- Rated Capacity {W}
   60.0000000000001,                       !- Rated Inlet Water Temperature {C}
@@ -1965,8 +1965,8 @@ OS:Coil:Cooling:Water,
   ,                                       !- Design Outlet Air Humidity Ratio {kg-H2O/kg-air}
   {4397f8d4-baae-4a2d-93d6-27172837d79a}, !- Water Inlet Node Name
   {e57066f0-c5b1-41b9-9143-a7bdc0eb5a4e}, !- Water Outlet Node Name
-  ,                                       !- Air Inlet Node Name
-  ,                                       !- Air Outlet Node Name
+  {fc1d0db5-f7f1-4512-9307-7684bd6836de}, !- Air Inlet Node Name
+  {918296a1-435c-490b-b638-fbcbf810ab01}, !- Air Outlet Node Name
   ,                                       !- Type of Analysis
   ;                                       !- Heat Exchanger Configuration
 
@@ -2029,35 +2029,21 @@ OS:AirLoopHVAC:OutdoorAirSystem,
   ,                                       !- Outdoor Air Equipment List Name
   ,                                       !- Availability Manager List Name
   {38eaa809-4c78-4870-895d-a5287798e0c5}, !- Mixed Air Node Name
-  {b9ee7e89-70ce-4290-94fe-0cd55b23961f}, !- Outdoor Air Stream Node Name
-  {72d3156b-6f68-4822-9bcf-bb3ed849c9f3}, !- Relief Air Stream Node Name
+  {3a25efac-52f1-4565-91d3-f6355c9a30ee}, !- Outdoor Air Stream Node Name
+  {7382f281-05b3-48e2-93fb-0470d5a44eb0}, !- Relief Air Stream Node Name
   {b909d899-5e27-4892-88b5-ed54727e9456}; !- Return Air Stream Node Name
 
 OS:Node,
   {a0fd0ca8-a79a-4a5d-a469-4af6753e3b79}, !- Handle
   Node 7,                                 !- Name
   ,                                       !- Inlet Port
-  {b9ee7e89-70ce-4290-94fe-0cd55b23961f}; !- Outlet Port
-
-OS:Connection,
-  {b9ee7e89-70ce-4290-94fe-0cd55b23961f}, !- Handle
-  {a0fd0ca8-a79a-4a5d-a469-4af6753e3b79}, !- Source Object
-  3,                                      !- Outlet Port
-  {a04702e0-81a5-4de9-923f-ea290090ac9a}, !- Target Object
-  6;                                      !- Inlet Port
+  {9ade4424-7024-4a8c-974a-702b15595223}; !- Outlet Port
 
 OS:Node,
   {86862a20-c22e-40bd-b0be-2fefd7c970f7}, !- Handle
   Node 8,                                 !- Name
-  {72d3156b-6f68-4822-9bcf-bb3ed849c9f3}, !- Inlet Port
+  {537b2df3-633c-4d02-bcb6-10b5ff41358a}, !- Inlet Port
   ;                                       !- Outlet Port
-
-OS:Connection,
-  {72d3156b-6f68-4822-9bcf-bb3ed849c9f3}, !- Handle
-  {a04702e0-81a5-4de9-923f-ea290090ac9a}, !- Source Object
-  7,                                      !- Outlet Port
-  {86862a20-c22e-40bd-b0be-2fefd7c970f7}, !- Target Object
-  2;                                      !- Inlet Port
 
 OS:Connection,
   {b909d899-5e27-4892-88b5-ed54727e9456}, !- Handle
@@ -2070,7 +2056,7 @@ OS:Node,
   {e14c52a6-60cb-4108-9449-be8a88ac1f99}, !- Handle
   Node 9,                                 !- Name
   {38eaa809-4c78-4870-895d-a5287798e0c5}, !- Inlet Port
-  {5852edc0-03f3-4d03-90ea-c63b109c7021}; !- Outlet Port
+  {fc1d0db5-f7f1-4512-9307-7684bd6836de}; !- Outlet Port
 
 OS:Connection,
   {38eaa809-4c78-4870-895d-a5287798e0c5}, !- Handle
@@ -4069,111 +4055,6 @@ OS:Connection,
   {14cf4043-8c1d-4c73-8ec0-ed18b88ae388}, !- Target Object
   15;                                     !- Inlet Port
 
-OS:Coil:Cooling:DX:VariableSpeed,
-  {b1704295-b634-4643-a623-5d3c2b586007}, !- Handle
-  Coil Cooling DX Variable Speed - Two Speeds, !- Name
-  {5852edc0-03f3-4d03-90ea-c63b109c7021}, !- Indoor Air Inlet Node Name
-  {9a9388f3-b00f-49aa-bf9a-d189af11c8d2}, !- Indoor Air Outlet Node Name
-  2,                                      !- Nominal Speed Level {dimensionless}
-  autosize,                               !- Gross Rated Total Cooling Capacity At Selected Nominal Speed Level {W}
-  autosize,                               !- Rated Air Flow Rate At Selected Nominal Speed Level {m3/s}
-  0,                                      !- Nominal Time for Condensate to Begin Leaving the Coil {s}
-  0,                                      !- Initial Moisture Evaporation Rate Divided by Steady-State AC Latent Capacity {dimensionless}
-  2.5,                                    !- Maximum Cycling Rate {cycles/hr}
-  60,                                     !- Latent Capacity Time Constant {s}
-  60,                                     !- Fan Delay Time {s}
-  {fde9a070-21dc-44fc-981a-c58a4fe6eaf2}, !- Energy Part Load Fraction Curve Name
-  ,                                       !- Condenser Air Inlet Node Name
-  AirCooled,                              !- Condenser Type
-  0,                                      !- Evaporative Condenser Pump Rated Power Consumption {W}
-  0,                                      !- Crankcase Heater Capacity {W}
-  ,                                       !- Crankcase Heater Capacity Function of Temperature Curve Name
-  10,                                     !- Maximum Outdoor Dry-Bulb Temperature for Crankcase Heater Operation {C}
-  -25,                                    !- Minimum Outdoor Dry-Bulb Temperature for Compressor Operation {C}
-  ,                                       !- Supply Water Storage Tank Name
-  ,                                       !- Condensate Collection Water Storage Tank Name
-  0,                                      !- Basin Heater Capacity {W/K}
-  2,                                      !- Basin Heater Setpoint Temperature {C}
-  ,                                       !- Basin Heater Operating Schedule Name
-  {4ffce12d-1133-4e51-a072-dba5f883e23a}; !- Speed Data List
-
-OS:Curve:Quadratic,
-  {fde9a070-21dc-44fc-981a-c58a4fe6eaf2}, !- Handle
-  Coil Cooling DX Variable Speed - Two Speeds EIRfPLR, !- Name
-  0.85,                                   !- Coefficient1 Constant
-  0.15,                                   !- Coefficient2 x
-  0,                                      !- Coefficient3 x**2
-  0,                                      !- Minimum Value of x
-  1;                                      !- Maximum Value of x
-
-OS:ModelObjectList,
-  {4ffce12d-1133-4e51-a072-dba5f883e23a}, !- Handle
-  Coil Cooling DX Variable Speed - Two Speeds Speed Data List, !- Name
-  {a1dd1d21-9b2e-4983-8f98-7a4d45c90e3e}, !- Model Object 1
-  {90635936-a3f5-4e5c-af6f-0c8708055926}; !- Model Object 2
-
-OS:Coil:Cooling:DX:VariableSpeed:SpeedData,
-  {a1dd1d21-9b2e-4983-8f98-7a4d45c90e3e}, !- Handle
-  Coil Cooling DX Variable Speed - Two Speeds Half Speed, !- Name
-  8914.185229,                            !- Reference Unit Gross Rated Total Cooling Capacity {W}
-  0.79,                                   !- Reference Unit Gross Rated Sensible Heat Ratio {dimensionless}
-  3.980488789,                            !- Reference Unit Gross Rated Cooling COP {W/W}
-  0.944,                                  !- Reference Unit Rated Air Flow Rate {m3/s}
-  773.3,                                  !- Rated Evaporator Fan Power Per Volume Flow Rate 2017 {W/(m3/s)}
-  934.4,                                  !- Rated Evaporator Fan Power Per Volume Flow Rate 2023 {W/(m3/s)}
-  ,                                       !- Reference Unit Rated Condenser Air Flow Rate {m3/s}
-  ,                                       !- Reference Unit Rated Pad Effectiveness of Evap Precooling {dimensionless}
-  {5b304051-4a85-4149-9b82-a4b9a5c334f5}, !- Total Cooling Capacity Function of Temperature Curve Name
-  {21b95c14-929f-4cf8-bd93-394e66f77298}, !- Total Cooling Capacity Function of Air Flow Fraction Curve Name
-  {95010221-b450-4899-bca7-bd3a9d04516d}, !- Energy Input Ratio Function of Temperature Curve Name
-  {de4cf580-a910-44e8-bbc7-bfc68cadab03}; !- Energy Input Ratio Function of Air Flow Fraction Curve Name
-
-OS:Curve:Biquadratic,
-  {5b304051-4a85-4149-9b82-a4b9a5c334f5}, !- Handle
-  Coil Cooling DX Variable Speed - Two Speeds Half Speed capFT, !- Name
-  1.6253449506,                           !- Coefficient1 Constant
-  -0.0786550838,                          !- Coefficient2 x
-  0.0030679776,                           !- Coefficient3 x**2
-  0.0008002088,                           !- Coefficient4 y
-  -3.5406e-05,                            !- Coefficient5 y**2
-  -0.0003534409,                          !- Coefficient6 x*y
-  13.89,                                  !- Minimum Value of x
-  22.22,                                  !- Maximum Value of x
-  12.78,                                  !- Minimum Value of y
-  51.67;                                  !- Maximum Value of y
-
-OS:Curve:Quadratic,
-  {21b95c14-929f-4cf8-bd93-394e66f77298}, !- Handle
-  Coil Cooling DX Variable Speed - Two Speeds Half Speed capFlow, !- Name
-  1,                                      !- Coefficient1 Constant
-  0,                                      !- Coefficient2 x
-  0,                                      !- Coefficient3 x**2
-  0.5,                                    !- Minimum Value of x
-  1.5;                                    !- Maximum Value of x
-
-OS:Curve:Biquadratic,
-  {95010221-b450-4899-bca7-bd3a9d04516d}, !- Handle
-  Coil Cooling DX Variable Speed - Two Speeds Half Speed EIRFT, !- Name
-  1.4240389306,                           !- Coefficient1 Constant
-  -0.0593310687,                          !- Coefficient2 x
-  0.002606807,                            !- Coefficient3 x**2
-  0.0008867551,                           !- Coefficient4 y
-  -3.69191e-05,                           !- Coefficient5 y**2
-  -0.0003552805,                          !- Coefficient6 x*y
-  13.89,                                  !- Minimum Value of x
-  22.22,                                  !- Maximum Value of x
-  12.78,                                  !- Minimum Value of y
-  51.67;                                  !- Maximum Value of y
-
-OS:Curve:Quadratic,
-  {de4cf580-a910-44e8-bbc7-bfc68cadab03}, !- Handle
-  Coil Cooling DX Variable Speed - Two Speeds Half Speed EIRFlow, !- Name
-  1,                                      !- Coefficient1 Constant
-  0,                                      !- Coefficient2 x
-  0,                                      !- Coefficient3 x**2
-  0.5,                                    !- Minimum Value of x
-  1.5;                                    !- Maximum Value of x
-
 OS:Curve:Biquadratic,
   {56e3af2f-6cc8-46e7-b9e4-d2eb33cb2e4b}, !- Handle
   Coil Cooling DX Variable Speed - Two Speeds Half Speed capFT 1, !- Name
@@ -4214,68 +4095,6 @@ OS:Curve:Biquadratic,
 OS:Curve:Quadratic,
   {124dcdf3-e441-4887-87ad-a2a7e8bfd746}, !- Handle
   Coil Cooling DX Variable Speed - Two Speeds Half Speed EIRFlow 1, !- Name
-  1,                                      !- Coefficient1 Constant
-  0,                                      !- Coefficient2 x
-  0,                                      !- Coefficient3 x**2
-  0.5,                                    !- Minimum Value of x
-  1.5;                                    !- Maximum Value of x
-
-OS:Coil:Cooling:DX:VariableSpeed:SpeedData,
-  {90635936-a3f5-4e5c-af6f-0c8708055926}, !- Handle
-  Coil Cooling DX Variable Speed - Two Speeds Full Speed, !- Name
-  16456.94607,                            !- Reference Unit Gross Rated Total Cooling Capacity {W}
-  0.73,                                   !- Reference Unit Gross Rated Sensible Heat Ratio {dimensionless}
-  4.08,                                   !- Reference Unit Gross Rated Cooling COP {W/W}
-  1.888,                                  !- Reference Unit Rated Air Flow Rate {m3/s}
-  773.3,                                  !- Rated Evaporator Fan Power Per Volume Flow Rate 2017 {W/(m3/s)}
-  934.4,                                  !- Rated Evaporator Fan Power Per Volume Flow Rate 2023 {W/(m3/s)}
-  ,                                       !- Reference Unit Rated Condenser Air Flow Rate {m3/s}
-  ,                                       !- Reference Unit Rated Pad Effectiveness of Evap Precooling {dimensionless}
-  {d590d610-5d28-40ed-96f2-b7d4c2109e70}, !- Total Cooling Capacity Function of Temperature Curve Name
-  {855cd244-3ee7-4784-a900-b0f9d437667c}, !- Total Cooling Capacity Function of Air Flow Fraction Curve Name
-  {bdc2515c-2026-4a55-97be-c6270e19a313}, !- Energy Input Ratio Function of Temperature Curve Name
-  {720e2c55-20d5-42fa-9e38-8e0fc155b012}; !- Energy Input Ratio Function of Air Flow Fraction Curve Name
-
-OS:Curve:Biquadratic,
-  {d590d610-5d28-40ed-96f2-b7d4c2109e70}, !- Handle
-  Coil Cooling DX Variable Speed - Two Speeds Full Speed capFT, !- Name
-  1.6253449506,                           !- Coefficient1 Constant
-  -0.0786550838,                          !- Coefficient2 x
-  0.0030679776,                           !- Coefficient3 x**2
-  0.0008002088,                           !- Coefficient4 y
-  -3.5406e-05,                            !- Coefficient5 y**2
-  -0.0003534409,                          !- Coefficient6 x*y
-  13.89,                                  !- Minimum Value of x
-  22.22,                                  !- Maximum Value of x
-  12.78,                                  !- Minimum Value of y
-  51.67;                                  !- Maximum Value of y
-
-OS:Curve:Quadratic,
-  {855cd244-3ee7-4784-a900-b0f9d437667c}, !- Handle
-  Coil Cooling DX Variable Speed - Two Speeds Full Speed capFlow, !- Name
-  1,                                      !- Coefficient1 Constant
-  0,                                      !- Coefficient2 x
-  0,                                      !- Coefficient3 x**2
-  0.5,                                    !- Minimum Value of x
-  1.5;                                    !- Maximum Value of x
-
-OS:Curve:Biquadratic,
-  {bdc2515c-2026-4a55-97be-c6270e19a313}, !- Handle
-  Coil Cooling DX Variable Speed - Two Speeds Full Speed EIRFT, !- Name
-  1.4240389306,                           !- Coefficient1 Constant
-  -0.0593310687,                          !- Coefficient2 x
-  0.002606807,                            !- Coefficient3 x**2
-  0.0008867551,                           !- Coefficient4 y
-  -3.69191e-05,                           !- Coefficient5 y**2
-  -0.0003552805,                          !- Coefficient6 x*y
-  13.89,                                  !- Minimum Value of x
-  22.22,                                  !- Maximum Value of x
-  12.78,                                  !- Minimum Value of y
-  51.67;                                  !- Maximum Value of y
-
-OS:Curve:Quadratic,
-  {720e2c55-20d5-42fa-9e38-8e0fc155b012}, !- Handle
-  Coil Cooling DX Variable Speed - Two Speeds Full Speed EIRFlow, !- Name
   1,                                      !- Coefficient1 Constant
   0,                                      !- Coefficient2 x
   0,                                      !- Coefficient3 x**2
@@ -4328,58 +4147,361 @@ OS:Curve:Quadratic,
   0.5,                                    !- Minimum Value of x
   1.5;                                    !- Maximum Value of x
 
+OS:HeatExchanger:AirToAir:SensibleAndLatent,
+  {bc652837-6115-4428-9f56-82d26e3d240b}, !- Handle
+  Air-to-Air Plate HX,                    !- Name
+  {3c603b94-4223-427a-8b64-83119ccbfe77}, !- Availability Schedule
+  autosize,                               !- Nominal Supply Air Flow Rate {m3/s}
+  0.76,                                   !- Sensible Effectiveness at 100% Heating Air Flow {dimensionless}
+  0.68,                                   !- Latent Effectiveness at 100% Heating Air Flow {dimensionless}
+  0.76,                                   !- Sensible Effectiveness at 100% Cooling Air Flow {dimensionless}
+  0.68,                                   !- Latent Effectiveness at 100% Cooling Air Flow {dimensionless}
+  {7804a7ac-828d-49af-8d1b-43fd2691e59f}, !- Supply Air Inlet Node
+  {09b09301-aadf-4ce9-a8b8-b6a318e9ba3c}, !- Supply Air Outlet Node
+  {6832e8a2-e23c-4263-adb9-c79a32ab7314}, !- Exhaust Air Inlet Node
+  {537b2df3-633c-4d02-bcb6-10b5ff41358a}, !- Exhaust Air Outlet Node
+  0,                                      !- Nominal Electric Power {W}
+  Yes,                                    !- Supply Air Outlet Temperature Control
+  Plate,                                  !- Heat Exchanger Type
+  None,                                   !- Frost Control Type
+  1.7,                                    !- Threshold Temperature {C}
+  ,                                       !- Initial Defrost Time Fraction {dimensionless}
+  ,                                       !- Rate of Defrost Time Fraction Increase {1/K}
+  Yes,                                    !- Economizer Lockout
+  {2200151b-7f62-446a-99e2-1f12fb00b1a4}, !- Sensible Effectiveness of Heating Air Flow Curve Name
+  {27fbbf35-3d84-4c36-8193-d02d9031cbea}, !- Latent Effectiveness of Heating Air Flow Curve Name
+  {f8e516fb-da7b-4351-810f-a4fd307a56f0}, !- Sensible Effectiveness of Cooling Air Flow Curve Name
+  {dbe6be43-9a74-48f1-a0b2-2b33fab23f77}; !- Latent Effectiveness of Cooling Air Flow Curve Name
+
+OS:Table:Lookup,
+  {2200151b-7f62-446a-99e2-1f12fb00b1a4}, !- Handle
+  Air-to-Air Plate HX_SensHeatEff,        !- Name
+  {045c676f-b130-4967-a996-e3f5c9bd72a2}, !- Independent Variable List Name
+  DivisorOnly,                            !- Normalization Method
+  0.76,                                   !- Normalization Divisor
+  0,                                      !- Minimum Output {BasedOnField A5}
+  10,                                     !- Maximum Output {BasedOnField A5}
+  Dimensionless,                          !- Output Unit Type
+  ,                                       !- External File Name
+  ,                                       !- External File Column Number
+  ,                                       !- External File Starting Row Number
+  0.81,                                   !- Output Value 1 {BasedOnField A5}
+  0.76;                                   !- Output Value 2 {BasedOnField A5}
+
+OS:ModelObjectList,
+  {045c676f-b130-4967-a996-e3f5c9bd72a2}, !- Handle
+  Air-to-Air Plate HX_IndependentVariableList_SensHeatEff, !- Name
+  {366db9f9-5895-4812-9fe5-68f14791d748}; !- Model Object 1
+
+OS:Table:Lookup,
+  {27fbbf35-3d84-4c36-8193-d02d9031cbea}, !- Handle
+  Air-to-Air Plate HX_LatHeatEff,         !- Name
+  {d93c76b9-2ab3-425f-a55b-9becb4f033f7}, !- Independent Variable List Name
+  DivisorOnly,                            !- Normalization Method
+  0.68,                                   !- Normalization Divisor
+  0,                                      !- Minimum Output {BasedOnField A5}
+  10,                                     !- Maximum Output {BasedOnField A5}
+  Dimensionless,                          !- Output Unit Type
+  ,                                       !- External File Name
+  ,                                       !- External File Column Number
+  ,                                       !- External File Starting Row Number
+  0.73,                                   !- Output Value 1 {BasedOnField A5}
+  0.68;                                   !- Output Value 2 {BasedOnField A5}
+
+OS:ModelObjectList,
+  {d93c76b9-2ab3-425f-a55b-9becb4f033f7}, !- Handle
+  Air-to-Air Plate HX_IndependentVariableList_LatHeatEff, !- Name
+  {366db9f9-5895-4812-9fe5-68f14791d748}; !- Model Object 1
+
+OS:Table:Lookup,
+  {f8e516fb-da7b-4351-810f-a4fd307a56f0}, !- Handle
+  Air-to-Air Plate HX_SensCoolEff,        !- Name
+  {f9a6d626-bf0f-44cb-ac36-b63bbb32f941}, !- Independent Variable List Name
+  DivisorOnly,                            !- Normalization Method
+  0.76,                                   !- Normalization Divisor
+  0,                                      !- Minimum Output {BasedOnField A5}
+  10,                                     !- Maximum Output {BasedOnField A5}
+  Dimensionless,                          !- Output Unit Type
+  ,                                       !- External File Name
+  ,                                       !- External File Column Number
+  ,                                       !- External File Starting Row Number
+  0.81,                                   !- Output Value 1 {BasedOnField A5}
+  0.76;                                   !- Output Value 2 {BasedOnField A5}
+
+OS:ModelObjectList,
+  {f9a6d626-bf0f-44cb-ac36-b63bbb32f941}, !- Handle
+  Air-to-Air Plate HX_IndependentVariableList_SensCoolEff, !- Name
+  {366db9f9-5895-4812-9fe5-68f14791d748}; !- Model Object 1
+
+OS:Table:Lookup,
+  {dbe6be43-9a74-48f1-a0b2-2b33fab23f77}, !- Handle
+  Air-to-Air Plate HX_LatCoolEff,         !- Name
+  {9e24be22-c4ee-4ebe-bfbe-88ea14605f55}, !- Independent Variable List Name
+  DivisorOnly,                            !- Normalization Method
+  0.68,                                   !- Normalization Divisor
+  0,                                      !- Minimum Output {BasedOnField A5}
+  10,                                     !- Maximum Output {BasedOnField A5}
+  Dimensionless,                          !- Output Unit Type
+  ,                                       !- External File Name
+  ,                                       !- External File Column Number
+  ,                                       !- External File Starting Row Number
+  0.73,                                   !- Output Value 1 {BasedOnField A5}
+  0.68;                                   !- Output Value 2 {BasedOnField A5}
+
+OS:ModelObjectList,
+  {9e24be22-c4ee-4ebe-bfbe-88ea14605f55}, !- Handle
+  Air-to-Air Plate HX_IndependentVariableList_LatCoolEff, !- Name
+  {366db9f9-5895-4812-9fe5-68f14791d748}; !- Model Object 1
+
+OS:Table:IndependentVariable,
+  {366db9f9-5895-4812-9fe5-68f14791d748}, !- Handle
+  Air-to-Air Plate HX_IndependentVariable, !- Name
+  Linear,                                 !- Interpolation Method
+  Linear,                                 !- Extrapolation Method
+  0,                                      !- Minimum Value {BasedOnField A5}
+  10,                                     !- Maximum Value {BasedOnField A5}
+  ,                                       !- Normalization Reference Value {BasedOnField A5}
+  Dimensionless,                          !- Unit Type
+  ,                                       !- External File Name
+  ,                                       !- External File Column Number
+  ,                                       !- External File Starting Row Number
+  0.75,                                   !- Value 1
+  1;                                      !- Value 2
+
 OS:Node,
-  {99f557d9-dfe0-4ab2-9729-ed4ba6c09fb7}, !- Handle
-  Node 10,                                !- Name
-  {9a9388f3-b00f-49aa-bf9a-d189af11c8d2}, !- Inlet Port
-  {b02f6635-cd58-4fce-a36e-8a23c8adc4fa}; !- Outlet Port
+  {ad7ca4ea-4356-4d7a-8ca2-4fefd91e732b}, !- Handle
+  Node 37,                                !- Name
+  {09b09301-aadf-4ce9-a8b8-b6a318e9ba3c}, !- Inlet Port
+  {3a25efac-52f1-4565-91d3-f6355c9a30ee}; !- Outlet Port
 
 OS:Connection,
-  {5852edc0-03f3-4d03-90ea-c63b109c7021}, !- Handle
-  {e14c52a6-60cb-4108-9449-be8a88ac1f99}, !- Source Object
-  3,                                      !- Outlet Port
-  {b1704295-b634-4643-a623-5d3c2b586007}, !- Target Object
+  {09b09301-aadf-4ce9-a8b8-b6a318e9ba3c}, !- Handle
+  {bc652837-6115-4428-9f56-82d26e3d240b}, !- Source Object
+  9,                                      !- Outlet Port
+  {ad7ca4ea-4356-4d7a-8ca2-4fefd91e732b}, !- Target Object
   2;                                      !- Inlet Port
 
 OS:Connection,
-  {9a9388f3-b00f-49aa-bf9a-d189af11c8d2}, !- Handle
-  {b1704295-b634-4643-a623-5d3c2b586007}, !- Source Object
+  {3a25efac-52f1-4565-91d3-f6355c9a30ee}, !- Handle
+  {ad7ca4ea-4356-4d7a-8ca2-4fefd91e732b}, !- Source Object
   3,                                      !- Outlet Port
-  {99f557d9-dfe0-4ab2-9729-ed4ba6c09fb7}, !- Target Object
+  {a04702e0-81a5-4de9-923f-ea290090ac9a}, !- Target Object
+  6;                                      !- Inlet Port
+
+OS:Node,
+  {794ce63f-683d-4f68-acaa-bb555b2225e9}, !- Handle
+  Node 64,                                !- Name
+  {7382f281-05b3-48e2-93fb-0470d5a44eb0}, !- Inlet Port
+  {6832e8a2-e23c-4263-adb9-c79a32ab7314}; !- Outlet Port
+
+OS:Connection,
+  {7382f281-05b3-48e2-93fb-0470d5a44eb0}, !- Handle
+  {a04702e0-81a5-4de9-923f-ea290090ac9a}, !- Source Object
+  7,                                      !- Outlet Port
+  {794ce63f-683d-4f68-acaa-bb555b2225e9}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {6832e8a2-e23c-4263-adb9-c79a32ab7314}, !- Handle
+  {794ce63f-683d-4f68-acaa-bb555b2225e9}, !- Source Object
+  3,                                      !- Outlet Port
+  {bc652837-6115-4428-9f56-82d26e3d240b}, !- Target Object
+  10;                                     !- Inlet Port
+
+OS:Node,
+  {6d357ce4-4165-43e5-86f7-8e214742e670}, !- Handle
+  Node 36,                                !- Name
+  ,                                       !- Inlet Port
+  ;                                       !- Outlet Port
+
+OS:Table:Lookup,
+  {29eb1943-da87-440d-b7d2-f422afc9ab12}, !- Handle
+  ERV HX_SensHeatEff,                     !- Name
+  {6c4e5095-fbce-433f-ba61-37e1f0e1ac10}, !- Independent Variable List Name
+  DivisorOnly,                            !- Normalization Method
+  0.76,                                   !- Normalization Divisor
+  0,                                      !- Minimum Output {BasedOnField A5}
+  10,                                     !- Maximum Output {BasedOnField A5}
+  Dimensionless,                          !- Output Unit Type
+  ,                                       !- External File Name
+  ,                                       !- External File Column Number
+  ,                                       !- External File Starting Row Number
+  0.81,                                   !- Output Value 1 {BasedOnField A5}
+  0.76;                                   !- Output Value 2 {BasedOnField A5}
+
+OS:ModelObjectList,
+  {6c4e5095-fbce-433f-ba61-37e1f0e1ac10}, !- Handle
+  ERV HX_IndependentVariableList_SensHeatEff, !- Name
+  {60184078-e2f7-45a5-b4ca-4051416ebbd7}; !- Model Object 1
+
+OS:Table:Lookup,
+  {a2aa5f6c-884c-4d8a-afe2-b87975d1dd9c}, !- Handle
+  ERV HX_LatHeatEff,                      !- Name
+  {0222f5dd-9605-4918-977c-86723a72fbb5}, !- Independent Variable List Name
+  DivisorOnly,                            !- Normalization Method
+  0.68,                                   !- Normalization Divisor
+  0,                                      !- Minimum Output {BasedOnField A5}
+  10,                                     !- Maximum Output {BasedOnField A5}
+  Dimensionless,                          !- Output Unit Type
+  ,                                       !- External File Name
+  ,                                       !- External File Column Number
+  ,                                       !- External File Starting Row Number
+  0.73,                                   !- Output Value 1 {BasedOnField A5}
+  0.68;                                   !- Output Value 2 {BasedOnField A5}
+
+OS:ModelObjectList,
+  {0222f5dd-9605-4918-977c-86723a72fbb5}, !- Handle
+  ERV HX_IndependentVariableList_LatHeatEff, !- Name
+  {60184078-e2f7-45a5-b4ca-4051416ebbd7}; !- Model Object 1
+
+OS:Table:Lookup,
+  {583ba90c-4ad8-4384-86c1-9b735f14496a}, !- Handle
+  ERV HX_SensCoolEff,                     !- Name
+  {a4fb3e1b-c0d2-4e3c-9089-8e01f0a6a2f9}, !- Independent Variable List Name
+  DivisorOnly,                            !- Normalization Method
+  0.76,                                   !- Normalization Divisor
+  0,                                      !- Minimum Output {BasedOnField A5}
+  10,                                     !- Maximum Output {BasedOnField A5}
+  Dimensionless,                          !- Output Unit Type
+  ,                                       !- External File Name
+  ,                                       !- External File Column Number
+  ,                                       !- External File Starting Row Number
+  0.81,                                   !- Output Value 1 {BasedOnField A5}
+  0.76;                                   !- Output Value 2 {BasedOnField A5}
+
+OS:ModelObjectList,
+  {a4fb3e1b-c0d2-4e3c-9089-8e01f0a6a2f9}, !- Handle
+  ERV HX_IndependentVariableList_SensCoolEff, !- Name
+  {60184078-e2f7-45a5-b4ca-4051416ebbd7}; !- Model Object 1
+
+OS:Table:Lookup,
+  {eab86227-f27f-448b-8ed4-119d74a31e2b}, !- Handle
+  ERV HX_LatCoolEff,                      !- Name
+  {e1fac885-bdba-4db5-999a-610123424870}, !- Independent Variable List Name
+  DivisorOnly,                            !- Normalization Method
+  0.68,                                   !- Normalization Divisor
+  0,                                      !- Minimum Output {BasedOnField A5}
+  10,                                     !- Maximum Output {BasedOnField A5}
+  Dimensionless,                          !- Output Unit Type
+  ,                                       !- External File Name
+  ,                                       !- External File Column Number
+  ,                                       !- External File Starting Row Number
+  0.73,                                   !- Output Value 1 {BasedOnField A5}
+  0.68;                                   !- Output Value 2 {BasedOnField A5}
+
+OS:ModelObjectList,
+  {e1fac885-bdba-4db5-999a-610123424870}, !- Handle
+  ERV HX_IndependentVariableList_LatCoolEff, !- Name
+  {60184078-e2f7-45a5-b4ca-4051416ebbd7}; !- Model Object 1
+
+OS:Table:IndependentVariable,
+  {60184078-e2f7-45a5-b4ca-4051416ebbd7}, !- Handle
+  ERV HX_IndependentVariable,             !- Name
+  Linear,                                 !- Interpolation Method
+  Linear,                                 !- Extrapolation Method
+  0,                                      !- Minimum Value {BasedOnField A5}
+  10,                                     !- Maximum Value {BasedOnField A5}
+  ,                                       !- Normalization Reference Value {BasedOnField A5}
+  Dimensionless,                          !- Unit Type
+  ,                                       !- External File Name
+  ,                                       !- External File Column Number
+  ,                                       !- External File Starting Row Number
+  0.75,                                   !- Value 1
+  1;                                      !- Value 2
+
+OS:Connection,
+  {988d7c2a-9c34-4cb7-9fd2-93d2ee3d7ea1}, !- Handle
+  ,                                       !- Source Object
+  9,                                      !- Outlet Port
+  ,                                       !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {537b2df3-633c-4d02-bcb6-10b5ff41358a}, !- Handle
+  {bc652837-6115-4428-9f56-82d26e3d240b}, !- Source Object
+  11,                                     !- Outlet Port
+  {86862a20-c22e-40bd-b0be-2fefd7c970f7}, !- Target Object
   2;                                      !- Inlet Port
 
 OS:Coil:Heating:Electric,
-  {fb477a2a-7aa5-4c1f-9155-a7083d052b82}, !- Handle
-  CV Elec Rht Coil,                       !- Name
+  {c2123d52-c1d7-492b-ad40-dae5b7edd404}, !- Handle
+  Changeover Bypass Elec Rht Coil,        !- Name
   {3c603b94-4223-427a-8b64-83119ccbfe77}, !- Availability Schedule Name
   ,                                       !- Efficiency
   ,                                       !- Nominal Capacity {W}
-  {b02f6635-cd58-4fce-a36e-8a23c8adc4fa}, !- Air Inlet Node Name
-  {723720eb-e1ca-4464-b8fc-b484c685ef02}; !- Air Outlet Node Name
+  {9ade4424-7024-4a8c-974a-702b15595223}, !- Air Inlet Node Name
+  {c9eb1f8b-db67-4543-b60a-fdd49301cc9a}; !- Air Outlet Node Name
 
 OS:Node,
-  {51f58c68-d620-49dc-90b1-308b005c22a5}, !- Handle
-  Node 11,                                !- Name
-  {723720eb-e1ca-4464-b8fc-b484c685ef02}, !- Inlet Port
-  {01048bea-d1b1-424a-9d09-fbccd93705d2}; !- Outlet Port
+  {74c568a5-7b91-4b39-9ef8-b568dc12f575}, !- Handle
+  Node 65,                                !- Name
+  {c9eb1f8b-db67-4543-b60a-fdd49301cc9a}, !- Inlet Port
+  {7804a7ac-828d-49af-8d1b-43fd2691e59f}; !- Outlet Port
 
 OS:Connection,
-  {b02f6635-cd58-4fce-a36e-8a23c8adc4fa}, !- Handle
-  {99f557d9-dfe0-4ab2-9729-ed4ba6c09fb7}, !- Source Object
+  {9ade4424-7024-4a8c-974a-702b15595223}, !- Handle
+  {a0fd0ca8-a79a-4a5d-a469-4af6753e3b79}, !- Source Object
   3,                                      !- Outlet Port
-  {fb477a2a-7aa5-4c1f-9155-a7083d052b82}, !- Target Object
+  {c2123d52-c1d7-492b-ad40-dae5b7edd404}, !- Target Object
   5;                                      !- Inlet Port
 
 OS:Connection,
-  {723720eb-e1ca-4464-b8fc-b484c685ef02}, !- Handle
-  {fb477a2a-7aa5-4c1f-9155-a7083d052b82}, !- Source Object
+  {c9eb1f8b-db67-4543-b60a-fdd49301cc9a}, !- Handle
+  {c2123d52-c1d7-492b-ad40-dae5b7edd404}, !- Source Object
   6,                                      !- Outlet Port
-  {51f58c68-d620-49dc-90b1-308b005c22a5}, !- Target Object
+  {74c568a5-7b91-4b39-9ef8-b568dc12f575}, !- Target Object
   2;                                      !- Inlet Port
 
 OS:Connection,
-  {01048bea-d1b1-424a-9d09-fbccd93705d2}, !- Handle
-  {51f58c68-d620-49dc-90b1-308b005c22a5}, !- Source Object
+  {7804a7ac-828d-49af-8d1b-43fd2691e59f}, !- Handle
+  {74c568a5-7b91-4b39-9ef8-b568dc12f575}, !- Source Object
+  3,                                      !- Outlet Port
+  {bc652837-6115-4428-9f56-82d26e3d240b}, !- Target Object
+  8;                                      !- Inlet Port
+
+OS:Node,
+  {e4daef12-e2b8-45d6-8903-f3950d626745}, !- Handle
+  Node 10,                                !- Name
+  {918296a1-435c-490b-b638-fbcbf810ab01}, !- Inlet Port
+  {7ae92446-5207-4344-abd5-c2ef0e118f84}; !- Outlet Port
+
+OS:Connection,
+  {fc1d0db5-f7f1-4512-9307-7684bd6836de}, !- Handle
+  {e14c52a6-60cb-4108-9449-be8a88ac1f99}, !- Source Object
+  3,                                      !- Outlet Port
+  {6396537f-4bd7-4071-966c-3e5abf75fa31}, !- Target Object
+  12;                                     !- Inlet Port
+
+OS:Connection,
+  {918296a1-435c-490b-b638-fbcbf810ab01}, !- Handle
+  {6396537f-4bd7-4071-966c-3e5abf75fa31}, !- Source Object
+  13,                                     !- Outlet Port
+  {e4daef12-e2b8-45d6-8903-f3950d626745}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Node,
+  {1d2df045-0a3a-4391-abbc-8d0f385b3d02}, !- Handle
+  Node 11,                                !- Name
+  {1b0765e3-e875-4c5c-a272-17f26f8bee74}, !- Inlet Port
+  {d86e7354-e65e-4172-a4a8-6e855e93d4b9}; !- Outlet Port
+
+OS:Connection,
+  {7ae92446-5207-4344-abd5-c2ef0e118f84}, !- Handle
+  {e4daef12-e2b8-45d6-8903-f3950d626745}, !- Source Object
+  3,                                      !- Outlet Port
+  {87d6ea24-357d-495e-b1d6-4ebe229a28bf}, !- Target Object
+  7;                                      !- Inlet Port
+
+OS:Connection,
+  {1b0765e3-e875-4c5c-a272-17f26f8bee74}, !- Handle
+  {87d6ea24-357d-495e-b1d6-4ebe229a28bf}, !- Source Object
+  8,                                      !- Outlet Port
+  {1d2df045-0a3a-4391-abbc-8d0f385b3d02}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {d86e7354-e65e-4172-a4a8-6e855e93d4b9}, !- Handle
+  {1d2df045-0a3a-4391-abbc-8d0f385b3d02}, !- Source Object
   3,                                      !- Outlet Port
   {f1b71d3f-775b-4b5e-9ddf-3c01ab1fc2a7}, !- Target Object
   16;                                     !- Inlet Port

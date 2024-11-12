@@ -4,32 +4,59 @@ from eppy.bunch_subclass import EpBunch
 
 class NodeBranch:
     @staticmethod
-    def branch(idf: IDF, name: str = None, components: dict | list[dict] = None):
+    def branch(idf: IDF, name: str = None, components: dict | list[dict] = None, water_side: bool = True):
         name = 'Branch' if name is None else name
         branch = idf.newidfobject("BRANCH", Name=name)
 
         if isinstance(components, dict):
             components = [components]
         else:
-            if len(components) > 3:
+            if len(components) > 10:
                 raise ValueError("Too many components in a branch")
 
         if len(components) <= 1:
             branch['Component_1_Object_Type'] = components[0]['type']
             branch['Component_1_Name'] = components[0]['object'].Name
-            branch['Component_1_Inlet_Node_Name'] = components[0]['object'].Inlet_Node_Name
-            branch['Component_1_Outlet_Node_Name'] = components[0]['object'].Outlet_Node_Name
+            try:
+                branch['Component_1_Inlet_Node_Name'] = components[0]['object'].Inlet_Node_Name
+                branch['Component_1_Outlet_Node_Name'] = components[0]['object'].Outlet_Node_Name
+            except:
+                if water_side:
+                    branch['Component_1_Inlet_Node_Name'] = components[0]['object'].Water_Inlet_Node_Name
+                    branch['Component_1_Outlet_Node_Name'] = components[0]['object'].Water_Outlet_Node_Name
+                else:
+                    branch['Component_1_Inlet_Node_Name'] = components[0]['object'].Air_Inlet_Node_Name
+                    branch['Component_1_Outlet_Node_Name'] = components[0]['object'].Air_Outlet_Node_Name
         else:
             for i in range(len(components)):
                 if i == 0:
-                    inlet_name = components[i]['object'].Inlet_Node_Name
+                    try:
+                        inlet_name = components[i]['object'].Inlet_Node_Name
+                    except:
+                        if water_side:
+                            inlet_name = components[i]['object'].Water_Inlet_Node_Name
+                        else:
+                            inlet_name = components[i]['object'].Air_Inlet_Node_Name
                 else:
-                    inlet_name = components[i - 1]['object'].Outlet_Node_Name
+                    try:
+                        inlet_name = components[i - 1]['object'].Outlet_Node_Name
+                    except:
+                        if water_side:
+                            inlet_name = components[i-1]['object'].Water_Outlet_Node_Name
+                        else:
+                            inlet_name = components[i-1]['object'].Air_Outlet_Node_Name
 
                 branch[f'Component_{i + 1}_Object_Type'] = components[0]['type']
                 branch[f'Component_{i + 1}_Name'] = components[0]['object'].Name
                 branch[f'Component_{i + 1}_Inlet_Node_Name'] = inlet_name
-                branch[f'Component_{i + 1}_Outlet_Node_Name'] = components[i]['object'].Outlet_Node_Name
+
+                try:
+                    branch[f'Component_{i + 1}_Outlet_Node_Name'] = components[i]['object'].Outlet_Node_Name
+                except:
+                    if water_side:
+                        branch[f'Component_{i + 1}_Outlet_Node_Name'] = components[i]['object'].Water_Outlet_Node_Name
+                    else:
+                        branch[f'Component_{i + 1}_Outlet_Node_Name'] = components[i]['object'].Air_Outlet_Node_Name
 
         return branch
 

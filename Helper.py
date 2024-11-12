@@ -59,7 +59,7 @@ def delete_hvac_objs(idf_model: IDF, delete_keys: str | list=None):
                        'Zone_Equipment', 'Air_Terminals', 'Air_Path', 'Zone_Units', 'VRF_Equipments', 'Radiative_Units',
                        'Pumps', 'Coils', 'Fans', 'Humidifiers_Dehumidifiers',
                        'Availability_Managers', 'Setpoint_Managers',
-                       'Controllers', 'Heat_Recovery', 'Performance_Curves', 'System_Sizing',
+                       'Controllers', 'Heat_Recovery', 'Performance_Curves', 'Performance_Tables', 'System_Sizing',
                        'Outputs']
     for key in delete_keys:
         obj_names = Obj_Tree[key]

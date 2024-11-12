@@ -50,3 +50,12 @@ class SetpointManager:
         # comp = {'object': spt, 'type': 'SetpointManager:Scheduled'}
 
         return spt
+
+    @staticmethod
+    def mixed_air(
+            idf: IDF,
+            name: str = None):
+        name = 'SPM MixedAir' if name is None else name
+        spm = idf.newidfobject("SetpointManager:MixedAir".upper(), Name=name)
+
+        return spm
