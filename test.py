@@ -9,6 +9,8 @@ from HVACSystem.AirLoop import AirLoop
 from HVACSystem.PlantLoopComponents import PlantLoopComponent
 from HVACSystem.AirLoopComponents import AirLoopComponent
 from HVACSystem.SetpointManager import SetpointManager
+from HVACSystem.PerformanceCurves import PerformanceCurve
+from HVACSystem.ZoneEquipments import ZoneEquipment
 
 idd_file = 'Data/Energy+.idd'
 try:
@@ -74,15 +76,25 @@ preheat_coil = AirLoopComponent.heating_coil_electric(my_model, 'Preheat Coil')
 hx = AirLoopComponent.heat_exchanger_air_to_air(my_model, 'HX')
 clg_coil = AirLoopComponent.cooling_coil_water(my_model, 'Cooling Coil')
 htg_coil = AirLoopComponent.heating_coil_water(my_model, 'Heating Coil')
+fan = AirLoopComponent.fan_variable_speed(my_model, 'Fan', fan_curve_coeff=PerformanceCurve.fan_curve_set())
+sizing = AirLoopComponent.sizing(my_model)
+zones = ['Office_1', 'Office_2']
 loop = AirLoop.air_loop_hvac(
     my_model,
     name='VAV System',
     outdoor_air_stream_comp=[preheat_coil, hx],
-    supply_branches=[clg_coil, htg_coil])
+    supply_branches=[clg_coil, htg_coil],
+    supply_fan=fan,
+    zones=zones,
+    sizing=sizing,)
 print(loop)
 
-# object = my_model.newidfobject('SetpointManager:MixedAir'.upper())
-# print(object.fieldnames)
+# zones = ['Office_1']
+# zone_group = ZoneEquipment.zone_equipment_group(my_model, zones=zones, air_terminal_type=3, zone_hvac_type=2)
+# print(zone_group)
+
+object = my_model.newidfobject('ZoneHVAC:FourPipeFanCoil'.upper())
+print(object.fieldnames)
 
 # Save to a new file:
 #####################################################################

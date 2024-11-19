@@ -1058,47 +1058,50 @@ ZoneHVAC:EquipmentConnections,
 
 NodeList,
   Test_Office_0 Inlet Node List,          !- Name
-  Node 6;                                 !- Node Name 1
+  Node 6,                                 !- Node Name 1
+  Node 14;                                !- Node Name 2
 
 NodeList,
   Test_Office_0 Exhaust Node List,        !- Name
-  Node 43;                                !- Node Name 1
+  Node 13;                                !- Node Name 1
 
 NodeList,
   Test_Office_0 Return Node List,         !- Name
   Node 63;                                !- Node Name 1
 
 ZoneHVAC:AirDistributionUnit,
-  Parallel PIU Elec Rht Air Distribution Unit, !- Name
+  ADU VAV Elec Rht,                       !- Name
   Node 6,                                 !- Air Distribution Unit Outlet Node Name
-  AirTerminal:SingleDuct:ParallelPIU:Reheat, !- Air Terminal Object Type
-  Parallel PIU Elec Rht;                  !- Air Terminal Name
+  AirTerminal:SingleDuct:VAV:Reheat,      !- Air Terminal Object Type
+  VAV Elec Rht;                           !- Air Terminal Name
 
-AirTerminal:SingleDuct:ParallelPIU:Reheat,
-  Parallel PIU Elec Rht,                  !- Name
+AirTerminal:SingleDuct:VAV:Reheat,
+  VAV Elec Rht,                           !- Name
   Always On Discrete hvac_library,        !- Availability Schedule Name
-  Autosize,                               !- Maximum Primary Air Flow Rate {m3/s}
-  Autosize,                               !- Maximum Secondary Air Flow Rate {m3/s}
-  Autosize,                               !- Minimum Primary Air Flow Fraction
-  Autosize,                               !- Fan On Flow Fraction
-  Node 40,                                !- Supply Air Inlet Node Name
-  Node 43,                                !- Secondary Air Inlet Node Name
-  Node 6,                                 !- Outlet Node Name
-  Parallel PIU Elec Rht Mixer Outlet,     !- Reheat Coil Air Inlet Node Name
-  Parallel PIU Elec Rht Mixer,            !- Zone Mixer Name
-  Parallel PIU Elec Rht Fan,              !- Fan Name
+  VAV Elec Rht Damper Outlet,             !- Damper Air Outlet Node Name
+  Node 12,                                !- Air Inlet Node Name
+  Autosize,                               !- Maximum Air Flow Rate {m3/s}
+  Constant,                               !- Zone Minimum Air Flow Input Method
+  0.3,                                    !- Constant Minimum Air Flow Fraction
+  0,                                      !- Fixed Minimum Air Flow Rate {m3/s}
+  ,                                       !- Minimum Air Flow Fraction Schedule Name
   Coil:Heating:Electric,                  !- Reheat Coil Object Type
-  Parallel PIU Elec Rht Coil,             !- Reheat Coil Name
+  VAV Elec Rht Coil,                      !- Reheat Coil Name
   Autosize,                               !- Maximum Hot Water or Steam Flow Rate {m3/s}
   0,                                      !- Minimum Hot Water or Steam Flow Rate {m3/s}
-  0.001;                                  !- Convergence Tolerance
+  Node 6,                                 !- Air Outlet Node Name
+  0.001,                                  !- Convergence Tolerance
+  Normal,                                 !- Damper Heating Action
+  Autocalculate,                          !- Maximum Flow per Zone Floor Area During Reheat {m3/s-m2}
+  Autocalculate,                          !- Maximum Flow Fraction During Reheat
+  35;                                     !- Maximum Reheat Air Temperature {C}
 
 Coil:Heating:Electric,
-  Parallel PIU Elec Rht Coil,             !- Name
+  VAV Elec Rht Coil,                      !- Name
   Always On Discrete hvac_library,        !- Availability Schedule Name
   1,                                      !- Efficiency
   Autosize,                               !- Nominal Capacity {W}
-  Parallel PIU Elec Rht Mixer Outlet,     !- Air Inlet Node Name
+  VAV Elec Rht Damper Outlet,             !- Air Inlet Node Name
   Node 6;                                 !- Air Outlet Node Name
 
 Schedule:Constant,
@@ -1106,38 +1109,116 @@ Schedule:Constant,
   OnOff hvac_library,                     !- Schedule Type Limits Name
   1;                                      !- Hourly Value
 
-Schedule:Constant,
-  Always On Discrete,                     !- Name
-  OnOff,                                  !- Schedule Type Limits Name
-  1;                                      !- Hourly Value
-
-Fan:ConstantVolume,
-  Parallel PIU Elec Rht Fan,              !- Name
-  Always On Discrete,                     !- Availability Schedule Name
-  0.7,                                    !- Fan Total Efficiency
-  250,                                    !- Pressure Rise {Pa}
+Fan:VariableVolume,
+  Fan Coil with Var Fan Var Fluid Flow - Fan, !- Name
+  Always On Discrete hvac_library,        !- Availability Schedule Name
+  0.6045,                                 !- Fan Total Efficiency
+  1017.592,                               !- Pressure Rise {Pa}
   AutoSize,                               !- Maximum Flow Rate {m3/s}
-  0.9,                                    !- Motor Efficiency
+  FixedFlowRate,                          !- Fan Power Minimum Flow Rate Input Method
+  0,                                      !- Fan Power Minimum Flow Fraction
+  0,                                      !- Fan Power Minimum Air Flow Rate {m3/s}
+  0.93,                                   !- Motor Efficiency
   1,                                      !- Motor In Airstream Fraction
-  Node 43,                                !- Air Inlet Node Name
-  Parallel PIU Elec Rht Fan Outlet,       !- Air Outlet Node Name
-  ;                                       !- End-Use Subcategory
+  0.040759894,                            !- Fan Power Coefficient 1
+  0.08804497,                             !- Fan Power Coefficient 2
+  -0.07292612,                            !- Fan Power Coefficient 3
+  0.943739823,                            !- Fan Power Coefficient 4
+  0,                                      !- Fan Power Coefficient 5
+  Fan Coil with Var Fan Var Fluid Flow Mixed Air Node, !- Air Inlet Node Name
+  Fan Coil with Var Fan Var Fluid Flow Fan Outlet Node, !- Air Outlet Node Name
+  General;                                !- End-Use Subcategory
 
-AirLoopHVAC:ZoneMixer,
-  Parallel PIU Elec Rht Mixer,            !- Name
-  Parallel PIU Elec Rht Mixer Outlet,     !- Outlet Node Name
-  Parallel PIU Elec Rht Fan Outlet,       !- Inlet Node Name 1
-  Node 40;                                !- Inlet Node Name 2
+Coil:Cooling:Water,
+  Fan Coil with Var Fan Var Fluid Flow - Cooling Coil, !- Name
+  Always On Discrete hvac_library,        !- Availability Schedule Name
+  Autosize,                               !- Design Water Flow Rate {m3/s}
+  Autosize,                               !- Design Air Flow Rate {m3/s}
+  Autosize,                               !- Design Inlet Water Temperature {C}
+  Autosize,                               !- Design Inlet Air Temperature {C}
+  Autosize,                               !- Design Outlet Air Temperature {C}
+  Autosize,                               !- Design Inlet Air Humidity Ratio {kgWater/kgDryAir}
+  Autosize,                               !- Design Outlet Air Humidity Ratio {kgWater/kgDryAir}
+  ,                                       !- Water Inlet Node Name
+  ,                                       !- Water Outlet Node Name
+  Fan Coil with Var Fan Var Fluid Flow Fan Outlet Node, !- Air Inlet Node Name
+  Fan Coil with Var Fan Var Fluid Flow Cooling Coil Outlet Node, !- Air Outlet Node Name
+  SimpleAnalysis,                         !- Type of Analysis
+  CrossFlow;                              !- Heat Exchanger Configuration
+
+Coil:Heating:Water,
+  Fan Coil with Var Fan Var Fluid Flow - Heating Coil, !- Name
+  Always On Discrete hvac_library,        !- Availability Schedule Name
+  Autosize,                               !- U-Factor Times Area Value {W/K}
+  Autosize,                               !- Maximum Water Flow Rate {m3/s}
+  ,                                       !- Water Inlet Node Name
+  ,                                       !- Water Outlet Node Name
+  Fan Coil with Var Fan Var Fluid Flow Cooling Coil Outlet Node, !- Air Inlet Node Name
+  Node 14,                                !- Air Outlet Node Name
+  UFactorTimesAreaAndDesignWaterFlowRate, !- Performance Input Method
+  Autosize,                               !- Rated Capacity {W}
+  82.2,                                   !- Rated Inlet Water Temperature {C}
+  16.6,                                   !- Rated Inlet Air Temperature {C}
+  71.1,                                   !- Rated Outlet Water Temperature {C}
+  32.2,                                   !- Rated Outlet Air Temperature {C}
+  0.5;                                    !- Rated Ratio for Air and Water Convection
+
+ZoneHVAC:FourPipeFanCoil,
+  Fan Coil with Var Fan Var Fluid Flow,   !- Name
+  Always On Discrete hvac_library,        !- Availability Schedule Name
+  VariableFanVariableFlow,                !- Capacity Control Method
+  Autosize,                               !- Maximum Supply Air Flow Rate {m3/s}
+  ,                                       !- Low Speed Supply Air Flow Ratio
+  ,                                       !- Medium Speed Supply Air Flow Ratio
+  Autosize,                               !- Maximum Outdoor Air Flow Rate {m3/s}
+  ,                                       !- Outdoor Air Schedule Name
+  Node 13,                                !- Air Inlet Node Name
+  Node 14,                                !- Air Outlet Node Name
+  OutdoorAir:Mixer,                       !- Outdoor Air Mixer Object Type
+  Fan Coil with Var Fan Var Fluid Flow OA Mixer, !- Outdoor Air Mixer Name
+  Fan:VariableVolume,                     !- Supply Air Fan Object Type
+  Fan Coil with Var Fan Var Fluid Flow - Fan, !- Supply Air Fan Name
+  Coil:Cooling:Water,                     !- Cooling Coil Object Type
+  Fan Coil with Var Fan Var Fluid Flow - Cooling Coil, !- Cooling Coil Name
+  Autosize,                               !- Maximum Cold Water Flow Rate {m3/s}
+  ,                                       !- Minimum Cold Water Flow Rate {m3/s}
+  ,                                       !- Cooling Convergence Tolerance
+  Coil:Heating:Water,                     !- Heating Coil Object Type
+  Fan Coil with Var Fan Var Fluid Flow - Heating Coil, !- Heating Coil Name
+  Autosize,                               !- Maximum Hot Water Flow Rate {m3/s}
+  ,                                       !- Minimum Hot Water Flow Rate {m3/s}
+  ,                                       !- Heating Convergence Tolerance
+  ,                                       !- Availability Manager List Name
+  ,                                       !- Design Specification ZoneHVAC Sizing Object Name
+  ,                                       !- Supply Air Fan Operating Mode Schedule Name
+  Autosize,                               !- Minimum Supply Air Temperature in Cooling Mode {C}
+  Autosize;                               !- Maximum Supply Air Temperature in Heating Mode {C}
+
+OutdoorAir:Mixer,
+  Fan Coil with Var Fan Var Fluid Flow OA Mixer, !- Name
+  Fan Coil with Var Fan Var Fluid Flow Mixed Air Node, !- Mixed Air Node Name
+  Fan Coil with Var Fan Var Fluid Flow OA Node, !- Outdoor Air Stream Node Name
+  Fan Coil with Var Fan Var Fluid Flow Relief Air Node, !- Relief Air Stream Node Name
+  Node 13;                                !- Return Air Stream Node Name
+
+OutdoorAir:NodeList,
+  Fan Coil with Var Fan Var Fluid Flow OA Node; !- Node or NodeList Name 1
 
 ZoneHVAC:EquipmentList,
   Test_Office_0 Equipment List,           !- Name
   SequentialLoad,                         !- Load Distribution Scheme
   ZoneHVAC:AirDistributionUnit,           !- Zone Equipment Object Type 1
-  Parallel PIU Elec Rht Air Distribution Unit, !- Zone Equipment Name 1
+  ADU VAV Elec Rht,                       !- Zone Equipment Name 1
   1,                                      !- Zone Equipment Cooling Sequence 1
   1,                                      !- Zone Equipment Heating or No-Load Sequence 1
   ,                                       !- Zone Equipment Sequential Cooling Fraction Schedule Name 1
-  ;                                       !- Zone Equipment Sequential Heating Fraction Schedule Name 1
+  ,                                       !- Zone Equipment Sequential Heating Fraction Schedule Name 1
+  ZoneHVAC:FourPipeFanCoil,               !- Zone Equipment Object Type 2
+  Fan Coil with Var Fan Var Fluid Flow,   !- Zone Equipment Name 2
+  2,                                      !- Zone Equipment Cooling Sequence 2
+  2,                                      !- Zone Equipment Heating or No-Load Sequence 2
+  ,                                       !- Zone Equipment Sequential Cooling Fraction Schedule Name 2
+  ;                                       !- Zone Equipment Sequential Heating Fraction Schedule Name 2
 
 Sizing:Zone,
   Test_Office_0,                          !- Zone or ZoneList Name
@@ -1174,6 +1255,11 @@ Sizing:Zone,
   HumidityRatioDifference,                !- Zone Latent Heating Design Supply Air Humidity Ratio Input Method
   ,                                       !- Zone Humidification Design Supply Air Humidity Ratio {kgWater/kgDryAir}
   0.005;                                  !- Zone Humidification Design Supply Air Humidity Ratio Difference {kgWater/kgDryAir}
+
+Schedule:Constant,
+  Always On Discrete,                     !- Name
+  OnOff,                                  !- Schedule Type Limits Name
+  1;                                      !- Hourly Value
 
 Controller:MechanicalVentilation,
   Controller Mechanical Ventilation 1,    !- Name
@@ -1654,7 +1740,7 @@ OutdoorAir:Node,
 AirLoopHVAC,
   VAV with Reheat,                        !- Name
   ,                                       !- Controller List Name
-  VAV with ReheatAvailability Manager List, !- Availability Manager List Name
+  Air Loop HVAC 1 AvailabilityManagerAssignmentList, !- Availability Manager List Name
   AutoSize,                               !- Design Supply Air Flow Rate {m3/s}
   VAV with Reheat Supply Branches,        !- Branch List Name
   ,                                       !- Connector List Name
@@ -1712,13 +1798,18 @@ Sizing:System,
   OnOff;                                  !- Central Cooling Capacity Control Method
 
 AvailabilityManagerAssignmentList,
-  VAV with ReheatAvailability Manager List, !- Name
-  AvailabilityManager:Scheduled,          !- Availability Manager Object Type 1
-  VAV with Reheat Availability Manager;   !- Availability Manager Name 1
+  Air Loop HVAC 1 AvailabilityManagerAssignmentList, !- Name
+  AvailabilityManager:NightCycle,         !- Availability Manager Object Type 1
+  Availability Manager Night Cycle 1;     !- Availability Manager Name 1
 
-AvailabilityManager:Scheduled,
-  VAV with Reheat Availability Manager,   !- Name
-  Always On Discrete;                     !- Schedule Name
+AvailabilityManager:NightCycle,
+  Availability Manager Night Cycle 1,     !- Name
+  Always On Discrete,                     !- Applicability Schedule Name
+  Always On Discrete,                     !- Fan Schedule Name
+  StayOff,                                !- Control Type
+  1,                                      !- Thermostat Tolerance {deltaC}
+  FixedRunTime,                           !- Cycling Run Time Control Type
+  3600;                                   !- Cycling Run Time {s}
 
 BranchList,
   VAV with Reheat Supply Branches,        !- Name
@@ -2108,7 +2199,7 @@ AirLoopHVAC:SupplyPath,
 AirLoopHVAC:ZoneSplitter,
   Air Loop HVAC Zone Splitter 1,          !- Name
   Node 4,                                 !- Inlet Node Name
-  Node 40;                                !- Outlet Node Name 1
+  Node 12;                                !- Outlet Node Name 1
 
 AirLoopHVAC:ReturnPath,
   VAV with Reheat Return Path,            !- Name

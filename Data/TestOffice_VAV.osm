@@ -1911,7 +1911,8 @@ OS:Sizing:System,
 
 OS:AvailabilityManagerAssignmentList,
   {b1aff0cf-850f-415a-a92e-a3e09140e00f}, !- Handle
-  Air Loop HVAC 1 AvailabilityManagerAssignmentList; !- Name
+  Air Loop HVAC 1 AvailabilityManagerAssignmentList, !- Name
+  {c1eac101-e9d0-43bd-b108-d7aeb9ccc0c5}; !- Availability Manager Name 1
 
 OS:Fan:VariableVolume,
   {f1b71d3f-775b-4b5e-9ddf-3c01ab1fc2a7}, !- Handle
@@ -4177,4 +4178,34 @@ OS:Connection,
   3,                                      !- Outlet Port
   {14cf4043-8c1d-4c73-8ec0-ed18b88ae388}, !- Target Object
   15;                                     !- Inlet Port
+
+OS:AvailabilityManager:NightCycle,
+  {c1eac101-e9d0-43bd-b108-d7aeb9ccc0c5}, !- Handle
+  Availability Manager Night Cycle 1,     !- Name
+  {1b67dfd8-8e69-4be8-90e4-61975fb009fa}, !- Applicability Schedule
+  ,                                       !- Fan Schedule
+  CycleOnAny,                             !- Control Type
+  1,                                      !- Thermostat Tolerance {deltaC}
+  ,                                       !- Cycling Run Time Control Type
+  3600,                                   !- Cycling Run Time {s}
+  {92b5f848-afd9-4e95-adfb-b901aa422613}, !- Control Zone or Zone List Name
+  {ac2318f8-d863-4d68-b4a1-479adf3b8c0f}, !- Cooling Control Zone or Zone List Name
+  {d008fe73-1219-4f86-9ea4-a91e839995b4}, !- Heating Control Zone or Zone List Name
+  {0dadd59f-b8a2-4736-acea-170d7896fe3e}; !- Heating Zone Fans Only Zone or Zone List Name
+
+OS:ModelObjectList,
+  {92b5f848-afd9-4e95-adfb-b901aa422613}, !- Handle
+  Availability Manager Night Cycle 1 Control Zone List; !- Name
+
+OS:ModelObjectList,
+  {ac2318f8-d863-4d68-b4a1-479adf3b8c0f}, !- Handle
+  Availability Manager Night Cycle 1 Cooling Control Zone List; !- Name
+
+OS:ModelObjectList,
+  {d008fe73-1219-4f86-9ea4-a91e839995b4}, !- Handle
+  Availability Manager Night Cycle 1 Heating Control Zone List; !- Name
+
+OS:ModelObjectList,
+  {0dadd59f-b8a2-4736-acea-170d7896fe3e}, !- Handle
+  Availability Manager Night Cycle 1 Heating Zone Fans Only Zone List; !- Name
 

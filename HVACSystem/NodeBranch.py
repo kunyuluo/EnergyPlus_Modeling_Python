@@ -154,3 +154,4 @@ class NodeBranch:
         else:
             raise ValueError("Invalid connector detected.")
         return connector_list
+

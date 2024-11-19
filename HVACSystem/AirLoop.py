@@ -3,6 +3,7 @@ from HVACSystem.AirLoopComponents import AirLoopComponent
 from HVACSystem.SetpointManager import SetpointManager
 from HVACSystem.NodeBranch import NodeBranch
 from HVACSystem.Controllers import Controller
+from HVACSystem.ZoneEquipments import ZoneEquipment
 from Helper import SomeFields
 from eppy.bunch_subclass import EpBunch
 
@@ -15,15 +16,29 @@ class AirLoop:
             outdoor_air_stream_comp: dict | list[dict] = None,
             heat_recovery: bool = False,
             supply_branches: list[dict] = None,
+            supply_fan: dict = None,
+            setpoint_manager: EpBunch = None,
+            zones: list[str] | list[EpBunch] = None,
+            air_terminal_type: int = 1,
+            zone_hvac_type: int = None,
+            zone_radiative_type: int = None,
             design_supply_air_flow_rate: float = None,
             design_return_air_fraction: float = 1.0,
-            setpoint_manager: EpBunch = None,):
+            sizing: EpBunch = None):
+
         loop_assembly = []
+        water_clg_coils = []
+        water_htg_coils = []
 
         name = 'Air Loop' if name is None else name
 
         loop = idf.newidfobject('AirLoopHVAC'.upper(), Name=name)
         loop_assembly.append(loop)
+
+        # Sizing:
+        if sizing is not None:
+            sizing['AirLoop_Name'] = name
+            loop_assembly.append(sizing)
 
         fields = SomeFields.a_fields
         flnames = [field.replace(" ", "_") for field in fields]
@@ -76,125 +91,159 @@ class AirLoop:
         controller_list = idf.newidfobject('AirLoopHVAC:ControllerList'.upper(), Name=controller_list_name)
         loop_assembly.append(controller_list)
         for i, controller in enumerate(controllers):
-            controller_list[f'Controller_{i+1}_Object_Type'] = 'Controller:WaterCoil'
-            controller_list[f'Controller_{i+1}_Name'] = controller.Name
+            controller_list[f'Controller_{i + 1}_Object_Type'] = 'Controller:WaterCoil'
+            controller_list[f'Controller_{i + 1}_Name'] = controller.Name
             loop_assembly.append(controller)
 
         # Availability Manager List:
         ###############################################################################################
+        avail_manager_list_name = f'{name} Availability Manager List'
+        avail_manager_name = f'{name} Availability Manager'
+        avail_manager_list = idf.newidfobject('AvailabilityManagerAssignmentList'.upper(), Name=avail_manager_list_name)
+        avail_manager_list['Availability_Manager_1_Object_Type'] = 'AvailabilityManager:Scheduled'
+        avail_manager_list['Availability_Manager_1_Name'] = avail_manager_name
+        loop_assembly.append(avail_manager_list)
 
-            # Outdoor air system
-            ###############################################################################################
-            # OutdoorAirSystem:
-            oa_sys_name = f'{name} Outdoor Air System'
-            controller_list_name = f'{oa_sys_name} Controller List'
-            equipment_list_name = f'{oa_sys_name} Equipment List'
+        avail_manager = idf.newidfobject('AvailabilityManager:Scheduled'.upper(), Name=avail_manager_name)
+        avail_manager['Schedule_Name'] = 'Always On Discrete'
+        loop_assembly.append(avail_manager)
 
-            oa_sys = idf.newidfobject('AirLoopHVAC:OutdoorAirSystem'.upper(), Name=oa_sys_name)
-            oa_sys['Controller_List_Name'] = controller_list_name
-            oa_sys['Outdoor_Air_Equipment_List_Name'] = equipment_list_name
-            loop_assembly.append(oa_sys)
+        # Outdoor air system
+        ###############################################################################################
+        # OutdoorAirSystem:
+        oa_sys_name = f'{name} Outdoor Air System'
+        controller_list_name = f'{oa_sys_name} Controller List'
+        equipment_list_name = f'{oa_sys_name} Equipment List'
 
-            # Controller List:
-            controller_name = f'{oa_sys_name} Controller'
-            controller_list = idf.newidfobject('AirLoopHVAC:ControllerList'.upper(), Name=controller_list_name)
-            controller_list['Controller_1_Object_Type'] = 'Controller:OutdoorAir'
-            controller_list['Controller_1_Name'] = controller_name
-            loop_assembly.append(controller_list)
+        oa_sys = idf.newidfobject('AirLoopHVAC:OutdoorAirSystem'.upper(), Name=oa_sys_name)
+        oa_sys['Controller_List_Name'] = controller_list_name
+        oa_sys['Outdoor_Air_Equipment_List_Name'] = equipment_list_name
+        loop_assembly.append(oa_sys)
 
-            # Controller:
-            controller = Controller.controller_outdoor_air(idf, controller_name)
-            controller['Relief_Air_Outlet_Node_Name'] = f'{controller_name} relief_air_outlet'
-            controller['Return_Air_Node_Name'] = f'{controller_name} return_air'
-            controller['Mixed_Air_Node_Name'] = f'{controller_name} mixed_air'
-            controller['Actuator_Node_Name'] = f'{controller_name} outdoor_air_inlet'
+        # Controller List:
+        controller_name = f'{oa_sys_name} Controller'
+        controller_list = idf.newidfobject('AirLoopHVAC:ControllerList'.upper(), Name=controller_list_name)
+        controller_list['Controller_1_Object_Type'] = 'Controller:OutdoorAir'
+        controller_list['Controller_1_Name'] = controller_name
+        loop_assembly.append(controller_list)
 
-            oa_inlet_node_list = idf.newidfobject('OutdoorAir:NodeList'.upper())
-            oa_inlet_node_list['Node_or_NodeList_Name_1'] = controller.Actuator_Node_Name
+        # Controller:
+        controller = Controller.controller_outdoor_air(idf, controller_name)
+        controller['Relief_Air_Outlet_Node_Name'] = f'{controller_name} relief_air_outlet'
+        controller['Return_Air_Node_Name'] = f'{controller_name} return_air'
+        controller['Mixed_Air_Node_Name'] = f'{controller_name} mixed_air'
+        controller['Actuator_Node_Name'] = f'{controller_name} outdoor_air_inlet'
 
-            loop_assembly.append(controller)
+        oa_inlet_node_list = idf.newidfobject('OutdoorAir:NodeList'.upper())
+        oa_inlet_node_list['Node_or_NodeList_Name_1'] = controller.Actuator_Node_Name
 
-            # Equipment List:
-            os_sys_equip_list = idf.newidfobject('AirLoopHVAC:OutdoorAirSystem:EquipmentList'.upper(), Name=equipment_list_name)
+        loop_assembly.append(controller)
 
-            mixer_name = f'{oa_sys_name} Outdoor Air Mixer'
-            os_sys_equip_list['Component_1_Object_Type'] = 'OutdoorAir:Mixer'
-            os_sys_equip_list['Component_1_Name'] = mixer_name
-            loop_assembly.append(os_sys_equip_list)
+        # Equipment List:
+        os_sys_equip_list = idf.newidfobject('AirLoopHVAC:OutdoorAirSystem:EquipmentList'.upper(),
+                                             Name=equipment_list_name)
 
-            mixer_oa_stream_name = controller.Actuator_Node_Name
-            mixer_ra_stream_name = controller.Relief_Air_Outlet_Node_Name
+        mixer_name = f'{oa_sys_name} Outdoor Air Mixer'
+        os_sys_equip_list['Component_1_Object_Type'] = 'OutdoorAir:Mixer'
+        os_sys_equip_list['Component_1_Name'] = mixer_name
+        loop_assembly.append(os_sys_equip_list)
 
-            if outdoor_air_stream_comp is not None:
-                if isinstance(outdoor_air_stream_comp, list) and len(outdoor_air_stream_comp) > 1:
-                    for i, comp in enumerate(outdoor_air_stream_comp):
-                        os_sys_equip_list[f'Component_{i+2}_Object_Type'] = comp['type']
-                        os_sys_equip_list[f'Component_{i+2}_Name'] = comp['object'].Name
-                        if i == 0:
-                            comp['object'].Air_Inlet_Node_Name = controller.Actuator_Node_Name
-                            comp['object'].Air_Outlet_Node_Name = comp['object'].Name + '_air_outlet'
-                        elif i == len(outdoor_air_stream_comp)-1:
-                            if comp['type'] != 'HeatExchanger:AirToAir:SensibleAndLatent':
-                                comp['object'].Air_Inlet_Node_Name = outdoor_air_stream_comp[i-1]['object'].Air_Outlet_Node_Name
-                                comp['object'].Air_Outlet_Node_Name = comp['object'].Name + '_air_outlet'
+        mixer_oa_stream_name = controller.Actuator_Node_Name
+        mixer_ra_stream_name = controller.Relief_Air_Outlet_Node_Name
 
-                                mixer_oa_stream_name = comp['object'].Air_Outlet_Node_Name
-                            else:
-                                comp['object'].Supply_Air_Inlet_Node_Name = comp['object'].Name + '_supply_air_inlet'
-                                comp['object'].Supply_Air_Outlet_Node_Name = comp['object'].Name + '_supply_air_outlet'
-                                comp['object'].Exhaust_Air_Inlet_Node_Name = controller.Relief_Air_Outlet_Node_Name
-                                comp['object'].Exhaust_Air_Outlet_Node_Name = comp['object'].Name + '_exhaust_air_outlet'
+        spm_nodes = []
+        fan_inlet_node = None
+        fan_outlet_node = None
+        if outdoor_air_stream_comp is not None:
+            if isinstance(outdoor_air_stream_comp, list) and len(outdoor_air_stream_comp) > 1:
+                for i, comp in enumerate(outdoor_air_stream_comp):
+                    os_sys_equip_list[f'Component_{i + 2}_Object_Type'] = comp['type']
+                    os_sys_equip_list[f'Component_{i + 2}_Name'] = comp['object'].Name
+                    if i == 0:
+                        comp['object'][comp['air_inlet_field']] = controller.Actuator_Node_Name
+                        comp['object'][comp['air_outlet_field']] = comp['object'].Name + '_air_outlet'
+                        spm_nodes.append(comp['object'][comp['air_outlet_field']])
+                    elif i == len(outdoor_air_stream_comp) - 1:
+                        if comp['type'] != 'HeatExchanger:AirToAir:SensibleAndLatent':
+                            comp['object'][comp['air_inlet_field']] = outdoor_air_stream_comp[i - 1][
+                                'object'].Air_Outlet_Node_Name
+                            comp['object'][comp['air_outlet_field']] = comp['object'].Name + '_air_outlet'
 
-                                mixer_oa_stream_name = comp['object'].Supply_Air_Outlet_Node_Name
-                                mixer_ra_stream_name = comp['object'].Exhaust_Air_Inlet_Node_Name
+                            mixer_oa_stream_name = comp['object'][comp['air_outlet_field']]
+                            spm_nodes.append(comp['object'][comp['air_outlet_field']])
                         else:
-                            pass
-                        loop_assembly.append(comp['object'])
+                            comp['object'][comp['supply_air_inlet_field']] =\
+                                outdoor_air_stream_comp[i - 1]['object'].Air_Outlet_Node_Name
+                            comp['object'][comp['supply_air_outlet_field']] = comp['object'].Name + '_supply_air_outlet'
+                            comp['object'][comp['exhaust_air_inlet_field']] = controller.Relief_Air_Outlet_Node_Name
+                            comp['object'][comp['exhaust_air_outlet_field']] =\
+                                comp['object'].Name + '_exhaust_air_outlet'
 
-                elif isinstance(outdoor_air_stream_comp, dict):
-                    os_sys_equip_list['Component_2_Object_Type'] = outdoor_air_stream_comp['type']
-                    os_sys_equip_list['Component_2_Name'] = outdoor_air_stream_comp['object'].Name
-                    if outdoor_air_stream_comp['type'] != 'HeatExchanger:AirToAir:SensibleAndLatent':
-                        outdoor_air_stream_comp['object'].Air_Inlet_Node_Name = controller.Actuator_Node_Name
-                        outdoor_air_stream_comp['object'].Air_Outlet_Node_Name = outdoor_air_stream_comp['object'].Name + '_air_outlet'
-
-                        mixer_oa_stream_name = outdoor_air_stream_comp['object'].Air_Outlet_Node_Name
+                            mixer_oa_stream_name = comp['object'][comp['supply_air_outlet_field']]
+                            mixer_ra_stream_name = comp['object'][comp['exhaust_air_inlet_field']]
+                            spm_nodes.append(comp['object'][comp['supply_air_outlet_field']])
                     else:
-                        outdoor_air_stream_comp['object'].Supply_Air_Inlet_Node_Name = controller.Actuator_Node_Name
-                        outdoor_air_stream_comp['object'].Supply_Air_Outlet_Node_Name = outdoor_air_stream_comp['object'].Name + '_supply_air_outlet'
-                        outdoor_air_stream_comp['object'].Exhaust_Air_Inlet_Node_Name = controller.Relief_Air_Outlet_Node_Name
-                        outdoor_air_stream_comp['object'].Exhaust_Air_Outlet_Node_Name = outdoor_air_stream_comp['object'].Name + '_exhaust_air_outlet'
+                        pass
+                    loop_assembly.append(comp['object'])
 
-                        mixer_oa_stream_name = outdoor_air_stream_comp['object'].Supply_Air_Outlet_Node_Name
-                        mixer_ra_stream_name = outdoor_air_stream_comp['object'].Exhaust_Air_Inlet_Node_Name
+            elif isinstance(outdoor_air_stream_comp, dict):
+                os_sys_equip_list['Component_2_Object_Type'] = outdoor_air_stream_comp['type']
+                os_sys_equip_list['Component_2_Name'] = outdoor_air_stream_comp['object'].Name
 
-                    loop_assembly.append(outdoor_air_stream_comp['object'])
+                if outdoor_air_stream_comp['type'] != 'HeatExchanger:AirToAir:SensibleAndLatent':
+                    outdoor_air_stream_comp['object'][outdoor_air_stream_comp['air_inlet_field']] = \
+                        controller.Actuator_Node_Name
+                    outdoor_air_stream_comp['object'][outdoor_air_stream_comp['air_outlet_field']] = \
+                        outdoor_air_stream_comp['object'].Name + '_air_outlet'
+
+                    mixer_oa_stream_name = outdoor_air_stream_comp['object'].Air_Outlet_Node_Name
+                    spm_nodes.append(outdoor_air_stream_comp['object'][outdoor_air_stream_comp['air_outlet_field']])
                 else:
-                    raise TypeError('Invalid type of outdoor air stream components.')
+                    outdoor_air_stream_comp['object'][outdoor_air_stream_comp['supply_air_inlet_field']] = \
+                        controller.Actuator_Node_Name
+                    outdoor_air_stream_comp['object'][outdoor_air_stream_comp['supply_air_outlet_field']] = \
+                        outdoor_air_stream_comp['object'].Name + '_supply_air_outlet'
+                    outdoor_air_stream_comp['object'][outdoor_air_stream_comp['exhaust_air_inlet_field']] = \
+                        controller.Relief_Air_Outlet_Node_Name
+                    outdoor_air_stream_comp['object'][outdoor_air_stream_comp['exhaust_air_outlet_field']] = \
+                        outdoor_air_stream_comp['object'].Name + '_exhaust_air_outlet'
+
+                    mixer_oa_stream_name = \
+                        outdoor_air_stream_comp['object'][outdoor_air_stream_comp['supply_air_outlet_field']]
+                    mixer_ra_stream_name = \
+                        outdoor_air_stream_comp['object'][outdoor_air_stream_comp['exhaust_air_inlet_field']]
+                    spm_nodes.append(
+                        outdoor_air_stream_comp['object'][outdoor_air_stream_comp['supply_air_outlet_field']])
+
+                loop_assembly.append(outdoor_air_stream_comp['object'])
             else:
-                if heat_recovery:
-                    hx_name = f'{oa_sys_name} Heat Exchanger'
-                    hx = AirLoopComponent.heat_exchanger_air_to_air(idf, hx_name)
-                    os_sys_equip_list['Component_2_Object_Type'] = hx['type']
-                    os_sys_equip_list['Component_2_Name'] = hx['object'].Name
+                raise TypeError('Invalid type of outdoor air stream components.')
+        else:
+            if heat_recovery:
+                hx_name = f'{oa_sys_name} Heat Exchanger'
+                hx = AirLoopComponent.heat_exchanger_air_to_air(idf, hx_name)
+                os_sys_equip_list['Component_2_Object_Type'] = hx['type']
+                os_sys_equip_list['Component_2_Name'] = hx['object'].Name
 
-                    hx['object'].Supply_Air_Inlet_Node_Name = controller.Actuator_Node_Name
-                    hx['object'].Supply_Air_Outlet_Node_Name = hx['object'].Name + '_supply_air_outlet'
-                    hx['object'].Exhaust_Air_Inlet_Node_Name = controller.Relief_Air_Outlet_Node_Name
-                    hx['object'].Exhaust_Air_Outlet_Node_Name = hx['object'].Name + '_exhaust_air_outlet'
+                hx['object'].Supply_Air_Inlet_Node_Name = controller.Actuator_Node_Name
+                hx['object'].Supply_Air_Outlet_Node_Name = hx['object'].Name + '_supply_air_outlet'
+                hx['object'].Exhaust_Air_Inlet_Node_Name = controller.Relief_Air_Outlet_Node_Name
+                hx['object'].Exhaust_Air_Outlet_Node_Name = hx['object'].Name + '_exhaust_air_outlet'
 
-                    mixer_oa_stream_name = hx['object'].Supply_Air_Outlet_Node_Name
-                    mixer_ra_stream_name = hx['object'].Exhaust_Air_Inlet_Node_Name
+                mixer_oa_stream_name = hx['object'].Supply_Air_Outlet_Node_Name
+                mixer_ra_stream_name = hx['object'].Exhaust_Air_Inlet_Node_Name
+                spm_nodes.append(hx['object'].Supply_Air_Outlet_Node_Name)
 
-                    loop_assembly.append(hx['object'])
+                loop_assembly.append(hx['object'])
 
-            # Outdoor Air Mixer:
-            oa_mixer = idf.newidfobject('OutdoorAir:Mixer'.upper(), Name=mixer_name)
-            oa_mixer['Mixed_Air_Node_Name'] = controller.Mixed_Air_Node_Name
-            oa_mixer['Outdoor_Air_Stream_Node_Name'] = mixer_oa_stream_name
-            oa_mixer['Relief_Air_Stream_Node_Name'] = mixer_ra_stream_name
-            oa_mixer['Return_Air_Stream_Node_Name'] = controller.Return_Air_Node_Name
-            loop_assembly.append(oa_mixer)
+        # Outdoor Air Mixer:
+        oa_mixer = idf.newidfobject('OutdoorAir:Mixer'.upper(), Name=mixer_name)
+        oa_mixer['Mixed_Air_Node_Name'] = controller.Mixed_Air_Node_Name
+        oa_mixer['Outdoor_Air_Stream_Node_Name'] = mixer_oa_stream_name
+        oa_mixer['Relief_Air_Stream_Node_Name'] = mixer_ra_stream_name
+        oa_mixer['Return_Air_Stream_Node_Name'] = controller.Return_Air_Node_Name
+        spm_nodes.append(controller.Mixed_Air_Node_Name)
+        loop_assembly.append(oa_mixer)
 
         # Supply Branch List:
         ###############################################################################################
@@ -202,33 +251,49 @@ class AirLoop:
             # Supply branches:
             ###############################################################################################
             supply_branch_name = f'{name} Main Branch'
-            # supply_branch = NodeBranch.branch(idf, name=supply_branch_name, components=supply_branches, water_side=False)
             supply_branch = idf.newidfobject("BRANCH", Name=supply_branch_name)
 
             if len(supply_branches) <= 1:
                 raise ValueError('Supply branches must be more than one')
             else:
+                supply_branch['Component_1_Object_Type'] = 'AirLoopHVAC:OutdoorAirSystem'
+                supply_branch['Component_1_Name'] = oa_sys_name
+                supply_branch['Component_1_Inlet_Node_Name'] = loop['Supply_Side_Inlet_Node_Name']
+                supply_branch['Component_1_Outlet_Node_Name'] = controller['Mixed_Air_Node_Name']
+
                 for i in range(len(supply_branches)):
                     if i == 0:
-                        try:
-                            inlet_name = supply_branches[i]['object'].Inlet_Node_Name
-                        except:
-                            inlet_name = supply_branches[i]['object'].Air_Inlet_Node_Name
+                        inlet_name = controller['Mixed_Air_Node_Name']
                     else:
-                        try:
-                            inlet_name = supply_branches[i - 1]['object'].Outlet_Node_Name
-                        except:
-                            inlet_name = supply_branches[i - 1]['object'].Air_Outlet_Node_Name
+                        inlet_name = supply_branches[i-1]['object'][supply_branches[i - 1]['air_outlet_field']]
 
-                    supply_branch[f'Component_{i + 1}_Object_Type'] = supply_branches[0]['type']
-                    supply_branch[f'Component_{i + 1}_Name'] = supply_branches[0]['object'].Name
-                    supply_branch[f'Component_{i + 1}_Inlet_Node_Name'] = inlet_name
+                    supply_branch[f'Component_{i + 2}_Object_Type'] = supply_branches[0]['type']
+                    supply_branch[f'Component_{i + 2}_Name'] = supply_branches[0]['object'].Name
+                    supply_branch[f'Component_{i + 2}_Inlet_Node_Name'] = inlet_name
+                    supply_branch[f'Component_{i + 2}_Outlet_Node_Name'] = \
+                        supply_branches[i]['object'][supply_branches[i]['air_outlet_field']]
 
-                    try:
-                        supply_branch[f'Component_{i + 1}_Outlet_Node_Name'] = supply_branches[i]['object'].Outlet_Node_Name
-                    except:
-                        supply_branch[f'Component_{i + 1}_Outlet_Node_Name'] = supply_branches[i]['object'].Air_Outlet_Node_Name
+                    spm_nodes.append(supply_branch[f'Component_{i + 2}_Outlet_Node_Name'])
 
+                    # Add Supply Fan at the end:
+                    if i == len(supply_branches) - 1:
+                        if supply_fan is not None:
+                            supply_branch[f'Component_{i + 2}_Outlet_Node_Name'] = \
+                                supply_fan['object'][supply_fan['air_inlet_field']]
+                            supply_fan['object'][supply_fan['air_outlet_field']] = supply_outlet_node_name
+                            fan_inlet_node = supply_fan['object'][supply_fan['air_inlet_field']]
+                            fan_outlet_node = supply_outlet_node_name
+
+                            # Add fan to branch:
+                            fan_index = i + 3
+                            supply_branch[f'Component_{fan_index}_Object_Type'] = supply_fan['type']
+                            supply_branch[f'Component_{fan_index}_Name'] = supply_fan['object'].Name
+                            supply_branch[f'Component_{fan_index}_Inlet_Node_Name'] = fan_inlet_node
+                            supply_branch[f'Component_{fan_index}_Outlet_Node_Name'] = fan_outlet_node
+
+                            loop_assembly.append(supply_fan['object'])
+                        else:
+                            raise ValueError('Supply fan cannot be None.')
 
             loop_assembly.append(supply_branch)
 
@@ -237,6 +302,14 @@ class AirLoop:
                 setpoint_manager.Setpoint_Node_or_NodeList_Name = supply_outlet_node_name
 
             # Setpoint Manager:MixedAir at each node in outdoor air stream:
+            for node in spm_nodes:
+                spm_mix = idf.newidfobject('SetpointManager:MixedAir'.upper(), Name=f'{node} SPM')
+                spm_mix['Control_Variable'] = 'Temperature'
+                spm_mix['Reference_Setpoint_Node_Name'] = supply_outlet_node_name
+                spm_mix['Fan_Inlet_Node_Name'] = fan_inlet_node
+                spm_mix['Fan_Outlet_Node_Name'] = fan_outlet_node
+                spm_mix['Setpoint_Node_or_NodeList_Name'] = node
+                loop_assembly.append(spm_mix)
 
             # Branch List:
             branch_list = NodeBranch.branch_list(
@@ -245,5 +318,71 @@ class AirLoop:
                 branches=[supply_branch])
             loop_assembly.append(branch_list)
 
-        return loop_assembly
+        # Zone Equipment List:
+        ###############################################################################################
+        zone_equips = ZoneEquipment.zone_equipment_group(
+            idf,
+            zones=zones,
+            air_terminal_type=air_terminal_type,
+            zone_hvac_type=zone_hvac_type,
+            zone_radiative_type=zone_radiative_type)
 
+        zone_splitter_nodes = zone_equips['Zone_Splitter_Nodes']
+        zone_mixer_nodes = zone_equips['Zone_Mixer_Nodes']
+        zone_reheat_coils = zone_equips['Reheat_Coils']
+
+        # Supply / Return Path:
+        ###############################################################################################
+        # Supply Path:
+        supply_path_name = f'{name} Supply Path'
+        zone_splitter_name = f'{name} Zone Splitter'
+        supply_path = idf.newidfobject('AirLoopHVAC:SupplyPath'.upper(), Name=supply_path_name)
+        supply_path['Supply_Air_Path_Inlet_Node_Name'] = demand_inlet_node_name
+        supply_path['Component_1_Object_Type'] = 'AirLoopHVAC:ZoneSplitter'
+        supply_path['Component_1_Name'] = zone_splitter_name
+        loop_assembly.append(supply_path)
+
+        # Zone Splitter:
+        zone_splitter = idf.newidfobject('AirLoopHVAC:ZoneSplitter'.upper(), Name=zone_splitter_name)
+        zone_splitter['Inlet_Node_Name'] = demand_inlet_node_name
+        if len(zone_splitter_nodes) > 0:
+            for i, node in enumerate(zone_splitter_nodes):
+                zone_splitter[f'Outlet_{i+1}_Node_Name'] = node
+        loop_assembly.append(zone_splitter)
+
+        # Return Path:
+        return_path_name = f'{name} Return Path'
+        zone_mixer_name = f'{name} Zone Mixer'
+        return_path = idf.newidfobject('AirLoopHVAC:ReturnPath'.upper(), Name=return_path_name)
+        return_path['Return_Air_Path_Outlet_Node_Name'] = loop.Demand_Side_Outlet_Node_Name
+        return_path['Component_1_Object_Type'] = 'AirLoopHVAC:ZoneMixer'
+        return_path['Component_1_Name'] = zone_mixer_name
+        loop_assembly.append(return_path)
+
+        # Zone Mixer:
+        zone_mixer = idf.newidfobject('AirLoopHVAC:ZoneMixer'.upper(), Name=zone_mixer_name)
+        zone_mixer['Outlet_Node_Name'] = loop.Demand_Side_Outlet_Node_Name
+        if len(zone_mixer_nodes) > 0:
+            for i, node in enumerate(zone_mixer_nodes):
+                zone_mixer[f'Inlet_{i+1}_Node_Name'] = node
+        loop_assembly.append(zone_mixer)
+
+        # Get all water coils:
+        ###############################################################################################
+        for item in supply_branches:
+            if 'WATER' in item['type'].upper():
+                category = item['type'].split(':')[1]
+                if category == 'COOLING':
+                    water_clg_coils.append(item)
+                if category == 'HEATING':
+                    water_htg_coils.append(item)
+                else:
+                    pass
+
+        output_assembly = {
+            'Loop': loop_assembly,
+            'Cooling_Coils': water_clg_coils,
+            'Heating_Coils': water_htg_coils,
+        }
+
+        return output_assembly
