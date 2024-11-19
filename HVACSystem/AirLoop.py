@@ -326,10 +326,12 @@ class AirLoop:
             air_terminal_type=air_terminal_type,
             zone_hvac_type=zone_hvac_type,
             zone_radiative_type=zone_radiative_type)
+        loop_assembly.extend(zone_equips['Equipments'])
 
         zone_splitter_nodes = zone_equips['Zone_Splitter_Nodes']
         zone_mixer_nodes = zone_equips['Zone_Mixer_Nodes']
-        zone_reheat_coils = zone_equips['Reheat_Coils']
+        water_clg_coils.extend(zone_equips['Cooling_Coils'])
+        water_htg_coils.extend(zone_equips['Heating_Coils'])
 
         # Supply / Return Path:
         ###############################################################################################

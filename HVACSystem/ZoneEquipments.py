@@ -156,7 +156,8 @@ class ZoneEquipment:
         zone_equip_type = Zone_HVAC_types[zone_hvac_type] if zone_hvac_type is not None else None
         radiative_unit_type = Radiative_Unit_types[zone_radiative_type] if zone_radiative_type is not None else None
         equip_group_assembly = []
-        reheat_coils = []
+        cooling_coils = []
+        heating_coils = []
         zone_splitter_out_nodes = []
         zone_mixer_in_nodes = []
 
@@ -251,26 +252,46 @@ class ZoneEquipment:
 
                 equip_group_assembly.append(terminal['object'])
                 if 'reheat_coil' in terminal.keys():
-                    reheat_coils.append(terminal['reheat_coil'])
+                    heating_coils.append(terminal['reheat_coil'])
                     equip_group_assembly.append(terminal['reheat_coil'])
 
+                equipments = [terminal]
                 # Zone HVAC Equipment if available:
                 ###############################################################################################
+                if zone_hvac_type is not None:
+                    zone_hvac_func = getattr(ZoneEquipment, 'fan_coil_unit')
+                    zone_hvac_name = zone_name + ' ' + zone_equip_type.split(':')[-1]
+                    zone_equip = zone_hvac_func(idf, zone_hvac_name)
+
+                    equip_group_assembly.append(zone_equip['object'])
+                    equipments.append(zone_equip)
+
+                    if 'cooling_coil' in zone_equip.keys() and zone_equip['cooling_coil'] is not None:
+                        cooling_coils.append(zone_equip['cooling_coil']['object'])
+                    if 'heating_coil' in zone_equip.keys() and zone_equip['heating_coil'] is not None:
+                        heating_coils.append(zone_equip['heating_coil']['object'])
 
                 # Zone Radiative Equipment if available:
                 ###############################################################################################
+                # if zone_radiative_type is not None:
+                #     zone_rad_unit = zone_radiative_unit['object']
+                #     equip_group_assembly.append(zone_rad_unit)
+                #     equipments.append(zone_rad_unit)
+                #
+                #     if 'cooling_coil' in zone_radiative_unit.keys() and zone_radiative_unit['cooling_coil'] is not None:
+                #         cooling_coils.append(zone_radiative_unit['cooling_coil']['object'])
+                #     if 'heating_coil' in zone_radiative_unit.keys() and zone_radiative_unit['heating_coil'] is not None:
+                #         heating_coils.append(zone_radiative_unit['heating_coil']['object'])
 
                 # Equipment List:
                 ###############################################################################################
-                equipments = [terminal]
-                # if zone_hvac_type is not None:
-
                 equip_list = ZoneEquipment.zone_equipment_list(idf, equip_list_name, equipments=equipments)
                 equip_group_assembly.append(equip_list)
 
             output_assembly = {
                 'Equipments': equip_group_assembly,
-                'Reheat_Coils': reheat_coils,
+                'Cooling_Coils': cooling_coils,
+                'Heating_Coils': heating_coils,
                 'Zone_Splitter_Nodes': zone_splitter_out_nodes,
                 'Zone_Mixer_Nodes': zone_mixer_in_nodes,
             }
@@ -280,6 +301,7 @@ class ZoneEquipment:
     @staticmethod
     def fan_coil_unit(
             idf: IDF,
+            name: str = None,
             schedule: EpBunch | str = None,
             capacity_control_method: int = 0,
             heating_coil_type: int = 1,
@@ -295,8 +317,7 @@ class ZoneEquipment:
             min_hot_water_flow_rate=None,
             supply_air_fan_operating_mode_schedule=None,
             min_supply_air_temp_cooling='AutoSize',
-            max_supply_air_temp_heating='AutoSize',
-            name: str = None):
+            max_supply_air_temp_heating='AutoSize'):
 
         """
         -Options for "capacity_control_method":
@@ -392,7 +413,23 @@ class ZoneEquipment:
         fcu['Maximum_Supply_Air_Flow_Rate'] = max_supply_air_flow_rate
         if low_speed_supply_air_flow_ratio is not None:
             fcu['Low_Speed_Supply_Air_Flow_Ratio'] = low_speed_supply_air_flow_ratio
-
+        if medium_speed_supply_air_flow_ratio is not None:
+            fcu['Medium_Speed_Supply_Air_Flow_Ratio'] = medium_speed_supply_air_flow_ratio
+        fcu['Maximum_Outdoor_Air_Flow_Rate'] = max_outdoor_air_flow_rate
+        if outdoor_air_schedule is not None:
+            fcu['Outdoor_Air_Schedule_Name'] = outdoor_air_schedule
+        fcu['Maximum_Cold_Water_Flow_Rate'] = max_cold_water_flow_rate
+        if min_cold_water_flow_rate is not None:
+            fcu['Minimum_Cold_Water_Flow_Rate'] = min_cold_water_flow_rate
+        if max_hot_water_flow_rate is not None:
+            fcu['Maximum_Hot_Water_Flow_Rate'] = max_hot_water_flow_rate
+        if min_hot_water_flow_rate is not None:
+            fcu['Minimum_Hot_Water_Flow_Rate'] = min_hot_water_flow_rate
+        if supply_air_fan_operating_mode_schedule is not None:
+            fcu['Supply_Air_Fan_Operating_Mode_Schedule_Name'] = supply_air_fan_operating_mode_schedule
+        fcu['Minimum_Supply_Air_Temperature_in_Cooling_Mode'] = min_supply_air_temp_cooling
+        fcu['Maximum_Supply_Air_Temperature_in_Heating_Mode'] = max_supply_air_temp_heating
+        fcu_assembly.append(fcu)
 
         component = {
             'object': fcu,

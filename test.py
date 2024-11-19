@@ -78,6 +78,7 @@ clg_coil = AirLoopComponent.cooling_coil_water(my_model, 'Cooling Coil')
 htg_coil = AirLoopComponent.heating_coil_water(my_model, 'Heating Coil')
 fan = AirLoopComponent.fan_variable_speed(my_model, 'Fan', fan_curve_coeff=PerformanceCurve.fan_curve_set())
 sizing = AirLoopComponent.sizing(my_model)
+
 zones = ['Office_1', 'Office_2']
 loop = AirLoop.air_loop_hvac(
     my_model,
@@ -86,15 +87,20 @@ loop = AirLoop.air_loop_hvac(
     supply_branches=[clg_coil, htg_coil],
     supply_fan=fan,
     zones=zones,
-    sizing=sizing,)
+    sizing=sizing,
+    zone_hvac_type=2)
 print(loop)
+
+# func = getattr(ZoneEquipment, 'fan_coil_unit')
+# fcu = func(my_model, 'Fan Coil Unit ky')
+# print(fcu)
 
 # zones = ['Office_1']
 # zone_group = ZoneEquipment.zone_equipment_group(my_model, zones=zones, air_terminal_type=3, zone_hvac_type=2)
 # print(zone_group)
 
-object = my_model.newidfobject('ZoneHVAC:FourPipeFanCoil'.upper())
-print(object.fieldnames)
+# object = my_model.newidfobject('ZoneHVAC:FourPipeFanCoil'.upper())
+# print(object.fieldnames)
 
 # Save to a new file:
 #####################################################################
