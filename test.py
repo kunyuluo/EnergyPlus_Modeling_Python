@@ -74,12 +74,12 @@ delete_hvac_objs(my_model)
 
 preheat_coil = AirLoopComponent.heating_coil_electric(my_model, 'Preheat Coil')
 hx = AirLoopComponent.heat_exchanger_air_to_air(my_model, 'HX')
-clg_coil = AirLoopComponent.cooling_coil_water(my_model, 'Cooling Coil')
-htg_coil = AirLoopComponent.heating_coil_water(my_model, 'Heating Coil')
+clg_coil = AirLoopComponent.cooling_coil_water(my_model, 'AHU Cooling Coil')
+htg_coil = AirLoopComponent.heating_coil_water(my_model, 'AHU Heating Coil')
 fan = AirLoopComponent.fan_variable_speed(my_model, 'Fan', fan_curve_coeff=PerformanceCurve.fan_curve_set())
 sizing = AirLoopComponent.sizing(my_model)
 
-zones = ['Office_1', 'Office_2']
+zones = ['Office_1']
 loop = AirLoop.air_loop_hvac(
     my_model,
     name='VAV System',

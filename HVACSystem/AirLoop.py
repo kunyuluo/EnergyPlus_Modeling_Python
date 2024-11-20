@@ -22,6 +22,8 @@ class AirLoop:
             air_terminal_type: int = 1,
             zone_hvac_type: int = None,
             zone_radiative_type: int = None,
+            chilled_water_loop: EpBunch | str = None,
+            hot_water_loop: EpBunch | str = None,
             design_supply_air_flow_rate: float = None,
             design_return_air_fraction: float = 1.0,
             sizing: EpBunch = None):
@@ -30,16 +32,36 @@ class AirLoop:
         water_clg_coils = []
         water_htg_coils = []
 
+        # Add water coils from supply branch if available:
+        ###############################################################################################
+        if supply_branches is not None and len(supply_branches) > 0:
+            for item in supply_branches:
+                if 'Coil' in item['type'] and 'Water' in item['type']:
+                    if 'Cooling' in item['type']:
+                        water_clg_coils.append(item['object'])
+                        
+                    if 'Heating' in item['type']:
+                        water_htg_coils.append(item['object'])
+
+        # Air Loop:
+        ###############################################################################################
         name = 'Air Loop' if name is None else name
 
         loop = idf.newidfobject('AirLoopHVAC'.upper(), Name=name)
         loop_assembly.append(loop)
 
         # Sizing:
+        ###############################################################################################
         if sizing is not None:
             sizing['AirLoop_Name'] = name
             loop_assembly.append(sizing)
+        else:
+            sizing = AirLoopComponent.sizing(idf)
+            sizing['AirLoop_Name'] = name
+            loop_assembly.append(sizing)
 
+        # Field Names:
+        ###############################################################################################
         fields = SomeFields.a_fields
         flnames = [field.replace(" ", "_") for field in fields]
         # simplify naming
@@ -267,8 +289,8 @@ class AirLoop:
                     else:
                         inlet_name = supply_branches[i-1]['object'][supply_branches[i - 1]['air_outlet_field']]
 
-                    supply_branch[f'Component_{i + 2}_Object_Type'] = supply_branches[0]['type']
-                    supply_branch[f'Component_{i + 2}_Name'] = supply_branches[0]['object'].Name
+                    supply_branch[f'Component_{i + 2}_Object_Type'] = supply_branches[i]['type']
+                    supply_branch[f'Component_{i + 2}_Name'] = supply_branches[i]['object'].Name
                     supply_branch[f'Component_{i + 2}_Inlet_Node_Name'] = inlet_name
                     supply_branch[f'Component_{i + 2}_Outlet_Node_Name'] = \
                         supply_branches[i]['object'][supply_branches[i]['air_outlet_field']]

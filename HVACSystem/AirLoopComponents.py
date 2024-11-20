@@ -319,7 +319,7 @@ class AirLoopComponent:
         component = {
             'object': coil,
             'controller': controller,
-            'type': 'Coil:Cooling:Water',
+            'type': 'Coil:Heating:Water',
             'water_inlet_field': 'Water_Inlet_Node_Name',
             'water_outlet_field': 'Water_Outlet_Node_Name',
             'air_inlet_field': 'Air_Inlet_Node_Name',
@@ -353,7 +353,7 @@ class AirLoopComponent:
 
         component = {
             'object': coil,
-            'type': 'Coil:Cooling:Electric',
+            'type': 'Coil:Heating:Electric',
             'air_inlet_field': 'Air_Inlet_Node_Name',
             'air_outlet_field': 'Air_Outlet_Node_Name',
         }
