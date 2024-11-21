@@ -8,8 +8,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/EnergyPlus_Modeling_Python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/EnergyPlus_Modeling_Python.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HVACSystem/AirLoop.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/AirLoop.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HVACSystem/AirLoopComponents.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/AirLoopComponents.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HVACSystem/PerformanceCurves.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/PerformanceCurves.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HVACSystem/PlantLoopComponents.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/PlantLoopComponents.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

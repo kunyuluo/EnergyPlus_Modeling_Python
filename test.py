@@ -72,35 +72,27 @@ delete_hvac_objs(my_model)
 # # print(spm)
 # print(newplantloop)
 
-preheat_coil = AirLoopComponent.heating_coil_electric(my_model, 'Preheat Coil')
-hx = AirLoopComponent.heat_exchanger_air_to_air(my_model, 'HX')
-clg_coil = AirLoopComponent.cooling_coil_water(my_model, 'AHU Cooling Coil')
-htg_coil = AirLoopComponent.heating_coil_water(my_model, 'AHU Heating Coil')
-fan = AirLoopComponent.fan_variable_speed(my_model, 'Fan', fan_curve_coeff=PerformanceCurve.fan_curve_set())
-sizing = AirLoopComponent.sizing(my_model)
-
-zones = ['Office_1']
-loop = AirLoop.air_loop_hvac(
-    my_model,
-    name='VAV System',
-    outdoor_air_stream_comp=[preheat_coil, hx],
-    supply_branches=[clg_coil, htg_coil],
-    supply_fan=fan,
-    zones=zones,
-    sizing=sizing,
-    zone_hvac_type=2)
-print(loop)
-
-# func = getattr(ZoneEquipment, 'fan_coil_unit')
-# fcu = func(my_model, 'Fan Coil Unit ky')
-# print(fcu)
-
+# preheat_coil = AirLoopComponent.heating_coil_electric(my_model, 'Preheat Coil')
+# hx = AirLoopComponent.heat_exchanger_air_to_air(my_model, 'HX')
+# clg_coil = AirLoopComponent.cooling_coil_water(my_model, 'AHU Cooling Coil')
+# htg_coil = AirLoopComponent.heating_coil_water(my_model, 'AHU Heating Coil')
+# fan = AirLoopComponent.fan_variable_speed(my_model, 'Fan', fan_curve_coeff=PerformanceCurve.fan_curve_set())
+# sizing = AirLoopComponent.sizing(my_model)
+#
 # zones = ['Office_1']
-# zone_group = ZoneEquipment.zone_equipment_group(my_model, zones=zones, air_terminal_type=3, zone_hvac_type=2)
-# print(zone_group)
+# loop = AirLoop.air_loop_hvac(
+#     my_model,
+#     name='VAV System',
+#     outdoor_air_stream_comp=[preheat_coil, hx],
+#     supply_branches=[clg_coil, htg_coil],
+#     supply_fan=fan,
+#     zones=zones,
+#     sizing=sizing,
+#     zone_hvac_type=2)
+# print(loop)
 
-# object = my_model.newidfobject('ZoneHVAC:FourPipeFanCoil'.upper())
-# print(object.fieldnames)
+object = my_model.newidfobject('Pump:VariableSpeed'.upper())
+print(object.fieldnames)
 
 # Save to a new file:
 #####################################################################
