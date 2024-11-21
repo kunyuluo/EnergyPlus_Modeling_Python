@@ -17,46 +17,33 @@ class NodeBranch:
         if len(components) <= 1:
             branch['Component_1_Object_Type'] = components[0]['type']
             branch['Component_1_Name'] = components[0]['object'].Name
-            try:
-                branch['Component_1_Inlet_Node_Name'] = components[0]['object'].Inlet_Node_Name
-                branch['Component_1_Outlet_Node_Name'] = components[0]['object'].Outlet_Node_Name
-            except:
-                if water_side:
-                    branch['Component_1_Inlet_Node_Name'] = components[0]['object'].Water_Inlet_Node_Name
-                    branch['Component_1_Outlet_Node_Name'] = components[0]['object'].Water_Outlet_Node_Name
-                else:
-                    branch['Component_1_Inlet_Node_Name'] = components[0]['object'].Air_Inlet_Node_Name
-                    branch['Component_1_Outlet_Node_Name'] = components[0]['object'].Air_Outlet_Node_Name
+            if water_side:
+                branch['Component_1_Inlet_Node_Name'] = components[0]['object'][components[0]['water_inlet_field']]
+                branch['Component_1_Outlet_Node_Name'] = components[0]['object'][components[0]['water_outlet_field']]
+            else:
+                branch['Component_1_Inlet_Node_Name'] = components[0]['object'][components[0]['air_inlet_field']]
+                branch['Component_1_Outlet_Node_Name'] = components[0]['object'][components[0]['air_outlet_field']]
         else:
             for i in range(len(components)):
                 if i == 0:
-                    try:
-                        inlet_name = components[i]['object'].Inlet_Node_Name
-                    except:
-                        if water_side:
-                            inlet_name = components[i]['object'].Water_Inlet_Node_Name
-                        else:
-                            inlet_name = components[i]['object'].Air_Inlet_Node_Name
+                    if water_side:
+                        inlet_name = components[i]['object'][components[i]['water_inlet_field']]
+                    else:
+                        inlet_name = components[i]['object'][components[i]['air_inlet_field']]
                 else:
-                    try:
-                        inlet_name = components[i - 1]['object'].Outlet_Node_Name
-                    except:
-                        if water_side:
-                            inlet_name = components[i-1]['object'].Water_Outlet_Node_Name
-                        else:
-                            inlet_name = components[i-1]['object'].Air_Outlet_Node_Name
+                    if water_side:
+                        inlet_name = components[i-1]['object'][components[i-1]['water_outlet_field']]
+                    else:
+                        inlet_name = components[i-1]['object'][components[i-1]['air_outlet_field']]
 
                 branch[f'Component_{i + 1}_Object_Type'] = components[0]['type']
                 branch[f'Component_{i + 1}_Name'] = components[0]['object'].Name
                 branch[f'Component_{i + 1}_Inlet_Node_Name'] = inlet_name
 
-                try:
-                    branch[f'Component_{i + 1}_Outlet_Node_Name'] = components[i]['object'].Outlet_Node_Name
-                except:
-                    if water_side:
-                        branch[f'Component_{i + 1}_Outlet_Node_Name'] = components[i]['object'].Water_Outlet_Node_Name
-                    else:
-                        branch[f'Component_{i + 1}_Outlet_Node_Name'] = components[i]['object'].Air_Outlet_Node_Name
+                if water_side:
+                    branch[f'Component_{i + 1}_Outlet_Node_Name'] = components[i]['object'][components[i]['water_outlet_field']]
+                else:
+                    branch[f'Component_{i + 1}_Outlet_Node_Name'] = components[i]['object'][components[i]['air_outlet_field']]
 
         return branch
 

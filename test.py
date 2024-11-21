@@ -55,22 +55,23 @@ delete_hvac_objs(my_model)
 
 # Creating new plant loop:
 #####################################################################
-# pipe1 = PlantLoopComponent.pipe(my_model, name='pipe1')
-# pipe2 = PlantLoopComponent.pipe(my_model, name='pipe2')
-# pipe3 = PlantLoopComponent.pipe(my_model, name='pipe3')
-# pipe4 = PlantLoopComponent.pipe(my_model, name='pipe4')
-# spm = SetpointManager.scheduled(my_model, name='spm')
-#
-# newplantloop = PlantLoop.water_loop(
-#     my_model,
-#     name='Test Chilled Water Loop',
-#     supply_inlet_branches=pipe1,
-#     supply_branches=[[pipe2], [pipe3]],
-#     demand_branches=pipe4,
-#     setpoint_manager=spm)
-#
-# # print(spm)
-# print(newplantloop)
+pipe1 = PlantLoopComponent.pipe(my_model, name='pipe1')
+pipe2 = PlantLoopComponent.pipe(my_model, name='pipe2')
+pipe3 = PlantLoopComponent.pipe(my_model, name='pipe3')
+pipe4 = PlantLoopComponent.pipe(my_model, name='pipe4')
+pipe5 = PlantLoopComponent.pipe(my_model, name='pipe5')
+spm = SetpointManager.scheduled(my_model, name='spm')
+
+newplantloop = PlantLoop.water_loop(
+    my_model,
+    name='Test Chilled Water Loop',
+    supply_inlet_branches=pipe1,
+    supply_branches=[[pipe2], [pipe3]],
+    demand_branches=[pipe4, pipe5],
+    setpoint_manager=spm)
+
+# print(spm)
+print(newplantloop)
 
 # preheat_coil = AirLoopComponent.heating_coil_electric(my_model, 'Preheat Coil')
 # hx = AirLoopComponent.heat_exchanger_air_to_air(my_model, 'HX')
@@ -91,7 +92,7 @@ delete_hvac_objs(my_model)
 #     zone_hvac_type=2)
 # print(loop)
 
-object = my_model.newidfobject('Pump:VariableSpeed'.upper())
+object = my_model.newidfobject('Pump:ConstantSpeed'.upper())
 print(object.fieldnames)
 
 # Save to a new file:

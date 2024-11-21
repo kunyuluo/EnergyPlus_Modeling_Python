@@ -73,7 +73,9 @@ class PlantLoopComponent:
 
         component = {
             'object': pipe,
-            'type': pipe_types[pipe_type]
+            'type': pipe_types[pipe_type],
+            'water_inlet_field': 'Inlet_Node_Name',
+            'water_outlet_field': 'Outlet_Node_Name',
         }
 
         return component
@@ -200,10 +202,10 @@ class PlantLoopComponent:
         comp = {
             'object': chiller,
             'type': 'Chiller:Electric:EIR',
-            'chilled_water_inlet': 'Chilled_Water_Inlet_Node_Name',
-            'chilled_water_outlet': 'Chilled_Water_Outlet_Node_Name',
-            'condenser_water_inlet': 'Condenser_Inlet_Node_Name',
-            'condenser_water_outlet': 'Condenser_Outlet_Node_Name',
+            'water_inlet_field': 'Chilled_Water_Inlet_Node_Name',
+            'water_outlet_field': 'Chilled_Water_Outlet_Node_Name',
+            'condenser_water_inlet_field': 'Condenser_Inlet_Node_Name',
+            'condenser_water_outlet_field': 'Condenser_Outlet_Node_Name',
         }
 
         return comp
@@ -234,8 +236,8 @@ class PlantLoopComponent:
         comp = {
             'object': district,
             'type': 'DistrictCooling',
-            'chilled_water_inlet': 'Chilled_Water_Inlet_Node_Name',
-            'chilled_water_outlet': 'Chilled_Water_Outlet_Node_Name',
+            'water_inlet_field': 'Chilled_Water_Inlet_Node_Name',
+            'water_outlet_field': 'Chilled_Water_Outlet_Node_Name',
         }
 
         return comp
@@ -268,8 +270,8 @@ class PlantLoopComponent:
         comp = {
             'object': district,
             'type': 'DistrictHeating',
-            'hot_water_inlet': 'Hot_Water_Inlet_Node_Name',
-            'hot_water_outlet': 'Hot_Water_Outlet_Node_Name',
+            'water_inlet_field': 'Hot_Water_Inlet_Node_Name',
+            'water_outlet_field': 'Hot_Water_Outlet_Node_Name',
         }
 
         return comp
@@ -288,14 +290,19 @@ class PlantLoopComponent:
             fraction_of_motor_to_fluid=0,
             control_type: int = 1,
             vfd_control_type: int = 1,
+            pump_flow_rate_schedule: EpBunch | str = None,
+            pump_rpm_schedule: EpBunch | str = None,
+            min_rpm_schedule: EpBunch | str = None,
+            max_pressure_schedule: EpBunch | str = None,
+            min_pressure_schedule: EpBunch | str = None,
+            impeller_diameter=None,
             power_sizing_method: int = 1,
             power_per_flow_rate=348701.1,
-            power_per_flow_rate_per_head=None,
+            power_per_flow_rate_per_head=1.282051282,
             thermal_zone=None,
             skin_loss_radiative_fraction=0.5,
             design_min_flow_fraction=0,
-            pump_curve_coeff=None):
-
+            pump_curve_coeff=PerformanceCurve.pump_curve_set(1)):
         """
         -Control_type: 1:Intermittent 2:Continuous \n
         -VFD_control_type: 1:PressureSetPointControl 2:ManualControl \n
@@ -309,66 +316,142 @@ class PlantLoopComponent:
         name = 'Pump Variable Speed' if name is None else name
         pump = idf.newidfobject('Pump:VariableSpeed'.upper(), Name=name)
 
-        pump['Design_Maximum_Flow_Rate'] = design_flow_rate
+        pump['Design_Maximum_Flow_Rate'] = design_max_flow_rate
+        pump['Design_Minimum_Flow_Rate'] = design_min_flow_rate
         pump['Design_Pump_Head'] = design_head
+        pump['Design_Power_Consumption'] = design_power
+        pump['Motor_Efficiency'] = motor_efficiency
+        pump['Fraction_of_Motor_Inefficiencies_to_Fluid_Stream'] = fraction_of_motor_to_fluid
+        pump['Pump_Control_Type'] = control_types[control_type]
 
+        if pump_flow_rate_schedule is not None:
+            if isinstance(pump_flow_rate_schedule, str):
+                pump['Pump_Flow_Rate_Schedule_Name'] = pump_flow_rate_schedule
+            elif isinstance(pump_flow_rate_schedule, EpBunch):
+                pump['Pump_Flow_Rate_Schedule_Name'] = pump_flow_rate_schedule.Name
+            else:
+                raise TypeError('pump_flow_rate_schedule must be EpBunch or str')
+        if max_pressure_schedule is not None:
+            if isinstance(max_pressure_schedule, str):
+                pump['Maximum_Flow_Rate_Schedule_Name'] = max_pressure_schedule
+            elif isinstance(max_pressure_schedule, EpBunch):
+                pump['Maximum_Flow_Rate_Schedule_Name'] = max_pressure_schedule.Name
+            else:
+                raise TypeError('max_pressure_schedule must be EpBunch or str')
+        if min_pressure_schedule is not None:
+            if isinstance(min_pressure_schedule, str):
+                pump['Minimum_Flow_Rate_Schedule_Name'] = min_pressure_schedule
+            elif isinstance(min_pressure_schedule, EpBunch):
+                pump['Minimum_Flow_Rate_Schedule_Name'] = min_pressure_schedule.Name
+            else:
+                raise TypeError('min_pressure_schedule must be EpBunch or str')
+        if pump_rpm_schedule is not None:
+            if isinstance(pump_rpm_schedule, str):
+                pump['Pump_RPM_Schedule_Name'] = pump_rpm_schedule
+            elif isinstance(pump_rpm_schedule, EpBunch):
+                pump['Pump_RPM_Schedule_Name'] = pump_rpm_schedule.Name
+            else:
+                raise TypeError('pump_rpm_schedule must be EpBunch or str')
+        if min_rpm_schedule is not None:
+            if isinstance(min_rpm_schedule, str):
+                pump['Minimum_RPM_Schedule_Name'] = min_rpm_schedule
+            elif isinstance(min_rpm_schedule, EpBunch):
+                pump['Minimum_RPM_Schedule_Name'] = min_rpm_schedule.Name
+            else:
+                raise TypeError('min_rpm_schedule must be EpBunch or str')
+
+        pump['Impeller_Diameter'] = impeller_diameter
+        pump['VFD_Control_Type'] = vfd_control_types[vfd_control_type]
+
+        if thermal_zone is not None:
+            pump['Zone_Name'] = thermal_zone
+
+        pump['Skin_Loss_Radiative_Fraction'] = skin_loss_radiative_fraction
+        pump['Design_Power_Sizing_Method'] = sizing_methods[power_sizing_method]
+        pump['Design_Electric_Power_per_Unit_Flow_Rate'] = power_per_flow_rate
+        pump['Design_Shaft_Power_per_Unit_Flow_Rate_per_Unit_Head'] = power_per_flow_rate_per_head
+        pump['Design_Minimum_Flow_Rate_Fraction'] = design_min_flow_fraction
         pump['EndUse_Subcategory'] = 'General'
 
-        return pump
+        pump['Coefficient_1_of_the_Part_Load_Performance_Curve'] = pump_curve_coeff[0]
+        pump['Coefficient_2_of_the_Part_Load_Performance_Curve'] = pump_curve_coeff[1]
+        pump['Coefficient_3_of_the_Part_Load_Performance_Curve'] = pump_curve_coeff[2]
+        pump['Coefficient_4_of_the_Part_Load_Performance_Curve'] = pump_curve_coeff[3]
 
-    # @staticmethod
-    # def pump_constant_speed(
-    #         idf: IDF,
-    #         name: str = None,
-    #         rated_head=None,
-    #         rated_flow_rate=None,
-    #         rated_power=None,
-    #         motor_efficiency=None,
-    #         control_type: int = 1,
-    #         power_sizing_method: int = 1,
-    #         power_per_flow_rate=None,
-    #         power_per_flow_rate_per_head=None,
-    #         thermal_zone: openstudio.openstudiomodel.ThermalZone = None):
-    #
-    #     """
-    #     -Control_type: 1:Intermittent 2:Continuous \n
-    #     -Power_sizing_method: 1:PowerPerFlowPerPressure 2:PowerPerFlow
-    #     """
-    #
-    #     control_types = {1: "Intermittent", 2: "Continuous"}
-    #     sizing_methods = {1: "PowerPerFlowPerPressure", 2: "PowerPerFlow"}
-    #
-    #     pump = openstudio.openstudiomodel.PumpConstantSpeed(model)
-    #
-    #     if name is not None: pump.setName(name)
-    #     if rated_head is not None: pump.setRatedPumpHead(rated_head)
-    #
-    #     if rated_flow_rate is not None:
-    #         pump.setRatedFlowRate(rated_flow_rate)
-    #     else:
-    #         pump.autosizeRatedFlowRate()
-    #
-    #     if rated_power is not None:
-    #         pump.setRatedPowerConsumption(rated_power)
-    #     else:
-    #         pump.autosizeRatedPowerConsumption()
-    #
-    #     if motor_efficiency is not None:
-    #         pump.setMotorEfficiency(motor_efficiency)
-    #     if control_type != 1:
-    #         pump.setPumpControlType(control_types[control_type])
-    #     if power_sizing_method != 1:
-    #         pump.setDesignPowerSizingMethod(sizing_methods[power_sizing_method])
-    #     if power_per_flow_rate is not None:
-    #         pump.setDesignElectricPowerPerUnitFlowRate(power_per_flow_rate)
-    #     if power_per_flow_rate_per_head is not None:
-    #         pump.setDesignShaftPowerPerUnitFlowRatePerUnitHead(power_per_flow_rate_per_head)
-    #
-    #     if thermal_zone is not None:
-    #         pump.setZone(thermal_zone)
-    #
-    #     return pump
-    #
+        comp = {
+            'object': pump,
+            'type': 'Pump:VariableSpeed',
+            'water_inlet_field': 'Inlet_Node_Name',
+            'water_outlet_field': 'Outlet_Node_Name'
+        }
+
+        return comp
+
+    @staticmethod
+    def pump_constant_speed(
+            idf: IDF,
+            name: str = None,
+            design_head=None,
+            design_max_flow_rate='Autosize',
+            design_min_flow_rate=0,
+            design_power='Autosize',
+            motor_efficiency=0.9,
+            fraction_of_motor_to_fluid=0,
+            control_type: int = 1,
+            pump_flow_rate_schedule: EpBunch | str = None,
+            impeller_diameter=None,
+            rotational_speed=None,
+            power_sizing_method: int = 1,
+            power_per_flow_rate=None,
+            power_per_flow_rate_per_head=None,
+            thermal_zone=None):
+
+        """
+        -Control_type: 1:Intermittent 2:Continuous \n
+        -Power_sizing_method: 1:PowerPerFlowPerPressure 2:PowerPerFlow
+        """
+
+        control_types = {1: "Intermittent", 2: "Continuous"}
+        sizing_methods = {1: "PowerPerFlowPerPressure", 2: "PowerPerFlow"}
+
+        name = 'Pump Constant Speed' if name is None else name
+        pump = idf.newidfobject('Pump:ConstantSpeed'.upper(), Name=name)
+
+        pump['Design_Maximum_Flow_Rate'] = design_max_flow_rate
+        pump['Design_Minimum_Flow_Rate'] = design_min_flow_rate
+        pump['Design_Pump_Head'] = design_head
+        pump['Design_Power_Consumption'] = design_power
+        pump['Motor_Efficiency'] = motor_efficiency
+        pump['Fraction_of_Motor_Inefficiencies_to_Fluid_Stream'] = fraction_of_motor_to_fluid
+        pump['Pump_Control_Type'] = control_types[control_type]
+
+        if pump_flow_rate_schedule is not None:
+            if isinstance(pump_flow_rate_schedule, str):
+                pump['Pump_Flow_Rate_Schedule_Name'] = pump_flow_rate_schedule
+            elif isinstance(pump_flow_rate_schedule, EpBunch):
+                pump['Pump_Flow_Rate_Schedule_Name'] = pump_flow_rate_schedule.Name
+            else:
+                raise TypeError('pump_flow_rate_schedule must be EpBunch or str')
+
+        pump['Impeller_Diameter'] = impeller_diameter
+        if rotational_speed is not None:
+            pump['Rotational_Speed'] = rotational_speed
+        if thermal_zone is not None:
+            pump['Zone_Name'] = thermal_zone
+        pump['Design_Power_Sizing_Method'] = sizing_methods[power_sizing_method]
+        pump['Design_Electric_Power_per_Unit_Flow_Rate'] = power_per_flow_rate
+        pump['Design_Shaft_Power_per_Unit_Flow_Rate_per_Unit_Head'] = power_per_flow_rate_per_head
+        pump['EndUse_Subcategory'] = 'General'
+
+        comp = {
+            'object': pump,
+            'type': 'Pump:ConstantSpeed',
+            'water_inlet_field': 'Inlet_Node_Name',
+            'water_outlet_field': 'Outlet_Node_Name'
+        }
+
+        return comp
+
     # @staticmethod
     # def headered_pumps_variable_speed(
     #         idf: IDF,

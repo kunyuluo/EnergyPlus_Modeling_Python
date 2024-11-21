@@ -175,7 +175,7 @@ class PlantLoop:
         # make the demand branch lists for this plant loop
         ###############################################################################################
         if demand_branches is not None:
-            all_supply_branches = []
+            all_demand_branches = []
             mid_branches = []
 
             # Demand Inlet Branch:
@@ -188,20 +188,20 @@ class PlantLoop:
 
             inlet_branch_name = f'{name} Demand Inlet Branch'
             inlet_branch = NodeBranch.branch(idf, inlet_branch_name, demand_inlet_branches)
-            all_supply_branches.append(inlet_branch)
+            all_demand_branches.append(inlet_branch)
 
-            # Demand Inlet Branch:
+            # Demand Branches:
             if isinstance(demand_branches, list) and len(demand_branches) > 0:
-                for i, comp in enumerate(supply_branches):
+                for i, comp in enumerate(demand_branches):
                     branch_name = f'{name} Demand Branch {i + 1}'
                     branch = NodeBranch.branch(idf, branch_name, comp)
                     mid_branches.append(branch)
-                    all_supply_branches.append(branch)
+                    all_demand_branches.append(branch)
             elif isinstance(demand_branches, dict):
                 branch_name = f'{name} Demand Branch 1'
                 branch = NodeBranch.branch(idf, branch_name, demand_branches)
                 mid_branches.append(branch)
-                all_supply_branches.append(branch)
+                all_demand_branches.append(branch)
             else:
                 raise ValueError('Need valid input for demand branches.')
 
@@ -209,15 +209,15 @@ class PlantLoop:
             outlet_pipe = PlantLoopComponent.pipe(idf, name=f'{name} Demand Outlet Branch Pipe', pipe_type=1)
             outlet_branch_name = f'{name} Demand Outlet Branch'
             outlet_branch = NodeBranch.branch(idf, outlet_branch_name, [outlet_pipe])
-            all_supply_branches.append(outlet_branch)
+            all_demand_branches.append(outlet_branch)
 
-            plant_assembly.extend(all_supply_branches)
+            plant_assembly.extend(all_demand_branches)
 
             # Branch List:
             branch_list = NodeBranch.branch_list(
                 idf,
                 name=plant.Demand_Side_Branch_List_Name,
-                branches=all_supply_branches)
+                branches=all_demand_branches)
             plant_assembly.append(branch_list)
 
             # Connectors:
@@ -225,14 +225,14 @@ class PlantLoop:
                 idf,
                 name=f'{name} Demand Splitter',
                 connector_type=0,
-                inlet_branch=all_supply_branches[0],
+                inlet_branch=all_demand_branches[0],
                 outlet_branch=mid_branches)
             mixer = NodeBranch.connector(
                 idf,
                 name=f'{name} Demand Mixer',
                 connector_type=1,
                 inlet_branch=mid_branches,
-                outlet_branch=all_supply_branches[-1])
+                outlet_branch=all_demand_branches[-1])
             connector_list = NodeBranch.connector_list(
                 idf,
                 name=plant.Demand_Side_Connector_List_Name,
@@ -246,9 +246,9 @@ class PlantLoop:
             if common_pipe_simulation == 2:
                 if setpoint_manager_secondary is not None:
                     try:
-                        spm_node_name = all_supply_branches[0].Component_Inlet_Node_Name_2
+                        spm_node_name = all_demand_branches[0].Component_Inlet_Node_Name_2
                     except:
-                        spm_node_name = all_supply_branches[0].Component_Inlet_Node_Name_1
+                        spm_node_name = all_demand_branches[0].Component_Inlet_Node_Name_1
                     setpoint_manager_secondary.Setpoint_Node_or_NodeList_Name = spm_node_name
                 else:
                     raise ValueError('Need valid input for setpoint manager on secondary side.')
