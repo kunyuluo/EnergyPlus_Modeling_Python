@@ -39,7 +39,7 @@ class AirLoop:
                 if 'Coil' in item['type'] and 'Water' in item['type']:
                     if 'Cooling' in item['type']:
                         water_clg_coils.append(item['object'])
-                        
+
                     if 'Heating' in item['type']:
                         water_htg_coils.append(item['object'])
 

@@ -195,6 +195,8 @@ class PlantLoopComponent:
             chiller['Heat_Recovery_Inlet_Node_Name'] = f'{name} Heat_Recovery_Inlet'
             chiller['Heat_Recovery_Outlet_Node_Name'] = f'{name} Heat_Recovery_Outlet'
 
+        chiller['EndUse_Subcategory'] = 'General'
+
         comp = {
             'object': chiller,
             'type': 'Chiller:Electric:EIR',
@@ -278,18 +280,20 @@ class PlantLoopComponent:
     def pump_variable_speed(
             idf: IDF,
             name: str = None,
-            rated_head=None,
-            rated_flow_rate=None,
-            min_flow_rate=None,
-            rated_power=None,
-            motor_efficiency=None,
+            design_head=None,
+            design_max_flow_rate='Autosize',
+            design_min_flow_rate=0,
+            design_power='Autosize',
+            motor_efficiency=0.9,
+            fraction_of_motor_to_fluid=0,
             control_type: int = 1,
             vfd_control_type: int = 1,
             power_sizing_method: int = 1,
-            power_per_flow_rate=None,
+            power_per_flow_rate=348701.1,
             power_per_flow_rate_per_head=None,
-            thermal_zone = None,
-            skin_loss_radiative_fraction=None,
+            thermal_zone=None,
+            skin_loss_radiative_fraction=0.5,
+            design_min_flow_fraction=0,
             pump_curve_coeff=None):
 
         """
@@ -305,7 +309,10 @@ class PlantLoopComponent:
         name = 'Pump Variable Speed' if name is None else name
         pump = idf.newidfobject('Pump:VariableSpeed'.upper(), Name=name)
 
+        pump['Design_Maximum_Flow_Rate'] = design_flow_rate
+        pump['Design_Pump_Head'] = design_head
 
+        pump['EndUse_Subcategory'] = 'General'
 
         return pump
 
