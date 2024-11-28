@@ -12,7 +12,7 @@ class PlantLoopComponent:
             loop_type: int = 1,
             loop_exit_temp=None,
             loop_temp_diff=None,
-            sizing_option: int = None,
+            sizing_option: int = 2,
             zone_timesteps_in_averaging_window=None,
             coincident_sizing_factor_mode: int = 1):
         """
@@ -47,8 +47,29 @@ class PlantLoopComponent:
 
         if loop_exit_temp is not None:
             sizing['Design_Loop_Exit_Temperature'] = loop_exit_temp
+        else:
+            match loop_type:
+                case 1:
+                    sizing['Design_Loop_Exit_Temperature'] = 7.0
+                case 2:
+                    sizing['Design_Loop_Exit_Temperature'] = 50
+                case 3:
+                    sizing['Design_Loop_Exit_Temperature'] = 30
+                case 4:
+                    sizing['Design_Loop_Exit_Temperature'] = 100
         if loop_temp_diff is not None:
             sizing['Loop_Design_Temperature_Difference'] = loop_temp_diff
+        else:
+            match loop_type:
+                case 1:
+                    sizing['Loop_Design_Temperature_Difference'] = 6
+                case 2:
+                    sizing['Loop_Design_Temperature_Difference'] = 50
+                case 3:
+                    sizing['Loop_Design_Temperature_Difference'] = 15
+                case 4:
+                    sizing['Loop_Design_Temperature_Difference'] = 50
+
         if zone_timesteps_in_averaging_window is not None:
             sizing['Zone_Timesteps_in_Averaging_Window'] = zone_timesteps_in_averaging_window
 
@@ -56,6 +77,49 @@ class PlantLoopComponent:
         sizing['Coincident_Sizing_Factor_Mode'] = sizing_factor_modes[coincident_sizing_factor_mode]
 
         return sizing
+
+    # ***************************************************************************************************
+    # Equipment Operation Schemes
+    @staticmethod
+    def equip_operation_schemes(
+            idf: IDF,
+            plant_name: str = None,
+            scheme_types: list[int] = None,):
+        """
+        Scheme Object Type: \n
+        1.PlantEquipmentOperation:Uncontrolled
+        2.PlantEquipmentOperation:CoolingLoad
+        3.PlantEquipmentOperation:HeatingLoad
+        4.PlantEquipmentOperation:OutdoorDryBulb
+        5.PlantEquipmentOperation:OutdoorWetBulb
+        6.PlantEquipmentOperation:OutdoorRelativeHumidity
+        7.PlantEquipmentOperation:OutdoorDewpoint
+        8.PlantEquipmentOperation:OutdoorDryBulbDifference
+        9.PlantEquipmentOperation:OutdoorWetBulbDifference
+        10.PlantEquipmentOperation:OutdoorDewpointDifference
+        11.PlantEquipmentOperation:ComponentSetpoint
+        12.PlantEquipmentOperation:ThermalEnergyStorage
+        13.PlantEquipmentOperation:UserDefined
+        14.PlantEquipmentOperation:ChillerHeaterChangeover
+        """
+        object_types = {1: "PlantEquipmentOperation:Uncontrolled",
+                        2: "PlantEquipmentOperation:CoolingLoad",
+                        3: "PlantEquipmentOperation:HeatingLoad",
+                        4: "PlantEquipmentOperation:OutdoorDryBulb",
+                        5: "PlantEquipmentOperation:OutdoorWetBulb",
+                        6: "PlantEquipmentOperation:OutdoorRelativeHumidity",
+                        7: "PlantEquipmentOperation:OutdoorDewpoint",
+                        8: "PlantEquipmentOperation:OutdoorDryBulbDifference",
+                        9: "PlantEquipmentOperation:OutdoorWetBulbDifference",
+                        10: "PlantEquipmentOperation:OutdoorDewpointDifference",
+                        11: "PlantEquipmentOperation:ComponentSetpoint",
+                        12: "PlantEquipmentOperation:ThermalEnergyStorage",
+                        13: "PlantEquipmentOperation:UserDefined",
+                        14: "PlantEquipmentOperation:ChillerHeaterChangeover"}
+
+        plant_name = 'Plant Loop' if plant_name is None else plant_name
+        scheme_name = f'{plant_name} Operation Schemes'
+        scheme = idf.newidfobject('PlantEquipmentOperation:Schemes'.upper(), Name=scheme_name)
 
     @staticmethod
     def pipe(idf: IDF, name=None, pipe_type: int = 1):
@@ -112,7 +176,8 @@ class PlantLoopComponent:
             capacity_temperature_curve: EpBunch | str = None,
             cop_temperature_curve: EpBunch | str = None,
             cop_plr_curve: EpBunch | str = None,
-            condenser_loop=None):
+            condenser_loop=None,
+            test_mode: bool = False):
 
         """
         -Condenser_type: 1:AirCooled 2:WaterCooled 3:EvapCooled \n
@@ -121,6 +186,7 @@ class PlantLoopComponent:
 
         condenser_types = {1: "AirCooled", 2: "WaterCooled", 3: "EvapCooled"}
         flow_modes = {1: "NotModulated", 2: "LeavingSetpointModulated", 3: "ConstantFlow"}
+        chiller_assembly = []
 
         name = f'Chiller {condenser_types[condenser_type]}' if name is None else name
 
@@ -130,7 +196,7 @@ class PlantLoopComponent:
         chiller['Reference_Capacity'] = capacity
         chiller['Reference_COP'] = cop
         chiller['Reference_Leaving_Chilled_Water_Temperature'] = leaving_chilled_water_temp
-        chiller['Reference_Entering_Condenser_Water_Temperature'] = entering_condenser_water_temp
+        chiller['Reference_Entering_Condenser_Fluid_Temperature'] = entering_condenser_water_temp
         chiller['Reference_Chilled_Water_Flow_Rate'] = chilled_water_flow_rate
         chiller['Reference_Condenser_Fluid_Flow_Rate'] = condenser_water_flow_rate
         chiller['Minimum_Part_Load_Ratio'] = min_part_load_ratio
@@ -147,7 +213,8 @@ class PlantLoopComponent:
         if design_heat_recovery_flow_rate is not None:
             chiller['Design_Heat_Recovery_Water_Flow_Rate'] = design_heat_recovery_flow_rate
         if heat_recovery_inlet_high_temp_limit_schedule is not None:
-            chiller['Heat_Recovery_Inlet_High_Temperature_Limit_Schedule_Name'] = heat_recovery_inlet_high_temp_limit_schedule
+            chiller[
+                'Heat_Recovery_Inlet_High_Temperature_Limit_Schedule_Name'] = heat_recovery_inlet_high_temp_limit_schedule
         if heat_recovery_leaving_temp_node is not None:
             chiller['Heat_Recovery_Leaving_Temperature_Setpoint_Node_Name'] = heat_recovery_leaving_temp_node
 
@@ -171,9 +238,11 @@ class PlantLoopComponent:
 
         if cop_temperature_curve is not None:
             if isinstance(cop_temperature_curve, str):
-                chiller['Electric_Input_to_Cooling_Output_Ratio_Function_of_Temperature_Curve_Name'] = cop_temperature_curve
+                chiller[
+                    'Electric_Input_to_Cooling_Output_Ratio_Function_of_Temperature_Curve_Name'] = cop_temperature_curve
             elif isinstance(cop_temperature_curve, EpBunch):
-                chiller['Electric_Input_to_Cooling_Output_Ratio_Function_of_Temperature_Curve_Name'] = cop_temperature_curve.Name
+                chiller[
+                    'Electric_Input_to_Cooling_Output_Ratio_Function_of_Temperature_Curve_Name'] = cop_temperature_curve.Name
             else:
                 raise TypeError('cop_temperature_curve must be EpBunch or str')
         else:
@@ -183,7 +252,8 @@ class PlantLoopComponent:
             if isinstance(cop_plr_curve, str):
                 chiller['Electric_Input_to_Cooling_Output_Ratio_Function_of_Part_Load_Ratio_Curve_Name'] = cop_plr_curve
             elif isinstance(cop_plr_curve, EpBunch):
-                chiller['Electric_Input_to_Cooling_Output_Ratio_Function_of_Part_Load_Ratio_Curve_Name'] = cop_plr_curve.Name
+                chiller[
+                    'Electric_Input_to_Cooling_Output_Ratio_Function_of_Part_Load_Ratio_Curve_Name'] = cop_plr_curve.Name
             else:
                 raise TypeError('cop_plr_curve must be EpBunch or str')
         else:
@@ -191,8 +261,9 @@ class PlantLoopComponent:
 
         chiller['Chilled_Water_Inlet_Node_Name'] = f'{name} Chilled_Water_Inlet'
         chiller['Chilled_Water_Outlet_Node_Name'] = f'{name} Chilled_Water_Outlet'
-        chiller['Condenser_Inlet_Node_Name'] = f'{name} Condenser_Water_Inlet'
-        chiller['Condenser_Outlet_Node_Name'] = f'{name} Condenser_Water_Outlet'
+        if condenser_type == 2:
+            chiller['Condenser_Inlet_Node_Name'] = f'{name} Condenser_Water_Inlet'
+            chiller['Condenser_Outlet_Node_Name'] = f'{name} Condenser_Water_Outlet'
         if design_heat_recovery_flow_rate is not None:
             chiller['Heat_Recovery_Inlet_Node_Name'] = f'{name} Heat_Recovery_Inlet'
             chiller['Heat_Recovery_Outlet_Node_Name'] = f'{name} Heat_Recovery_Outlet'
@@ -208,7 +279,12 @@ class PlantLoopComponent:
             'condenser_water_outlet_field': 'Condenser_Outlet_Node_Name',
         }
 
-        return comp
+        if test_mode:
+            chiller_assembly.append(chiller)
+            chiller_assembly.extend(curve_set)
+            return chiller_assembly
+        else:
+            return comp
 
     @staticmethod
     def district_cooling(
@@ -282,7 +358,7 @@ class PlantLoopComponent:
     def pump_variable_speed(
             idf: IDF,
             name: str = None,
-            design_head=None,
+            design_head=500,
             design_max_flow_rate='Autosize',
             design_min_flow_rate=0,
             design_power='Autosize',
@@ -312,6 +388,7 @@ class PlantLoopComponent:
         control_types = {1: "Intermittent", 2: "Continuous"}
         vfd_control_types = {1: "PressureSetPointControl", 2: "ManualControl"}
         sizing_methods = {1: "PowerPerFlowPerPressure", 2: "PowerPerFlow"}
+        pump_assembly = []
 
         name = 'Pump Variable Speed' if name is None else name
         pump = idf.newidfobject('Pump:VariableSpeed'.upper(), Name=name)
@@ -360,7 +437,8 @@ class PlantLoopComponent:
             else:
                 raise TypeError('min_rpm_schedule must be EpBunch or str')
 
-        pump['Impeller_Diameter'] = impeller_diameter
+        if impeller_diameter is not None:
+            pump['Impeller_Diameter'] = impeller_diameter
         pump['VFD_Control_Type'] = vfd_control_types[vfd_control_type]
 
         if thermal_zone is not None:
@@ -378,6 +456,9 @@ class PlantLoopComponent:
         pump['Coefficient_3_of_the_Part_Load_Performance_Curve'] = pump_curve_coeff[2]
         pump['Coefficient_4_of_the_Part_Load_Performance_Curve'] = pump_curve_coeff[3]
 
+        pump['Inlet_Node_Name'] = f'{name}_Water_Inlet'
+        pump['Outlet_Node_Name'] = f'{name}_Water_Outlet'
+
         comp = {
             'object': pump,
             'type': 'Pump:VariableSpeed',
@@ -391,7 +472,7 @@ class PlantLoopComponent:
     def pump_constant_speed(
             idf: IDF,
             name: str = None,
-            design_head=None,
+            design_head=500,
             design_max_flow_rate='Autosize',
             design_min_flow_rate=0,
             design_power='Autosize',
@@ -402,8 +483,8 @@ class PlantLoopComponent:
             impeller_diameter=None,
             rotational_speed=None,
             power_sizing_method: int = 1,
-            power_per_flow_rate=None,
-            power_per_flow_rate_per_head=None,
+            power_per_flow_rate=348701.1,
+            power_per_flow_rate_per_head=1.282051282,
             thermal_zone=None):
 
         """
@@ -433,7 +514,8 @@ class PlantLoopComponent:
             else:
                 raise TypeError('pump_flow_rate_schedule must be EpBunch or str')
 
-        pump['Impeller_Diameter'] = impeller_diameter
+        if impeller_diameter is not None:
+            pump['Impeller_Diameter'] = impeller_diameter
         if rotational_speed is not None:
             pump['Rotational_Speed'] = rotational_speed
         if thermal_zone is not None:
@@ -442,6 +524,9 @@ class PlantLoopComponent:
         pump['Design_Electric_Power_per_Unit_Flow_Rate'] = power_per_flow_rate
         pump['Design_Shaft_Power_per_Unit_Flow_Rate_per_Unit_Head'] = power_per_flow_rate_per_head
         pump['EndUse_Subcategory'] = 'General'
+
+        pump['Inlet_Node_Name'] = f'{name}_Water_Inlet'
+        pump['Outlet_Node_Name'] = f'{name}_Water_Outlet'
 
         comp = {
             'object': pump,

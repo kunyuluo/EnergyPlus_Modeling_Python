@@ -22,8 +22,6 @@ class AirLoop:
             air_terminal_type: int = 1,
             zone_hvac_type: int = None,
             zone_radiative_type: int = None,
-            chilled_water_loop: EpBunch | str = None,
-            hot_water_loop: EpBunch | str = None,
             design_supply_air_flow_rate: float = None,
             design_return_air_fraction: float = 1.0,
             sizing: EpBunch = None):
@@ -67,7 +65,7 @@ class AirLoop:
         # simplify naming
         fields1 = [
             'Controllers',
-            'Availability Manager',
+            'Availability Manager List',
             "Branches",
             # "Connectors",
             "Supply Inlet Node",
@@ -86,6 +84,19 @@ class AirLoop:
             loop['Design_Supply_Air_Flow_Rate'] = 'AutoSize'
         if design_return_air_fraction is not None:
             loop['Design_Return_Air_Flow_Fraction_of_Supply_Air_Flow'] = design_return_air_fraction
+
+        # Availability Manager List:
+        ###############################################################################################
+        am_list_name = loop['Availability_Manager_List_Name']
+        am_name = f'{name} Availability Manager'
+        am_list = idf.newidfobject('AvailabilityManagerAssignmentList'.upper(), Name=am_list_name)
+        am_list['Availability_Manager_1_Object_Type'] = 'AvailabilityManager:Scheduled'
+        am_list['Availability_Manager_1_Name'] = am_name
+        loop_assembly.append(am_list)
+
+        am = idf.newidfobject('AvailabilityManager:Scheduled'.upper(), Name=am_name)
+        am['Schedule_Name'] = 'Always On Discrete'
+        loop_assembly.append(am)
 
         # Node List:
         ###############################################################################################

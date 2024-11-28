@@ -49,9 +49,9 @@ class PerformanceCurve:
         curve['Maximum_Value_of_x'] = max_x
         curve['Minimum_Value_of_y'] = min_y
         curve['Maximum_Value_of_y'] = max_y
-        if min_out is None:
+        if min_out is not None:
             curve['Minimum_Curve_Output'] = min_out
-        if max_out is None:
+        if max_out is not None:
             curve['Maximum_Curve_Output'] = max_out
         curve['Input_Unit_Type_for_X'] = input_unit_type_x
         curve['Input_Unit_Type_for_Y'] = input_unit_type_y
@@ -84,9 +84,9 @@ class PerformanceCurve:
         curve['Coefficient3_x2'] = coeff_x2
         curve['Minimum_Value_of_x'] = min_x
         curve['Maximum_Value_of_x'] = max_x
-        if min_out is None:
+        if min_out is not None:
             curve['Minimum_Curve_Output'] = min_out
-        if max_out is None:
+        if max_out is not None:
             curve['Maximum_Curve_Output'] = max_out
         curve['Input_Unit_Type_for_X'] = input_unit_type_x
         curve['Output_Unit_Type'] = output_unit_type
@@ -122,9 +122,9 @@ class PerformanceCurve:
         curve['Coefficient5_x4'] = coeff5_x4
         curve['Minimum_Value_of_x'] = min_x
         curve['Maximum_Value_of_x'] = max_x
-        if min_out is None:
+        if min_out is not None:
             curve['Minimum_Curve_Output'] = min_out
-        if max_out is None:
+        if max_out is not None:
             curve['Maximum_Curve_Output'] = max_out
         curve['Input_Unit_Type_for_X'] = input_unit_type
         curve['Output_Unit_Type'] = output_unit_type
@@ -158,9 +158,9 @@ class PerformanceCurve:
         curve['Coefficient4_x3'] = coeff4_x3
         curve['Minimum_Value_of_x'] = min_x
         curve['Maximum_Value_of_x'] = max_x
-        if min_out is None:
+        if min_out is not None:
             curve['Minimum_Curve_Output'] = min_out
-        if max_out is None:
+        if max_out is not None:
             curve['Maximum_Curve_Output'] = max_out
         curve['Input_Unit_Type_for_X'] = input_unit_type
         curve['Output_Unit_Type'] = output_unit_type

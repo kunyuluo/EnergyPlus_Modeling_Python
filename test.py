@@ -2,7 +2,7 @@ import eppy
 from Obj_Structure import Obj_Tree
 from eppy.modeleditor import IDF
 from eppy import hvacbuilder
-from Helper import delete_hvac_objs
+from Helper import delete_hvac_objs, get_all_zones
 from Helper import SomeFields, flattencopy
 from HVACSystem.PlantLoop import PlantLoop
 from HVACSystem.AirLoop import AirLoop
@@ -11,6 +11,7 @@ from HVACSystem.AirLoopComponents import AirLoopComponent
 from HVACSystem.SetpointManager import SetpointManager
 from HVACSystem.PerformanceCurves import PerformanceCurve
 from HVACSystem.ZoneEquipments import ZoneEquipment
+from Schedules.Schedules import Schedule
 
 idd_file = 'Data/Energy+.idd'
 try:
@@ -26,25 +27,11 @@ my_model = IDF(file_path)
 # my_model.printidf()
 
 all_objs = my_model.idfobjects
-# print(all_objs.keys())
-# bldg = all_objs['BUILDING'][0]
-# print(bldg.Name)
-# print(bldg.North_Axis)
 
-# zones = all_objs['Zone']
-# print(zones)
-# print(len(zones))
-# zone_names = []
-# for zone in zones:
-#     name = zone.Name
-#     # name = zone.Name.split(' ')[0]
-#     zone_names.append(name)
-# print(zone_names)
-
-# Get all setpoint managers:
+# Get all thermal zones:
 #####################################################################
-# all_spms = all_objs['SetpointManager:MixedAir'.upper()]
-# print(all_spms)
+zones = get_all_zones(my_model)
+print(zones)
 
 # Deleting existing defined objects:
 #####################################################################
@@ -55,45 +42,57 @@ delete_hvac_objs(my_model)
 
 # Creating new plant loop:
 #####################################################################
-pipe1 = PlantLoopComponent.pipe(my_model, name='pipe1')
-pipe2 = PlantLoopComponent.pipe(my_model, name='pipe2')
-pipe3 = PlantLoopComponent.pipe(my_model, name='pipe3')
-pipe4 = PlantLoopComponent.pipe(my_model, name='pipe4')
-pipe5 = PlantLoopComponent.pipe(my_model, name='pipe5')
-spm = SetpointManager.scheduled(my_model, name='spm')
-
-newplantloop = PlantLoop.water_loop(
-    my_model,
-    name='Test Chilled Water Loop',
-    supply_inlet_branches=pipe1,
-    supply_branches=[[pipe2], [pipe3]],
-    demand_branches=[pipe4, pipe5],
-    setpoint_manager=spm)
-
-# print(spm)
-print(newplantloop)
-
-# preheat_coil = AirLoopComponent.heating_coil_electric(my_model, 'Preheat Coil')
-# hx = AirLoopComponent.heat_exchanger_air_to_air(my_model, 'HX')
-# clg_coil = AirLoopComponent.cooling_coil_water(my_model, 'AHU Cooling Coil')
-# htg_coil = AirLoopComponent.heating_coil_water(my_model, 'AHU Heating Coil')
-# fan = AirLoopComponent.fan_variable_speed(my_model, 'Fan', fan_curve_coeff=PerformanceCurve.fan_curve_set())
-# sizing = AirLoopComponent.sizing(my_model)
+# pump = PlantLoopComponent.pump_variable_speed(my_model, name='Chw pump')
+# chiller1 = PlantLoopComponent.chiller_electric(my_model, name='Chiller 1')
+# chiller2 = PlantLoopComponent.chiller_electric(my_model, name='Chiller 2')
+# pipe1 = PlantLoopComponent.pipe(my_model, name='pipe1')
+# pipe2 = PlantLoopComponent.pipe(my_model, name='pipe2')
+# chw_spm = SetpointManager.scheduled(my_model, name='Chilled Water Temperature', constant_value=12.8)
 #
-# zones = ['Office_1']
-# loop = AirLoop.air_loop_hvac(
+# newplantloop = PlantLoop.water_loop(
 #     my_model,
-#     name='VAV System',
-#     outdoor_air_stream_comp=[preheat_coil, hx],
-#     supply_branches=[clg_coil, htg_coil],
-#     supply_fan=fan,
-#     zones=zones,
-#     sizing=sizing,
-#     zone_hvac_type=2)
-# print(loop)
+#     name='Test Chilled Water Loop',
+#     loop_type=1,
+#     fluid_type=1,
+#     supply_inlet_branches=pump,
+#     supply_branches=[[chiller1], [chiller2]],
+#     demand_branches=[pipe1, pipe2],
+#     setpoint_manager=chw_spm)
+#
+# print(newplantloop)
 
-object = my_model.newidfobject('Pump:ConstantSpeed'.upper())
-print(object.fieldnames)
+preheat_coil = AirLoopComponent.heating_coil_electric(my_model, 'Preheat Coil')
+hx = AirLoopComponent.heat_exchanger_air_to_air(my_model, 'HX')
+clg_coil = AirLoopComponent.cooling_coil_water(my_model, 'AHU Cooling Coil')
+htg_coil = AirLoopComponent.heating_coil_water(my_model, 'AHU Heating Coil')
+fan = AirLoopComponent.fan_variable_speed(my_model, 'Fan', fan_curve_coeff=PerformanceCurve.fan_curve_set())
+ahu_spm = SetpointManager.scheduled(my_model, name='AHU Setpoint Manager', constant_value=12.8)
+sizing = AirLoopComponent.sizing(my_model)
+
+loop = AirLoop.air_loop_hvac(
+    my_model,
+    name='VAV System',
+    # outdoor_air_stream_comp=[preheat_coil, hx],
+    heat_recovery=True,
+    supply_branches=[clg_coil, htg_coil],
+    supply_fan=fan,
+    setpoint_manager=ahu_spm,
+    zones=zones,
+    sizing=sizing,
+    zone_hvac_type=None)
+print(loop)
+
+# year = Schedule.year(
+#     my_model,
+#     name='Supply Air Temp Schedule',
+#     constant_value=23,
+#     numeric_type=1,
+#     unit_type=2,
+#     test_mode=True)
+# print(year)
+
+# object = my_model.newidfobject('AvailabilityManagerAssignmentList')
+# print(object.fieldnames)
 
 # Save to a new file:
 #####################################################################

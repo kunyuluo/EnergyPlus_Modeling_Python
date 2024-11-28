@@ -12,6 +12,9 @@ class PlantLoop:
             idf: IDF,
             name: str = None,
             fluid_type: int = 1,
+            loop_type: int = 1,
+            loop_exit_temp=None,
+            loop_temp_diff=None,
             max_loop_temp=None,
             min_loop_temp=None,
             max_loop_flow_rate=None,
@@ -28,8 +31,9 @@ class PlantLoop:
             setpoint_manager_secondary: EpBunch = None,
             availability: EpBunch = None):
         """
-        -Fluid_type:
-            1:Water 2:Steam 3:PropyleneGlycol 4:EthyleneGlycol \n
+        -Loop_type: 1:Cooling 2:Heating 3:Condenser 4:Steam \n
+
+        -Fluid_type: 1:Water 2:Steam 3:PropyleneGlycol 4:EthyleneGlycol \n
 
         -Load_distribution_scheme:
             1:Optimal 2:SequentialLoad 3:UniformLoad 4:UniformPLR 5:SequentialUniformPLR \n
@@ -78,7 +82,19 @@ class PlantLoop:
             plant_configs["Plant_Loop_Volume"] = plant_loop_volume
 
         plant = idf.newidfobject('PlantLoop'.upper(), **plant_configs)
+
+        if availability is not None:
+            plant['Availability_Manager_List_Name'] = availability.Name
         plant_assembly.append(plant)
+
+        # Plant Loop Sizing:
+        sizing = PlantLoopComponent.sizing(
+            idf,
+            plant,
+            loop_type=loop_type,
+            loop_exit_temp=loop_exit_temp,
+            loop_temp_diff=loop_temp_diff)
+        plant_assembly.append(sizing)
 
         fields = SomeFields.p_fields
         flnames = [field.replace(" ", "_") for field in fields]
@@ -99,6 +115,7 @@ class PlantLoop:
             if len(supply_branches) != 0:
                 all_supply_branches = []
                 mid_branches = []
+                plant_equipments = []
 
                 # Supply Inlet Branch:
                 if supply_inlet_branches is None:
@@ -109,6 +126,8 @@ class PlantLoop:
                 inlet_branch_name = f'{name} Supply Inlet Branch'
                 inlet_branch = NodeBranch.branch(idf, inlet_branch_name, supply_inlet_branches)
                 all_supply_branches.append(inlet_branch)
+                for comp in supply_inlet_branches:
+                    plant_assembly.append(comp['object'])
 
                 # for multiple branches (2-d list)
                 if isinstance(supply_branches[0], list) and isinstance(supply_branches[-1], list):
@@ -117,6 +136,13 @@ class PlantLoop:
                         branch = NodeBranch.branch(idf, branch_name, comp_list)
                         mid_branches.append(branch)
                         all_supply_branches.append(branch)
+                        for comp in comp_list:
+                            plant_assembly.append(comp['object'])
+
+                        # Select plant equipments:
+                        for comp in comp_list:
+                            if 'Pump' not in comp['type']:
+                                plant_equipments.append(comp)
 
                 # for single branch (1-d list)
                 else:
@@ -124,6 +150,13 @@ class PlantLoop:
                     branch = NodeBranch.branch(idf, branch_name, supply_branches)
                     mid_branches.append(branch)
                     all_supply_branches.append(branch)
+                    for comp in supply_branches:
+                        plant_assembly.append(comp['object'])
+
+                    # Select plant equipments:
+                    for comp in supply_branches:
+                        if 'Pump' not in comp['type']:
+                            plant_equipments.append(comp)
 
                 # Supply Outlet Branch:
                 outlet_pipe = PlantLoopComponent.pipe(idf, name=f'{name} Supply Outlet Branch Pipe', pipe_type=1)
@@ -132,6 +165,7 @@ class PlantLoop:
                 all_supply_branches.append(outlet_branch)
 
                 plant_assembly.extend(all_supply_branches)
+                plant_assembly.append(outlet_pipe['object'])
 
                 # Add primary side setpoint manager to node:
                 if setpoint_manager is not None:
@@ -139,6 +173,7 @@ class PlantLoop:
                     if spm_node_name == "":
                         spm_node_name = all_supply_branches[-1].Component_1_Outlet_Node_Name
                     setpoint_manager.Setpoint_Node_or_NodeList_Name = spm_node_name
+                    plant_assembly.append(setpoint_manager)
 
                 # Branch List:
                 branch_list = NodeBranch.branch_list(
@@ -168,6 +203,38 @@ class PlantLoop:
                 plant_assembly.append(splitter)
                 plant_assembly.append(mixer)
                 plant_assembly.append(connector_list)
+
+                # Equipment operation schemes
+                ###############################################################################################
+                # Plant Equipment List:
+                equip_list_name = f'{name} Equipment List'
+                equip_list = idf.newidfobject('PlantEquipmentList', Name=equip_list_name)
+                for i, comp in enumerate(plant_equipments):
+                    equip_list[f'Equipment_{i+1}_Object_Type'] = comp['type']
+                    equip_list[f'Equipment_{i+1}_Name'] = comp['object']['Name']
+                plant_assembly.append(equip_list)
+
+                # Equipment Operation Object:
+                if loop_type == 1 or loop_type == 3:
+                    operation_name = f'{name} Cooling Operation Scheme '
+                    operation_type = 'PlantEquipmentOperation:CoolingLoad'
+                    operation_object = idf.newidfobject(operation_type, Name=operation_name)
+                else:
+                    operation_name = f'{name} Heating Operation Scheme '
+                    operation_type = 'PlantEquipmentOperation:HeatingLoad'
+                    operation_object = idf.newidfobject(operation_type, Name=operation_name)
+                operation_object['Load_Range_1_Lower_Limit'] = 0
+                operation_object['Load_Range_1_Upper_Limit'] = 1000000000
+                operation_object['Range_1_Equipment_List_Name'] = equip_list_name
+                plant_assembly.append(operation_object)
+
+                # Operation Schemes:
+                scheme_name = f'{name} Operation Schemes'
+                schemes = idf.newidfobject('PlantEquipmentOperationSchemes', Name=scheme_name)
+                schemes['Control_Scheme_1_Object_Type'] = operation_type
+                schemes['Control_Scheme_1_Name'] = operation_name
+                schemes['Control_Scheme_1_Schedule_Name'] = 'Always On Discrete'
+                plant_assembly.append(schemes)
 
         else:
             raise ValueError('Need valid input for supply branches.')

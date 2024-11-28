@@ -95,3 +95,16 @@ def flattencopy(lst):
     return thelist
 
 
+def get_all_zones(idf: IDF):
+    all_objs = idf.idfobjects
+    zones = all_objs['Zone']
+
+    zone_names = []
+    for zone in zones:
+        name = zone.Name
+        # name = zone.Name.split(' ')[0]
+        zone_names.append(name)
+
+    return zone_names
+
+
