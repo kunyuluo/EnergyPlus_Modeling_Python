@@ -4,7 +4,13 @@ from eppy.bunch_subclass import EpBunch
 
 class NodeBranch:
     @staticmethod
-    def branch(idf: IDF, name: str = None, components: dict | list[dict] = None, water_side: bool = True):
+    def branch(
+            idf: IDF,
+            name: str = None,
+            components: dict | list[dict] = None,
+            inlet_node_name: str = None,
+            outlet_node_name: str = None,
+            water_side: bool = True):
         name = 'Branch' if name is None else name
         branch = idf.newidfobject("BRANCH", Name=name)
 
@@ -44,6 +50,16 @@ class NodeBranch:
                     branch[f'Component_{i + 1}_Outlet_Node_Name'] = components[i]['object'][components[i]['water_outlet_field']]
                 else:
                     branch[f'Component_{i + 1}_Outlet_Node_Name'] = components[i]['object'][components[i]['air_outlet_field']]
+
+        # Adjust inlet / outlet node name if available:
+        if isinstance(components, list):
+            branch_max_index = len(components)
+        else:
+            branch_max_index = 1
+        if inlet_node_name is not None:
+            branch[f'Component_{branch_max_index}_Inlet_Node_Name'] = inlet_node_name
+        if outlet_node_name is not None:
+            branch[f'Component_{branch_max_index}_Outlet_Node_Name'] = outlet_node_name
 
         return branch
 

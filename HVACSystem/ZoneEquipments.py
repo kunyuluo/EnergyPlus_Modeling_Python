@@ -47,8 +47,8 @@ class ZoneEquipment:
             zone_radiative_type: int = None):
         """
         Air Terminal Types: \n
-            1: 'AirTerminal:SingleDuct:ConstantVolume:Reheat',
-            2: 'AirTerminal:SingleDuct:ConstantVolume:NoReheat',
+            1: 'AirTerminal:SingleDuct:ConstantVolume:NoReheat',
+            2: 'AirTerminal:SingleDuct:ConstantVolume:Reheat',
             3: 'AirTerminal:SingleDuct:VAV:Reheat',
             4: 'AirTerminal:SingleDuct:VAV:Reheat:VariableSpeedFan',
             5: 'AirTerminal:SingleDuct:VAV:HeatAndCool:Reheat',
@@ -227,12 +227,12 @@ class ZoneEquipment:
                 # AirDistributionUnit:
                 ###############################################################################################
                 air_distribute_name = f'{zone_name} Air Distribution Unit'
-                air_distribute = idf.newidfobject('ZoneHVAC:AirDistributionUnit'.upper(), Name=air_distribute_name)
-                air_distribute['Air_Distribution_Unit_Outlet_Node_Name'] = terminal_node_name
-                air_distribute['Air_Terminal_Object_Type'] = terminal_type
+                air_distribute = AirTerminal.air_distribution_unit(idf, name=air_distribute_name)
+                air_distribute['object']['Air_Distribution_Unit_Outlet_Node_Name'] = terminal_node_name
+                air_distribute['object']['Air_Terminal_Object_Type'] = terminal_type
                 terminal_name = f'{zone_name} terminal'
-                air_distribute['Air_Terminal_Name'] = terminal_name
-                equip_group_assembly.append(air_distribute)
+                air_distribute['object']['Air_Terminal_Name'] = terminal_name
+                equip_group_assembly.append(air_distribute['object'])
 
                 # Air Terminal Unit:
                 ###############################################################################################
@@ -255,7 +255,7 @@ class ZoneEquipment:
                     heating_coils.append(terminal['reheat_coil'])
                     equip_group_assembly.append(terminal['reheat_coil'])
 
-                equipments = [terminal]
+                equipments = [air_distribute]
                 # Zone HVAC Equipment if available:
                 ###############################################################################################
                 if zone_hvac_type is not None:

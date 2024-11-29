@@ -1381,11 +1381,11 @@ Schedule:Constant,
 
 Schedule:Constant,
   Always On Continuous,                   !- Name
-  Fractional,                             !- Schedule Type Limits Name
+  Always On Continuous Limits,            !- Schedule Type Limits Name
   1;                                      !- Hourly Value
 
 ScheduleTypeLimits,
-  Fractional,                             !- Name
+  Always On Continuous Limits,            !- Name
   0,                                      !- Lower Limit Value {BasedOnField A3}
   1,                                      !- Upper Limit Value {BasedOnField A3}
   Continuous;                             !- Numeric Type
@@ -2731,8 +2731,7 @@ BranchList,
   Hot Water Loop Supply Branches,         !- Name
   Hot Water Loop Supply Inlet Branch,     !- Branch Name 1
   Hot Water Loop Supply Branch 1,         !- Branch Name 2
-  Hot Water Loop Supply Branch 2,         !- Branch Name 3
-  Hot Water Loop Supply Outlet Branch;    !- Branch Name 4
+  Hot Water Loop Supply Outlet Branch;    !- Branch Name 3
 
 ConnectorList,
   Hot Water Loop Supply Connector List,   !- Name
@@ -2744,14 +2743,12 @@ ConnectorList,
 Connector:Splitter,
   Hot Water Loop Supply Splitter,         !- Name
   Hot Water Loop Supply Inlet Branch,     !- Inlet Branch Name
-  Hot Water Loop Supply Branch 1,         !- Outlet Branch Name 1
-  Hot Water Loop Supply Branch 2;         !- Outlet Branch Name 2
+  Hot Water Loop Supply Branch 1;         !- Outlet Branch Name 1
 
 Connector:Mixer,
   Hot Water Loop Supply Mixer,            !- Name
   Hot Water Loop Supply Outlet Branch,    !- Outlet Branch Name
-  Hot Water Loop Supply Branch 1,         !- Inlet Branch Name 1
-  Hot Water Loop Supply Branch 2;         !- Inlet Branch Name 2
+  Hot Water Loop Supply Branch 1;         !- Inlet Branch Name 1
 
 Branch,
   Hot Water Loop Supply Inlet Branch,     !- Name
@@ -2796,61 +2793,17 @@ Pump:VariableSpeed,
 Branch,
   Hot Water Loop Supply Branch 1,         !- Name
   ,                                       !- Pressure Drop Curve Name
-  Boiler:HotWater,                        !- Component Object Type 1
-  Boiler Hot Water 1,                     !- Component Name 1
+  DistrictHeating:Water,                  !- Component Object Type 1
+  District Heating,                       !- Component Name 1
   Node 14,                                !- Component Inlet Node Name 1
   Node 19;                                !- Component Outlet Node Name 1
 
-Boiler:HotWater,
-  Boiler Hot Water 1,                     !- Name
-  NaturalGas,                             !- Fuel Type
-  Autosize,                               !- Nominal Capacity {W}
-  0.8,                                    !- Nominal Thermal Efficiency
-  LeavingBoiler,                          !- Efficiency Curve Temperature Evaluation Variable
-  Boiler Efficiency,                      !- Normalized Boiler Efficiency Curve Name
-  Autosize,                               !- Design Water Flow Rate {m3/s}
-  0,                                      !- Minimum Part Load Ratio
-  1,                                      !- Maximum Part Load Ratio
-  1,                                      !- Optimum Part Load Ratio
-  Node 14,                                !- Boiler Water Inlet Node Name
-  Node 19,                                !- Boiler Water Outlet Node Name
-  99,                                     !- Water Outlet Upper Temperature Limit {C}
-  ConstantFlow,                           !- Boiler Flow Mode
-  0,                                      !- On Cycle Parasitic Electric Load {W}
-  1,                                      !- Sizing Factor
-  General,                                !- End-Use Subcategory
-  0;                                      !- Off Cycle Parasitic Fuel Load {W}
-
-Curve:Biquadratic,
-  Boiler Efficiency,                      !- Name
-  1,                                      !- Coefficient1 Constant
-  0,                                      !- Coefficient2 x
-  0,                                      !- Coefficient3 x**2
-  0,                                      !- Coefficient4 y
-  0,                                      !- Coefficient5 y**2
-  0,                                      !- Coefficient6 x*y
-  0,                                      !- Minimum Value of x {BasedOnField A2}
-  1,                                      !- Maximum Value of x {BasedOnField A2}
-  0,                                      !- Minimum Value of y {BasedOnField A3}
-  1,                                      !- Maximum Value of y {BasedOnField A3}
-  ,                                       !- Minimum Curve Output {BasedOnField A4}
-  ,                                       !- Maximum Curve Output {BasedOnField A4}
-  Dimensionless,                          !- Input Unit Type for X
-  Dimensionless,                          !- Input Unit Type for Y
-  Dimensionless;                          !- Output Unit Type
-
-Branch,
-  Hot Water Loop Supply Branch 2,         !- Name
-  ,                                       !- Pressure Drop Curve Name
-  Pipe:Adiabatic,                         !- Component Object Type 1
-  Pipe Adiabatic 1,                       !- Component Name 1
-  Node 20,                                !- Component Inlet Node Name 1
-  Node 21;                                !- Component Outlet Node Name 1
-
-Pipe:Adiabatic,
-  Pipe Adiabatic 1,                       !- Name
-  Node 20,                                !- Inlet Node Name
-  Node 21;                                !- Outlet Node Name
+DistrictHeating:Water,
+  District Heating,                       !- Name
+  Node 14,                                !- Hot Water Inlet Node Name
+  Node 19,                                !- Hot Water Outlet Node Name
+  1000000,                                !- Nominal Capacity {W}
+  Always On Continuous;                   !- Capacity Fraction Schedule Name
 
 Branch,
   Hot Water Loop Supply Outlet Branch,    !- Name
@@ -2974,8 +2927,8 @@ PlantEquipmentOperation:HeatingLoad,
 
 PlantEquipmentList,
   Hot Water Loop Heating Equipment List,  !- Name
-  Boiler:HotWater,                        !- Equipment Object Type 1
-  Boiler Hot Water 1;                     !- Equipment Name 1
+  DistrictHeating:Water,                  !- Equipment Object Type 1
+  District Heating;                       !- Equipment Name 1
 
 Site:Location,
   Shanghai,                               !- Name

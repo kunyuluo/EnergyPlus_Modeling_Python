@@ -25,7 +25,7 @@ class Controller:
         actions = {1: "Normal", 2: "Reverse"}
 
         name = 'Controller Water Coil' if name is None else name
-        controller = idf.newidfobject('Controller:WaterCoil'.upper(), Name=name)
+        controller = idf.newidfobject('Controller:WaterCoil', Name=name)
 
         controller['Control_Variable'] = control_variables[control_variable]
         controller['Action'] = actions[action]
@@ -44,8 +44,8 @@ class Controller:
     def controller_outdoor_air(
             idf: IDF,
             name: str = None,
-            min_outdoor_air_flow_rate=None,
-            max_outdoor_air_flow_rate=None,
+            min_outdoor_air_flow_rate=0,
+            max_outdoor_air_flow_rate='Autosize',
             economizer_control_type: int = 0,
             economizer_control_action_type: int = 0,
             max_limit_dry_bulb_temp=28,
@@ -104,12 +104,8 @@ class Controller:
         name = 'Controller Outdoor Air' if name is None else name
         controller = idf.newidfobject('Controller:OutdoorAir', Name=name)
 
-        if min_outdoor_air_flow_rate is not None:
-            controller['Minimum_Outdoor_Air_Flow_Rate'] = min_outdoor_air_flow_rate
-        if max_outdoor_air_flow_rate is not None:
-            controller['Maximum_Outdoor_Air_Flow_Rate'] = max_outdoor_air_flow_rate
-        else:
-            controller['Maximum_Outdoor_Air_Flow_Rate'] = 'Autosize'
+        controller['Minimum_Outdoor_Air_Flow_Rate'] = min_outdoor_air_flow_rate
+        controller['Maximum_Outdoor_Air_Flow_Rate'] = max_outdoor_air_flow_rate
 
         controller['Economizer_Control_Type'] = economizer_types[economizer_control_type]
         controller['Economizer_Control_Action_Type'] = economizer_action_types[economizer_control_action_type]

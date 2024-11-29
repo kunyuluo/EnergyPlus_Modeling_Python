@@ -2130,38 +2130,25 @@ OS:Node,
   {65865780-0776-46dc-b9a8-b20fff20b210}, !- Inlet Port
   {f67c4a99-5ab2-4680-b100-2883ad85067b}; !- Outlet Port
 
-OS:Node,
-  {d363f4bc-7a99-4e5c-9741-fbcaec92b09c}, !- Handle
-  Node 14,                                !- Name
-  {57baf050-7908-4abf-8f2c-9783f0ff208c}, !- Inlet Port
-  {2a9206c2-880b-445e-a161-d21ebbcddfc3}; !- Outlet Port
-
 OS:Connector:Mixer,
   {653973d6-5704-4deb-9f0f-8291a184846c}, !- Handle
   Connector Mixer 1,                      !- Name
   {abd51364-25b7-4545-9a58-7050c6ec50e8}, !- Outlet Branch Name
-  {66ae5fde-52c8-49b8-bb7a-6484168607c1}, !- Inlet Branch Name 1
-  {1d33d09b-470c-4def-a78c-95a547b7348a}; !- Inlet Branch Name 2
+  {957f0444-a09c-4ea7-ae08-96e47d9fcc74}, !- Inlet Branch Name 1
+  ;                                       !- Inlet Branch Name 2
 
 OS:Connector:Splitter,
   {2aa60382-c76b-4f6e-a454-5d3f7bd82da1}, !- Handle
   Connector Splitter 1,                   !- Name
   {2cb7704d-8c07-4b00-ab51-dc453df04d23}, !- Inlet Branch Name
-  {57baf050-7908-4abf-8f2c-9783f0ff208c}, !- Outlet Branch Name 1
-  {6587d7b0-ba8e-47de-a045-dde4e7c8bff6}; !- Outlet Branch Name 2
+  {c1e4f1bb-cf02-4572-8c60-40ef2ff21163}, !- Outlet Branch Name 1
+  ;                                       !- Outlet Branch Name 2
 
 OS:Connection,
   {0aafc2a0-ae95-4fdb-930d-b3663b31aae7}, !- Handle
   {fa4f7f77-ac6f-4102-9ca8-180aa2cc866d}, !- Source Object
   14,                                     !- Outlet Port
   {bae377c2-7c61-4955-8630-94db3e139c6b}, !- Target Object
-  2;                                      !- Inlet Port
-
-OS:Connection,
-  {57baf050-7908-4abf-8f2c-9783f0ff208c}, !- Handle
-  {2aa60382-c76b-4f6e-a454-5d3f7bd82da1}, !- Source Object
-  3,                                      !- Outlet Port
-  {d363f4bc-7a99-4e5c-9741-fbcaec92b09c}, !- Target Object
   2;                                      !- Inlet Port
 
 OS:Connection,
@@ -2262,46 +2249,6 @@ OS:Pump:VariableSpeed,
   1.282051282,                            !- Design Shaft Power per Unit Flow Rate per Unit Head {W-s/m3-Pa}
   0;                                      !- Design Minimum Flow Rate Fraction
 
-OS:Boiler:HotWater,
-  {b8664f21-303e-4e3f-bcfa-dd22b5ce40c6}, !- Handle
-  Boiler Hot Water 1,                     !- Name
-  ,                                       !- Fuel Type
-  ,                                       !- Nominal Capacity {W}
-  ,                                       !- Nominal Thermal Efficiency
-  LeavingBoiler,                          !- Efficiency Curve Temperature Evaluation Variable
-  {ff6f590d-268c-4cd1-8d77-eb0fa5b35c17}, !- Normalized Boiler Efficiency Curve Name
-  ,                                       !- Design Water Flow Rate {m3/s}
-  ,                                       !- Minimum Part Load Ratio
-  ,                                       !- Maximum Part Load Ratio
-  ,                                       !- Optimum Part Load Ratio
-  {2a9206c2-880b-445e-a161-d21ebbcddfc3}, !- Boiler Water Inlet Node Name
-  {eb558a69-9a22-416f-a567-a1fc555855c4}, !- Boiler Water Outlet Node Name
-  99,                                     !- Water Outlet Upper Temperature Limit {C}
-  ConstantFlow,                           !- Boiler Flow Mode
-  0,                                      !- On Cycle Parasitic Electric Load {W}
-  0,                                      !- Off Cycle Parasitic Fuel Load {W}
-  1,                                      !- Sizing Factor
-  General;                                !- End-Use Subcategory
-
-OS:Curve:Biquadratic,
-  {ff6f590d-268c-4cd1-8d77-eb0fa5b35c17}, !- Handle
-  Boiler Efficiency,                      !- Name
-  1,                                      !- Coefficient1 Constant
-  0,                                      !- Coefficient2 x
-  0,                                      !- Coefficient3 x**2
-  0,                                      !- Coefficient4 y
-  0,                                      !- Coefficient5 y**2
-  0,                                      !- Coefficient6 x*y
-  0,                                      !- Minimum Value of x
-  1,                                      !- Maximum Value of x
-  0,                                      !- Minimum Value of y
-  1,                                      !- Maximum Value of y
-  ,                                       !- Minimum Curve Output
-  ,                                       !- Maximum Curve Output
-  Dimensionless,                          !- Input Unit Type for X
-  Dimensionless,                          !- Input Unit Type for Y
-  Dimensionless;                          !- Output Unit Type
-
 OS:Node,
   {6fbdbab5-9aac-41db-8313-58b0be43f62d}, !- Handle
   Node 18,                                !- Name
@@ -2329,78 +2276,12 @@ OS:Connection,
   {2aa60382-c76b-4f6e-a454-5d3f7bd82da1}, !- Target Object
   2;                                      !- Inlet Port
 
-OS:Node,
-  {eb44017d-57a0-4529-8080-177564b7c228}, !- Handle
-  Node 19,                                !- Name
-  {eb558a69-9a22-416f-a567-a1fc555855c4}, !- Inlet Port
-  {66ae5fde-52c8-49b8-bb7a-6484168607c1}; !- Outlet Port
-
-OS:Connection,
-  {2a9206c2-880b-445e-a161-d21ebbcddfc3}, !- Handle
-  {d363f4bc-7a99-4e5c-9741-fbcaec92b09c}, !- Source Object
-  3,                                      !- Outlet Port
-  {b8664f21-303e-4e3f-bcfa-dd22b5ce40c6}, !- Target Object
-  12;                                     !- Inlet Port
-
 OS:Connection,
   {eb558a69-9a22-416f-a567-a1fc555855c4}, !- Handle
-  {b8664f21-303e-4e3f-bcfa-dd22b5ce40c6}, !- Source Object
+  ,                                       !- Source Object
   13,                                     !- Outlet Port
-  {eb44017d-57a0-4529-8080-177564b7c228}, !- Target Object
+  ,                                       !- Target Object
   2;                                      !- Inlet Port
-
-OS:Connection,
-  {66ae5fde-52c8-49b8-bb7a-6484168607c1}, !- Handle
-  {eb44017d-57a0-4529-8080-177564b7c228}, !- Source Object
-  3,                                      !- Outlet Port
-  {653973d6-5704-4deb-9f0f-8291a184846c}, !- Target Object
-  3;                                      !- Inlet Port
-
-OS:Pipe:Adiabatic,
-  {76d81fcb-551b-46a1-814c-1f656ada50a7}, !- Handle
-  Pipe Adiabatic 1,                       !- Name
-  {8b0aad4d-3272-4323-8074-8882650e135e}, !- Inlet Node Name
-  {dd339962-1c0b-4f55-b195-db567c56a6a3}; !- Outlet Node Name
-
-OS:Node,
-  {c7a3e47b-fded-4247-991d-36f4081c8cf1}, !- Handle
-  Node 20,                                !- Name
-  {6587d7b0-ba8e-47de-a045-dde4e7c8bff6}, !- Inlet Port
-  {8b0aad4d-3272-4323-8074-8882650e135e}; !- Outlet Port
-
-OS:Connection,
-  {6587d7b0-ba8e-47de-a045-dde4e7c8bff6}, !- Handle
-  {2aa60382-c76b-4f6e-a454-5d3f7bd82da1}, !- Source Object
-  4,                                      !- Outlet Port
-  {c7a3e47b-fded-4247-991d-36f4081c8cf1}, !- Target Object
-  2;                                      !- Inlet Port
-
-OS:Node,
-  {90b8fd6e-9a6a-408e-b7c9-ae139b08fb54}, !- Handle
-  Node 21,                                !- Name
-  {dd339962-1c0b-4f55-b195-db567c56a6a3}, !- Inlet Port
-  {1d33d09b-470c-4def-a78c-95a547b7348a}; !- Outlet Port
-
-OS:Connection,
-  {8b0aad4d-3272-4323-8074-8882650e135e}, !- Handle
-  {c7a3e47b-fded-4247-991d-36f4081c8cf1}, !- Source Object
-  3,                                      !- Outlet Port
-  {76d81fcb-551b-46a1-814c-1f656ada50a7}, !- Target Object
-  2;                                      !- Inlet Port
-
-OS:Connection,
-  {dd339962-1c0b-4f55-b195-db567c56a6a3}, !- Handle
-  {76d81fcb-551b-46a1-814c-1f656ada50a7}, !- Source Object
-  3,                                      !- Outlet Port
-  {90b8fd6e-9a6a-408e-b7c9-ae139b08fb54}, !- Target Object
-  2;                                      !- Inlet Port
-
-OS:Connection,
-  {1d33d09b-470c-4def-a78c-95a547b7348a}, !- Handle
-  {90b8fd6e-9a6a-408e-b7c9-ae139b08fb54}, !- Source Object
-  3,                                      !- Outlet Port
-  {653973d6-5704-4deb-9f0f-8291a184846c}, !- Target Object
-  4;                                      !- Inlet Port
 
 OS:Pipe:Adiabatic,
   {9179ab1b-fd0d-4004-b58e-82ed607c0982}, !- Handle
@@ -4505,4 +4386,66 @@ OS:Connection,
   3,                                      !- Outlet Port
   {f1b71d3f-775b-4b5e-9ddf-3c01ab1fc2a7}, !- Target Object
   16;                                     !- Inlet Port
+
+OS:Node,
+  {5f0afeba-590c-4b5a-b91d-f45c4346d73e}, !- Handle
+  Node 14,                                !- Name
+  {c1e4f1bb-cf02-4572-8c60-40ef2ff21163}, !- Inlet Port
+  {8f7b6738-3d47-4e0c-a61e-c4acfd8837dd}; !- Outlet Port
+
+OS:Connection,
+  {c1e4f1bb-cf02-4572-8c60-40ef2ff21163}, !- Handle
+  {2aa60382-c76b-4f6e-a454-5d3f7bd82da1}, !- Source Object
+  3,                                      !- Outlet Port
+  {5f0afeba-590c-4b5a-b91d-f45c4346d73e}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:DistrictHeating:Water,
+  {a6de2236-99fb-4d03-a15d-99df7a0ad8a1}, !- Handle
+  District Heating,                       !- Name
+  {8f7b6738-3d47-4e0c-a61e-c4acfd8837dd}, !- Hot Water Inlet Node Name
+  {49399f22-662a-4ae3-b510-34de14e3d975}, !- Hot Water Outlet Node Name
+  1000000,                                !- Nominal Capacity {W}
+  {ffa5449c-076c-4b74-b2ee-96300315d419}; !- Capacity Fraction Schedule
+
+OS:Schedule:Constant,
+  {ffa5449c-076c-4b74-b2ee-96300315d419}, !- Handle
+  Always On Continuous,                   !- Name
+  {a33d3ce9-5f48-4735-99dc-894d74371124}, !- Schedule Type Limits Name
+  1;                                      !- Value
+
+OS:ScheduleTypeLimits,
+  {a33d3ce9-5f48-4735-99dc-894d74371124}, !- Handle
+  Always On Continuous Limits,            !- Name
+  0,                                      !- Lower Limit Value
+  1,                                      !- Upper Limit Value
+  Continuous,                             !- Numeric Type
+  ;                                       !- Unit Type
+
+OS:Node,
+  {7d911ac9-d4e7-4fb4-9ff3-23a48cce6bcf}, !- Handle
+  Node 19,                                !- Name
+  {49399f22-662a-4ae3-b510-34de14e3d975}, !- Inlet Port
+  {957f0444-a09c-4ea7-ae08-96e47d9fcc74}; !- Outlet Port
+
+OS:Connection,
+  {8f7b6738-3d47-4e0c-a61e-c4acfd8837dd}, !- Handle
+  {5f0afeba-590c-4b5a-b91d-f45c4346d73e}, !- Source Object
+  3,                                      !- Outlet Port
+  {a6de2236-99fb-4d03-a15d-99df7a0ad8a1}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {49399f22-662a-4ae3-b510-34de14e3d975}, !- Handle
+  {a6de2236-99fb-4d03-a15d-99df7a0ad8a1}, !- Source Object
+  3,                                      !- Outlet Port
+  {7d911ac9-d4e7-4fb4-9ff3-23a48cce6bcf}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {957f0444-a09c-4ea7-ae08-96e47d9fcc74}, !- Handle
+  {7d911ac9-d4e7-4fb4-9ff3-23a48cce6bcf}, !- Source Object
+  3,                                      !- Outlet Port
+  {653973d6-5704-4deb-9f0f-8291a184846c}, !- Target Object
+  3;                                      !- Inlet Port
 

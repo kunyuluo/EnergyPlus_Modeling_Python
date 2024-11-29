@@ -34,7 +34,7 @@ class PlantLoopComponent:
         sizing_options = {1: "Coincident", 2: "NonCoincident"}
         sizing_factor_modes = {1: "None", 2: "GlobalCoolingSizingFactor",
                                3: "GlobalHeatingSizingFactor", 4: "LoopComponentSizingFactor"}
-        sizing = idf.newidfobject('Sizing:Plant'.upper())
+        sizing = idf.newidfobject('Sizing:Plant')
 
         if isinstance(plantloop, EpBunch):
             sizing['Plant_or_Condenser_Loop_Name'] = plantloop.Name
@@ -119,7 +119,7 @@ class PlantLoopComponent:
 
         plant_name = 'Plant Loop' if plant_name is None else plant_name
         scheme_name = f'{plant_name} Operation Schemes'
-        scheme = idf.newidfobject('PlantEquipmentOperation:Schemes'.upper(), Name=scheme_name)
+        scheme = idf.newidfobject('PlantEquipmentOperation:Schemes', Name=scheme_name)
 
     @staticmethod
     def pipe(idf: IDF, name=None, pipe_type: int = 1):
@@ -131,7 +131,7 @@ class PlantLoopComponent:
                       4: "Pipe:Adiabatic:Steam", 5: "Pipe:Underground"}
 
         name = f'Pipe_{pipe_types[pipe_type].split(":")[-1]}' if name is None else name
-        pipe = idf.newidfobject(pipe_types[pipe_type].upper(), Name=name)
+        pipe = idf.newidfobject(pipe_types[pipe_type], Name=name)
         pipe.Inlet_Node_Name = f'{name}_inlet'
         pipe.Outlet_Node_Name = f'{name}_outlet'
 
@@ -190,7 +190,7 @@ class PlantLoopComponent:
 
         name = f'Chiller {condenser_types[condenser_type]}' if name is None else name
 
-        chiller = idf.newidfobject('Chiller:Electric:EIR'.upper(), Name=name)
+        chiller = idf.newidfobject('Chiller:Electric:EIR', Name=name)
 
         chiller['Condenser_Type'] = condenser_types[condenser_type]
         chiller['Reference_Capacity'] = capacity
@@ -294,7 +294,7 @@ class PlantLoopComponent:
             capacity_fraction_schedule: EpBunch | str = None):
 
         name = 'District Cooling' if name is None else name
-        district = idf.newidfobject('DistrictCooling'.upper(), Name=name)
+        district = idf.newidfobject('DistrictCooling', Name=name)
 
         district['Nominal_Capacity'] = nominal_capacity
 
@@ -328,7 +328,7 @@ class PlantLoopComponent:
             capacity_fraction_schedule: EpBunch | str = None):
 
         name = 'District Heating' if name is None else name
-        district = idf.newidfobject('DistrictHeating'.upper(), Name=name)
+        district = idf.newidfobject('DistrictHeating', Name=name)
 
         district['Nominal_Capacity'] = nominal_capacity
 
@@ -352,6 +352,38 @@ class PlantLoopComponent:
 
         return comp
 
+    @staticmethod
+    def district_heating_v24(
+            idf: IDF,
+            name: str = None,
+            nominal_capacity='Autosize',
+            capacity_fraction_schedule: EpBunch | str = None):
+
+        name = 'District Heating' if name is None else name
+        district = idf.newidfobject('DistrictHeating:Water', Name=name)
+
+        district['Nominal_Capacity'] = nominal_capacity
+
+        if capacity_fraction_schedule is not None:
+            if isinstance(capacity_fraction_schedule, str):
+                district['Capacity_Fraction_Schedule_Name'] = capacity_fraction_schedule
+            elif isinstance(capacity_fraction_schedule, EpBunch):
+                district['Capacity_Fraction_Schedule_Name'] = capacity_fraction_schedule.Name
+            else:
+                raise TypeError('capacity_fraction_schedule must be EpBunch or str')
+
+        district['Hot_Water_Inlet_Node_Name'] = f'{name} Hot_Water_Inlet'
+        district['Hot_Water_Outlet_Node_Name'] = f'{name} Hot_Water_Outlet'
+
+        comp = {
+            'object': district,
+            'type': 'DistrictHeating:Water',
+            'water_inlet_field': 'Hot_Water_Inlet_Node_Name',
+            'water_outlet_field': 'Hot_Water_Outlet_Node_Name',
+        }
+
+        return comp
+
     # ***************************************************************************************************
     # Distribution Equipments
     @staticmethod
@@ -365,7 +397,7 @@ class PlantLoopComponent:
             motor_efficiency=0.9,
             fraction_of_motor_to_fluid=0,
             control_type: int = 1,
-            vfd_control_type: int = 1,
+            vfd_control_type: int = None,
             pump_flow_rate_schedule: EpBunch | str = None,
             pump_rpm_schedule: EpBunch | str = None,
             min_rpm_schedule: EpBunch | str = None,
@@ -391,7 +423,7 @@ class PlantLoopComponent:
         pump_assembly = []
 
         name = 'Pump Variable Speed' if name is None else name
-        pump = idf.newidfobject('Pump:VariableSpeed'.upper(), Name=name)
+        pump = idf.newidfobject('Pump:VariableSpeed', Name=name)
 
         pump['Design_Maximum_Flow_Rate'] = design_max_flow_rate
         pump['Design_Minimum_Flow_Rate'] = design_min_flow_rate
@@ -439,7 +471,8 @@ class PlantLoopComponent:
 
         if impeller_diameter is not None:
             pump['Impeller_Diameter'] = impeller_diameter
-        pump['VFD_Control_Type'] = vfd_control_types[vfd_control_type]
+        if vfd_control_type is not None:
+            pump['VFD_Control_Type'] = vfd_control_types[vfd_control_type]
 
         if thermal_zone is not None:
             pump['Zone_Name'] = thermal_zone
@@ -496,7 +529,7 @@ class PlantLoopComponent:
         sizing_methods = {1: "PowerPerFlowPerPressure", 2: "PowerPerFlow"}
 
         name = 'Pump Constant Speed' if name is None else name
-        pump = idf.newidfobject('Pump:ConstantSpeed'.upper(), Name=name)
+        pump = idf.newidfobject('Pump:ConstantSpeed', Name=name)
 
         pump['Design_Maximum_Flow_Rate'] = design_max_flow_rate
         pump['Design_Minimum_Flow_Rate'] = design_min_flow_rate

@@ -25,6 +25,60 @@ class AirLoop:
             design_supply_air_flow_rate: float = None,
             design_return_air_fraction: float = 1.0,
             sizing: EpBunch = None):
+        """
+        Air Terminal Types:
+            1: 'AirTerminal:SingleDuct:ConstantVolume:NoReheat',
+            2: 'AirTerminal:SingleDuct:ConstantVolume:Reheat',
+            3: 'AirTerminal:SingleDuct:VAV:Reheat',
+            4: 'AirTerminal:SingleDuct:VAV:Reheat:VariableSpeedFan',
+            5: 'AirTerminal:SingleDuct:VAV:HeatAndCool:Reheat',
+            6: 'AirTerminal:SingleDuct:VAV:NoReheat',
+            7: 'AirTerminal:SingleDuct:VAV:HeatAndCool:NoReheat',
+            8: 'AirTerminal:SingleDuct:SeriesPIU:Reheat',
+            9: 'AirTerminal:SingleDuct:ParallelPIU:Reheat',
+            10: 'AirTerminal:SingleDuct:ConstantVolume:FourPipeInduction',
+            11: 'AirTerminal:SingleDuct:ConstantVolume:FourPipeBeam',
+            12: 'AirTerminal:SingleDuct:ConstantVolume:CooledBeam',
+            13: 'AirTerminal:SingleDuct:Mixer',
+            14: 'AirTerminal:DualDuct:ConstantVolume',
+            15: 'AirTerminal:DualDuct:VAV',
+            16: 'AirTerminal:DualDuct:VAV:OutdoorAir',
+
+        Zone HVAC Types:
+            1: 'ZoneHVAC:IdealLoadsAirSystem',
+            2: 'ZoneHVAC:FourPipeFanCoil',
+            3: 'ZoneHVAC:UnitVentilator',
+            4: 'ZoneHVAC:UnitHeater',
+            5: 'ZoneHVAC:EvaporativeCoolerUnit',
+            6: 'ZoneHVAC:OutdoorAirUnit',
+            7: 'ZoneHVAC:OutdoorAirUnit:EquipmentList',
+            8: 'ZoneHVAC:WindowAirConditioner',
+            9: 'ZoneHVAC:PackagedTerminalAirConditioner',
+            10: 'ZoneHVAC:PackagedTerminalHeatPump',
+            11: 'ZoneHVAC:RefrigerationChillerSet',
+            12: 'ZoneHVAC:WaterToAirHeatPump',
+            13: 'ZoneHVAC:Dehumidifier:DX',
+            14: 'ZoneHVAC:EnergyRecoveryVentilator',
+            15: 'ZoneHVAC:TerminalUnit:VariableRefrigerantFlow',
+            16: 'ZoneHVAC:HybridUnitaryHVAC',
+
+        Zone Radiative Unit Types:
+            1: 'ZoneHVAC:Baseboard:RadiantConvective:Water',
+            2: 'ZoneHVAC:Baseboard:RadiantConvective:Steam',
+            3: 'ZoneHVAC:Baseboard:RadiantConvective:Electric',
+            4: 'ZoneHVAC:CoolingPanel:RadiantConvective:Water',
+            5: 'ZoneHVAC:Baseboard:Convective:Water',
+            6: 'ZoneHVAC:Baseboard:Convective:Electric',
+            7: 'ZoneHVAC:LowTemperatureRadiant:VariableFlow',
+            8: 'ZoneHVAC:LowTemperatureRadiant:VariableFlow:Design',
+            9: 'ZoneHVAC:LowTemperatureRadiant:ConstantFlow',
+            10: 'ZoneHVAC:LowTemperatureRadiant:ConstantFlow:Design',
+            11: 'ZoneHVAC:LowTemperatureRadiant:Electric',
+            12: 'ZoneHVAC:LowTemperatureRadiant:SurfaceGroup',
+            13: 'ZoneHVAC:HighTemperatureRadiant',
+            14: 'ZoneHVAC:VentilatedSlab',
+            15: 'ZoneHVAC:VentilatedSlab:SlabGroup',
+        """
 
         loop_assembly = []
         water_clg_coils = []
@@ -36,16 +90,16 @@ class AirLoop:
             for item in supply_branches:
                 if 'Coil' in item['type'] and 'Water' in item['type']:
                     if 'Cooling' in item['type']:
-                        water_clg_coils.append(item['object'])
+                        water_clg_coils.append(item)
 
                     if 'Heating' in item['type']:
-                        water_htg_coils.append(item['object'])
+                        water_htg_coils.append(item)
 
         # Air Loop:
         ###############################################################################################
         name = 'Air Loop' if name is None else name
 
-        loop = idf.newidfobject('AirLoopHVAC'.upper(), Name=name)
+        loop = idf.newidfobject('AirLoopHVAC', Name=name)
         loop_assembly.append(loop)
 
         # Sizing:
@@ -85,30 +139,17 @@ class AirLoop:
         if design_return_air_fraction is not None:
             loop['Design_Return_Air_Flow_Fraction_of_Supply_Air_Flow'] = design_return_air_fraction
 
-        # Availability Manager List:
-        ###############################################################################################
-        am_list_name = loop['Availability_Manager_List_Name']
-        am_name = f'{name} Availability Manager'
-        am_list = idf.newidfobject('AvailabilityManagerAssignmentList'.upper(), Name=am_list_name)
-        am_list['Availability_Manager_1_Object_Type'] = 'AvailabilityManager:Scheduled'
-        am_list['Availability_Manager_1_Name'] = am_name
-        loop_assembly.append(am_list)
-
-        am = idf.newidfobject('AvailabilityManager:Scheduled'.upper(), Name=am_name)
-        am['Schedule_Name'] = 'Always On Discrete'
-        loop_assembly.append(am)
-
         # Node List:
         ###############################################################################################
         supply_outlet_nodelist_name = f'{name} Supply Outlet Nodes'
         supply_outlet_node_name = supply_outlet_nodelist_name.replace('Nodes', 'Node')
-        supply_outlet_nodelist = idf.newidfobject('NodeList'.upper(), Name=supply_outlet_nodelist_name)
+        supply_outlet_nodelist = idf.newidfobject('NodeList', Name=supply_outlet_nodelist_name)
         supply_outlet_nodelist['Node_1_Name'] = supply_outlet_node_name
         loop_assembly.append(supply_outlet_nodelist)
 
         demand_inlet_nodelist_name = f'{name} Demand Inlet Nodes'
         demand_inlet_node_name = demand_inlet_nodelist_name.replace('Nodes', 'Node')
-        demand_inlet_nodelist = idf.newidfobject('NodeList'.upper(), Name=demand_inlet_nodelist_name)
+        demand_inlet_nodelist = idf.newidfobject('NodeList', Name=demand_inlet_nodelist_name)
         demand_inlet_nodelist['Node_1_Name'] = demand_inlet_node_name
         loop_assembly.append(demand_inlet_nodelist)
 
@@ -121,7 +162,7 @@ class AirLoop:
                 controllers.append(comp['controller'])
 
         controller_list_name = f'{name} Controllers'
-        controller_list = idf.newidfobject('AirLoopHVAC:ControllerList'.upper(), Name=controller_list_name)
+        controller_list = idf.newidfobject('AirLoopHVAC:ControllerList', Name=controller_list_name)
         loop_assembly.append(controller_list)
         for i, controller in enumerate(controllers):
             controller_list[f'Controller_{i + 1}_Object_Type'] = 'Controller:WaterCoil'
@@ -132,12 +173,12 @@ class AirLoop:
         ###############################################################################################
         avail_manager_list_name = f'{name} Availability Manager List'
         avail_manager_name = f'{name} Availability Manager'
-        avail_manager_list = idf.newidfobject('AvailabilityManagerAssignmentList'.upper(), Name=avail_manager_list_name)
+        avail_manager_list = idf.newidfobject('AvailabilityManagerAssignmentList', Name=avail_manager_list_name)
         avail_manager_list['Availability_Manager_1_Object_Type'] = 'AvailabilityManager:Scheduled'
         avail_manager_list['Availability_Manager_1_Name'] = avail_manager_name
         loop_assembly.append(avail_manager_list)
 
-        avail_manager = idf.newidfobject('AvailabilityManager:Scheduled'.upper(), Name=avail_manager_name)
+        avail_manager = idf.newidfobject('AvailabilityManager:Scheduled', Name=avail_manager_name)
         avail_manager['Schedule_Name'] = 'Always On Discrete'
         loop_assembly.append(avail_manager)
 
@@ -148,14 +189,14 @@ class AirLoop:
         controller_list_name = f'{oa_sys_name} Controller List'
         equipment_list_name = f'{oa_sys_name} Equipment List'
 
-        oa_sys = idf.newidfobject('AirLoopHVAC:OutdoorAirSystem'.upper(), Name=oa_sys_name)
+        oa_sys = idf.newidfobject('AirLoopHVAC:OutdoorAirSystem', Name=oa_sys_name)
         oa_sys['Controller_List_Name'] = controller_list_name
         oa_sys['Outdoor_Air_Equipment_List_Name'] = equipment_list_name
         loop_assembly.append(oa_sys)
 
         # Controller List:
         controller_name = f'{oa_sys_name} Controller'
-        controller_list = idf.newidfobject('AirLoopHVAC:ControllerList'.upper(), Name=controller_list_name)
+        controller_list = idf.newidfobject('AirLoopHVAC:ControllerList', Name=controller_list_name)
         controller_list['Controller_1_Object_Type'] = 'Controller:OutdoorAir'
         controller_list['Controller_1_Name'] = controller_name
         loop_assembly.append(controller_list)
@@ -163,17 +204,17 @@ class AirLoop:
         # Controller:
         controller = Controller.controller_outdoor_air(idf, controller_name)
         controller['Relief_Air_Outlet_Node_Name'] = f'{controller_name} relief_air_outlet'
-        controller['Return_Air_Node_Name'] = f'{controller_name} return_air'
+        controller['Return_Air_Node_Name'] = loop['Supply_Side_Inlet_Node_Name']
         controller['Mixed_Air_Node_Name'] = f'{controller_name} mixed_air'
         controller['Actuator_Node_Name'] = f'{controller_name} outdoor_air_inlet'
 
-        oa_inlet_node_list = idf.newidfobject('OutdoorAir:NodeList'.upper())
+        oa_inlet_node_list = idf.newidfobject('OutdoorAir:NodeList')
         oa_inlet_node_list['Node_or_NodeList_Name_1'] = controller.Actuator_Node_Name
 
         loop_assembly.append(controller)
 
         # Equipment List:
-        os_sys_equip_list = idf.newidfobject('AirLoopHVAC:OutdoorAirSystem:EquipmentList'.upper(),
+        os_sys_equip_list = idf.newidfobject('AirLoopHVAC:OutdoorAirSystem:EquipmentList',
                                              Name=equipment_list_name)
 
         mixer_name = f'{oa_sys_name} Outdoor Air Mixer'
@@ -254,7 +295,7 @@ class AirLoop:
         else:
             if heat_recovery:
                 hx_name = f'{oa_sys_name} Heat Exchanger'
-                hx = AirLoopComponent.heat_exchanger_air_to_air(idf, hx_name)
+                hx = AirLoopComponent.heat_exchanger_air_to_air_v24(idf, hx_name)
                 os_sys_equip_list['Component_2_Object_Type'] = hx['type']
                 os_sys_equip_list['Component_2_Name'] = hx['object'].Name
 
@@ -270,7 +311,7 @@ class AirLoop:
                 loop_assembly.append(hx['object'])
 
         # Outdoor Air Mixer:
-        oa_mixer = idf.newidfobject('OutdoorAir:Mixer'.upper(), Name=mixer_name)
+        oa_mixer = idf.newidfobject('OutdoorAir:Mixer', Name=mixer_name)
         oa_mixer['Mixed_Air_Node_Name'] = controller.Mixed_Air_Node_Name
         oa_mixer['Outdoor_Air_Stream_Node_Name'] = mixer_oa_stream_name
         oa_mixer['Relief_Air_Stream_Node_Name'] = mixer_ra_stream_name
@@ -300,6 +341,10 @@ class AirLoop:
                     else:
                         inlet_name = supply_branches[i-1]['object'][supply_branches[i - 1]['air_outlet_field']]
 
+                    # Rename inlet / outlet node names of object:
+                    supply_branches[i]['object'][supply_branches[i]['air_inlet_field']] = inlet_name
+
+                    # Rename inlet / outlet node names in the branch
                     supply_branch[f'Component_{i + 2}_Object_Type'] = supply_branches[i]['type']
                     supply_branch[f'Component_{i + 2}_Name'] = supply_branches[i]['object'].Name
                     supply_branch[f'Component_{i + 2}_Inlet_Node_Name'] = inlet_name
@@ -316,6 +361,13 @@ class AirLoop:
                             supply_fan['object'][supply_fan['air_outlet_field']] = supply_outlet_node_name
                             fan_inlet_node = supply_fan['object'][supply_fan['air_inlet_field']]
                             fan_outlet_node = supply_outlet_node_name
+
+                            # Rename inlet / outlet node names of object:
+                            supply_branches[i]['object'][supply_branches[i]['air_outlet_field']] = fan_inlet_node
+                            # Rename controller sensor node name if available:
+                            if 'Coil' in supply_branches[i]['type'] and 'Water' in supply_branches[i]['type']:
+                                supply_branches[i]['controller']['Sensor_Node_Name'] = fan_inlet_node
+                            spm_nodes[-1] = fan_inlet_node
 
                             # Add fan to branch:
                             fan_index = i + 3
@@ -336,7 +388,7 @@ class AirLoop:
 
             # Setpoint Manager:MixedAir at each node in outdoor air stream:
             for node in spm_nodes:
-                spm_mix = idf.newidfobject('SetpointManager:MixedAir'.upper(), Name=f'{node} SPM')
+                spm_mix = idf.newidfobject('SetpointManager:MixedAir', Name=f'{node} SPM')
                 spm_mix['Control_Variable'] = 'Temperature'
                 spm_mix['Reference_Setpoint_Node_Name'] = supply_outlet_node_name
                 spm_mix['Fan_Inlet_Node_Name'] = fan_inlet_node
@@ -371,14 +423,14 @@ class AirLoop:
         # Supply Path:
         supply_path_name = f'{name} Supply Path'
         zone_splitter_name = f'{name} Zone Splitter'
-        supply_path = idf.newidfobject('AirLoopHVAC:SupplyPath'.upper(), Name=supply_path_name)
+        supply_path = idf.newidfobject('AirLoopHVAC:SupplyPath', Name=supply_path_name)
         supply_path['Supply_Air_Path_Inlet_Node_Name'] = demand_inlet_node_name
         supply_path['Component_1_Object_Type'] = 'AirLoopHVAC:ZoneSplitter'
         supply_path['Component_1_Name'] = zone_splitter_name
         loop_assembly.append(supply_path)
 
         # Zone Splitter:
-        zone_splitter = idf.newidfobject('AirLoopHVAC:ZoneSplitter'.upper(), Name=zone_splitter_name)
+        zone_splitter = idf.newidfobject('AirLoopHVAC:ZoneSplitter', Name=zone_splitter_name)
         zone_splitter['Inlet_Node_Name'] = demand_inlet_node_name
         if len(zone_splitter_nodes) > 0:
             for i, node in enumerate(zone_splitter_nodes):
@@ -388,14 +440,14 @@ class AirLoop:
         # Return Path:
         return_path_name = f'{name} Return Path'
         zone_mixer_name = f'{name} Zone Mixer'
-        return_path = idf.newidfobject('AirLoopHVAC:ReturnPath'.upper(), Name=return_path_name)
+        return_path = idf.newidfobject('AirLoopHVAC:ReturnPath', Name=return_path_name)
         return_path['Return_Air_Path_Outlet_Node_Name'] = loop.Demand_Side_Outlet_Node_Name
         return_path['Component_1_Object_Type'] = 'AirLoopHVAC:ZoneMixer'
         return_path['Component_1_Name'] = zone_mixer_name
         loop_assembly.append(return_path)
 
         # Zone Mixer:
-        zone_mixer = idf.newidfobject('AirLoopHVAC:ZoneMixer'.upper(), Name=zone_mixer_name)
+        zone_mixer = idf.newidfobject('AirLoopHVAC:ZoneMixer', Name=zone_mixer_name)
         zone_mixer['Outlet_Node_Name'] = loop.Demand_Side_Outlet_Node_Name
         if len(zone_mixer_nodes) > 0:
             for i, node in enumerate(zone_mixer_nodes):

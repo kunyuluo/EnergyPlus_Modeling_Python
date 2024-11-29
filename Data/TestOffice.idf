@@ -1,6 +1,6 @@
 
 Version,
-  22.2;                                   !- Version Identifier
+  24.1;                                   !- Version Identifier
 
 Timestep,
   6;                                      !- Number of Timesteps per Hour
@@ -243,7 +243,7 @@ Lights,
   Office Bldg Light,                      !- Schedule Name
   Watts/Area,                             !- Design Level Calculation Method
   ,                                       !- Lighting Level {W}
-  11.8403571,                             !- Watts per Zone Floor Area {W/m2}
+  11.8403571,                             !- Watts per Floor Area {W/m2}
   ,                                       !- Watts per Person {W/person}
   ,                                       !- Return Air Fraction
   ,                                       !- Fraction Radiant
@@ -539,7 +539,7 @@ ElectricEquipment,
   Medium Office Bldg Equip,               !- Schedule Name
   Watts/Area,                             !- Design Level Calculation Method
   ,                                       !- Design Level {W}
-  7.64241231,                             !- Watts per Zone Floor Area {W/m2}
+  7.64241231,                             !- Watts per Floor Area {W/m2}
   ,                                       !- Watts per Person {W/person}
   ,                                       !- Fraction Latent
   ,                                       !- Fraction Radiant
@@ -1204,7 +1204,7 @@ SimulationControl,
   Yes,                                    !- Do Plant Sizing Calculation
   No,                                     !- Run Simulation for Sizing Periods
   Yes,                                    !- Run Simulation for Weather File Run Periods
-  No,                                     !- Do HVAC Sizing Simulation for Sizing Periods
+  ,                                       !- Do HVAC Sizing Simulation for Sizing Periods
   ;                                       !- Maximum Number of HVAC Sizing Simulation Passes
 
 HeatBalanceAlgorithm,
@@ -1374,8 +1374,31 @@ Construction,
   Material Air Gap 1,                     !- Layer 2
   M11 100mm lightweight concrete;         !- Layer 3
 
+Schedule:Constant,
+  Always Off Discrete,                    !- Name
+  OnOff 1,                                !- Schedule Type Limits Name
+  0;                                      !- Hourly Value
+
+Schedule:Constant,
+  Always On Continuous,                   !- Name
+  Fractional,                             !- Schedule Type Limits Name
+  1;                                      !- Hourly Value
+
+ScheduleTypeLimits,
+  Fractional,                             !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A3}
+  1,                                      !- Upper Limit Value {BasedOnField A3}
+  Continuous;                             !- Numeric Type
+
 ScheduleTypeLimits,
   OnOff,                                  !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A3}
+  1,                                      !- Upper Limit Value {BasedOnField A3}
+  Discrete,                               !- Numeric Type
+  availability;                           !- Unit Type
+
+ScheduleTypeLimits,
+  OnOff 1,                                !- Name
   0,                                      !- Lower Limit Value {BasedOnField A3}
   1,                                      !- Upper Limit Value {BasedOnField A3}
   Discrete,                               !- Numeric Type
@@ -1625,23 +1648,13 @@ Schedule:Year,
   12,                                     !- End Month 1
   31;                                     !- End Day 1
 
-Schedule:Constant,
-  Always Off Discrete,                    !- Name
-  ,                                       !- Schedule Type Limits Name
-  0;                                      !- Hourly Value
-
-Schedule:Constant,
-  Always On Continuous,                   !- Name
-  ,                                       !- Schedule Type Limits Name
-  1;                                      !- Hourly Value
-
 OutdoorAir:Node,
   Model Outdoor Air Node;                 !- Name
 
 AirLoopHVAC,
   VAV with Reheat,                        !- Name
   VAV with Reheat Controllers,            !- Controller List Name
-  VAV with ReheatAvailability Manager List, !- Availability Manager List Name
+  Air Loop HVAC 1 AvailabilityManagerAssignmentList, !- Availability Manager List Name
   AutoSize,                               !- Design Supply Air Flow Rate {m3/s}
   VAV with Reheat Supply Branches,        !- Branch List Name
   ,                                       !- Connector List Name
@@ -1728,13 +1741,18 @@ Controller:WaterCoil,
   0;                                      !- Minimum Actuated Flow {m3/s}
 
 AvailabilityManagerAssignmentList,
-  VAV with ReheatAvailability Manager List, !- Name
-  AvailabilityManager:Scheduled,          !- Availability Manager Object Type 1
-  VAV with Reheat Availability Manager;   !- Availability Manager Name 1
+  Air Loop HVAC 1 AvailabilityManagerAssignmentList, !- Name
+  AvailabilityManager:NightCycle,         !- Availability Manager Object Type 1
+  Availability Manager Night Cycle 1;     !- Availability Manager Name 1
 
-AvailabilityManager:Scheduled,
-  VAV with Reheat Availability Manager,   !- Name
-  Always On Discrete;                     !- Schedule Name
+AvailabilityManager:NightCycle,
+  Availability Manager Night Cycle 1,     !- Name
+  Always On Discrete,                     !- Applicability Schedule Name
+  Always On Discrete,                     !- Fan Schedule Name
+  CycleOnAny,                             !- Control Type
+  1,                                      !- Thermostat Tolerance {deltaC}
+  FixedRunTime,                           !- Cycling Run Time Control Type
+  3600;                                   !- Cycling Run Time {s}
 
 BranchList,
   VAV with Reheat Supply Branches,        !- Name
@@ -1796,7 +1814,8 @@ Controller:OutdoorAir,
   ,                                       !- Humidistat Control Zone Name
   ,                                       !- High Humidity Outdoor Air Flow Ratio
   Yes,                                    !- Control High Indoor Humidity Based on Outdoor Humidity Ratio
-  BypassWhenWithinEconomizerLimits;       !- Heat Recovery Bypass Control Type
+  BypassWhenWithinEconomizerLimits,       !- Heat Recovery Bypass Control Type
+  InterlockedWithMechanicalCooling;       !- Economizer Operation Staging
 
 AvailabilityManagerAssignmentList,
   Air Loop HVAC Outdoor Air System 1 Availability Manager List, !- Name
@@ -2058,7 +2077,7 @@ Chiller:Electric:EIR,
   0,                                      !- Condenser Fan Power Ratio {W/W}
   1,                                      !- Fraction of Compressor Electric Consumption Rejected by Condenser
   2,                                      !- Leaving Chilled Water Lower Temperature Limit {C}
-  NotModulated,                           !- Chiller Flow Mode
+  LeavingSetpointModulated,               !- Chiller Flow Mode
   ,                                       !- Design Heat Recovery Water Flow Rate {m3/s}
   ,                                       !- Heat Recovery Inlet Node Name
   ,                                       !- Heat Recovery Outlet Node Name
@@ -2653,9 +2672,10 @@ Boiler:HotWater,
   Node 19,                                !- Boiler Water Outlet Node Name
   99,                                     !- Water Outlet Upper Temperature Limit {C}
   ConstantFlow,                           !- Boiler Flow Mode
-  0,                                      !- Parasitic Electric Load {W}
+  0,                                      !- On Cycle Parasitic Electric Load {W}
   1,                                      !- Sizing Factor
-  General;                                !- End-Use Subcategory
+  General,                                !- End-Use Subcategory
+  0;                                      !- Off Cycle Parasitic Fuel Load {W}
 
 Curve:Biquadratic,
   Boiler Efficiency,                      !- Name
@@ -2814,11 +2834,11 @@ PlantEquipmentList,
   Boiler Hot Water 1;                     !- Equipment Name 1
 
 Site:Location,
-  SHANGHAI,                               !- Name
-  31.17,                                  !- Latitude {deg}
-  121.43,                                 !- Longitude {deg}
+  Shanghai,                               !- Name
+  31.4,                                   !- Latitude {deg}
+  121.45,                                 !- Longitude {deg}
   8,                                      !- Time Zone {hr}
-  7;                                      !- Elevation {m}
+  5.5;                                    !- Elevation {m}
 
 SizingPeriod:DesignDay,
   New York Laguardia Arpt Ann Clg .4% Condns DB=>MWB, !- Name

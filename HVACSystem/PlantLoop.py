@@ -15,11 +15,11 @@ class PlantLoop:
             loop_type: int = 1,
             loop_exit_temp=None,
             loop_temp_diff=None,
-            max_loop_temp=None,
-            min_loop_temp=None,
-            max_loop_flow_rate=None,
-            min_loop_flow_rate=None,
-            plant_loop_volume=None,
+            max_loop_temp=100,
+            min_loop_temp=0,
+            max_loop_flow_rate='Autosize',
+            min_loop_flow_rate=0,
+            plant_loop_volume='Autocalculate',
             load_distribution_scheme: int = 1,
             demand_calculation_scheme: int = 1,
             supply_inlet_branches: dict | list[dict] = None,
@@ -66,20 +66,15 @@ class PlantLoop:
         plant_configs = {
             'Name': name,
             "Fluid_Type": fluid_types[fluid_type],
+            "Maximum_Loop_Temperature": max_loop_temp,
+            "Minimum_Loop_Temperature": min_loop_temp,
+            "Maximum_Loop_Flow_Rate": max_loop_flow_rate,
+            "Minimum_Loop_Flow_Rate": min_loop_flow_rate,
+            "Plant_Loop_Volume": plant_loop_volume,
             "Load_Distribution_Scheme": load_distribution_schemes[load_distribution_scheme],
             'Plant_Loop_Demand_Calculation_Scheme': demand_calc_schemes[demand_calculation_scheme],
             "Common_Pipe_Simulation": common_pipe_types[common_pipe_simulation],
         }
-        if max_loop_temp is not None:
-            plant_configs["Maximum_Loop_Temperature"] = max_loop_temp
-        if min_loop_temp is not None:
-            plant_configs["Minimum_Loop_Temperature"] = min_loop_temp
-        if max_loop_flow_rate is not None:
-            plant_configs["Maximum_Loop_Flow Rate"] = max_loop_flow_rate
-        if min_loop_flow_rate is not None:
-            plant_configs["Minimum_Loop_Flow Rate"] = min_loop_flow_rate
-        if plant_loop_volume is not None:
-            plant_configs["Plant_Loop_Volume"] = plant_loop_volume
 
         plant = idf.newidfobject('PlantLoop'.upper(), **plant_configs)
 
@@ -109,6 +104,8 @@ class PlantLoop:
         for fieldname, thefield in zip(fieldnames, flnames):
             plant[thefield] = fieldname
 
+        plant['Loop_Temperature_Setpoint_Node_Name'] = plant['Plant_Side_Outlet_Node_Name']
+
         # make the supply branch lists for this plant loop
         ###############################################################################################
         if supply_branches is not None and isinstance(supply_branches, list):
@@ -124,7 +121,13 @@ class PlantLoop:
                 else:
                     supply_inlet_branches = [supply_inlet_branches] if isinstance(supply_inlet_branches, dict) else supply_inlet_branches
                 inlet_branch_name = f'{name} Supply Inlet Branch'
-                inlet_branch = NodeBranch.branch(idf, inlet_branch_name, supply_inlet_branches)
+                inlet_branch_inlet_node_name = plant['Plant_Side_Inlet_Node_Name']
+                supply_inlet_branches[0]['object'][supply_inlet_branches[0]['water_inlet_field']] = inlet_branch_inlet_node_name
+                inlet_branch = NodeBranch.branch(
+                    idf,
+                    inlet_branch_name,
+                    supply_inlet_branches,
+                    inlet_node_name=inlet_branch_inlet_node_name)
                 all_supply_branches.append(inlet_branch)
                 for comp in supply_inlet_branches:
                     plant_assembly.append(comp['object'])
@@ -161,7 +164,13 @@ class PlantLoop:
                 # Supply Outlet Branch:
                 outlet_pipe = PlantLoopComponent.pipe(idf, name=f'{name} Supply Outlet Branch Pipe', pipe_type=1)
                 outlet_branch_name = f'{name} Supply Outlet Branch'
-                outlet_branch = NodeBranch.branch(idf, outlet_branch_name, [outlet_pipe])
+                outlet_branch_outlet_node_name = plant['Plant_Side_Outlet_Node_Name']
+                outlet_pipe['object'][outlet_pipe['water_outlet_field']] = outlet_branch_outlet_node_name
+                outlet_branch = NodeBranch.branch(
+                    idf,
+                    outlet_branch_name,
+                    components=[outlet_pipe],
+                    outlet_node_name=outlet_branch_outlet_node_name)
                 all_supply_branches.append(outlet_branch)
 
                 plant_assembly.extend(all_supply_branches)
@@ -169,9 +178,10 @@ class PlantLoop:
 
                 # Add primary side setpoint manager to node:
                 if setpoint_manager is not None:
-                    spm_node_name = all_supply_branches[-1].Component_2_Outlet_Node_Name
-                    if spm_node_name == "":
-                        spm_node_name = all_supply_branches[-1].Component_1_Outlet_Node_Name
+                    # spm_node_name = all_supply_branches[-1].Component_2_Outlet_Node_Name
+                    spm_node_name = plant['Plant_Side_Outlet_Node_Name']
+                    # if spm_node_name == "":
+                    #     spm_node_name = all_supply_branches[-1].Component_1_Outlet_Node_Name
                     setpoint_manager.Setpoint_Node_or_NodeList_Name = spm_node_name
                     plant_assembly.append(setpoint_manager)
 
@@ -234,6 +244,7 @@ class PlantLoop:
                 schemes['Control_Scheme_1_Object_Type'] = operation_type
                 schemes['Control_Scheme_1_Name'] = operation_name
                 schemes['Control_Scheme_1_Schedule_Name'] = 'Always On Discrete'
+                plant['Plant_Equipment_Operation_Scheme_Name'] = scheme_name
                 plant_assembly.append(schemes)
 
         else:
@@ -254,7 +265,13 @@ class PlantLoop:
                     demand_inlet_branches = [demand_inlet_branches] if isinstance(demand_inlet_branches, dict) else demand_inlet_branches
 
             inlet_branch_name = f'{name} Demand Inlet Branch'
-            inlet_branch = NodeBranch.branch(idf, inlet_branch_name, demand_inlet_branches)
+            inlet_branch_inlet_node_name = plant['Demand_Side_Inlet_Node_Name']
+            demand_inlet_branches[0]['object'][demand_inlet_branches[0]['water_inlet_field']] = inlet_branch_inlet_node_name
+            inlet_branch = NodeBranch.branch(
+                idf,
+                inlet_branch_name,
+                demand_inlet_branches,
+                inlet_node_name=inlet_branch_inlet_node_name)
             all_demand_branches.append(inlet_branch)
 
             # Demand Branches:
@@ -275,7 +292,13 @@ class PlantLoop:
             # Demand Outlet Branch:
             outlet_pipe = PlantLoopComponent.pipe(idf, name=f'{name} Demand Outlet Branch Pipe', pipe_type=1)
             outlet_branch_name = f'{name} Demand Outlet Branch'
-            outlet_branch = NodeBranch.branch(idf, outlet_branch_name, [outlet_pipe])
+            outlet_branch_outlet_node_name = plant['Demand_Side_Outlet_Node_Name']
+            outlet_pipe['object'][outlet_pipe['water_outlet_field']] = outlet_branch_outlet_node_name
+            outlet_branch = NodeBranch.branch(
+                idf,
+                outlet_branch_name,
+                components=[outlet_pipe],
+                outlet_node_name=outlet_branch_outlet_node_name)
             all_demand_branches.append(outlet_branch)
 
             plant_assembly.extend(all_demand_branches)

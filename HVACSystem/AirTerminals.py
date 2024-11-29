@@ -5,6 +5,17 @@ from HVACSystem.AirLoopComponents import AirLoopComponent
 
 class AirTerminal:
     @staticmethod
+    def air_distribution_unit(idf: IDF, name: str = None):
+        name = 'Air Distribution Unit' if name is None else name
+        air_distribute = idf.newidfobject('ZoneHVAC:AirDistributionUnit', Name=name)
+
+        comp = {
+            'object': air_distribute,
+            'type': 'ZoneHVAC:AirDistributionUnit',
+        }
+        return comp
+
+    @staticmethod
     def single_duct_constant_volume_no_reheat(
             idf: IDF,
             schedule: EpBunch | str = None,
@@ -250,12 +261,21 @@ class AirTerminal:
         reheat_coil['Air_Inlet_Node_Name'] = damper_air_out_name
         reheat_coil['Air_Outlet_Node_Name'] = air_out_name
 
+        reheat_coil_comp = {
+            'object': reheat_coil,
+            'type': coil_key,
+            'water_inlet_field': 'Water_Inlet_Node_Name',
+            'water_outlet_field': 'Water_Outlet_Node_Name',
+            'air_inlet_field': 'Air_Inlet_Node_Name',
+            'air_outlet_field': 'Air_Outlet_Node_Name',
+        }
+
         component = {
             'object': terminal,
             'type': 'AirTerminal:SingleDuct:VAV:Reheat',
             'air_inlet_field': 'Air_Inlet_Node_Name',
             'air_outlet_field': 'Air_Outlet_Node_Name',
-            'reheat_coil': reheat_coil
+            'reheat_coil': reheat_coil_comp
         }
 
         return component

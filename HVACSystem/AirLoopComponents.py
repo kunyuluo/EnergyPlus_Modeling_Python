@@ -2,6 +2,7 @@ from eppy.modeleditor import IDF
 from eppy.bunch_subclass import EpBunch
 from HVACSystem.Controllers import Controller
 from HVACSystem.PerformanceCurves import PerformanceCurve
+from HVACSystem.PerformanceTables import PerformanceTable
 
 
 class AirLoopComponent:
@@ -119,7 +120,7 @@ class AirLoopComponent:
                                     4: "FractionOfAutosizedHeatingCapacity"}
         cooling_control_methods = {1: "OnOff", 2: "VAV", 3: "Bypass", 4: "VT"}
 
-        sizing = idf.newidfobject('Sizing:System'.upper())
+        sizing = idf.newidfobject('Sizing:System')
 
         if airloop is not None:
             if isinstance(airloop, EpBunch):
@@ -210,7 +211,7 @@ class AirLoopComponent:
         hx_configs = {1: "CrossFlow", 2: "CounterFlow"}
 
         name = 'Coil Cooling Water' if name is None else name
-        coil = idf.newidfobject('Coil:Cooling:Water'.upper(), Name=name)
+        coil = idf.newidfobject('Coil:Cooling:Water', Name=name)
 
         if schedule is None:
             coil['Availability_Schedule_Name'] = 'Always On Discrete hvac_library'
@@ -244,7 +245,7 @@ class AirLoopComponent:
         controller_name = f'{name} Controller'
         controller = Controller.controller_watercoil(idf, controller_name, control_variable, 2)
         controller['Sensor_Node_Name'] = coil.Air_Outlet_Node_Name
-        controller['Actuator_Variable'] = coil.Water_Inlet_Node_Name
+        controller['Actuator_Node_Name'] = coil.Water_Inlet_Node_Name
 
         component = {
             'object': coil,
@@ -281,7 +282,7 @@ class AirLoopComponent:
         methods = {1: "UFactorTimesAreaAndDesignWaterFlowRate", 2: "NominalCapacity"}
 
         name = 'Coil Heating Water' if name is None else name
-        coil = idf.newidfobject('Coil:Heating:Water'.upper(), Name=name)
+        coil = idf.newidfobject('Coil:Heating:Water', Name=name)
 
         if schedule is None:
             coil['Availability_Schedule_Name'] = 'Always On Discrete hvac_library'
@@ -314,7 +315,7 @@ class AirLoopComponent:
         controller_name = f'{name} Controller'
         controller = Controller.controller_watercoil(idf, controller_name, control_variable, 1)
         controller['Sensor_Node_Name'] = coil.Air_Outlet_Node_Name
-        controller['Actuator_Variable'] = coil.Water_Inlet_Node_Name
+        controller['Actuator_Node_Name'] = coil.Water_Inlet_Node_Name
 
         component = {
             'object': coil,
@@ -336,7 +337,7 @@ class AirLoopComponent:
             efficiency=1,
             capacity='Autosize'):
         name = 'Heating Coil Electric' if name is None else name
-        coil = idf.newidfobject('Coil:Heating:Electric'.upper(), Name=name)
+        coil = idf.newidfobject('Coil:Heating:Electric', Name=name)
 
         if schedule is None:
             coil['Availability_Schedule_Name'] = 'Always On Discrete hvac_library'
@@ -379,7 +380,7 @@ class AirLoopComponent:
         1: Fraction, 2: FixedFlowRate
         """
         name = 'Fan Variable Speed' if name is None else name
-        fan = idf.newidfobject('Fan:VariableVolume'.upper(), Name=name)
+        fan = idf.newidfobject('Fan:VariableVolume', Name=name)
 
         if schedule is None:
             fan['Availability_Schedule_Name'] = 'Always On Discrete hvac_library'
@@ -432,7 +433,7 @@ class AirLoopComponent:
             motor_efficiency=0.93,
             motor_in_airstream_fraction=1):
         name = 'Fan Constant Speed' if name is None else name
-        fan = idf.newidfobject('Fan:VariableVolume'.upper(), Name=name)
+        fan = idf.newidfobject('Fan:VariableVolume', Name=name)
 
         if schedule is None:
             fan['Availability_Schedule_Name'] = 'Always On Discrete hvac_library'
@@ -476,7 +477,7 @@ class AirLoopComponent:
             power_ratio_function_speed_ratio_curve=None,
             efficiency_ratio_function_speed_ratio_curve=None):
         name = 'Fan On Off' if name is None else name
-        fan = idf.newidfobject('Fan:OnOff'.upper(), Name=name)
+        fan = idf.newidfobject('Fan:OnOff', Name=name)
 
         if schedule is None:
             fan['Availability_Schedule_Name'] = 'Always On Discrete hvac_library'
@@ -511,7 +512,6 @@ class AirLoopComponent:
 
         return component
 
-
     @staticmethod
     def heat_exchanger_air_to_air(
             idf: IDF,
@@ -533,7 +533,8 @@ class AirLoopComponent:
             threshold_temp=1.7,
             initial_defrost_time_fraction=None,
             rate_of_defrost_time_fraction_increase=None,
-            economizer_lockout: bool = False):
+            economizer_lockout: bool = False,
+            availability_schedule: EpBunch | str = None):
         """
         -Heat_exchanger_type: 1.Plate 2.Rotary \n
         -Frost_control_type: \n
@@ -544,7 +545,17 @@ class AirLoopComponent:
         frost_types = {0: "None", 1: "ExhaustAirRecirculation", 2: "ExhaustOnly", 3: "MinimumExhaustTemperature"}
 
         name = 'Plate Heat Recovery' if name is None else name
-        hx = idf.newidfobject('HeatExchanger:AirToAir:SensibleAndLatent'.upper(), Name=name)
+        hx = idf.newidfobject('HeatExchanger:AirToAir:SensibleAndLatent', Name=name)
+
+        if availability_schedule is None:
+            hx['Availability_Schedule_Name'] = 'Always On Discrete hvac_library'
+        else:
+            if isinstance(availability_schedule, EpBunch):
+                hx['Availability_Schedule_Name'] = availability_schedule.Name
+            elif isinstance(availability_schedule, str):
+                hx['Availability_Schedule_Name'] = availability_schedule
+            else:
+                raise TypeError('Invalid type of availability_schedule.')
 
         hx['Nominal_Supply_Air_Flow_Rate'] = supply_air_flow_rate
 
@@ -588,125 +599,162 @@ class AirLoopComponent:
 
         return component
 
-    # @staticmethod
-    # def outdoor_air_system(
-    #         idf: IDF,
-    #         name: str = None,
-    #         outdoor_air_stream_comp: dict | list[dict] = None,
-    #         heat_recovery: bool = False):
-    #     oa_sys_assembly = []
-    #
-    #     name = 'Outdoor Air System' if name is None else name
-    #     controller_list_name = f'{name} Controller List'
-    #     equipment_list_name = f'{name} Equipment List'
-    #
-    #     oa_sys = idf.newidfobject('AirLoopHVAC:OutdoorAirSystem'.upper(), Name=name)
-    #     oa_sys['Controller_List_Name'] = controller_list_name
-    #     oa_sys['Outdoor_Air_Equipment_List_Name'] = equipment_list_name
-    #     oa_sys_assembly.append(oa_sys)
-    #
-    #     # Controller List:
-    #     controller_name = f'{name} Controller'
-    #     controller_list = idf.newidfobject('AirLoopHVAC:ControllerList'.upper(), Name=controller_list_name)
-    #     controller_list['Controller_1_Object_Type'] = 'Controller:OutdoorAir'
-    #     controller_list['Controller_1_Name'] = controller_name
-    #     oa_sys_assembly.append(controller_list)
-    #
-    #     # Controller:
-    #     controller = Controller.controller_outdoor_air(idf, controller_name)
-    #     controller['Relief_Air_Outlet_Node_Name'] = f'{controller_name} relief_air_outlet'
-    #     controller['Return_Air_Node_Name'] = f'{controller_name} return_air'
-    #     controller['Mixed_Air_Node_Name'] = f'{controller_name} mixed_air'
-    #     controller['Actuator_Node_Name'] = f'{controller_name} outdoor_air_inlet'
-    #
-    #     oa_inlet_node_list = idf.newidfobject('OutdoorAir:NodeList'.upper())
-    #     oa_inlet_node_list['Node_or_NodeList_Name_1'] = controller.Actuator_Node_Name
-    #
-    #     oa_sys_assembly.append(controller)
-    #
-    #     # Equipment List:
-    #     os_sys_equip_list = idf.newidfobject('AirLoopHVAC:OutdoorAirSystem:EquipmentList'.upper(), Name=equipment_list_name)
-    #
-    #     mixer_name = f'{name} Outdoor Air Mixer'
-    #     os_sys_equip_list['Component_1_Object_Type'] = 'OutdoorAir:Mixer'
-    #     os_sys_equip_list['Component_1_Name'] = mixer_name
-    #     oa_sys_assembly.append(os_sys_equip_list)
-    #
-    #     mixer_oa_stream_name = controller.Actuator_Node_Name
-    #     mixer_ra_stream_name = controller.Relief_Air_Outlet_Node_Name
-    #
-    #     if outdoor_air_stream_comp is not None:
-    #         if isinstance(outdoor_air_stream_comp, list) and len(outdoor_air_stream_comp) > 1:
-    #             for i, comp in enumerate(outdoor_air_stream_comp):
-    #                 os_sys_equip_list[f'Component_{i+2}_Object_Type'] = comp['type']
-    #                 os_sys_equip_list[f'Component_{i+2}_Name'] = comp['object'].Name
-    #                 if i == 0:
-    #                     comp['object'].Air_Inlet_Node_Name = controller.Actuator_Node_Name
-    #                     comp['object'].Air_Outlet_Node_Name = comp['object'].Name + '_air_outlet'
-    #                 elif i == len(outdoor_air_stream_comp)-1:
-    #                     if comp['type'] != 'HeatExchanger:AirToAir:SensibleAndLatent':
-    #                         comp['object'].Air_Inlet_Node_Name = outdoor_air_stream_comp[i-1]['object'].Air_Outlet_Node_Name
-    #                         comp['object'].Air_Outlet_Node_Name = comp['object'].Name + '_air_outlet'
-    #
-    #                         mixer_oa_stream_name = comp['object'].Air_Outlet_Node_Name
-    #                     else:
-    #                         comp['object'].Supply_Air_Inlet_Node_Name = comp['object'].Name + '_supply_air_inlet'
-    #                         comp['object'].Supply_Air_Outlet_Node_Name = comp['object'].Name + '_supply_air_outlet'
-    #                         comp['object'].Exhaust_Air_Inlet_Node_Name = controller.Relief_Air_Outlet_Node_Name
-    #                         comp['object'].Exhaust_Air_Outlet_Node_Name = comp['object'].Name + '_exhaust_air_outlet'
-    #
-    #                         mixer_oa_stream_name = comp['object'].Supply_Air_Outlet_Node_Name
-    #                         mixer_ra_stream_name = comp['object'].Exhaust_Air_Inlet_Node_Name
-    #                 else:
-    #                     pass
-    #                 oa_sys_assembly.append(comp['object'])
-    #
-    #         elif isinstance(outdoor_air_stream_comp, dict):
-    #             os_sys_equip_list['Component_2_Object_Type'] = outdoor_air_stream_comp['type']
-    #             os_sys_equip_list['Component_2_Name'] = outdoor_air_stream_comp['object'].Name
-    #             if outdoor_air_stream_comp['type'] != 'HeatExchanger:AirToAir:SensibleAndLatent':
-    #                 outdoor_air_stream_comp['object'].Air_Inlet_Node_Name = controller.Actuator_Node_Name
-    #                 outdoor_air_stream_comp['object'].Air_Outlet_Node_Name = outdoor_air_stream_comp['object'].Name + '_air_outlet'
-    #
-    #                 mixer_oa_stream_name = outdoor_air_stream_comp['object'].Air_Outlet_Node_Name
-    #             else:
-    #                 outdoor_air_stream_comp['object'].Supply_Air_Inlet_Node_Name = controller.Actuator_Node_Name
-    #                 outdoor_air_stream_comp['object'].Supply_Air_Outlet_Node_Name = outdoor_air_stream_comp['object'].Name + '_supply_air_outlet'
-    #                 outdoor_air_stream_comp['object'].Exhaust_Air_Inlet_Node_Name = controller.Relief_Air_Outlet_Node_Name
-    #                 outdoor_air_stream_comp['object'].Exhaust_Air_Outlet_Node_Name = outdoor_air_stream_comp['object'].Name + '_exhaust_air_outlet'
-    #
-    #                 mixer_oa_stream_name = outdoor_air_stream_comp['object'].Supply_Air_Outlet_Node_Name
-    #                 mixer_ra_stream_name = outdoor_air_stream_comp['object'].Exhaust_Air_Inlet_Node_Name
-    #
-    #             oa_sys_assembly.append(outdoor_air_stream_comp['object'])
-    #         else:
-    #             raise TypeError('Invalid type of outdoor air stream components.')
-    #     else:
-    #         if heat_recovery:
-    #             hx_name = f'{name} Heat Exchanger'
-    #             hx = AirLoopComponent.heat_exchanger_air_to_air(idf, hx_name)
-    #             os_sys_equip_list['Component_2_Object_Type'] = hx['type']
-    #             os_sys_equip_list['Component_2_Name'] = hx['object'].Name
-    #
-    #             hx['object'].Supply_Air_Inlet_Node_Name = controller.Actuator_Node_Name
-    #             hx['object'].Supply_Air_Outlet_Node_Name = hx['object'].Name + '_supply_air_outlet'
-    #             hx['object'].Exhaust_Air_Inlet_Node_Name = controller.Relief_Air_Outlet_Node_Name
-    #             hx['object'].Exhaust_Air_Outlet_Node_Name = hx['object'].Name + '_exhaust_air_outlet'
-    #
-    #             mixer_oa_stream_name = hx['object'].Supply_Air_Outlet_Node_Name
-    #             mixer_ra_stream_name = hx['object'].Exhaust_Air_Inlet_Node_Name
-    #
-    #             oa_sys_assembly.append(hx['object'])
-    #
-    #     # Outdoor Air Mixer:
-    #     oa_mixer = idf.newidfobject('OutdoorAir:Mixer'.upper(), Name=mixer_name)
-    #     oa_mixer['Mixed_Air_Node_Name'] = controller.Mixed_Air_Node_Name
-    #     oa_mixer['Outdoor_Air_Stream_Node_Name'] = mixer_oa_stream_name
-    #     oa_mixer['Relief_Air_Stream_Node_Name'] = mixer_ra_stream_name
-    #     oa_mixer['Return_Air_Stream_Node_Name'] = controller.Return_Air_Node_Name
-    #     oa_sys_assembly.append(oa_mixer)
-    #
-    #     # Setpoint Manager:MixedAir at each node in outdoor air stream:
-    #
-    #
-    #     return oa_sys_assembly
+    @staticmethod
+    def heat_exchanger_air_to_air_v24(
+            idf: IDF,
+            name: str = None,
+            supply_air_flow_rate='Autosize',
+            sensible_only: bool = False,
+            sensible_effectiveness_100_heating=0.75,
+            latent_effectiveness_100_heating=0.68,
+            sensible_effectiveness_100_cooling=0.75,
+            latent_effectiveness_100_cooling=0.68,
+            sensible_effectiveness_heat_air_flow_curve: EpBunch = None,
+            latent_effectiveness_heat_air_flow_curve: EpBunch = None,
+            sensible_effectiveness_cool_air_flow_curve: EpBunch = None,
+            latent_effectiveness_cool_air_flow_curve: EpBunch = None,
+            nominal_electric_power=0,
+            supply_air_outlet_temp_control: bool = True,
+            heat_exchanger_type: int = 0,
+            frost_control_type: int = 0,
+            threshold_temp=1.7,
+            initial_defrost_time_fraction=None,
+            rate_of_defrost_time_fraction_increase=None,
+            economizer_lockout: bool = False,
+            availability_schedule: EpBunch | str = None):
+        """
+        -Heat_exchanger_type: 1.Plate 2.Rotary \n
+        -Frost_control_type: \n
+        1.None 2.ExhaustAirRecirculation 3.ExhaustOnly 4.MinimumExhaustTemperature
+        """
+
+        types = {0: "Plate", 1: "Rotary"}
+        frost_types = {0: "None", 1: "ExhaustAirRecirculation", 2: "ExhaustOnly", 3: "MinimumExhaustTemperature"}
+
+        name = 'Plate Heat Recovery' if name is None else name
+        hx = idf.newidfobject('HeatExchanger:AirToAir:SensibleAndLatent', Name=name)
+
+        if availability_schedule is None:
+            hx['Availability_Schedule_Name'] = 'Always On Discrete hvac_library'
+        else:
+            if isinstance(availability_schedule, EpBunch):
+                hx['Availability_Schedule_Name'] = availability_schedule.Name
+            elif isinstance(availability_schedule, str):
+                hx['Availability_Schedule_Name'] = availability_schedule
+            else:
+                raise TypeError('Invalid type of availability_schedule.')
+
+        hx['Nominal_Supply_Air_Flow_Rate'] = supply_air_flow_rate
+
+        hx['Sensible_Effectiveness_at_100_Heating_Air_Flow'] = sensible_effectiveness_100_heating
+        hx['Sensible_Effectiveness_at_100_Cooling_Air_Flow'] = sensible_effectiveness_100_cooling
+
+        if sensible_only:
+            latent_effectiveness_100_heating = 0
+            latent_effectiveness_100_cooling = 0
+            hx['Latent_Effectiveness_at_100_Heating_Air_Flow'] = latent_effectiveness_100_heating
+            hx['Latent_Effectiveness_at_100_Cooling_Air_Flow'] = latent_effectiveness_100_cooling
+        else:
+            hx['Latent_Effectiveness_at_100_Heating_Air_Flow'] = latent_effectiveness_100_heating
+            hx['Latent_Effectiveness_at_100_Cooling_Air_Flow'] = latent_effectiveness_100_cooling
+
+        hx['Nominal_Electric_Power'] = nominal_electric_power
+        hx['Supply_Air_Outlet_Temperature_Control'] = 'Yes' if supply_air_outlet_temp_control else 'No'
+        hx['Heat_Exchanger_Type'] = types[heat_exchanger_type]
+        hx['Frost_Control_Type'] = frost_types[frost_control_type]
+        hx['Threshold_Temperature'] = threshold_temp
+
+        if initial_defrost_time_fraction is not None:
+            hx['Initial_Defrost_Time_Fraction'] = initial_defrost_time_fraction
+        if rate_of_defrost_time_fraction_increase is not None:
+            hx['Rate_of_Defrost_Time_Fraction_Increase'] = rate_of_defrost_time_fraction_increase
+
+        hx['Economizer_Lockout'] = 'Yes' if economizer_lockout else 'No'
+
+        # Performance Table:
+        if sensible_effectiveness_heat_air_flow_curve is None:
+            curve_independent_var_name = f'{name} HX_SensHeatEff_IndependentVariable'
+            curve_independent_var = PerformanceTable.table_independent_variable(
+                idf,
+                name=curve_independent_var_name,
+                interpolation_methods=1,
+                extrapolation_methods=2,
+                values=[0.75, 1])
+
+            table_name = f'{name} HX_SensHeatEff'
+            table = PerformanceTable.table_loop_up(
+                idf,
+                name=table_name,
+                independent_variables=[curve_independent_var],
+                output_values=[0.81, sensible_effectiveness_100_heating])
+            hx['Sensible_Effectiveness_of_Heating_Air_Flow_Curve_Name'] = table.Name
+        else:
+            hx['Sensible_Effectiveness_of_Heating_Air_Flow_Curve_Name'] =\
+                sensible_effectiveness_heat_air_flow_curve.Name
+
+        if latent_effectiveness_heat_air_flow_curve is None:
+            curve_independent_var_name = f'{name} HX_LatHeatEff_IndependentVariable'
+            curve_independent_var = PerformanceTable.table_independent_variable(
+                idf,
+                name=curve_independent_var_name,
+                interpolation_methods=1,
+                extrapolation_methods=2,
+                values=[0.75, 1])
+            table_name = f'{name} HX_LatHeatEff'
+            table = PerformanceTable.table_loop_up(
+                idf,
+                name=table_name,
+                independent_variables=[curve_independent_var],
+                output_values=[0.73, latent_effectiveness_100_heating])
+            hx['Latent_Effectiveness_of_Heating_Air_Flow_Curve_Name'] = table.Name
+        else:
+            hx['Latent_Effectiveness_of_Heating_Air_Flow_Curve_Name'] =\
+                latent_effectiveness_heat_air_flow_curve.Name
+
+        if sensible_effectiveness_cool_air_flow_curve is None:
+            curve_independent_var_name = f'{name} HX_SensCoolEff_IndependentVariable'
+            curve_independent_var = PerformanceTable.table_independent_variable(
+                idf,
+                name=curve_independent_var_name,
+                interpolation_methods=1,
+                extrapolation_methods=2,
+                values=[0.75, 1])
+            table_name = f'{name} HX_SensCoolEff'
+            table = PerformanceTable.table_loop_up(
+                idf,
+                name=table_name,
+                independent_variables=[curve_independent_var],
+                output_values=[0.81, sensible_effectiveness_100_cooling])
+            hx['Sensible_Effectiveness_of_Cooling_Air_Flow_Curve_Name'] = table.Name
+        else:
+            hx['Sensible_Effectiveness_of_Cooling_Air_Flow_Curve_Name'] =\
+                sensible_effectiveness_cool_air_flow_curve.Name
+
+        if latent_effectiveness_cool_air_flow_curve is None:
+            curve_independent_var_name = f'{name} HX_LatCoolEff_IndependentVariable'
+            curve_independent_var = PerformanceTable.table_independent_variable(
+                idf,
+                name=curve_independent_var_name,
+                interpolation_methods=1,
+                extrapolation_methods=2,
+                values=[0.75, 1])
+            table_name = f'{name} HX_LatCoolEff'
+            table = PerformanceTable.table_loop_up(
+                idf,
+                name=table_name,
+                independent_variables=[curve_independent_var],
+                output_values=[0.73, latent_effectiveness_100_cooling])
+            hx['Latent_Effectiveness_of_Cooling_Air_Flow_Curve_Name'] = table.Name
+        else:
+            hx['Latent_Effectiveness_of_Cooling_Air_Flow_Curve_Name'] = latent_effectiveness_cool_air_flow_curve.Name
+
+        component = {
+            'object': hx,
+            'type': 'HeatExchanger:AirToAir:SensibleAndLatent',
+            'supply_air_inlet_field': 'Supply_Air_Inlet_Node_Name',
+            'supply_air_outlet_field': 'Supply_Air_Outlet_Node_Name',
+            'exhaust_air_inlet_field': 'Exhaust_Air_Inlet_Node_Name',
+            'exhaust_air_outlet_field': 'Exhaust_Air_Outlet_Node_Name',
+        }
+
+        return component

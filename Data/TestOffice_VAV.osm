@@ -2718,7 +2718,7 @@ OS:Node,
   {66d69d96-dcac-494f-b69b-62c0260a97e0}, !- Handle
   Node 30,                                !- Name
   {656079d8-5f1b-44c4-964a-322cb04e13fb}, !- Inlet Port
-  {66e7a2a4-43da-4dad-ad46-874e26af41b5}; !- Outlet Port
+  {3b467543-4611-44db-ab13-5f9648d89b87}; !- Outlet Port
 
 OS:Connector:Mixer,
   {5d1bd5b9-de46-4cae-a50a-8091c736058c}, !- Handle
@@ -2924,7 +2924,7 @@ OS:Chiller:Electric:EIR,
   ,                                       !- Maximum Part Load Ratio
   ,                                       !- Optimum Part Load Ratio
   ,                                       !- Minimum Unloading Ratio
-  {6645e728-0685-4e07-a061-65d169cfbecf}, !- Chilled Water Inlet Node Name
+  {3b467543-4611-44db-ab13-5f9648d89b87}, !- Chilled Water Inlet Node Name
   {81af9503-736f-48cf-8ba4-40ba48db4e43}, !- Chilled Water Outlet Node Name
   {c89923cb-0f2e-4917-a2c5-74b9b9113ef9}, !- Condenser Inlet Node Name
   {60511e79-90bd-476b-b8b2-a0f0ae945586}, !- Condenser Outlet Node Name
@@ -2932,7 +2932,7 @@ OS:Chiller:Electric:EIR,
   ,                                       !- Condenser Fan Power Ratio {W/W}
   ,                                       !- Fraction of Compressor Electric Consumption Rejected by Condenser
   ,                                       !- Leaving Chilled Water Lower Temperature Limit {C}
-  ,                                       !- Chiller Flow Mode
+  LeavingSetpointModulated,               !- Chiller Flow Mode
   0,                                      !- Design Heat Recovery Water Flow Rate {m3/s}
   ,                                       !- Heat Recovery Inlet Node Name
   ,                                       !- Heat Recovery Outlet Node Name
@@ -4131,54 +4131,6 @@ OS:WeatherFile,
   ,                                       !- Start Date Actual Year
   Sunday;                                 !- Start Day of Week
 
-OS:Pump:ConstantSpeed,
-  {5630fe12-d362-48ab-b400-327754c4650e}, !- Handle
-  Const Spd Pump,                         !- Name
-  {66e7a2a4-43da-4dad-ad46-874e26af41b5}, !- Inlet Node Name
-  {758499c5-6dce-4e8b-9c06-c42e57a6adbf}, !- Outlet Node Name
-  autosize,                               !- Rated Flow Rate {m3/s}
-  179352,                                 !- Rated Pump Head {Pa}
-  autosize,                               !- Rated Power Consumption {W}
-  0.9,                                    !- Motor Efficiency
-  0,                                      !- Fraction of Motor Inefficiencies to Fluid Stream
-  Intermittent,                           !- Pump Control Type
-  ,                                       !- Pump Flow Rate Schedule
-  ,                                       !- Pump Curve
-  ,                                       !- Impeller Diameter {m}
-  ,                                       !- Rotational Speed {rev/min}
-  ,                                       !- Zone
-  ,                                       !- Skin Loss Radiative Fraction
-  PowerPerFlowPerPressure,                !- Design Power Sizing Method
-  348701.1,                               !- Design Electric Power per Unit Flow Rate {W/(m3/s)}
-  1.282051282;                            !- Design Shaft Power per Unit Flow Rate per Unit Head {W-s/m3-Pa}
-
-OS:Node,
-  {2bd21beb-6014-4d62-ab36-2c5bdd0e08d1}, !- Handle
-  Node 44,                                !- Name
-  {758499c5-6dce-4e8b-9c06-c42e57a6adbf}, !- Inlet Port
-  {6645e728-0685-4e07-a061-65d169cfbecf}; !- Outlet Port
-
-OS:Connection,
-  {66e7a2a4-43da-4dad-ad46-874e26af41b5}, !- Handle
-  {66d69d96-dcac-494f-b69b-62c0260a97e0}, !- Source Object
-  3,                                      !- Outlet Port
-  {5630fe12-d362-48ab-b400-327754c4650e}, !- Target Object
-  2;                                      !- Inlet Port
-
-OS:Connection,
-  {758499c5-6dce-4e8b-9c06-c42e57a6adbf}, !- Handle
-  {5630fe12-d362-48ab-b400-327754c4650e}, !- Source Object
-  3,                                      !- Outlet Port
-  {2bd21beb-6014-4d62-ab36-2c5bdd0e08d1}, !- Target Object
-  2;                                      !- Inlet Port
-
-OS:Connection,
-  {6645e728-0685-4e07-a061-65d169cfbecf}, !- Handle
-  {2bd21beb-6014-4d62-ab36-2c5bdd0e08d1}, !- Source Object
-  3,                                      !- Outlet Port
-  {14cf4043-8c1d-4c73-8ec0-ed18b88ae388}, !- Target Object
-  15;                                     !- Inlet Port
-
 OS:AvailabilityManager:NightCycle,
   {c1eac101-e9d0-43bd-b108-d7aeb9ccc0c5}, !- Handle
   Availability Manager Night Cycle 1,     !- Name
@@ -4208,4 +4160,11 @@ OS:ModelObjectList,
 OS:ModelObjectList,
   {0dadd59f-b8a2-4736-acea-170d7896fe3e}, !- Handle
   Availability Manager Night Cycle 1 Heating Zone Fans Only Zone List; !- Name
+
+OS:Connection,
+  {3b467543-4611-44db-ab13-5f9648d89b87}, !- Handle
+  {66d69d96-dcac-494f-b69b-62c0260a97e0}, !- Source Object
+  3,                                      !- Outlet Port
+  {14cf4043-8c1d-4c73-8ec0-ed18b88ae388}, !- Target Object
+  15;                                     !- Inlet Port
 
