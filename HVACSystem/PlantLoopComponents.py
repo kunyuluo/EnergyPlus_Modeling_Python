@@ -385,12 +385,126 @@ class PlantLoopComponent:
         return comp
 
     # ***************************************************************************************************
+    # Condenser Equipments
+    @staticmethod
+    def cooling_tower_single_speed(
+            idf: IDF,
+            name: str = None,
+            design_water_flow_rate='Autosize',
+            design_air_flow_rate='Autosize',
+            fan_power_at_design_air_flow='Autosize',
+            u_factor_area_at_design_air_flow='Autosize',
+            air_flow_rate_in_free_convection='Autosize',
+            air_flow_rate_in_free_convection_sizing_factor=0.1,
+            u_factor_area_at_free_convection='Autosize',
+            u_factor_area_at_free_convection_sizing_factor=0.1,
+            performance_input_method: int = 1,
+            heat_rejection_capacity_nominal_capacity_sizing_ratio=1.25,
+            nominal_capacity=None,
+            free_convection_capacity=0,
+            free_convection_nominal_cap_sizing_factor=0.1,
+            basin_heater_capacity=0,
+            basin_heater_setpoint_temp=2,
+            basin_heater_schedule=None,
+            evaporation_loss_mode: int = 1,
+            evaporation_loss_factor=0.2,
+            drift_loss_percent=0.008,
+            blowdown_calculation_mode: int = 1,
+            blowdown_concentration_ratio=3,
+            blowdown_markup_water_schedule=None,
+            capacity_control: int = 1,
+            number_of_cells=1,
+            cell_control: int = 1,
+            cell_min_water_flow_fraction=0.33,
+            cell_max_water_flow_fraction=2.5,
+            sizing_factor=1,
+            design_inlet_air_dry_bulb_temp=35.0,
+            design_inlet_air_wet_bulb_temp=25.6,
+            design_approach_temp='Autosize',
+            design_range_temp='Autosize'):
+
+        """
+        -Performance_input_method: 1:UFactorTimesAreaAndDesignWaterFlowRate 2:NominalCapacity
+        -Evaporation_loss_mode: 1:LossFactor 2:SaturatedExit
+        -Blowdown_calculation_mode: 1:ConcentrationRatio 2:ScheduledRate
+        -Capacity_control: 1:FanCycling 2:FluidBypass
+        -Cell_control: 1:MinimalCell 2:MaximalCell
+        """
+
+        performance_methods = {1: "UFactorTimesAreaAndDesignWaterFlowRate", 2: "NominalCapacity"}
+        evap_loss_modes = {1: "LossFactor", 2: "SaturatedExit"}
+        blowdown_modes = {1: "ConcentrationRatio", 2: "ScheduledRate"}
+        capacity_controls = {1: "FanCycling", 2: "FluidBypass"}
+        cell_controls = {1: "MinimalCell", 2: "MaximalCell"}
+
+        name = 'Cooling Tower Single Speed' if name is None else name
+        tower = idf.newidfobject('CoolingTower:SingleSpeed', Name=name)
+
+        tower['Design_Water_Flow_Rate'] = design_water_flow_rate
+        tower['Design_Air_Flow_Rate'] = design_air_flow_rate
+        tower['Design_Fan_Power'] = fan_power_at_design_air_flow
+        tower['Design_UFactor_Times_Area_Value'] = u_factor_area_at_design_air_flow
+        tower['Free_Convection_Regime_Air_Flow_Rate'] = air_flow_rate_in_free_convection
+        tower['Free_Convection_Regime_Air_Flow_Rate_Sizing_Factor'] = air_flow_rate_in_free_convection_sizing_factor
+        tower['Free_Convection_Regime_UFactor_Times_Area_Value'] = u_factor_area_at_free_convection
+        tower['Free_Convection_UFactor_Times_Area_Value_Sizing_Factor'] = u_factor_area_at_free_convection_sizing_factor
+        tower['Performance_Input_Method'] = performance_methods[performance_input_method]
+        tower['Heat_Rejection_Capacity_and_Nominal_Capacity_Sizing_Ratio'] = heat_rejection_capacity_nominal_capacity_sizing_ratio
+        if nominal_capacity is not None:
+            tower['Nominal_Capacity'] = nominal_capacity
+        tower['Free_Convection_Capacity'] = free_convection_capacity
+        tower['Free_Convection_Nominal_Capacity_Sizing_Factor'] = free_convection_nominal_cap_sizing_factor
+        tower['Basin_Heater_Capacity'] = basin_heater_capacity
+        tower['Basin_Heater_Setpoint_Temperature'] = basin_heater_setpoint_temp
+        if basin_heater_schedule is not None:
+            if isinstance(basin_heater_schedule, str):
+                tower['Basin_Heater_Operating_Schedule_Name'] = basin_heater_schedule
+            elif isinstance(basin_heater_schedule, EpBunch):
+                tower['Basin_Heater_Operating_Schedule_Name'] = basin_heater_schedule.Name
+            else:
+                raise TypeError('basin_heater_schedule must be EpBunch or str')
+        tower['Evaporation_Loss_Mode'] = evap_loss_modes[evaporation_loss_mode]
+        tower['Evaporation_Loss_Factor'] = evaporation_loss_factor
+        tower['Drift_Loss_Percent'] = drift_loss_percent
+        tower['Blowdown_Calculation_Mode'] = blowdown_modes[blowdown_calculation_mode]
+        tower['Blowdown_Concentration_Ratio'] = blowdown_concentration_ratio
+        if blowdown_markup_water_schedule is not None:
+            if isinstance(blowdown_markup_water_schedule, str):
+                tower['Blowdown_Makeup_Water_Usage_Schedule_Name'] = blowdown_markup_water_schedule
+            elif isinstance(blowdown_markup_water_schedule, EpBunch):
+                tower['Blowdown_Makeup_Water_Usage_Schedule_Name'] = blowdown_markup_water_schedule.Name
+            else:
+                raise TypeError('blowdown_markup_water_schedule must be EpBunch or str')
+        tower['Capacity_Control'] = capacity_controls[capacity_control]
+        tower['Number_of_Cells'] = number_of_cells
+        tower['Cell_Control'] = cell_controls[cell_control]
+        tower['Cell_Minimum_Water_Flow_Rate_Fraction'] = cell_min_water_flow_fraction
+        tower['Cell_Maximum_Water_Flow_Rate_Fraction'] = cell_max_water_flow_fraction
+        tower['Sizing_Factor'] = sizing_factor
+        tower['Design_Inlet_Air_DryBulb_Temperature'] = design_inlet_air_dry_bulb_temp
+        tower['Design_Inlet_Air_WetBulb_Temperature'] = design_inlet_air_wet_bulb_temp
+        tower['Design_Approach_Temperature'] = design_approach_temp
+        tower['Design_Range_Temperature'] = design_range_temp
+
+        tower['Water_Inlet_Node_Name'] = f'{name} Water_Inlet'
+        tower['Water_Outlet_Node_Name'] = f'{name} Water_Outlet'
+
+        comp = {
+            'object': tower,
+            'type': 'CoolingTower:SingleSpeed',
+            'water_inlet_field': 'Water_Inlet_Node_Name',
+            'water_outlet_field': 'Water_Outlet_Node_Name',
+        }
+
+        return comp
+
+    # ***************************************************************************************************
     # Distribution Equipments
     @staticmethod
     def pump_variable_speed(
             idf: IDF,
             name: str = None,
-            design_head=500,
+            design_head=179352,
             design_max_flow_rate='Autosize',
             design_min_flow_rate=0,
             design_power='Autosize',
@@ -505,7 +619,7 @@ class PlantLoopComponent:
     def pump_constant_speed(
             idf: IDF,
             name: str = None,
-            design_head=500,
+            design_head=179352,
             design_max_flow_rate='Autosize',
             design_min_flow_rate=0,
             design_power='Autosize',
@@ -570,148 +684,145 @@ class PlantLoopComponent:
 
         return comp
 
-    # @staticmethod
-    # def headered_pumps_variable_speed(
-    #         idf: IDF,
-    #         name: str = None,
-    #         rated_flow_rate=None,
-    #         number_of_pumps_in_bank: int = 2,
-    #         rated_head=None,
-    #         rated_power=None,
-    #         motor_efficiency=None,
-    #         fraction_motor_inefficiencies_to_fluid_stream=None,
-    #         min_flow_rate_fraction=None,
-    #         control_type: int = 1,
-    #         pump_flow_schedule=None,
-    #         power_sizing_method: int = 1,
-    #         power_per_flow_rate=None,
-    #         power_per_flow_rate_per_head=None,
-    #         thermal_zone: openstudio.openstudiomodel.ThermalZone = None,
-    #         skin_loss_radiative_fraction=None,
-    #         pump_curve_coeff=None):
-    #
-    #     """
-    #     -Control_type: 1:Intermittent 2:Continuous \n
-    #     -Power_sizing_method: 1:PowerPerFlowPerPressure 2:PowerPerFlow
-    #     """
-    #
-    #     control_types = {1: "Intermittent", 2: "Continuous"}
-    #     sizing_methods = {1: "PowerPerFlowPerPressure", 2: "PowerPerFlow"}
-    #
-    #     pump = openstudio.openstudiomodel.HeaderedPumpsVariableSpeed(model)
-    #
-    #     if name is not None:
-    #         pump.setName(name)
-    #     if rated_head is not None:
-    #         pump.setRatedPumpHead(rated_head)
-    #
-    #     if rated_flow_rate is not None:
-    #         pump.setTotalRatedFlowRate(rated_flow_rate)
-    #     else:
-    #         pump.autosizeTotalRatedFlowRate()
-    #
-    #     pump.setNumberofPumpsinBank(number_of_pumps_in_bank)
-    #
-    #     if min_flow_rate_fraction is not None:
-    #         pump.setMinimumFlowRateFraction(min_flow_rate_fraction)
-    #
-    #     if rated_power is not None:
-    #         pump.setRatedPowerConsumption(rated_power)
-    #     else:
-    #         pump.autosizeRatedPowerConsumption()
-    #
-    #     if motor_efficiency is not None:
-    #         pump.setMotorEfficiency(motor_efficiency)
-    #     if fraction_motor_inefficiencies_to_fluid_stream is not None:
-    #         pump.setFractionofMotorInefficienciestoFluidStream(fraction_motor_inefficiencies_to_fluid_stream)
-    #     if control_type != 1:
-    #         pump.setPumpControlType(control_types[control_type])
-    #     if pump_flow_schedule is not None:
-    #         pump.setPumpFlowRateSchedule(pump_flow_schedule)
-    #     if power_sizing_method != 1:
-    #         pump.setDesignPowerSizingMethod(sizing_methods[power_sizing_method])
-    #     if power_per_flow_rate is not None:
-    #         pump.setDesignElectricPowerPerUnitFlowRate(power_per_flow_rate)
-    #     if power_per_flow_rate_per_head is not None:
-    #         pump.setDesignShaftPowerPerUnitFlowRatePerUnitHead(power_per_flow_rate_per_head)
-    #
-    #     if thermal_zone is not None:
-    #         pump.setThermalZone(thermal_zone)
-    #     if skin_loss_radiative_fraction is not None:
-    #         pump.setSkinLossRadiativeFraction(skin_loss_radiative_fraction)
-    #
-    #     if pump_curve_coeff is not None:
-    #         if isinstance(pump_curve_coeff, list) and len(pump_curve_coeff) == 4:
-    #             pump.setCoefficient1ofthePartLoadPerformanceCurve(pump_curve_coeff[0])
-    #             pump.setCoefficient2ofthePartLoadPerformanceCurve(pump_curve_coeff[1])
-    #             pump.setCoefficient3ofthePartLoadPerformanceCurve(pump_curve_coeff[2])
-    #             pump.setCoefficient4ofthePartLoadPerformanceCurve(pump_curve_coeff[3])
-    #
-    #     return pump
-    #
-    # @staticmethod
-    # def headered_pumps_constant_speed(
-    #         idf: IDF,
-    #         name: str = None,
-    #         rated_flow_rate=None,
-    #         number_of_pumps_in_bank: int = 2,
-    #         rated_head=None,
-    #         rated_power=None,
-    #         motor_efficiency=None,
-    #         fraction_motor_inefficiencies_to_fluid_stream=None,
-    #         control_type: int = 1,
-    #         pump_flow_schedule=None,
-    #         power_sizing_method: int = 1,
-    #         power_per_flow_rate=None,
-    #         power_per_flow_rate_per_head=None,
-    #         thermal_zone: openstudio.openstudiomodel.ThermalZone = None,
-    #         skin_loss_radiative_fraction=None):
-    #
-    #     """
-    #     -Control_type: 1:Intermittent 2:Continuous \n
-    #     -Power_sizing_method: 1:PowerPerFlowPerPressure 2:PowerPerFlow
-    #     """
-    #
-    #     control_types = {1: "Intermittent", 2: "Continuous"}
-    #     sizing_methods = {1: "PowerPerFlowPerPressure", 2: "PowerPerFlow"}
-    #
-    #     pump = openstudio.openstudiomodel.HeaderedPumpsConstantSpeed(model)
-    #
-    #     if name is not None:
-    #         pump.setName(name)
-    #     if rated_head is not None:
-    #         pump.setRatedPumpHead(rated_head)
-    #
-    #     if rated_flow_rate is not None:
-    #         pump.setTotalRatedFlowRate(rated_flow_rate)
-    #     else:
-    #         pump.autosizeTotalRatedFlowRate()
-    #
-    #     pump.setNumberofPumpsinBank(number_of_pumps_in_bank)
-    #
-    #     if rated_power is not None:
-    #         pump.setRatedPowerConsumption(rated_power)
-    #     else:
-    #         pump.autosizeRatedPowerConsumption()
-    #
-    #     if motor_efficiency is not None:
-    #         pump.setMotorEfficiency(motor_efficiency)
-    #     if fraction_motor_inefficiencies_to_fluid_stream is not None:
-    #         pump.setFractionofMotorInefficienciestoFluidStream(fraction_motor_inefficiencies_to_fluid_stream)
-    #     if control_type != 1:
-    #         pump.setPumpControlType(control_types[control_type])
-    #     if pump_flow_schedule is not None:
-    #         pump.setPumpFlowRateSchedule(pump_flow_schedule)
-    #     if power_sizing_method != 1:
-    #         pump.setDesignPowerSizingMethod(sizing_methods[power_sizing_method])
-    #     if power_per_flow_rate is not None:
-    #         pump.setDesignElectricPowerPerUnitFlowRate(power_per_flow_rate)
-    #     if power_per_flow_rate_per_head is not None:
-    #         pump.setDesignShaftPowerPerUnitFlowRatePerUnitHead(power_per_flow_rate_per_head)
-    #
-    #     if thermal_zone is not None:
-    #         pump.setThermalZone(thermal_zone)
-    #     if skin_loss_radiative_fraction is not None:
-    #         pump.setSkinLossRadiativeFraction(skin_loss_radiative_fraction)
-    #
-    #     return pump
+    @staticmethod
+    def headered_pumps_variable_speed(
+            idf: IDF,
+            name: str = None,
+            total_design_flow_rate='Autosize',
+            number_of_pumps_in_bank: int = 2,
+            design_head=179352,
+            design_power='Autosize',
+            sequence_control_scheme='Sequential',
+            motor_efficiency=0.9,
+            fraction_of_motor_to_fluid=0,
+            min_flow_rate_fraction=0,
+            control_type: int = 1,
+            pump_flow_rate_schedule: EpBunch | str = None,
+            power_sizing_method: int = 1,
+            power_per_flow_rate=348701.1,
+            power_per_flow_rate_per_head=1.282051282,
+            thermal_zone=None,
+            skin_loss_radiative_fraction=0.5,
+            pump_curve_coeff=PerformanceCurve.pump_curve_set(1)):
+
+        """
+        -Control_type: 1:Intermittent 2:Continuous \n
+        -Power_sizing_method: 1:PowerPerFlowPerPressure 2:PowerPerFlow
+        """
+
+        control_types = {1: "Intermittent", 2: "Continuous"}
+        sizing_methods = {1: "PowerPerFlowPerPressure", 2: "PowerPerFlow"}
+
+        name = 'Headered Pumps Variable Speed' if name is None else name
+        pump = idf.newidfobject('HeaderedPumps:VariableSpeed', Name=name)
+
+        pump['Total_Design_Flow_Rate'] = total_design_flow_rate
+        pump['Number_of_Pumps_in_Bank'] = number_of_pumps_in_bank
+        pump['Flow_Sequencing_Control_Scheme'] = sequence_control_scheme
+        pump['Design_Pump_Head'] = design_head
+        pump['Design_Power_Consumption'] = design_power
+        pump['Motor_Efficiency'] = motor_efficiency
+        pump['Fraction_of_Motor_Inefficiencies_to_Fluid_Stream'] = fraction_of_motor_to_fluid
+        pump['Minimum_Flow_Rate_Fraction'] = min_flow_rate_fraction
+        pump['Pump_Control_Type'] = control_types[control_type]
+
+        if pump_flow_rate_schedule is not None:
+            if isinstance(pump_flow_rate_schedule, str):
+                pump['Pump_Flow_Rate_Schedule_Name'] = pump_flow_rate_schedule
+            elif isinstance(pump_flow_rate_schedule, EpBunch):
+                pump['Pump_Flow_Rate_Schedule_Name'] = pump_flow_rate_schedule.Name
+            else:
+                raise TypeError('pump_flow_rate_schedule must be EpBunch or str')
+        pump['Design_Power_Sizing_Method'] = sizing_methods[power_sizing_method]
+        pump['Design_Electric_Power_per_Unit_Flow_Rate'] = power_per_flow_rate
+        pump['Design_Shaft_Power_per_Unit_Flow_Rate_per_Unit_Head'] = power_per_flow_rate_per_head
+        pump['Skin_Loss_Radiative_Fraction'] = skin_loss_radiative_fraction
+
+        if thermal_zone is not None:
+            pump['Zone_Name'] = thermal_zone
+
+        pump['EndUse_Subcategory'] = 'General'
+
+        pump['Coefficient_1_of_the_Part_Load_Performance_Curve'] = pump_curve_coeff[0]
+        pump['Coefficient_2_of_the_Part_Load_Performance_Curve'] = pump_curve_coeff[1]
+        pump['Coefficient_3_of_the_Part_Load_Performance_Curve'] = pump_curve_coeff[2]
+        pump['Coefficient_4_of_the_Part_Load_Performance_Curve'] = pump_curve_coeff[3]
+
+        pump['Inlet_Node_Name'] = f'{name}_Water_Inlet'
+        pump['Outlet_Node_Name'] = f'{name}_Water_Outlet'
+
+        comp = {
+            'object': pump,
+            'type': 'HeaderedPumps:VariableSpeed',
+            'water_inlet_field': 'Inlet_Node_Name',
+            'water_outlet_field': 'Outlet_Node_Name'
+        }
+
+        return comp
+
+    @staticmethod
+    def headered_pumps_constant_speed(
+            idf: IDF,
+            name: str = None,
+            total_design_flow_rate='Autosize',
+            number_of_pumps_in_bank: int = 2,
+            design_head=179352,
+            design_power='Autosize',
+            sequence_control_scheme='Sequential',
+            motor_efficiency=0.9,
+            fraction_of_motor_to_fluid=0,
+            control_type: int = 1,
+            pump_flow_rate_schedule: EpBunch | str = None,
+            power_sizing_method: int = 1,
+            power_per_flow_rate=348701.1,
+            power_per_flow_rate_per_head=1.282051282,
+            thermal_zone=None,
+            skin_loss_radiative_fraction=0.5):
+
+        """
+        -Control_type: 1:Intermittent 2:Continuous \n
+        -Power_sizing_method: 1:PowerPerFlowPerPressure 2:PowerPerFlow
+        """
+
+        control_types = {1: "Intermittent", 2: "Continuous"}
+        sizing_methods = {1: "PowerPerFlowPerPressure", 2: "PowerPerFlow"}
+
+        pump = idf.newidfobject('HeaderedPumps:ConstantSpeed', Name=name)
+
+        pump['Total_Design_Flow_Rate'] = total_design_flow_rate
+        pump['Number_of_Pumps_in_Bank'] = number_of_pumps_in_bank
+        pump['Flow_Sequencing_Control_Scheme'] = sequence_control_scheme
+        pump['Design_Pump_Head'] = design_head
+        pump['Design_Power_Consumption'] = design_power
+        pump['Motor_Efficiency'] = motor_efficiency
+        pump['Fraction_of_Motor_Inefficiencies_to_Fluid_Stream'] = fraction_of_motor_to_fluid
+        pump['Pump_Control_Type'] = control_types[control_type]
+
+        if pump_flow_rate_schedule is not None:
+            if isinstance(pump_flow_rate_schedule, str):
+                pump['Pump_Flow_Rate_Schedule_Name'] = pump_flow_rate_schedule
+            elif isinstance(pump_flow_rate_schedule, EpBunch):
+                pump['Pump_Flow_Rate_Schedule_Name'] = pump_flow_rate_schedule.Name
+            else:
+                raise TypeError('pump_flow_rate_schedule must be EpBunch or str')
+        pump['Design_Power_Sizing_Method'] = sizing_methods[power_sizing_method]
+        pump['Design_Electric_Power_per_Unit_Flow_Rate'] = power_per_flow_rate
+        pump['Design_Shaft_Power_per_Unit_Flow_Rate_per_Unit_Head'] = power_per_flow_rate_per_head
+        pump['Skin_Loss_Radiative_Fraction'] = skin_loss_radiative_fraction
+
+        if thermal_zone is not None:
+            pump['Zone_Name'] = thermal_zone
+
+        pump['EndUse_Subcategory'] = 'General'
+
+        pump['Inlet_Node_Name'] = f'{name}_Water_Inlet'
+        pump['Outlet_Node_Name'] = f'{name}_Water_Outlet'
+
+        comp = {
+            'object': pump,
+            'type': 'HeaderedPumps:ConstantSpeed',
+            'water_inlet_field': 'Inlet_Node_Name',
+            'water_outlet_field': 'Outlet_Node_Name'
+        }
+
+        return comp

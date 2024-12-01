@@ -1,10 +1,16 @@
-2024/11/29 周五 17:16:19.80 ReadVars 
+2024/12/01 周日 23:26:58.97 ReadVars 
  ReadVarsESO
- Requested ESO file=eplusout.eso
- does not exist.  ReadVarsESO program terminated.
+ getting all vars from:eplusout.eso
+ EOF encountered during read of ESO header records
+ probable EnergyPlus error condition -- check eplusout.err
  ReadVarsESO program terminated.
+ ReadVars Run Time=00hr 00min  0.02sec
  ReadVarsESO
  processing:test.mvi
- Requested ESO file=eplusout.mtr
- does not exist.  ReadVarsESO program terminated.
+ input file:eplusout.mtr
+ output file:eplusmtr.csv
+ getting all vars from:eplusout.mtr
+ EOF encountered during read of ESO header records
+ probable EnergyPlus error condition -- check eplusout.err
  ReadVarsESO program terminated.
+ ReadVars Run Time=00hr 00min  0.02sec

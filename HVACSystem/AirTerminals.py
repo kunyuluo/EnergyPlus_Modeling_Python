@@ -199,11 +199,14 @@ class AirTerminal:
         # Create reheat coil object:
         coil_type = reheat_coil_types[reheat_coil_type]
         coil_key = f'Coil:Heating:{coil_type}'
+        coil_func_name = f'heating_coil_{coil_type.lower()}'
         coil_name = f'{name} {coil_type} Reheat Coil'
         terminal['Reheat_Coil_Object_Type'] = coil_key
         terminal['Reheat_Coil_Name'] = coil_name
 
-        reheat_coil = idf.newidfobject(coil_key.upper(), Name=coil_name)
+        # reheat_coil = idf.newidfobject(coil_key.upper(), Name=coil_name)
+        func = getattr(AirLoopComponent, coil_func_name)
+        reheat_coil = func(idf, name=coil_name, need_controller=False)
 
         terminal['Maximum_Air_Flow_Rate'] = max_air_flow_rate
         terminal['Zone_Minimum_Air_Flow_Input_Method'] = methods[min_air_flow_input_method]
@@ -258,24 +261,24 @@ class AirTerminal:
         terminal['Air_Inlet_Node_Name'] = air_in_name
         terminal['Air_Outlet_Node_Name'] = air_out_name
 
-        reheat_coil['Air_Inlet_Node_Name'] = damper_air_out_name
-        reheat_coil['Air_Outlet_Node_Name'] = air_out_name
+        reheat_coil['object']['Air_Inlet_Node_Name'] = damper_air_out_name
+        reheat_coil['object']['Air_Outlet_Node_Name'] = air_out_name
 
-        reheat_coil_comp = {
-            'object': reheat_coil,
-            'type': coil_key,
-            'water_inlet_field': 'Water_Inlet_Node_Name',
-            'water_outlet_field': 'Water_Outlet_Node_Name',
-            'air_inlet_field': 'Air_Inlet_Node_Name',
-            'air_outlet_field': 'Air_Outlet_Node_Name',
-        }
+        # reheat_coil_comp = {
+        #     'object': reheat_coil,
+        #     'type': coil_key,
+        #     'water_inlet_field': 'Water_Inlet_Node_Name',
+        #     'water_outlet_field': 'Water_Outlet_Node_Name',
+        #     'air_inlet_field': 'Air_Inlet_Node_Name',
+        #     'air_outlet_field': 'Air_Outlet_Node_Name',
+        # }
 
         component = {
             'object': terminal,
             'type': 'AirTerminal:SingleDuct:VAV:Reheat',
             'air_inlet_field': 'Air_Inlet_Node_Name',
             'air_outlet_field': 'Air_Outlet_Node_Name',
-            'reheat_coil': reheat_coil_comp
+            'reheat_coil': reheat_coil
         }
 
         return component

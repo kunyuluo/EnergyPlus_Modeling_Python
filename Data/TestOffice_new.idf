@@ -1,7 +1,7 @@
 !- Windows Line endings 
 
 Version,
-    22.2;                     !- Version Identifier
+    24.1;                     !- Version Identifier
 
 SimulationControl,
     Yes,                      !- Do Zone Sizing Calculation
@@ -9,7 +9,7 @@ SimulationControl,
     Yes,                      !- Do Plant Sizing Calculation
     No,                       !- Run Simulation for Sizing Periods
     Yes,                      !- Run Simulation for Weather File Run Periods
-    No,                       !- Do HVAC Sizing Simulation for Sizing Periods
+    ,                         !- Do HVAC Sizing Simulation for Sizing Periods
     ;                         !- Maximum Number of HVAC Sizing Simulation Passes
 
 Building,
@@ -42,11 +42,11 @@ Timestep,
     6;                        !- Number of Timesteps per Hour
 
 Site:Location,
-    SHANGHAI,                 !- Name
-    31.17,                    !- Latitude
-    121.43,                   !- Longitude
+    Shanghai,                 !- Name
+    31.4,                     !- Latitude
+    121.45,                   !- Longitude
     8,                        !- Time Zone
-    7;                        !- Elevation
+    5.5;                      !- Elevation
 
 SizingPeriod:DesignDay,
     New York Laguardia Arpt Ann Clg .4% Condns DB=>MWB,    !- Name
@@ -307,7 +307,20 @@ ScheduleTypeLimits,
     temperature;              !- Unit Type
 
 ScheduleTypeLimits,
+    Fractional,               !- Name
+    0,                        !- Lower Limit Value
+    1,                        !- Upper Limit Value
+    Continuous;               !- Numeric Type
+
+ScheduleTypeLimits,
     OnOff,                    !- Name
+    0,                        !- Lower Limit Value
+    1,                        !- Upper Limit Value
+    Discrete,                 !- Numeric Type
+    availability;             !- Unit Type
+
+ScheduleTypeLimits,
+    OnOff 1,                  !- Name
     0,                        !- Lower Limit Value
     1,                        !- Upper Limit Value
     Discrete,                 !- Numeric Type
@@ -1227,12 +1240,12 @@ Schedule:Constant,
 
 Schedule:Constant,
     Always Off Discrete,      !- Name
-    ,                         !- Schedule Type Limits Name
+    OnOff 1,                  !- Schedule Type Limits Name
     0;                        !- Hourly Value
 
 Schedule:Constant,
     Always On Continuous,     !- Name
-    ,                         !- Schedule Type Limits Name
+    Fractional,               !- Schedule Type Limits Name
     1;                        !- Hourly Value
 
 Material,
@@ -1816,19 +1829,31 @@ ThermostatSetpoint:DualSetpoint,
     Medium Office HtgSetp,    !- Heating Setpoint Temperature Schedule Name
     Medium Office ClgSetp;    !- Cooling Setpoint Temperature Schedule Name
 
-AIRTERMINAL:SINGLEDUCT:CONSTANTVOLUME:NOREHEAT,
+AIRTERMINAL:SINGLEDUCT:VAV:REHEAT,
     Test_Office_0 terminal,    !- Name
     Always On Discrete hvac_library,    !- Availability Schedule Name
+    Test_Office_0 terminal damper air outlet,    !- Damper Air Outlet Node Name
     Test_Office_0 terminal inlet,    !- Air Inlet Node Name
-    Test_Office_0 terminal outlet,    !- Air Outlet Node Name
     Autosize,                 !- Maximum Air Flow Rate
-    ,                         !- Design Specification Outdoor Air Object Name
-    CurrentOccupancy;         !- Per Person Ventilation Rate Mode
+    Constant,                 !- Zone Minimum Air Flow Input Method
+    0.3,                      !- Constant Minimum Air Flow Fraction
+    autosize,                 !- Fixed Minimum Air Flow Rate
+    ,                         !- Minimum Air Flow Fraction Schedule Name
+    Coil:Heating:Water,       !- Reheat Coil Object Type
+    Test_Office_0 terminal Water Reheat Coil,    !- Reheat Coil Name
+    Autosize,                 !- Maximum Hot Water or Steam Flow Rate
+    0,                        !- Minimum Hot Water or Steam Flow Rate
+    Test_Office_0 terminal outlet,    !- Air Outlet Node Name
+    0.001,                    !- Convergence Tolerance
+    Normal,                   !- Damper Heating Action
+    Autosize,                 !- Maximum Flow per Zone Floor Area During Reheat
+    autosize,                 !- Maximum Flow Fraction During Reheat
+    35;                       !- Maximum Reheat Air Temperature
 
 ZONEHVAC:AIRDISTRIBUTIONUNIT,
     Test_Office_0 Air Distribution Unit,    !- Name
     Test_Office_0 terminal outlet,    !- Air Distribution Unit Outlet Node Name
-    AirTerminal:SingleDuct:ConstantVolume:NoReheat,    !- Air Terminal Object Type
+    AirTerminal:SingleDuct:VAV:Reheat,    !- Air Terminal Object Type
     Test_Office_0 terminal,    !- Air Terminal Name
     0,                        !- Nominal Upstream Leakage Fraction
     0;                        !- Constant Downstream Leakage Fraction
@@ -1895,6 +1920,24 @@ COIL:HEATING:WATER,
     AHU Heating Coil_water_outlet,    !- Water Outlet Node Name
     AHU Cooling Coil_air_outlet,    !- Air Inlet Node Name
     Fan air inlet,            !- Air Outlet Node Name
+    UFactorTimesAreaAndDesignWaterFlowRate,    !- Performance Input Method
+    Autosize,                 !- Rated Capacity
+    60,                       !- Rated Inlet Water Temperature
+    16.6,                     !- Rated Inlet Air Temperature
+    40,                       !- Rated Outlet Water Temperature
+    32.2,                     !- Rated Outlet Air Temperature
+    0.5,                      !- Rated Ratio for Air and Water Convection
+    20;                       !- Design Water Temperature Difference
+
+COIL:HEATING:WATER,
+    Test_Office_0 terminal Water Reheat Coil,    !- Name
+    Always On Discrete hvac_library,    !- Availability Schedule Name
+    Autosize,                 !- UFactor Times Area Value
+    Autosize,                 !- Maximum Water Flow Rate
+    Test_Office_0 terminal Water Reheat Coil_water_inlet,    !- Water Inlet Node Name
+    Test_Office_0 terminal Water Reheat Coil_water_outlet,    !- Water Outlet Node Name
+    Test_Office_0 terminal damper air outlet,    !- Air Inlet Node Name
+    Test_Office_0 terminal air outlet,    !- Air Outlet Node Name
     UFactorTimesAreaAndDesignWaterFlowRate,    !- Performance Input Method
     Autosize,                 !- Rated Capacity
     60,                       !- Rated Inlet Water Temperature
@@ -2128,6 +2171,14 @@ BRANCH,
     AHU Heating Coil_water_outlet;    !- Component 1 Outlet Node Name
 
 BRANCH,
+    Test Hot Water Loop Demand Branch 2,    !- Name
+    ,                         !- Pressure Drop Curve Name
+    Coil:Heating:Water,       !- Component 1 Object Type
+    Test_Office_0 terminal Water Reheat Coil,    !- Component 1 Name
+    Test_Office_0 terminal Water Reheat Coil_water_inlet,    !- Component 1 Inlet Node Name
+    Test_Office_0 terminal Water Reheat Coil_water_outlet;    !- Component 1 Outlet Node Name
+
+BRANCH,
     Test Hot Water Loop Demand Outlet Branch,    !- Name
     ,                         !- Pressure Drop Curve Name
     Pipe:Adiabatic,           !- Component 1 Object Type
@@ -2161,7 +2212,8 @@ BRANCHLIST,
     Test Hot Water Loop Demand Branchs,    !- Name
     Test Hot Water Loop Demand Inlet Branch,    !- Branch 1 Name
     Test Hot Water Loop Demand Branch 1,    !- Branch 2 Name
-    Test Hot Water Loop Demand Outlet Branch;    !- Branch 3 Name
+    Test Hot Water Loop Demand Branch 2,    !- Branch 3 Name
+    Test Hot Water Loop Demand Outlet Branch;    !- Branch 4 Name
 
 CONNECTOR:SPLITTER,
     Test Chilled Water Loop Supply Splitter,    !- Name
@@ -2181,7 +2233,8 @@ CONNECTOR:SPLITTER,
 CONNECTOR:SPLITTER,
     Test Hot Water Loop Demand Splitter,    !- Name
     Test Hot Water Loop Demand Inlet Branch,    !- Inlet Branch Name
-    Test Hot Water Loop Demand Branch 1;    !- Outlet Branch 1 Name
+    Test Hot Water Loop Demand Branch 1,    !- Outlet Branch 1 Name
+    Test Hot Water Loop Demand Branch 2;    !- Outlet Branch 2 Name
 
 CONNECTOR:MIXER,
     Test Chilled Water Loop Supply Mixer,    !- Name
@@ -2201,7 +2254,8 @@ CONNECTOR:MIXER,
 CONNECTOR:MIXER,
     Test Hot Water Loop Demand Mixer,    !- Name
     Test Hot Water Loop Demand Outlet Branch,    !- Outlet Branch Name
-    Test Hot Water Loop Demand Branch 1;    !- Inlet Branch 1 Name
+    Test Hot Water Loop Demand Branch 1,    !- Inlet Branch 1 Name
+    Test Hot Water Loop Demand Branch 2;    !- Inlet Branch 2 Name
 
 CONNECTORLIST,
     Test Chilled Water Loop Supply Connectors,    !- Name
@@ -2285,7 +2339,7 @@ PUMP:VARIABLESPEED,
     Test Chilled Water Loop Supply Inlet,    !- Inlet Node Name
     Chw pump_Water_Outlet,    !- Outlet Node Name
     Autosize,                 !- Design Maximum Flow Rate
-    500,                      !- Design Pump Head
+    179352,                   !- Design Pump Head
     Autosize,                 !- Design Power Consumption
     0.9,                      !- Motor Efficiency
     0,                        !- Fraction of Motor Inefficiencies to Fluid Stream
@@ -2317,7 +2371,7 @@ PUMP:VARIABLESPEED,
     Test Hot Water Loop Supply Inlet,    !- Inlet Node Name
     HW pump_Water_Outlet,     !- Outlet Node Name
     Autosize,                 !- Design Maximum Flow Rate
-    500,                      !- Design Pump Head
+    179352,                   !- Design Pump Head
     Autosize,                 !- Design Power Consumption
     0.9,                      !- Motor Efficiency
     0,                        !- Fraction of Motor Inefficiencies to Fluid Stream

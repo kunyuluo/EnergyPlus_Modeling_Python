@@ -10,7 +10,8 @@ class NodeBranch:
             components: dict | list[dict] = None,
             inlet_node_name: str = None,
             outlet_node_name: str = None,
-            water_side: bool = True):
+            water_side: bool = True,
+            condenser_side: bool = False):
         name = 'Branch' if name is None else name
         branch = idf.newidfobject("BRANCH", Name=name)
 
@@ -24,8 +25,14 @@ class NodeBranch:
             branch['Component_1_Object_Type'] = components[0]['type']
             branch['Component_1_Name'] = components[0]['object'].Name
             if water_side:
-                branch['Component_1_Inlet_Node_Name'] = components[0]['object'][components[0]['water_inlet_field']]
-                branch['Component_1_Outlet_Node_Name'] = components[0]['object'][components[0]['water_outlet_field']]
+                if condenser_side:
+                    branch['Component_1_Inlet_Node_Name'] = components[0]['object'][
+                        components[0]['condenser_water_inlet_field']]
+                    branch['Component_1_Outlet_Node_Name'] = components[0]['object'][
+                        components[0]['condenser_water_outlet_field']]
+                else:
+                    branch['Component_1_Inlet_Node_Name'] = components[0]['object'][components[0]['water_inlet_field']]
+                    branch['Component_1_Outlet_Node_Name'] = components[0]['object'][components[0]['water_outlet_field']]
             else:
                 branch['Component_1_Inlet_Node_Name'] = components[0]['object'][components[0]['air_inlet_field']]
                 branch['Component_1_Outlet_Node_Name'] = components[0]['object'][components[0]['air_outlet_field']]
@@ -33,12 +40,18 @@ class NodeBranch:
             for i in range(len(components)):
                 if i == 0:
                     if water_side:
-                        inlet_name = components[i]['object'][components[i]['water_inlet_field']]
+                        if condenser_side:
+                            inlet_name = components[i]['object'][components[i]['condenser_water_inlet_field']]
+                        else:
+                            inlet_name = components[i]['object'][components[i]['water_inlet_field']]
                     else:
                         inlet_name = components[i]['object'][components[i]['air_inlet_field']]
                 else:
                     if water_side:
-                        inlet_name = components[i-1]['object'][components[i-1]['water_outlet_field']]
+                        if condenser_side:
+                            inlet_name = components[i-1]['object'][components[i-1]['condenser_water_outlet_field']]
+                        else:
+                            inlet_name = components[i - 1]['object'][components[i - 1]['water_outlet_field']]
                     else:
                         inlet_name = components[i-1]['object'][components[i-1]['air_outlet_field']]
 
@@ -47,9 +60,15 @@ class NodeBranch:
                 branch[f'Component_{i + 1}_Inlet_Node_Name'] = inlet_name
 
                 if water_side:
-                    branch[f'Component_{i + 1}_Outlet_Node_Name'] = components[i]['object'][components[i]['water_outlet_field']]
+                    if condenser_side:
+                        branch[f'Component_{i + 1}_Outlet_Node_Name'] = components[i]['object'][
+                            components[i]['condenser_water_outlet_field']]
+                    else:
+                        branch[f'Component_{i + 1}_Outlet_Node_Name'] = components[i]['object'][
+                            components[i]['water_outlet_field']]
                 else:
-                    branch[f'Component_{i + 1}_Outlet_Node_Name'] = components[i]['object'][components[i]['air_outlet_field']]
+                    branch[f'Component_{i + 1}_Outlet_Node_Name'] = components[i]['object'][
+                        components[i]['air_outlet_field']]
 
         # Adjust inlet / outlet node name if available:
         if isinstance(components, list):

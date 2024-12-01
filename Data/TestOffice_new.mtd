@@ -75,60 +75,70 @@
   OnMeter=PlantLoopHeatingDemand:HVAC [J]
   OnMeter=HeatingCoils:PlantLoopHeatingDemand [J]
 
- Meters for 593,AHU COOLING COIL:Cooling Coil Total Cooling Energy [J]
+ Meters for 593,TEST_OFFICE_0 TERMINAL WATER REHEAT COIL:Heating Coil Heating Energy [J]
+  OnMeter=EnergyTransfer:Facility [J]
+  OnMeter=EnergyTransfer:HVAC [J]
+  OnMeter=HeatingCoils:EnergyTransfer [J]
+
+ Meters for 594,TEST_OFFICE_0 TERMINAL WATER REHEAT COIL:Heating Coil Source Side Heat Transfer Energy [J]
+  OnMeter=PlantLoopHeatingDemand:Facility [J]
+  OnMeter=PlantLoopHeatingDemand:HVAC [J]
+  OnMeter=HeatingCoils:PlantLoopHeatingDemand [J]
+
+ Meters for 595,AHU COOLING COIL:Cooling Coil Total Cooling Energy [J]
   OnMeter=EnergyTransfer:Facility [J]
   OnMeter=EnergyTransfer:HVAC [J]
   OnMeter=CoolingCoils:EnergyTransfer [J]
 
- Meters for 606,AHU COOLING COIL:Cooling Coil Source Side Heat Transfer Energy [J]
+ Meters for 608,AHU COOLING COIL:Cooling Coil Source Side Heat Transfer Energy [J]
   OnMeter=PlantLoopCoolingDemand:Facility [J]
   OnMeter=PlantLoopCoolingDemand:HVAC [J]
   OnMeter=CoolingCoils:PlantLoopCoolingDemand [J]
 
- Meters for 643,FAN:Fan Electricity Energy [J]
+ Meters for 645,FAN:Fan Electricity Energy [J]
   OnMeter=Electricity:Facility [J]
   OnMeter=Electricity:HVAC [J]
   OnMeter=Fans:Electricity [J]
   OnMeter=General:Fans:Electricity [J]
 
- Meters for 680,CHILLER 1:Chiller Electricity Energy [J]
+ Meters for 682,CHILLER 1:Chiller Electricity Energy [J]
   OnMeter=Electricity:Facility [J]
   OnMeter=Electricity:Plant [J]
   OnMeter=Cooling:Electricity [J]
   OnMeter=General:Cooling:Electricity [J]
 
- Meters for 717,CHILLER 1:Chiller Evaporator Cooling Energy [J]
+ Meters for 719,CHILLER 1:Chiller Evaporator Cooling Energy [J]
   OnMeter=EnergyTransfer:Facility [J]
   OnMeter=EnergyTransfer:Plant [J]
   OnMeter=Chillers:EnergyTransfer [J]
 
- Meters for 742,CHILLER 1:Chiller Condenser Heat Transfer Energy [J]
+ Meters for 744,CHILLER 1:Chiller Condenser Heat Transfer Energy [J]
   OnMeter=EnergyTransfer:Facility [J]
   OnMeter=EnergyTransfer:Plant [J]
   OnMeter=HeatRejection:EnergyTransfer [J]
   OnMeter=General:HeatRejection:EnergyTransfer [J]
 
- Meters for 767,CHW PUMP:Pump Electricity Energy [J]
+ Meters for 769,CHW PUMP:Pump Electricity Energy [J]
   OnMeter=Electricity:Facility [J]
   OnMeter=Electricity:Plant [J]
   OnMeter=Pumps:Electricity [J]
   OnMeter=General:Pumps:Electricity [J]
 
- Meters for 792,HW PUMP:Pump Electricity Energy [J]
+ Meters for 794,HW PUMP:Pump Electricity Energy [J]
   OnMeter=Electricity:Facility [J]
   OnMeter=Electricity:Plant [J]
   OnMeter=Pumps:Electricity [J]
   OnMeter=General:Pumps:Electricity [J]
 
- Meters for 793,Site:Environmental Impact Total N2O Emissions Carbon Equivalent Mass [kg]
+ Meters for 795,Site:Environmental Impact Total N2O Emissions Carbon Equivalent Mass [kg]
   OnMeter=Carbon Equivalent:Facility [kg]
   OnMeter=CarbonEquivalentEmissions:Carbon Equivalent [kg]
 
- Meters for 818,Site:Environmental Impact Total CH4 Emissions Carbon Equivalent Mass [kg]
+ Meters for 820,Site:Environmental Impact Total CH4 Emissions Carbon Equivalent Mass [kg]
   OnMeter=Carbon Equivalent:Facility [kg]
   OnMeter=CarbonEquivalentEmissions:Carbon Equivalent [kg]
 
- Meters for 819,Site:Environmental Impact Total CO2 Emissions Carbon Equivalent Mass [kg]
+ Meters for 821,Site:Environmental Impact Total CO2 Emissions Carbon Equivalent Mass [kg]
   OnMeter=Carbon Equivalent:Facility [kg]
   OnMeter=CarbonEquivalentEmissions:Carbon Equivalent [kg]
 
@@ -192,6 +202,7 @@
   TEST_OFFICE_0:Zone Air System Sensible Heating Energy
   TEST_OFFICE_0:Zone Air System Sensible Cooling Energy
   AHU HEATING COIL:Heating Coil Heating Energy
+  TEST_OFFICE_0 TERMINAL WATER REHEAT COIL:Heating Coil Heating Energy
   AHU COOLING COIL:Cooling Coil Total Cooling Energy
   CHILLER 1:Chiller Evaporator Cooling Energy
   CHILLER 1:Chiller Condenser Heat Transfer Energy
@@ -278,19 +289,24 @@
 
  For Meter=EnergyTransfer:HVAC [J], ResourceType=EnergyTransfer, Group=HVAC, contents are:
   AHU HEATING COIL:Heating Coil Heating Energy
+  TEST_OFFICE_0 TERMINAL WATER REHEAT COIL:Heating Coil Heating Energy
   AHU COOLING COIL:Cooling Coil Total Cooling Energy
 
  For Meter=HeatingCoils:EnergyTransfer [J], ResourceType=EnergyTransfer, EndUse=HeatingCoils, contents are:
   AHU HEATING COIL:Heating Coil Heating Energy
+  TEST_OFFICE_0 TERMINAL WATER REHEAT COIL:Heating Coil Heating Energy
 
  For Meter=PlantLoopHeatingDemand:Facility [J], ResourceType=PlantLoopHeatingDemand, contents are:
   AHU HEATING COIL:Heating Coil Source Side Heat Transfer Energy
+  TEST_OFFICE_0 TERMINAL WATER REHEAT COIL:Heating Coil Source Side Heat Transfer Energy
 
  For Meter=PlantLoopHeatingDemand:HVAC [J], ResourceType=PlantLoopHeatingDemand, Group=HVAC, contents are:
   AHU HEATING COIL:Heating Coil Source Side Heat Transfer Energy
+  TEST_OFFICE_0 TERMINAL WATER REHEAT COIL:Heating Coil Source Side Heat Transfer Energy
 
  For Meter=HeatingCoils:PlantLoopHeatingDemand [J], ResourceType=PlantLoopHeatingDemand, EndUse=HeatingCoils, contents are:
   AHU HEATING COIL:Heating Coil Source Side Heat Transfer Energy
+  TEST_OFFICE_0 TERMINAL WATER REHEAT COIL:Heating Coil Source Side Heat Transfer Energy
 
  For Meter=CoolingCoils:EnergyTransfer [J], ResourceType=EnergyTransfer, EndUse=CoolingCoils, contents are:
   AHU COOLING COIL:Cooling Coil Total Cooling Energy

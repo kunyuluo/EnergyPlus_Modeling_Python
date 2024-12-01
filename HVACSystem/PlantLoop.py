@@ -278,12 +278,20 @@ class PlantLoop:
             if isinstance(demand_branches, list) and len(demand_branches) > 0:
                 for i, comp in enumerate(demand_branches):
                     branch_name = f'{name} Demand Branch {i + 1}'
-                    branch = NodeBranch.branch(idf, branch_name, comp)
+                    if loop_type == 3:
+                        print('here')
+                        branch = NodeBranch.branch(idf, branch_name, comp, condenser_side=True)
+                        print(branch)
+                    else:
+                        branch = NodeBranch.branch(idf, branch_name, comp)
                     mid_branches.append(branch)
                     all_demand_branches.append(branch)
             elif isinstance(demand_branches, dict):
                 branch_name = f'{name} Demand Branch 1'
-                branch = NodeBranch.branch(idf, branch_name, demand_branches)
+                if loop_type == 3:
+                    branch = NodeBranch.branch(idf, branch_name, demand_branches, condenser_side=True)
+                else:
+                    branch = NodeBranch.branch(idf, branch_name, demand_branches)
                 mid_branches.append(branch)
                 all_demand_branches.append(branch)
             else:

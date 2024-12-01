@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="20a373d1-d6e9-4a2c-8f6f-629a3b4b64a9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024_11_21_9_41__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.audit" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_new.audit" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.bnd" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_new.bnd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.eio" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_new.eio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.err" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_new.err" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.idf" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_new.idf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.mtd" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_new.mtd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.rvaudit" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_new.rvaudit" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_new.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HVACSystem/AirLoopComponents.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/AirLoopComponents.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HVACSystem/AirTerminals.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/AirTerminals.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HVACSystem/NodeBranch.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/NodeBranch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HVACSystem/PlantLoop.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/PlantLoop.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HVACSystem/PlantLoopComponents.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/PlantLoopComponents.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HVACSystem/SetpointManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/SetpointManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HVACSystem/ZoneEquipments.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/ZoneEquipments.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Helper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2pcIUssXeelnz52sJxZFFmIUCyH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="20a373d1-d6e9-4a2c-8f6f-629a3b4b64a9" name="Changes" comment="" />
+      <created>1733058957452</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1733058957452</updated>
+    </task>
+    <servers />
+  </component>
+</project>

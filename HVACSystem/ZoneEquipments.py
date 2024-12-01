@@ -253,7 +253,7 @@ class ZoneEquipment:
                 equip_group_assembly.append(terminal['object'])
                 if 'reheat_coil' in terminal.keys():
                     heating_coils.append(terminal['reheat_coil'])
-                    equip_group_assembly.append(terminal['reheat_coil'])
+                    equip_group_assembly.append(terminal['reheat_coil']['object'])
 
                 equipments = [air_distribute]
                 # Zone HVAC Equipment if available:

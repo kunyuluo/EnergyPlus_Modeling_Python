@@ -274,6 +274,7 @@ class AirLoopComponent:
             outlet_water_temp=40,
             outlet_air_temp=32.2,
             ratio_air_water_convection=0.5,
+            need_controller: bool = True,
             control_variable: int = 1):
         """
         -Performance_input_method: 1.UFactorTimesAreaAndDesignWaterFlowRate 2.NominalCapacity
@@ -312,10 +313,13 @@ class AirLoopComponent:
         coil['Air_Outlet_Node_Name'] = f'{name}_air_outlet'
 
         # Controller:
-        controller_name = f'{name} Controller'
-        controller = Controller.controller_watercoil(idf, controller_name, control_variable, 1)
-        controller['Sensor_Node_Name'] = coil.Air_Outlet_Node_Name
-        controller['Actuator_Node_Name'] = coil.Water_Inlet_Node_Name
+        if need_controller:
+            controller_name = f'{name} Controller'
+            controller = Controller.controller_watercoil(idf, controller_name, control_variable, 1)
+            controller['Sensor_Node_Name'] = coil.Air_Outlet_Node_Name
+            controller['Actuator_Node_Name'] = coil.Water_Inlet_Node_Name
+        else:
+            controller = None
 
         component = {
             'object': coil,
