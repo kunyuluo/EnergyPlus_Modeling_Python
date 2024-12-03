@@ -279,9 +279,7 @@ class PlantLoop:
                 for i, comp in enumerate(demand_branches):
                     branch_name = f'{name} Demand Branch {i + 1}'
                     if loop_type == 3:
-                        print('here')
                         branch = NodeBranch.branch(idf, branch_name, comp, condenser_side=True)
-                        print(branch)
                     else:
                         branch = NodeBranch.branch(idf, branch_name, comp)
                     mid_branches.append(branch)

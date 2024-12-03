@@ -1,10 +1,11 @@
 from eppy.modeleditor import IDF
 from HVACSystem.AirLoopComponents import AirLoopComponent
 from HVACSystem.SetpointManager import SetpointManager
+from HVACSystem.AvailabilityManagers import AvailabilityManager
 from HVACSystem.NodeBranch import NodeBranch
 from HVACSystem.Controllers import Controller
 from HVACSystem.ZoneEquipments import ZoneEquipment
-from Helper import SomeFields
+from Helper import SomeFields, get_all_targets
 from eppy.bunch_subclass import EpBunch
 
 
@@ -13,10 +14,13 @@ class AirLoop:
     def air_loop_hvac(
             idf: IDF,
             name: str = None,
+            doas: bool = False,
+            doas_control_strategy: int = 1,
             outdoor_air_stream_comp: dict | list[dict] = None,
             heat_recovery: bool = False,
             supply_branches: list[dict] = None,
             supply_fan: dict = None,
+            setpoint_manager_dehumidification: EpBunch = None,
             setpoint_manager: EpBunch = None,
             zones: list[str] | list[EpBunch] = None,
             air_terminal_type: int = 1,
@@ -24,15 +28,16 @@ class AirLoop:
             zone_radiative_type: int = None,
             design_supply_air_flow_rate: float = None,
             design_return_air_fraction: float = 1.0,
-            sizing: EpBunch = None):
+            sizing: EpBunch = None,
+            availability_manager: EpBunch = None,):
         """
         Air Terminal Types:
             1: 'AirTerminal:SingleDuct:ConstantVolume:NoReheat',
             2: 'AirTerminal:SingleDuct:ConstantVolume:Reheat',
             3: 'AirTerminal:SingleDuct:VAV:Reheat',
-            4: 'AirTerminal:SingleDuct:VAV:Reheat:VariableSpeedFan',
-            5: 'AirTerminal:SingleDuct:VAV:HeatAndCool:Reheat',
-            6: 'AirTerminal:SingleDuct:VAV:NoReheat',
+            4: 'AirTerminal:SingleDuct:VAV:NoReheat',
+            5: 'AirTerminal:SingleDuct:VAV:Reheat:VariableSpeedFan',
+            6: 'AirTerminal:SingleDuct:VAV:HeatAndCool:Reheat',
             7: 'AirTerminal:SingleDuct:VAV:HeatAndCool:NoReheat',
             8: 'AirTerminal:SingleDuct:SeriesPIU:Reheat',
             9: 'AirTerminal:SingleDuct:ParallelPIU:Reheat',
@@ -42,7 +47,7 @@ class AirLoop:
             13: 'AirTerminal:SingleDuct:Mixer',
             14: 'AirTerminal:DualDuct:ConstantVolume',
             15: 'AirTerminal:DualDuct:VAV',
-            16: 'AirTerminal:DualDuct:VAV:OutdoorAir',
+            16: 'AirTerminal:DualDuct:VAV:OutdoorAir'
 
         Zone HVAC Types:
             1: 'ZoneHVAC:IdealLoadsAirSystem',
@@ -79,6 +84,7 @@ class AirLoop:
             14: 'ZoneHVAC:VentilatedSlab',
             15: 'ZoneHVAC:VentilatedSlab:SlabGroup',
         """
+        doas_strategies = {1: 'NeutralSupplyAir', 2: 'NeutralDehumidifiedSupplyAir', 3: ' ColdSupplyAir'}
 
         loop_assembly = []
         water_clg_coils = []
@@ -95,6 +101,38 @@ class AirLoop:
                     if 'Heating' in item['type']:
                         water_htg_coils.append(item)
 
+        # Adjust zone sizing for DOAS system if needed:
+        ###############################################################################################
+        if doas:
+            all_sizing = get_all_targets(idf, key='Sizing:Zone', field='Zone_or_ZoneList_Name')
+            all_sizing_objs = all_sizing['object']
+            all_sizing_names = all_sizing['field']
+
+            demand_zone_names = []
+            for zone in zones:
+                if isinstance(zone, str):
+                    demand_zone_names.append(zone)
+                elif isinstance(zone, EpBunch):
+                    demand_zone_names.append(zone.Name)
+                else:
+                    raise ValueError("Zone name is not a string or EpBunch")
+
+            for i, sizing_zone_name in enumerate(all_sizing_names):
+                if sizing_zone_name in demand_zone_names:
+                    sizing_obj = all_sizing_objs[i]
+                    sizing_obj['Account_for_Dedicated_Outdoor_Air_System'] = 'Yes'
+                    sizing_obj['Dedicated_Outdoor_Air_System_Control_Strategy'] = doas_strategies[doas_control_strategy]
+                    match doas_control_strategy:
+                        case 1:
+                            sizing_obj['Dedicated_Outdoor_Air_Low_Setpoint_Temperature_for_Design'] = 21.1
+                            sizing_obj['Dedicated_Outdoor_Air_High_Setpoint_Temperature_for_Design'] = 23.9
+                        case 2:
+                            sizing_obj['Dedicated_Outdoor_Air_Low_Setpoint_Temperature_for_Design'] = 14.4
+                            sizing_obj['Dedicated_Outdoor_Air_High_Setpoint_Temperature_for_Design'] = 22.2
+                        case 3:
+                            sizing_obj['Dedicated_Outdoor_Air_Low_Setpoint_Temperature_for_Design'] = 12.2
+                            sizing_obj['Dedicated_Outdoor_Air_High_Setpoint_Temperature_for_Design'] = 14.4
+
         # Air Loop:
         ###############################################################################################
         name = 'Air Loop' if name is None else name
@@ -108,7 +146,7 @@ class AirLoop:
             sizing['AirLoop_Name'] = name
             loop_assembly.append(sizing)
         else:
-            sizing = AirLoopComponent.sizing(idf)
+            sizing = AirLoopComponent.sizing(idf, doas=doas)
             sizing['AirLoop_Name'] = name
             loop_assembly.append(sizing)
 
@@ -178,9 +216,13 @@ class AirLoop:
         avail_manager_list['Availability_Manager_1_Name'] = avail_manager_name
         loop_assembly.append(avail_manager_list)
 
-        avail_manager = idf.newidfobject('AvailabilityManager:Scheduled', Name=avail_manager_name)
-        avail_manager['Schedule_Name'] = 'Always On Discrete'
-        loop_assembly.append(avail_manager)
+        # avail_manager = idf.newidfobject('AvailabilityManager:Scheduled', Name=avail_manager_name)
+        # avail_manager['Schedule_Name'] = 'Always On Discrete'
+        if availability_manager is not None:
+            loop_assembly.append(availability_manager)
+        else:
+            avail_manager = AvailabilityManager.scheduled(idf, name=avail_manager_name)
+            loop_assembly.append(avail_manager)
 
         # Outdoor air system
         ###############################################################################################
@@ -353,6 +395,24 @@ class AirLoop:
 
                     spm_nodes.append(supply_branch[f'Component_{i + 2}_Outlet_Node_Name'])
 
+                    # Add setpoint manager for dehumidification control if needed:
+                    if supply_branches[i]['type'] == 'Coil:Cooling:Water':
+                        control_var = supply_branches[i]['controller']['Control_Variable']
+                        if control_var == "HumidityRatio":
+                            spm_dehum_node = supply_branches[i]['object'][supply_branches[i]['air_outlet_field']]
+                            if setpoint_manager_dehumidification is not None:
+                                setpoint_manager_dehumidification.Setpoint_Node_or_NodeList_Name = spm_dehum_node
+                                loop_assembly.append(setpoint_manager_dehumidification)
+                            else:
+                                spm_dehum_name = f'{name} Humidity SPM'
+                                spm_dehum = SetpointManager.scheduled(
+                                    idf,
+                                    name=spm_dehum_name,
+                                    control_variable=5,
+                                    constant_value=0.008)
+                                spm_dehum.Setpoint_Node_or_NodeList_Name = spm_dehum_node
+                                loop_assembly.append(spm_dehum)
+
                     # Add Supply Fan at the end:
                     if i == len(supply_branches) - 1:
                         if supply_fan is not None:
@@ -384,7 +444,10 @@ class AirLoop:
 
             # Add setpoint manager to node:
             if setpoint_manager is not None:
-                setpoint_manager.Setpoint_Node_or_NodeList_Name = supply_outlet_node_name
+                if isinstance(setpoint_manager, EpBunch):
+                    setpoint_manager.Setpoint_Node_or_NodeList_Name = supply_outlet_node_name
+                elif isinstance(setpoint_manager, dict):
+                    setpoint_manager['object'].Setpoint_Node_or_NodeList_Name = supply_outlet_node_name
 
             # Setpoint Manager:MixedAir at each node in outdoor air stream:
             for node in spm_nodes:

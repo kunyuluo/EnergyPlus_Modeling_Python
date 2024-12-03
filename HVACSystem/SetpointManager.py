@@ -33,7 +33,7 @@ class SetpointManager:
 
         assembly = []
         name = 'Setpoint Manager Scheduled' if name is None else name
-        spt = idf.newidfobject("SetpointManager:Scheduled", Name=name)
+        spt = idf.newidfobject('SetpointManager:Scheduled', Name=name)
         spt.Control_Variable = variables[control_variable]
 
         if constant_value is not None:

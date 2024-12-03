@@ -10,7 +10,8 @@ class AirLoopComponent:
     def sizing(
             idf: IDF,
             airloop: EpBunch | str = None,
-            type_of_load_to_size_on: int = 1,
+            doas: bool = False,
+            type_of_load: int = 1,
             design_outdoor_air_flow_rate='Autosize',
             central_heating_max_flow_ratio='Autosize',
             system_outdoor_air_method: int = 1,
@@ -130,7 +131,10 @@ class AirLoopComponent:
             else:
                 raise TypeError('Invalid input type of airloop.')
 
-        sizing['Type_of_Load_to_Size_On'] = load_types[type_of_load_to_size_on]
+        if doas:
+            sizing['Type_of_Load_to_Size_On'] = load_types[3]
+        else:
+            sizing['Type_of_Load_to_Size_On'] = load_types[type_of_load]
 
         sizing['Design_Outdoor_Air_Flow_Rate'] = design_outdoor_air_flow_rate
         sizing['Central_Heating_Maximum_System_Air_Flow_Ratio'] = central_heating_max_flow_ratio
@@ -144,14 +148,18 @@ class AirLoopComponent:
         sizing['Central_Heating_Design_Supply_Air_Humidity_Ratio'] = central_heating_supply_air_humidity_ratio
         sizing['Type_of_Zone_Sum_to_Use'] = sizing_options[sizing_option]
 
-        if all_outdoor_air_cooling:
+        if doas:
             sizing['100_Outdoor_Air_in_Cooling'] = 'Yes'
-        else:
-            sizing['100_Outdoor_Air_in_Cooling'] = 'No'
-        if all_outdoor_air_heating:
             sizing['100_Outdoor_Air_in_Heating'] = 'Yes'
         else:
-            sizing['100_Outdoor_Air_in_Heating'] = 'No'
+            if all_outdoor_air_cooling:
+                sizing['100_Outdoor_Air_in_Cooling'] = 'Yes'
+            else:
+                sizing['100_Outdoor_Air_in_Cooling'] = 'No'
+            if all_outdoor_air_heating:
+                sizing['100_Outdoor_Air_in_Heating'] = 'Yes'
+            else:
+                sizing['100_Outdoor_Air_in_Heating'] = 'No'
 
         sizing['Cooling_Supply_Air_Flow_Rate_Method'] = cooling_air_flow_methods[cooling_supply_air_flow_method]
         sizing['Heating_Supply_Air_Flow_Rate_Method'] = heating_air_flow_methods[heating_supply_air_flow_method]

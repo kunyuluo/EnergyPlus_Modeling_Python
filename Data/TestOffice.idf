@@ -1052,7 +1052,7 @@ ZoneHVAC:EquipmentConnections,
   Test_Office_0,                          !- Zone Name
   Test_Office_0 Equipment List,           !- Zone Conditioning Equipment List Name
   Test_Office_0 Inlet Node List,          !- Zone Air Inlet Node or NodeList Name
-  Test_Office_0 Exhaust Node List,        !- Zone Air Exhaust Node or NodeList Name
+  ,                                       !- Zone Air Exhaust Node or NodeList Name
   Node 1,                                 !- Zone Air Node Name
   Test_Office_0 Return Node List;         !- Zone Return Air Node or NodeList Name
 
@@ -1061,79 +1061,63 @@ NodeList,
   Node 6;                                 !- Node Name 1
 
 NodeList,
-  Test_Office_0 Exhaust Node List,        !- Name
-  Node 43;                                !- Node Name 1
-
-NodeList,
   Test_Office_0 Return Node List,         !- Name
   Node 63;                                !- Node Name 1
 
 ZoneHVAC:AirDistributionUnit,
-  Parallel PIU Elec Rht Air Distribution Unit, !- Name
+  ADU VAV HW Rht,                         !- Name
   Node 6,                                 !- Air Distribution Unit Outlet Node Name
-  AirTerminal:SingleDuct:ParallelPIU:Reheat, !- Air Terminal Object Type
-  Parallel PIU Elec Rht;                  !- Air Terminal Name
+  AirTerminal:SingleDuct:VAV:Reheat,      !- Air Terminal Object Type
+  VAV HW Rht;                             !- Air Terminal Name
 
-AirTerminal:SingleDuct:ParallelPIU:Reheat,
-  Parallel PIU Elec Rht,                  !- Name
+AirTerminal:SingleDuct:VAV:Reheat,
+  VAV HW Rht,                             !- Name
   Always On Discrete hvac_library,        !- Availability Schedule Name
-  Autosize,                               !- Maximum Primary Air Flow Rate {m3/s}
-  Autosize,                               !- Maximum Secondary Air Flow Rate {m3/s}
-  Autosize,                               !- Minimum Primary Air Flow Fraction
-  Autosize,                               !- Fan On Flow Fraction
-  Node 40,                                !- Supply Air Inlet Node Name
-  Node 43,                                !- Secondary Air Inlet Node Name
-  Node 6,                                 !- Outlet Node Name
-  Parallel PIU Elec Rht Mixer Outlet,     !- Reheat Coil Air Inlet Node Name
-  Parallel PIU Elec Rht Mixer,            !- Zone Mixer Name
-  Parallel PIU Elec Rht Fan,              !- Fan Name
-  Coil:Heating:Electric,                  !- Reheat Coil Object Type
-  Parallel PIU Elec Rht Coil,             !- Reheat Coil Name
+  VAV HW Rht Damper Outlet,               !- Damper Air Outlet Node Name
+  Node 40,                                !- Air Inlet Node Name
+  Autosize,                               !- Maximum Air Flow Rate {m3/s}
+  Constant,                               !- Zone Minimum Air Flow Input Method
+  0.3,                                    !- Constant Minimum Air Flow Fraction
+  0,                                      !- Fixed Minimum Air Flow Rate {m3/s}
+  ,                                       !- Minimum Air Flow Fraction Schedule Name
+  Coil:Heating:Water,                     !- Reheat Coil Object Type
+  VAV HW Rht Coil,                        !- Reheat Coil Name
   Autosize,                               !- Maximum Hot Water or Steam Flow Rate {m3/s}
   0,                                      !- Minimum Hot Water or Steam Flow Rate {m3/s}
-  0.001;                                  !- Convergence Tolerance
+  Node 6,                                 !- Air Outlet Node Name
+  0.001,                                  !- Convergence Tolerance
+  Normal,                                 !- Damper Heating Action
+  Autocalculate,                          !- Maximum Flow per Zone Floor Area During Reheat {m3/s-m2}
+  Autocalculate,                          !- Maximum Flow Fraction During Reheat
+  35;                                     !- Maximum Reheat Air Temperature {C}
 
-Coil:Heating:Electric,
-  Parallel PIU Elec Rht Coil,             !- Name
+Coil:Heating:Water,
+  VAV HW Rht Coil,                        !- Name
   Always On Discrete hvac_library,        !- Availability Schedule Name
-  1,                                      !- Efficiency
-  Autosize,                               !- Nominal Capacity {W}
-  Parallel PIU Elec Rht Mixer Outlet,     !- Air Inlet Node Name
-  Node 6;                                 !- Air Outlet Node Name
+  Autosize,                               !- U-Factor Times Area Value {W/K}
+  Autosize,                               !- Maximum Water Flow Rate {m3/s}
+  Node 43,                                !- Water Inlet Node Name
+  Node 44,                                !- Water Outlet Node Name
+  VAV HW Rht Damper Outlet,               !- Air Inlet Node Name
+  Node 6,                                 !- Air Outlet Node Name
+  UFactorTimesAreaAndDesignWaterFlowRate, !- Performance Input Method
+  Autosize,                               !- Rated Capacity {W}
+  82.2,                                   !- Rated Inlet Water Temperature {C}
+  16.6,                                   !- Rated Inlet Air Temperature {C}
+  71.1,                                   !- Rated Outlet Water Temperature {C}
+  32.2,                                   !- Rated Outlet Air Temperature {C}
+  0.5;                                    !- Rated Ratio for Air and Water Convection
 
 Schedule:Constant,
   Always On Discrete hvac_library,        !- Name
   OnOff hvac_library,                     !- Schedule Type Limits Name
   1;                                      !- Hourly Value
 
-Schedule:Constant,
-  Always On Discrete,                     !- Name
-  OnOff,                                  !- Schedule Type Limits Name
-  1;                                      !- Hourly Value
-
-Fan:ConstantVolume,
-  Parallel PIU Elec Rht Fan,              !- Name
-  Always On Discrete,                     !- Availability Schedule Name
-  0.7,                                    !- Fan Total Efficiency
-  250,                                    !- Pressure Rise {Pa}
-  AutoSize,                               !- Maximum Flow Rate {m3/s}
-  0.9,                                    !- Motor Efficiency
-  1,                                      !- Motor In Airstream Fraction
-  Node 43,                                !- Air Inlet Node Name
-  Parallel PIU Elec Rht Fan Outlet,       !- Air Outlet Node Name
-  ;                                       !- End-Use Subcategory
-
-AirLoopHVAC:ZoneMixer,
-  Parallel PIU Elec Rht Mixer,            !- Name
-  Parallel PIU Elec Rht Mixer Outlet,     !- Outlet Node Name
-  Parallel PIU Elec Rht Fan Outlet,       !- Inlet Node Name 1
-  Node 40;                                !- Inlet Node Name 2
-
 ZoneHVAC:EquipmentList,
   Test_Office_0 Equipment List,           !- Name
   SequentialLoad,                         !- Load Distribution Scheme
   ZoneHVAC:AirDistributionUnit,           !- Zone Equipment Object Type 1
-  Parallel PIU Elec Rht Air Distribution Unit, !- Zone Equipment Name 1
+  ADU VAV HW Rht,                         !- Zone Equipment Name 1
   1,                                      !- Zone Equipment Cooling Sequence 1
   1,                                      !- Zone Equipment Heating or No-Load Sequence 1
   ,                                       !- Zone Equipment Sequential Cooling Fraction Schedule Name 1
@@ -1174,6 +1158,11 @@ Sizing:Zone,
   HumidityRatioDifference,                !- Zone Latent Heating Design Supply Air Humidity Ratio Input Method
   ,                                       !- Zone Humidification Design Supply Air Humidity Ratio {kgWater/kgDryAir}
   0.005;                                  !- Zone Humidification Design Supply Air Humidity Ratio Difference {kgWater/kgDryAir}
+
+Schedule:Constant,
+  Always On Discrete,                     !- Name
+  OnOff,                                  !- Schedule Type Limits Name
+  1;                                      !- Hourly Value
 
 Controller:MechanicalVentilation,
   Controller Mechanical Ventilation 1,    !- Name
@@ -1381,14 +1370,87 @@ Schedule:Constant,
 
 Schedule:Constant,
   Always On Continuous,                   !- Name
-  Fractional,                             !- Schedule Type Limits Name
+  Always On Continuous Limits,            !- Schedule Type Limits Name
   1;                                      !- Hourly Value
+
+ScheduleTypeLimits,
+  ActivityLevel,                          !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A3}
+  ,                                       !- Upper Limit Value {BasedOnField A3}
+  Continuous,                             !- Numeric Type
+  activitylevel;                          !- Unit Type
+
+ScheduleTypeLimits,
+  Always On Continuous Limits,            !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A3}
+  1,                                      !- Upper Limit Value {BasedOnField A3}
+  Continuous;                             !- Numeric Type
+
+ScheduleTypeLimits,
+  Capacity,                               !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A3}
+  ,                                       !- Upper Limit Value {BasedOnField A3}
+  Continuous,                             !- Numeric Type
+  capacity;                               !- Unit Type
+
+ScheduleTypeLimits,
+  Any Number;                             !- Name
+
+ScheduleTypeLimits,
+  DeltaTemperature,                       !- Name
+  ,                                       !- Lower Limit Value {BasedOnField A3}
+  ,                                       !- Upper Limit Value {BasedOnField A3}
+  Continuous,                             !- Numeric Type
+  deltatemperature;                       !- Unit Type
+
+ScheduleTypeLimits,
+  Dimensionless,                          !- Name
+  ,                                       !- Lower Limit Value {BasedOnField A3}
+  ,                                       !- Upper Limit Value {BasedOnField A3}
+  Continuous;                             !- Numeric Type
+
+ScheduleTypeLimits,
+  Dimensionless 1,                        !- Name
+  -1,                                     !- Lower Limit Value {BasedOnField A3}
+  1,                                      !- Upper Limit Value {BasedOnField A3}
+  Continuous;                             !- Numeric Type
+
+ScheduleTypeLimits,
+  Dimensionless 2,                        !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A3}
+  ,                                       !- Upper Limit Value {BasedOnField A3}
+  Continuous;                             !- Numeric Type
+
+ScheduleTypeLimits,
+  Dimensionless 3,                        !- Name
+  0.1,                                    !- Lower Limit Value {BasedOnField A3}
+  1000,                                   !- Upper Limit Value {BasedOnField A3}
+  Continuous;                             !- Numeric Type
+
+ScheduleTypeLimits,
+  Dimensionless 4,                        !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A3}
+  1,                                      !- Upper Limit Value {BasedOnField A3}
+  Continuous,                             !- Numeric Type
+  dimensionless;                          !- Unit Type
 
 ScheduleTypeLimits,
   Fractional,                             !- Name
   0,                                      !- Lower Limit Value {BasedOnField A3}
   1,                                      !- Upper Limit Value {BasedOnField A3}
   Continuous;                             !- Numeric Type
+
+ScheduleTypeLimits,
+  Integer,                                !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A3}
+  ,                                       !- Upper Limit Value {BasedOnField A3}
+  Discrete;                               !- Numeric Type
+
+ScheduleTypeLimits,
+  Integer 1,                              !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A3}
+  4,                                      !- Upper Limit Value {BasedOnField A3}
+  Discrete;                               !- Numeric Type
 
 ScheduleTypeLimits,
   OnOff,                                  !- Name
@@ -1412,11 +1474,67 @@ ScheduleTypeLimits,
   availability;                           !- Unit Type
 
 ScheduleTypeLimits,
+  Percent,                                !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A3}
+  100,                                    !- Upper Limit Value {BasedOnField A3}
+  Continuous,                             !- Numeric Type
+  percent;                                !- Unit Type
+
+ScheduleTypeLimits,
   Temperature,                            !- Name
   ,                                       !- Lower Limit Value {BasedOnField A3}
   ,                                       !- Upper Limit Value {BasedOnField A3}
   Continuous,                             !- Numeric Type
   temperature;                            !- Unit Type
+
+ScheduleTypeLimits,
+  Temperature 1,                          !- Name
+  ,                                       !- Lower Limit Value {BasedOnField A3}
+  0,                                      !- Upper Limit Value {BasedOnField A3}
+  Continuous,                             !- Numeric Type
+  temperature;                            !- Unit Type
+
+ScheduleTypeLimits,
+  Temperature 2,                          !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A3}
+  ,                                       !- Upper Limit Value {BasedOnField A3}
+  Continuous,                             !- Numeric Type
+  temperature;                            !- Unit Type
+
+ScheduleTypeLimits,
+  Temperature 3,                          !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A3}
+  100,                                    !- Upper Limit Value {BasedOnField A3}
+  Continuous,                             !- Numeric Type
+  temperature;                            !- Unit Type
+
+ScheduleTypeLimits,
+  Velocity,                               !- Name
+  0,                                      !- Lower Limit Value {BasedOnField A3}
+  ,                                       !- Upper Limit Value {BasedOnField A3}
+  Continuous,                             !- Numeric Type
+  velocity;                               !- Unit Type
+
+Schedule:Day:Interval,
+  Chilled Water Temperature Default,      !- Name
+  Temperature,                            !- Schedule Type Limits Name
+  No,                                     !- Interpolate to Timestep
+  24:00,                                  !- Time 1 {hh:mm}
+  6.7;                                    !- Value Until Time 1
+
+Schedule:Day:Interval,
+  Chilled Water Temperature Summer Design Day, !- Name
+  Temperature,                            !- Schedule Type Limits Name
+  No,                                     !- Interpolate to Timestep
+  24:00,                                  !- Time 1 {hh:mm}
+  6.7;                                    !- Value Until Time 1
+
+Schedule:Day:Interval,
+  Chilled Water Temperature Winter Design Day, !- Name
+  Temperature,                            !- Schedule Type Limits Name
+  No,                                     !- Interpolate to Timestep
+  24:00,                                  !- Time 1 {hh:mm}
+  6.7;                                    !- Value Until Time 1
 
 Schedule:Day:Interval,
   Chilled_Water_Temperature_Default,      !- Name
@@ -1532,6 +1650,13 @@ Schedule:Day:Interval,
   24:00,                                  !- Time 3 {hh:mm}
   1;                                      !- Value Until Time 3
 
+Schedule:Day:Interval,
+  Schedule Day 1,                         !- Name
+  Dimensionless 2,                        !- Schedule Type Limits Name
+  No,                                     !- Interpolate to Timestep
+  24:00,                                  !- Time 1 {hh:mm}
+  0.00799999999999997;                    !- Value Until Time 1
+
 Schedule:Week:Daily,
   Schedule:Week:Daily {10ec3e5a-5294-46cc-8ada-f12e209007b8}, !- Name
   Medium Office Infil Quarter On Default Schedule, !- Sunday Schedule:Day Name
@@ -1577,6 +1702,30 @@ Schedule:Year,
   31;                                     !- End Day 2
 
 Schedule:Week:Daily,
+  Chilled Water Temperature Week Rule - Jan1-Dec31, !- Name
+  Chilled Water Temperature Default,      !- Sunday Schedule:Day Name
+  Chilled Water Temperature Default,      !- Monday Schedule:Day Name
+  Chilled Water Temperature Default,      !- Tuesday Schedule:Day Name
+  Chilled Water Temperature Default,      !- Wednesday Schedule:Day Name
+  Chilled Water Temperature Default,      !- Thursday Schedule:Day Name
+  Chilled Water Temperature Default,      !- Friday Schedule:Day Name
+  Chilled Water Temperature Default,      !- Saturday Schedule:Day Name
+  Chilled Water Temperature Default,      !- Holiday Schedule:Day Name
+  Chilled Water Temperature Summer Design Day, !- SummerDesignDay Schedule:Day Name
+  Chilled Water Temperature Winter Design Day, !- WinterDesignDay Schedule:Day Name
+  Chilled Water Temperature Default,      !- CustomDay1 Schedule:Day Name
+  Chilled Water Temperature Default;      !- CustomDay2 Schedule:Day Name
+
+Schedule:Year,
+  Chilled Water Temperature,              !- Name
+  Temperature,                            !- Schedule Type Limits Name
+  Chilled Water Temperature Week Rule - Jan1-Dec31, !- Schedule:Week Name 1
+  1,                                      !- Start Month 1
+  1,                                      !- Start Day 1
+  12,                                     !- End Month 1
+  31;                                     !- End Day 1
+
+Schedule:Week:Daily,
   Chilled_Water_Temperature Week Rule - Jan1-Dec31, !- Name
   Chilled_Water_Temperature_Default,      !- Sunday Schedule:Day Name
   Chilled_Water_Temperature_Default,      !- Monday Schedule:Day Name
@@ -1619,6 +1768,30 @@ Schedule:Year,
   Deck_Temperature,                       !- Name
   Temperature,                            !- Schedule Type Limits Name
   Deck_Temperature Week Rule - Jan1-Dec31, !- Schedule:Week Name 1
+  1,                                      !- Start Month 1
+  1,                                      !- Start Day 1
+  12,                                     !- End Month 1
+  31;                                     !- End Day 1
+
+Schedule:Week:Daily,
+  DOAS Humidity Week Rule - Jan1-Dec31,   !- Name
+  Schedule Day 1,                         !- Sunday Schedule:Day Name
+  Schedule Day 1,                         !- Monday Schedule:Day Name
+  Schedule Day 1,                         !- Tuesday Schedule:Day Name
+  Schedule Day 1,                         !- Wednesday Schedule:Day Name
+  Schedule Day 1,                         !- Thursday Schedule:Day Name
+  Schedule Day 1,                         !- Friday Schedule:Day Name
+  Schedule Day 1,                         !- Saturday Schedule:Day Name
+  Schedule Day 1,                         !- Holiday Schedule:Day Name
+  Schedule Day 1,                         !- SummerDesignDay Schedule:Day Name
+  Schedule Day 1,                         !- WinterDesignDay Schedule:Day Name
+  Schedule Day 1,                         !- CustomDay1 Schedule:Day Name
+  Schedule Day 1;                         !- CustomDay2 Schedule:Day Name
+
+Schedule:Year,
+  DOAS Humidity,                          !- Name
+  Dimensionless 2,                        !- Schedule Type Limits Name
+  DOAS Humidity Week Rule - Jan1-Dec31,   !- Schedule:Week Name 1
   1,                                      !- Start Month 1
   1,                                      !- Start Day 1
   12,                                     !- End Month 1
@@ -1720,7 +1893,7 @@ AirLoopHVAC:ControllerList,
 
 Controller:WaterCoil,
   Controller Water Coil 2,                !- Name
-  Temperature,                            !- Control Variable
+  HumidityRatio,                          !- Control Variable
   Reverse,                                !- Action
   Flow,                                   !- Actuator Variable
   Node 10,                                !- Sensor Node Name
@@ -1872,6 +2045,12 @@ SetpointManager:MixedAir,
   Node 3,                                 !- Reference Setpoint Node Name
   Node 11,                                !- Fan Inlet Node Name
   Node 3,                                 !- Fan Outlet Node Name
+  Node 10;                                !- Setpoint Node or NodeList Name
+
+SetpointManager:Scheduled,
+  Humidity SPM,                           !- Name
+  MaximumTemperature,                     !- Control Variable
+  DOAS Humidity,                          !- Schedule Name
   Node 10;                                !- Setpoint Node or NodeList Name
 
 Coil:Heating:Water,
@@ -2652,52 +2831,6 @@ Pump:VariableSpeed,
 Branch,
   Hot Water Loop Supply Branch 1,         !- Name
   ,                                       !- Pressure Drop Curve Name
-  Boiler:HotWater,                        !- Component Object Type 1
-  Boiler Hot Water 1,                     !- Component Name 1
-  Node 14,                                !- Component Inlet Node Name 1
-  Node 19;                                !- Component Outlet Node Name 1
-
-Boiler:HotWater,
-  Boiler Hot Water 1,                     !- Name
-  NaturalGas,                             !- Fuel Type
-  Autosize,                               !- Nominal Capacity {W}
-  0.8,                                    !- Nominal Thermal Efficiency
-  LeavingBoiler,                          !- Efficiency Curve Temperature Evaluation Variable
-  Boiler Efficiency,                      !- Normalized Boiler Efficiency Curve Name
-  Autosize,                               !- Design Water Flow Rate {m3/s}
-  0,                                      !- Minimum Part Load Ratio
-  1,                                      !- Maximum Part Load Ratio
-  1,                                      !- Optimum Part Load Ratio
-  Node 14,                                !- Boiler Water Inlet Node Name
-  Node 19,                                !- Boiler Water Outlet Node Name
-  99,                                     !- Water Outlet Upper Temperature Limit {C}
-  ConstantFlow,                           !- Boiler Flow Mode
-  0,                                      !- On Cycle Parasitic Electric Load {W}
-  1,                                      !- Sizing Factor
-  General,                                !- End-Use Subcategory
-  0;                                      !- Off Cycle Parasitic Fuel Load {W}
-
-Curve:Biquadratic,
-  Boiler Efficiency,                      !- Name
-  1,                                      !- Coefficient1 Constant
-  0,                                      !- Coefficient2 x
-  0,                                      !- Coefficient3 x**2
-  0,                                      !- Coefficient4 y
-  0,                                      !- Coefficient5 y**2
-  0,                                      !- Coefficient6 x*y
-  0,                                      !- Minimum Value of x {BasedOnField A2}
-  1,                                      !- Maximum Value of x {BasedOnField A2}
-  0,                                      !- Minimum Value of y {BasedOnField A3}
-  1,                                      !- Maximum Value of y {BasedOnField A3}
-  ,                                       !- Minimum Curve Output {BasedOnField A4}
-  ,                                       !- Maximum Curve Output {BasedOnField A4}
-  Dimensionless,                          !- Input Unit Type for X
-  Dimensionless,                          !- Input Unit Type for Y
-  Dimensionless;                          !- Output Unit Type
-
-Branch,
-  Hot Water Loop Supply Branch 2,         !- Name
-  ,                                       !- Pressure Drop Curve Name
   Pipe:Adiabatic,                         !- Component Object Type 1
   Pipe Adiabatic 1,                       !- Component Name 1
   Node 20,                                !- Component Inlet Node Name 1
@@ -2707,6 +2840,21 @@ Pipe:Adiabatic,
   Pipe Adiabatic 1,                       !- Name
   Node 20,                                !- Inlet Node Name
   Node 21;                                !- Outlet Node Name
+
+Branch,
+  Hot Water Loop Supply Branch 2,         !- Name
+  ,                                       !- Pressure Drop Curve Name
+  DistrictHeating:Water,                  !- Component Object Type 1
+  District Heating,                       !- Component Name 1
+  Node 14,                                !- Component Inlet Node Name 1
+  Node 17;                                !- Component Outlet Node Name 1
+
+DistrictHeating:Water,
+  District Heating,                       !- Name
+  Node 14,                                !- Hot Water Inlet Node Name
+  Node 17,                                !- Hot Water Outlet Node Name
+  1000000,                                !- Nominal Capacity {W}
+  Always On Continuous;                   !- Capacity Fraction Schedule Name
 
 Branch,
   Hot Water Loop Supply Outlet Branch,    !- Name
@@ -2772,23 +2920,18 @@ Pipe:Adiabatic,
 Branch,
   Hot Water Loop Demand Branch 1,         !- Name
   ,                                       !- Pressure Drop Curve Name
-  Pipe:Adiabatic,                         !- Component Object Type 1
-  Pipe Adiabatic 2,                       !- Component Name 1
-  Node 17,                                !- Component Inlet Node Name 1
-  Node 22;                                !- Component Outlet Node Name 1
-
-Pipe:Adiabatic,
-  Pipe Adiabatic 2,                       !- Name
-  Node 17,                                !- Inlet Node Name
-  Node 22;                                !- Outlet Node Name
+  Coil:Heating:Water,                     !- Component Object Type 1
+  Coil Heating Water 1,                   !- Component Name 1
+  Node 23,                                !- Component Inlet Node Name 1
+  Node 24;                                !- Component Outlet Node Name 1
 
 Branch,
   Hot Water Loop Demand Branch 2,         !- Name
   ,                                       !- Pressure Drop Curve Name
   Coil:Heating:Water,                     !- Component Object Type 1
-  Coil Heating Water 1,                   !- Component Name 1
-  Node 23,                                !- Component Inlet Node Name 1
-  Node 24;                                !- Component Outlet Node Name 1
+  VAV HW Rht Coil,                        !- Component Name 1
+  Node 43,                                !- Component Inlet Node Name 1
+  Node 44;                                !- Component Outlet Node Name 1
 
 Branch,
   Hot Water Loop Demand Bypass Branch,    !- Name
@@ -2830,8 +2973,8 @@ PlantEquipmentOperation:HeatingLoad,
 
 PlantEquipmentList,
   Hot Water Loop Heating Equipment List,  !- Name
-  Boiler:HotWater,                        !- Equipment Object Type 1
-  Boiler Hot Water 1;                     !- Equipment Name 1
+  DistrictHeating:Water,                  !- Equipment Object Type 1
+  District Heating;                       !- Equipment Name 1
 
 Site:Location,
   Shanghai,                               !- Name

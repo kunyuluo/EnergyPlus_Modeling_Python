@@ -2,6 +2,7 @@ import copy
 import math
 from eppy.modeleditor import IDF
 from Obj_Structure import Obj_Tree
+from Schedules.Schedules import Schedule
 
 
 class SomeFields(object):
@@ -207,7 +208,7 @@ class UnitConverter:
             raise TypeError("Invalid input type of values")
 
 
-def delete_hvac_objs(idf_model: IDF, delete_keys: str | list=None):
+def delete_hvac_objs(idf_model: IDF, delete_keys: str | list = None):
     """
     Delete pre-defined groups of component from a given idf file.
     """
@@ -222,7 +223,7 @@ def delete_hvac_objs(idf_model: IDF, delete_keys: str | list=None):
             raise ValueError("delete_keys should be a string or a list of strings")
     else:
         delete_keys = ['HVAC_Branch', 'PlantLoops', 'Plant_Equipment', 'Plant_Controls',
-                       'Water_Heaters_and_Thermal_Storage',
+                       'Water_Heaters_and_Thermal_Storage', 'Water_Use',
                        'Condenser_Equipment', 'Air_Distribution', 'Airflow_Network',
                        'Zone_Equipment', 'Air_Terminals', 'Air_Path', 'Zone_Units', 'VRF_Equipments', 'Radiative_Units',
                        'Pumps', 'Coils', 'Fans', 'Humidifiers_Dehumidifiers',
@@ -263,16 +264,80 @@ def flattencopy(lst):
     return thelist
 
 
-def get_all_zones(idf: IDF):
+def get_all_targets(idf: IDF, key: str, field: str = 'Name'):
     all_objs = idf.idfobjects
-    zones = all_objs['Zone']
+    target_objs = all_objs[key.upper()]
 
-    zone_names = []
-    for zone in zones:
-        name = zone.Name
+    target_fields = []
+    for obj in target_objs:
+        target_field = obj[field]
         # name = zone.Name.split(' ')[0]
-        zone_names.append(name)
+        target_fields.append(target_field)
 
-    return zone_names
+    target = {
+        'object': target_objs,
+        'field': target_fields
+    }
+    return target
 
 
+def find_dsoa_by_zone(idf: IDF, zone_name: str):
+    zone_names = get_all_targets(idf, 'Zone', 'Name')
+    dsoa_names = get_all_targets(idf, 'DesignSpecification:OutdoorAir', 'Name')
+
+    target_dsoa = None
+    if zone_name in zone_names:
+        for dsoa in dsoa_names:
+            if zone_name in dsoa:
+                target_dsoa = dsoa
+                break
+    else:
+        raise ValueError(f"{zone_name} is not in the zone list")
+
+    return target_dsoa
+
+
+def find_always_on(idf: IDF):
+    all_constant = get_all_targets(idf, key='Schedule:Constant')
+    all_compact = get_all_targets(idf, key='Schedule:Compact')
+    all_year = get_all_targets(idf, key='Schedule:Year')
+
+    all_fields = all_constant['field'] + all_compact['field'] + all_year['field']
+    all_objs = []
+    if len(all_constant['object']) != 0:
+        for item in all_constant['object']:
+            all_objs.append(item)
+    if len(all_compact['object']) != 0:
+        for item in all_compact['object']:
+            all_objs.append(item)
+    if len(all_year['object']) != 0:
+        for item in all_year['object']:
+            all_objs.append(item)
+
+    target_schedule = None
+    for i, field in enumerate(all_fields):
+        if 'ALWAYS' in field.upper() and 'ON' in field.upper():
+            target_schedule = all_objs[i]
+            break
+    return target_schedule
+
+
+def set_always_on(idf: IDF, new_name: str = 'Always On Discrete', inplace: bool = False):
+    """
+    First, find if there is an existing 'always on' schedule in the model,
+    if yes, rename it with the given new name,
+    if no, create a new 'always on' schedule.
+    """
+    target_schedule = find_always_on(idf)
+    if target_schedule is not None:
+        name = target_schedule['Name']
+        if name == new_name:
+            on_schedule = target_schedule
+        else:
+            on_schedule = Schedule.always_on(idf, new_name)
+    else:
+        on_schedule = Schedule.always_on(idf, new_name)
+
+    on_schedule_hvac = Schedule.always_on(idf, 'Always On Discrete hvac_library')
+    if not inplace:
+        return on_schedule, on_schedule_hvac

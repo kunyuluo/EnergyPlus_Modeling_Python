@@ -1,25 +1,27 @@
 [openstudio.CLI] <-2> Setting Log Level to Debug (-2)
-[openstudio.workflow.OSWorkflow] <Debug> Removing existing run directory: C:/Users/luokunyu/AppData/Local/Temp/osmodel-0e04-1b92-d43b-6cef-1732865167-0/resources/run
+[openstudio.workflow.OSWorkflow] <Debug> Removing existing run directory: C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources/run
 [openstudio.workflow.OSWorkflow] <Debug> Registering that the workflow has started with the adapter
 [openstudio.workflow.OSWorkflow] <Debug> Initialization - selected = true
 [38;2;000;128;000m
 ┌────────────────────────────────────────────────────────────────────────────────┐
 │                         Starting State Initialization                          │
 └────────────────────────────────────────────────────────────────────────────────┘[0m
-[openstudio.workflow.OSWorkflow] <Debug> The root_dir for the datapoint is C:/Users/luokunyu/AppData/Local/Temp/osmodel-0e04-1b92-d43b-6cef-1732865167-0/resources
-[openstudio.workflow.OSWorkflow] <Debug> Creating generated files directory: C:/Users/luokunyu/AppData/Local/Temp/osmodel-0e04-1b92-d43b-6cef-1732865167-0/resources/generated_files
+[openstudio.workflow.OSWorkflow] <Debug> The root_dir for the datapoint is C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources
+[openstudio.workflow.OSWorkflow] <Debug> Removing existing generated files directory: C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources/generated_files
+[openstudio.workflow.OSWorkflow] <Debug> Creating generated files directory: C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources/generated_files
+[openstudio.workflow.OSWorkflow] <Debug> Removing existing reports directory: C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources/reports
 [openstudio.workflow.OSWorkflow] <Debug> Finding and loading the seed file
 [openstudio.worklow.Util] <Info> Loading OSM model
-[openstudio.worklow.Util] <Info> Reading in OSM model C:/Users/luokunyu/AppData/Local/Temp/osmodel-0e04-1b92-d43b-6cef-1732865167-0/TestOffice_VAV.osm
+[openstudio.worklow.Util] <Info> Reading in OSM model C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/TestOffice_VAV.osm
 [openstudio.osversion.VersionTranslator] <Debug> Starting translation from Version 3.8.0.
-[openstudio.osversion.VersionTranslator] <Debug> Initial model has 437 objects.
-[openstudio.osversion.VersionTranslator] <Debug> Final model has 437 objects in IDF form.
+[openstudio.osversion.VersionTranslator] <Debug> Initial model has 434 objects.
+[openstudio.osversion.VersionTranslator] <Debug> Final model has 434 objects in IDF form.
 [utilities.idf.Workspace] <Debug> Workspace::isValid called.
-[openstudio.osversion.VersionTranslator] <Debug> Final model has 437 objects in Model form.
+[openstudio.osversion.VersionTranslator] <Debug> Final model has 434 objects in Model form.
 [openstudio.workflow.OSWorkflow] <Debug> Initialize the weather file from osw
 [openstudio.workflow.OSWorkflow] <Debug> Search for weather file defined by osw CHN_Shanghai.Shanghai.583620_CSWD.epw
 [openstudio.EpwFile] <Debug> No Daylightings Saving start Date
-[openstudio.EpwFile] <Info> Header start day of the week and actual start day of the week do not match in EPW file 'C:/Users/luokunyu/AppData/Local/Temp/osmodel-0e04-1b92-d43b-6cef-1732865167-0/resources/files/CHN_Shanghai.Shanghai.583620_CSWD.epw'. Data will be treated as typical (TMY)
+[openstudio.EpwFile] <Info> Header start day of the week and actual start day of the week do not match in EPW file 'C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources/files/CHN_Shanghai.Shanghai.583620_CSWD.epw'. Data will be treated as typical (TMY)
 [38;2;000;128;000m#######################Returned from State Initialization#######################[0m
 [openstudio.workflow.OSWorkflow] <Debug> OpenStudioMeasures - selected = true
 [38;2;000;128;000m
@@ -57,7 +59,7 @@
 [openstudio.workflow.OSWorkflow] <Info> Finished collecting output requests from Reporting measures.
 [openstudio.workflow.OSWorkflow] <Info> Running EnergyPlus Preprocess
 [openstudio.workflow.OSWorkflow] <Info> Finished preprocess job for EnergyPlus simulation
-[openstudio.workflow.OSWorkflow] <Debug> Saved final IDF as C:/Users/luokunyu/AppData/Local/Temp/osmodel-0e04-1b92-d43b-6cef-1732865167-0/resources/run/in.idf
+[openstudio.workflow.OSWorkflow] <Debug> Saved final IDF as C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources/run/in.idf
 [38;2;000;128;000m#########################Returned from State PreProcess#########################[0m
 [openstudio.workflow.OSWorkflow] <Debug> EnergyPlus - selected = true
 [38;2;000;128;000m
@@ -65,7 +67,7 @@
 │                           Starting State EnergyPlus                            │
 └────────────────────────────────────────────────────────────────────────────────┘[0m
 [openstudio.OSWorkflow.prepareEnergyPlusDir] <Debug> Original Directory: C:/Users/luokunyu/OneDrive - Carrier Corporation/Desktop/Projects/EnergyPlus_Modeling/Data
-[openstudio.OSWorkflow.prepareEnergyPlusDir] <Debug> Changing To run directory: C:/Users/luokunyu/AppData/Local/Temp/osmodel-0e04-1b92-d43b-6cef-1732865167-0/resources/run
+[openstudio.OSWorkflow.prepareEnergyPlusDir] <Debug> Changing To run directory: C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources/run
 [ApplicationPathHelpers] <Debug> getOpenStudioModule, szPath = 'C:\openstudioapplication-1.8.0\bin\openstudiolib.dll'
 [PathHelpers] <Debug> completeAndNormalize: result = C:/openstudioapplication-1.8.0/bin/openstudiolib.dll
 [ApplicationPathHelpers] <Debug> getOpenStudioModule, found 'C:/openstudioapplication-1.8.0/bin/openstudiolib.dll'
@@ -75,14 +77,14 @@
 [PathHelpers] <Debug> completeAndNormalize: result = C:/openstudioapplication-1.8.0/EnergyPlus/energyplus.exe
 [openstudio.OSWorkflow.prepareEnergyPlusDir] <Info> EnergyPlus executable path is C:/openstudioapplication-1.8.0/EnergyPlus/energyplus.exe
 [openstudio.OSWorkflow.prepareEnergyPlusDir] <Info> ExpandObjects executable path is C:/openstudioapplication-1.8.0/EnergyPlus/ExpandObjects.exe
-[openstudio.workflow.OSWorkflow] <Info> Starting simulation in run directory: C:/Users/luokunyu/AppData/Local/Temp/osmodel-0e04-1b92-d43b-6cef-1732865167-0/resources/run
+[openstudio.workflow.OSWorkflow] <Info> Starting simulation in run directory: C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources/run
 [openstudio.workflow.OSWorkflow] <Info> Running command '"C:/openstudioapplication-1.8.0\EnergyPlus\ExpandObjects.exe"'
 ExpandObjects Started.
 No expanded file generated.
-ExpandObjects Finished. Time:     0.016
+ExpandObjects Finished. Time:     0.000
 [openstudio.workflow.OSWorkflow] <Info> Running command '"C:/openstudioapplication-1.8.0\EnergyPlus\energyplus.exe" in.idf'
 EnergyPlus Starting
-EnergyPlus, Version 24.1.0-9d7789a3ac, YMD=2024.11.29 17:22
+EnergyPlus, Version 24.1.0-9d7789a3ac, YMD=2024.12.02 09:18
 Initializing Response Factors
 Calculating CTFs for "EXTERIOR ROOF"
 Calculating CTFs for "EXTERIOR WALL"
@@ -196,7 +198,6 @@ Warming up {1}
 Updating Beam-to-Diffuse Exterior Solar Reflection Factors
 Updating Beam-to-Beam Exterior Solar Reflection Factors
 Warming up {2}
-Warming up {3}
 Starting Simulation at 01/01/2006 for RUN PERIOD 1
 Updating Shadowing Calculations, Start Date=01/31/2006
 Updating Beam-to-Diffuse Exterior Solar Reflection Factors
@@ -252,8 +253,8 @@ Writing final SQL reports
 EnergyPlus Run Time=00hr 00min  3.92sec
 EnergyPlus Completed Successfully.
 [openstudio.workflow.OSWorkflow] <Info> EnergyPlus returned '0'
-RunEnergyPlus: Completed Successfully with [38;2;255;000;000m0 Fatal Errors, [0m[38;2;255;165;000m0 Severe Errors, [0m[38;2;255;255;000m36 Warnings.[0m
-[openstudio.workflow.OSWorkflow] <Info> EnergyPlus finished with 80 warnings and 0 severe errors
+RunEnergyPlus: Completed Successfully with [38;2;255;000;000m0 Fatal Errors, [0m[38;2;255;165;000m0 Severe Errors, [0m[38;2;255;255;000m19 Warnings.[0m
+[openstudio.workflow.OSWorkflow] <Info> EnergyPlus finished with 18 warnings and 0 severe errors
 [openstudio.OSWorkflow.prepareEnergyPlusDir] <Info> Removing any copied EnergyPlus files
 [openstudio.OSWorkflow.prepareEnergyPlusDir] <Debug> Changing Current Directory back to: C:/Users/luokunyu/OneDrive - Carrier Corporation/Desktop/Projects/EnergyPlus_Modeling/Data
 [38;2;000;128;000m#########################Returned from State EnergyPlus#########################[0m
@@ -272,9 +273,9 @@ RunEnergyPlus: Completed Successfully with [38;2;255;000;000m0 Fatal Errors, [
 │                           Starting State PostProcess                           │
 └────────────────────────────────────────────────────────────────────────────────┘[0m
 [openstudio.workflow.OSWorkflow] <Info> Gathering reports
-[openstudio.workflow.Util] <Info> Run directory: C:/Users/luokunyu/AppData/Local/Temp/osmodel-0e04-1b92-d43b-6cef-1732865167-0/resources/run
-[openstudio.workflow.Util] <Info> Reports directoryC:/Users/luokunyu/AppData/Local/Temp/osmodel-0e04-1b92-d43b-6cef-1732865167-0/resources
-[openstudio.workflow.Util] <Info> Saving EnergyPlus HTML report to C:/Users/luokunyu/AppData/Local/Temp/osmodel-0e04-1b92-d43b-6cef-1732865167-0/resources/reports/eplustbl.html
+[openstudio.workflow.Util] <Info> Run directory: C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources/run
+[openstudio.workflow.Util] <Info> Reports directoryC:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources
+[openstudio.workflow.Util] <Info> Saving EnergyPlus HTML report to C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources/reports/eplustbl.html
 [openstudio.workflow.OSWorkflow] <Info> Finished gathering reports
 [38;2;000;128;000m########################Returned from State PostProcess#########################[0m
 [openstudio.workflow.OSWorkflow] <Debug> Cleanup - selected = true

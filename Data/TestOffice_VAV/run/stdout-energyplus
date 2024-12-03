@@ -1,8 +1,8 @@
 ExpandObjects Started.
 No expanded file generated.
-ExpandObjects Finished. Time:     0.016
+ExpandObjects Finished. Time:     0.000
 EnergyPlus Starting
-EnergyPlus, Version 24.1.0-9d7789a3ac, YMD=2024.11.29 17:22
+EnergyPlus, Version 24.1.0-9d7789a3ac, YMD=2024.12.02 09:18
 Initializing Response Factors
 Calculating CTFs for "EXTERIOR ROOF"
 Calculating CTFs for "EXTERIOR WALL"
@@ -116,7 +116,6 @@ Warming up {1}
 Updating Beam-to-Diffuse Exterior Solar Reflection Factors
 Updating Beam-to-Beam Exterior Solar Reflection Factors
 Warming up {2}
-Warming up {3}
 Starting Simulation at 01/01/2006 for RUN PERIOD 1
 Updating Shadowing Calculations, Start Date=01/31/2006
 Updating Beam-to-Diffuse Exterior Solar Reflection Factors

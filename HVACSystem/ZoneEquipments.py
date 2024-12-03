@@ -2,6 +2,7 @@ from eppy.modeleditor import IDF
 from eppy.bunch_subclass import EpBunch
 from HVACSystem.AirTerminals import AirTerminal
 from HVACSystem.AirLoopComponents import AirLoopComponent
+from Helper import get_all_targets, find_dsoa_by_zone
 
 
 class ZoneEquipment:
@@ -43,6 +44,7 @@ class ZoneEquipment:
             idf: IDF,
             zones: list[EpBunch] | list[str] = None,
             air_terminal_type: int = 1,
+            terminal_for_outdoor_air: bool = False,
             zone_hvac_type: int = None,
             zone_radiative_type: int = None):
         """
@@ -50,9 +52,9 @@ class ZoneEquipment:
             1: 'AirTerminal:SingleDuct:ConstantVolume:NoReheat',
             2: 'AirTerminal:SingleDuct:ConstantVolume:Reheat',
             3: 'AirTerminal:SingleDuct:VAV:Reheat',
-            4: 'AirTerminal:SingleDuct:VAV:Reheat:VariableSpeedFan',
-            5: 'AirTerminal:SingleDuct:VAV:HeatAndCool:Reheat',
-            6: 'AirTerminal:SingleDuct:VAV:NoReheat',
+            4: 'AirTerminal:SingleDuct:VAV:NoReheat',
+            5: 'AirTerminal:SingleDuct:VAV:Reheat:VariableSpeedFan',
+            6: 'AirTerminal:SingleDuct:VAV:HeatAndCool:Reheat',
             7: 'AirTerminal:SingleDuct:VAV:HeatAndCool:NoReheat',
             8: 'AirTerminal:SingleDuct:SeriesPIU:Reheat',
             9: 'AirTerminal:SingleDuct:ParallelPIU:Reheat',
@@ -248,7 +250,17 @@ class ZoneEquipment:
                 terminal_air_inlet = f'{zone_name} terminal inlet'
                 terminal['object'][terminal['air_inlet_field']] = terminal_air_inlet
                 terminal['object'][terminal['air_outlet_field']] = terminal_node_name
+                if terminal_for_outdoor_air:
+                    try:
+                        dsoa_for_zone = find_dsoa_by_zone(idf, zone_name)
+                        terminal['object']['Design_Specification_Outdoor_Air_Object_Name'] = dsoa_for_zone
+                    except Exception:
+                        pass
                 zone_splitter_out_nodes.append(terminal_air_inlet)
+
+                # Reheat coil if available:
+                if 'reheat_coil' in terminal.keys():
+                    terminal['reheat_coil']['object'][terminal['reheat_coil']['air_outlet_field']] = terminal_node_name
 
                 equip_group_assembly.append(terminal['object'])
                 if 'reheat_coil' in terminal.keys():

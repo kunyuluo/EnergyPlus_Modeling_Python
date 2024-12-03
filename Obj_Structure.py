@@ -124,6 +124,13 @@ Obj_Tree = {
         'ThermalStorage:ChilledWater:Mixed',
         'ThermalStorage:ChilledWater:Stratified',
     ],
+    'Water_Use': [
+        'WaterUse:Equipment',
+        'WaterUse:Connections',
+        'WaterUse:Storage',
+        'WaterUse:RainCollector',
+        'WaterUse:Well',
+    ],
     'Condenser_Equipment': [
         'CoolingTower:SingleSpeed',
         'CoolingTower:TwoSpeed',
@@ -387,7 +394,7 @@ Obj_Tree = {
     'Controllers': [
         'Controller:WaterCoil',
         'Controller:OutdoorAir',
-        'Controller:MechanicalVentilation',
+        # 'Controller:MechanicalVentilation',
         'ZoneHVAC:EnergyRecoveryVentilator:Controller',
     ],
     'Heat_Recovery': [
@@ -450,21 +457,22 @@ Obj_Tree = {
         'OutputControl:SurfaceColorScheme',
         'OutputControl:ReportingTolerances',
         'Output:Variable',
-        'Output:Meter and Output:Meter:MeterFileOnly',
-        'Output:Meter:Cumulative and Output:Meter:Cumulative:MeterFileOnly',
+        'Output:Meter,'
+        'Output:Meter:MeterFileOnly',
+        'Output:Meter:Cumulative,'
+        'Output:Meter:Cumulative:MeterFileOnly',
         'Output:EnvironmentalImpactFactors',
         'EnvironmentalImpactFactors',
         'FuelFactors',
-        'Outputs',
         'Output:JSON',
-        'Output:SQLite',
+        # 'Output:SQLite',
         'OutputControl:Files',
 
         # Outputs:
-        'Output:Table:Monthly',
-        'Output:Table:Annual',
-        'Output:Table:ReportPeriod',
-        'Output:Table:SummaryReports',
-        'OutputControl:Table:Style',
+        # 'Output:Table:Monthly',
+        # 'Output:Table:Annual',
+        # 'Output:Table:ReportPeriod',
+        # 'Output:Table:SummaryReports',
+        # 'OutputControl:Table:Style',
     ]
 }

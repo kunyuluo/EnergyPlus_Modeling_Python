@@ -4,30 +4,70 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="20a373d1-d6e9-4a2c-8f6f-629a3b4b64a9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024_11_21_9_41__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.audit" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_new.audit" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.bnd" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_new.bnd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.eio" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_new.eio" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.err" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_new.err" afterDir="false" />
+    <list default="true" id="20a373d1-d6e9-4a2c-8f6f-629a3b4b64a9" name="Changes" comment="some modifications">
+      <change afterPath="$PROJECT_DIR$/HVACSystem/AvailabilityManagers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/EPTEMP-00000001/eplusspsz.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice.idf" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice.idf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV.osm" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV.osm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/out.osw" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/out.osw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/reports/eplustbl.html" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/reports/eplustbl.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/run/data_point.zip" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/run/data_point.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplusout.audit" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplusout.audit" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplusout.bnd" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplusout.bnd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplusout.eio" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplusout.eio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplusout.end" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplusout.end" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplusout.err" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplusout.err" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplusout.eso" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplusout.eso" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplusout.mdd" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplusout.mdd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplusout.mtd" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplusout.mtd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplusout.rdd" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplusout.rdd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplusout.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplusout.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplustbl.htm" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/run/eplustbl.htm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/run/finished.job" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/run/finished.job" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/run/in.idf" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/run/in.idf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/run/in.osm" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/run/in.osm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/run/pre-preprocess.idf" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/run/pre-preprocess.idf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/run/run.log" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/run/run.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/run/started.job" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/run/started.job" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/run/stdout-energyplus" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/run/stdout-energyplus" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_VAV/stdout" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_VAV/stdout" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.audit" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.bnd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.eio" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.err" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.eso" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.idf" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_new.idf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.mtd" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_new.mtd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.rvaudit" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_new.rvaudit" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.svg" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_new.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.mdd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.mtd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.mtr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.rdd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.rvaudit" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.shd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_new.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_newMeter.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_newSsz.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/TestOffice_newZsz.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HVACSystem/AirLoop.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/AirLoop.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HVACSystem/AirLoopComponents.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/AirLoopComponents.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HVACSystem/AirTerminals.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/AirTerminals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HVACSystem/NodeBranch.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/NodeBranch.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HVACSystem/PlantLoop.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/PlantLoop.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HVACSystem/PlantLoopComponents.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/PlantLoopComponents.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HVACSystem/SetpointManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/SetpointManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HVACSystem/ZoneEquipments.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/ZoneEquipments.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Helper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obj_Structure.py" beforeDir="false" afterPath="$PROJECT_DIR$/Obj_Structure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedules/Schedules.py" beforeDir="false" afterPath="$PROJECT_DIR$/Schedules/Schedules.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,13 +80,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -57,5 +97,9 @@
       <updated>1733058957452</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="some modifications" />
+    <option name="LAST_COMMIT_MESSAGE" value="some modifications" />
   </component>
 </project>

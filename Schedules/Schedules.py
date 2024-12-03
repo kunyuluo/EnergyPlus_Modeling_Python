@@ -226,4 +226,22 @@ class Schedule:
         else:
             return year
 
+    @staticmethod
+    def constant(idf: IDF, name: str, constant_value: int | float = 1):
+        name = 'Schedule Constant' if name is None else name
+        constant = idf.newidfobject('Schedule:Constant', Name=name)
+        constant['Hourly_Value'] = constant_value
+        return constant
+
+    @staticmethod
+    def always_on(idf: IDF, name: str = None):
+        name = 'Schedule Compact' if name is None else name
+        compact = idf.newidfobject('Schedule:Compact', Name=name)
+        compact['Schedule_Type_Limits_Name'] = 'On/Off'
+        compact['Field_1'] = 'Through: 12/31'
+        compact['Field_2'] = 'For: AllDays'
+        compact['Field_3'] = 'Until: 24:00,1'
+
+        return compact
+
 
