@@ -24,7 +24,7 @@ class AirLoop:
             setpoint_manager: EpBunch = None,
             zones: list[str] | list[EpBunch] = None,
             air_terminal_type: int = 1,
-            zone_hvac_type: int = None,
+            zone_air_unit_type: int = None,
             zone_radiative_type: int = None,
             design_supply_air_flow_rate: float = None,
             design_return_air_fraction: float = 1.0,
@@ -472,7 +472,7 @@ class AirLoop:
             idf,
             zones=zones,
             air_terminal_type=air_terminal_type,
-            zone_hvac_type=zone_hvac_type,
+            zone_air_unit_type=zone_air_unit_type,
             zone_radiative_type=zone_radiative_type)
         loop_assembly.extend(zone_equips['Equipments'])
 

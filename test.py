@@ -12,6 +12,7 @@ from HVACSystem.SetpointManager import SetpointManager
 from HVACSystem.PerformanceCurves import PerformanceCurve
 from HVACSystem.PerformanceTables import PerformanceTable
 from HVACSystem.ZoneEquipments import ZoneEquipment
+from HVACSystem.ZoneForcedAirUnits import ZoneForcedAirUnit
 from Schedules.Schedules import Schedule
 
 idd_file = 'Data/Energy+_v24.idd'
@@ -33,7 +34,7 @@ all_objs = my_model.idfobjects
 # Get all thermal zones:
 #####################################################################
 zones = get_all_targets(my_model, key='Zone')['object']
-zones = zones[1:]
+# zones = zones[1:]
 # print(zones)
 
 schedule = set_always_on(my_model)
@@ -68,8 +69,8 @@ loop = AirLoop.air_loop_hvac(
     zones=zones,
     air_terminal_type=1,
     # sizing=sizing,
-    zone_hvac_type=2)
-print(loop['Loop'])
+    zone_air_unit_type=2)
+# print(loop['Loop'])
 # print(clg_coil['object'])
 # print(htg_coil['object'])
 # print(fan['object'])
@@ -77,63 +78,63 @@ all_clg_coils = loop['Cooling_Coils']
 all_htg_coils = loop['Heating_Coils']
 # print(all_htg_coils)
 
-# Creating new chilled water loop:
-####################################################################
-pump_chw = PlantLoopComponent.pump_variable_speed(my_model, name='Chw pump')
-chiller1 = PlantLoopComponent.chiller_electric(my_model, name='Chiller 1', condenser_type=2, chiller_flow_mode=1)
-chw_spm = SetpointManager.scheduled(my_model, name='Chilled Water Temperature', constant_value=7)
-
-chw_loop = PlantLoop.water_loop(
-    my_model,
-    name='Test Chilled Water Loop',
-    loop_type=1,
-    fluid_type=1,
-    supply_inlet_branches=pump_chw,
-    supply_branches=[chiller1],
-    demand_branches=all_clg_coils,
-    setpoint_manager=chw_spm)
-
-# print(chw_loop)
-
-# Creating new condenser water loop:
-####################################################################
-pump_cw = PlantLoopComponent.pump_variable_speed(my_model, name='CW pump')
-tower = PlantLoopComponent.cooling_tower_single_speed(my_model, name='Cooling Tower 1')
-cw_spm = SetpointManager.follow_outdoor_air_temp(my_model, name='Condenser Water Temperature', ashrae_default=True)
-
-cw_loop = PlantLoop.water_loop(
-    my_model,
-    name='Test Condenser Water Loop',
-    loop_type=3,
-    fluid_type=1,
-    supply_inlet_branches=pump_cw,
-    supply_branches=[tower],
-    demand_branches=[chiller1],
-    setpoint_manager=cw_spm)
-
-# print(cw_loop)
-
-# Creating new hot water loop:
-#####################################################################
-pump_hw = PlantLoopComponent.pump_variable_speed(my_model, name='HW pump')
-district = PlantLoopComponent.district_heating_v24(my_model, name='District Heating')
-hw_spm = SetpointManager.scheduled(my_model, name='Hot Water Temperature', constant_value=60)
-
-hw_loop = PlantLoop.water_loop(
-    my_model,
-    name='Test Hot Water Loop',
-    loop_type=2,
-    fluid_type=1,
-    supply_inlet_branches=pump_hw,
-    supply_branches=[district],
-    demand_branches=all_htg_coils,
-    setpoint_manager=hw_spm)
+# # Creating new chilled water loop:
+# ####################################################################
+# pump_chw = PlantLoopComponent.pump_variable_speed(my_model, name='Chw pump')
+# chiller1 = PlantLoopComponent.chiller_electric(my_model, name='Chiller 1', condenser_type=2, chiller_flow_mode=1)
+# chw_spm = SetpointManager.scheduled(my_model, name='Chilled Water Temperature', constant_value=7)
+#
+# chw_loop = PlantLoop.water_loop(
+#     my_model,
+#     name='Test Chilled Water Loop',
+#     loop_type=1,
+#     fluid_type=1,
+#     supply_inlet_branches=pump_chw,
+#     supply_branches=[chiller1],
+#     demand_branches=all_clg_coils,
+#     setpoint_manager=chw_spm)
+#
+# # print(chw_loop)
+#
+# # Creating new condenser water loop:
+# ####################################################################
+# pump_cw = PlantLoopComponent.pump_variable_speed(my_model, name='CW pump')
+# tower = PlantLoopComponent.cooling_tower_single_speed(my_model, name='Cooling Tower 1')
+# cw_spm = SetpointManager.follow_outdoor_air_temp(my_model, name='Condenser Water Temperature', ashrae_default=True)
+#
+# cw_loop = PlantLoop.water_loop(
+#     my_model,
+#     name='Test Condenser Water Loop',
+#     loop_type=3,
+#     fluid_type=1,
+#     supply_inlet_branches=pump_cw,
+#     supply_branches=[tower],
+#     demand_branches=[chiller1],
+#     setpoint_manager=cw_spm)
+#
+# # print(cw_loop)
+#
+# # Creating new hot water loop:
+# #####################################################################
+# pump_hw = PlantLoopComponent.pump_variable_speed(my_model, name='HW pump')
+# district = PlantLoopComponent.district_heating_v24(my_model, name='District Heating')
+# hw_spm = SetpointManager.scheduled(my_model, name='Hot Water Temperature', constant_value=60)
+#
+# hw_loop = PlantLoop.water_loop(
+#     my_model,
+#     name='Test Hot Water Loop',
+#     loop_type=2,
+#     fluid_type=1,
+#     supply_inlet_branches=pump_hw,
+#     supply_branches=[district],
+#     demand_branches=all_htg_coils,
+#     setpoint_manager=hw_spm)
 
 # print(hw_loop)
 
-# object = my_model.newidfobject('Sizing:Zone')
-# print(object.fieldnames)
+object = my_model.newidfobject('ZoneHVAC:LowTemperatureRadiant:VariableFlow')
+print(object.fieldnames)
 
 # Save to a new file:
 #####################################################################
-my_model.saveas('Data/TestOffice_new.idf')
+# my_model.saveas('Data/TestOffice_new.idf')
