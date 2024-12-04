@@ -1,0 +1,69 @@
+[09:18:11.968226 DEBUG] [openstudio.workflow.OSWorkflow] Removing existing run directory: C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources/run
+[09:18:11.969227 DEBUG] [openstudio.workflow.OSWorkflow] Registering that the workflow has started with the adapter
+[09:18:11.969227 DEBUG] [openstudio.workflow.OSWorkflow] Initialization - selected = true
+[09:18:11.970229 DEBUG] [openstudio.workflow.OSWorkflow] The root_dir for the datapoint is C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources
+[09:18:11.970229 DEBUG] [openstudio.workflow.OSWorkflow] Removing existing generated files directory: C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources/generated_files
+[09:18:11.973226 DEBUG] [openstudio.workflow.OSWorkflow] Creating generated files directory: C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources/generated_files
+[09:18:11.973226 DEBUG] [openstudio.workflow.OSWorkflow] Removing existing reports directory: C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources/reports
+[09:18:11.974231 DEBUG] [openstudio.workflow.OSWorkflow] Finding and loading the seed file
+[09:18:11.977230 INFO] [openstudio.worklow.Util] Loading OSM model
+[09:18:11.977230 INFO] [openstudio.worklow.Util] Reading in OSM model C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/TestOffice_VAV.osm
+[09:18:11.984230 DEBUG] [openstudio.osversion.VersionTranslator] Starting translation from Version 3.8.0.
+[09:18:12.003329 DEBUG] [openstudio.osversion.VersionTranslator] Initial model has 434 objects.
+[09:18:12.003329 DEBUG] [openstudio.osversion.VersionTranslator] Final model has 434 objects in IDF form.
+[09:18:12.011227 DEBUG] [utilities.idf.Workspace] Workspace::isValid called.
+[09:18:12.037064 DEBUG] [openstudio.osversion.VersionTranslator] Final model has 434 objects in Model form.
+[09:18:12.038960 DEBUG] [openstudio.workflow.OSWorkflow] Initialize the weather file from osw
+[09:18:12.038960 DEBUG] [openstudio.workflow.OSWorkflow] Search for weather file defined by osw CHN_Shanghai.Shanghai.583620_CSWD.epw
+[09:18:12.048960 DEBUG] [openstudio.EpwFile] No Daylightings Saving start Date
+[09:18:12.075002 INFO] [openstudio.EpwFile] Header start day of the week and actual start day of the week do not match in EPW file 'C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources/files/CHN_Shanghai.Shanghai.583620_CSWD.epw'. Data will be treated as typical (TMY)
+[09:18:12.076958 DEBUG] [openstudio.workflow.OSWorkflow] OpenStudioMeasures - selected = true
+[09:18:12.076958 INFO] [openstudio.workflow.OSWorkflow] Beginning to execute OpenStudio Measures
+[09:18:12.076958 DEBUG] [openstudio.workflow.OSWorkflow] Finding measures of type ModelMeasure
+[09:18:12.076958 INFO] [openstudio.workflow.OSWorkflow] Finished applying OpenStudio Measures.
+[09:18:12.096957 DEBUG] [openstudio.workflow.OSWorkflow] Translator - selected = true
+[09:18:12.099963 INFO] [openstudio.workflow.OSWorkflow] Beginning the translation to IDF
+[09:18:12.142731 INFO] [openstudio.workflow.OSWorkflow] Successfully translated to IDF
+[09:18:12.142731 DEBUG] [openstudio.workflow.OSWorkflow] EnergyPlusMeasures - selected = true
+[09:18:12.142731 INFO] [openstudio.workflow.OSWorkflow] Beginning to execute EnergyPlus Measures.
+[09:18:12.142731 DEBUG] [openstudio.workflow.OSWorkflow] Finding measures of type EnergyPlusMeasure
+[09:18:12.142731 INFO] [openstudio.workflow.OSWorkflow] Finished applying EnergyPlus Measures.
+[09:18:12.143626 DEBUG] [openstudio.workflow.OSWorkflow] PreProcess - selected = true
+[09:18:12.155624 INFO] [openstudio.workflow.OSWorkflow] Beginning to collect output requests from Reporting measures.
+[09:18:12.155624 DEBUG] [openstudio.workflow.OSWorkflow] Finding measures of type ReportingMeasure
+[09:18:12.155624 INFO] [openstudio.workflow.OSWorkflow] Finished collecting output requests from Reporting measures.
+[09:18:12.155624 INFO] [openstudio.workflow.OSWorkflow] Running EnergyPlus Preprocess
+[09:18:12.160624 INFO] [openstudio.workflow.OSWorkflow] Finished preprocess job for EnergyPlus simulation
+[09:18:12.174622 DEBUG] [openstudio.workflow.OSWorkflow] Saved final IDF as C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources/run/in.idf
+[09:18:12.174622 DEBUG] [openstudio.workflow.OSWorkflow] EnergyPlus - selected = true
+[09:18:12.174622 DEBUG] [openstudio.OSWorkflow.prepareEnergyPlusDir] Original Directory: C:/Users/luokunyu/OneDrive - Carrier Corporation/Desktop/Projects/EnergyPlus_Modeling/Data
+[09:18:12.174622 DEBUG] [openstudio.OSWorkflow.prepareEnergyPlusDir] Changing To run directory: C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources/run
+[09:18:12.174622 DEBUG] [ApplicationPathHelpers] getOpenStudioModule, szPath = 'C:\openstudioapplication-1.8.0\bin\openstudiolib.dll'
+[09:18:12.175628 DEBUG] [PathHelpers] completeAndNormalize: result = C:/openstudioapplication-1.8.0/bin/openstudiolib.dll
+[09:18:12.175628 DEBUG] [ApplicationPathHelpers] getOpenStudioModule, found 'C:/openstudioapplication-1.8.0/bin/openstudiolib.dll'
+[09:18:12.175628 DEBUG] [ApplicationPathHelpers] Searching for EnergyPlus in 'C:/openstudioapplication-1.8.0/EnergyPlus/energyplus.exe'
+[09:18:12.176622 DEBUG] [PathHelpers] completeAndNormalize: result = C:/openstudioapplication-1.8.0/EnergyPlus/energyplus.exe
+[09:18:12.176622 DEBUG] [ApplicationPathHelpers] Found EnergyPlus at 'C:/openstudioapplication-1.8.0/EnergyPlus/energyplus.exe'
+[09:18:12.176622 DEBUG] [PathHelpers] completeAndNormalize: result = C:/openstudioapplication-1.8.0/EnergyPlus/energyplus.exe
+[09:18:12.204620 INFO] [openstudio.OSWorkflow.prepareEnergyPlusDir] EnergyPlus executable path is C:/openstudioapplication-1.8.0/EnergyPlus/energyplus.exe
+[09:18:12.204620 INFO] [openstudio.OSWorkflow.prepareEnergyPlusDir] ExpandObjects executable path is C:/openstudioapplication-1.8.0/EnergyPlus/ExpandObjects.exe
+[09:18:12.204620 INFO] [openstudio.workflow.OSWorkflow] Starting simulation in run directory: C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources/run
+[09:18:12.216729 INFO] [openstudio.workflow.OSWorkflow] Running command '"C:/openstudioapplication-1.8.0\EnergyPlus\ExpandObjects.exe"'
+[09:18:12.319071 INFO] [openstudio.workflow.OSWorkflow] Running command '"C:/openstudioapplication-1.8.0\EnergyPlus\energyplus.exe" in.idf'
+[09:18:17.827391 INFO] [openstudio.workflow.OSWorkflow] EnergyPlus returned '0'
+[09:18:17.830399 INFO] [openstudio.workflow.OSWorkflow] EnergyPlus finished with 18 warnings and 0 severe errors
+[09:18:17.830399 INFO] [openstudio.OSWorkflow.prepareEnergyPlusDir] Removing any copied EnergyPlus files
+[09:18:17.832403 DEBUG] [openstudio.OSWorkflow.prepareEnergyPlusDir] Changing Current Directory back to: C:/Users/luokunyu/OneDrive - Carrier Corporation/Desktop/Projects/EnergyPlus_Modeling/Data
+[09:18:17.833404 DEBUG] [openstudio.workflow.OSWorkflow] ReportingMeasures - selected = true
+[09:18:17.833404 INFO] [openstudio.workflow.OSWorkflow] Beginning to execute Reporting Measures.
+[09:18:17.833404 DEBUG] [openstudio.workflow.OSWorkflow] Finding measures of type ReportingMeasure
+[09:18:17.833404 INFO] [openstudio.workflow.OSWorkflow] Finished applying Reporting Measures.
+[09:18:17.835399 DEBUG] [openstudio.workflow.OSWorkflow] PostProcess - selected = true
+[09:18:17.835399 INFO] [openstudio.workflow.OSWorkflow] Gathering reports
+[09:18:17.836400 INFO] [openstudio.workflow.Util] Run directory: C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources/run
+[09:18:17.836400 INFO] [openstudio.workflow.Util] Reports directoryC:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources
+[09:18:17.836400 INFO] [openstudio.workflow.Util] Saving EnergyPlus HTML report to C:/Users/luokunyu/AppData/Local/Temp/osmodel-f2c4-92e3-a320-7885-1733101182-0/resources/reports/eplustbl.html
+[09:18:17.839398 INFO] [openstudio.workflow.OSWorkflow] Finished gathering reports
+[09:18:17.839398 DEBUG] [openstudio.workflow.OSWorkflow] Cleanup - selected = true
+[09:18:17.839398 INFO] [openstudio.workflow.OSWorkflow] Beginning cleanup of the run directory
+[09:18:17.843952 INFO] [openstudio.workflow.OSWorkflow] Finished cleanup of the run directory

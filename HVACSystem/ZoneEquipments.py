@@ -210,15 +210,15 @@ class ZoneEquipment:
                 terminal_node_name = f'{zone_name} terminal outlet'
                 zone_equip_node_name = f'{zone_name} zone hvac outlet'
                 inlet_nodelist['Node_1_Name'] = terminal_node_name
-                if zone_air_unit_type is not None:
-                    inlet_nodelist['Node_2_Name'] = zone_equip_node_name
+                # if zone_air_unit_type is not None:
+                #     inlet_nodelist['Node_2_Name'] = zone_equip_node_name
                 equip_group_assembly.append(inlet_nodelist)
 
                 # Exhaust NodeList:
-                if zone_air_unit_type is not None:
-                    exhaust_nodelist = idf.newidfobject('NodeList', Name=exhaust_nodelist_name)
-                    exhaust_nodelist['Node_1_Name'] = f'{zone_name} zone hvac inlet'
-                    equip_group_assembly.append(exhaust_nodelist)
+                # if zone_air_unit_type is not None:
+                #     exhaust_nodelist = idf.newidfobject('NodeList', Name=exhaust_nodelist_name)
+                #     # exhaust_nodelist['Node_1_Name'] = zone_air_unit_type['object']['Air_Inlet_Node_Name']
+                #     equip_group_assembly.append(exhaust_nodelist)
 
                 # Return Air NodeList:
                 return_air_nodelist = idf.newidfobject('NodeList', Name=return_air_nodelist_name)
@@ -280,9 +280,17 @@ class ZoneEquipment:
                         equipments.append(zone_equip)
 
                         if 'cooling_coil' in zone_equip.keys() and zone_equip['cooling_coil'] is not None:
-                            cooling_coils.append(zone_equip['cooling_coil']['object'])
+                            cooling_coils.append(zone_equip['cooling_coil'])
                         if 'heating_coil' in zone_equip.keys() and zone_equip['heating_coil'] is not None:
-                            heating_coils.append(zone_equip['heating_coil']['object'])
+                            heating_coils.append(zone_equip['heating_coil'])
+
+                        # Add to Inlet Node List:
+                        inlet_nodelist['Node_2_Name'] = zone_equip['object']['Air_Outlet_Node_Name']
+
+                        # Add exhaust nodelist accordingly:
+                        exhaust_nodelist = idf.newidfobject('NodeList', Name=exhaust_nodelist_name)
+                        exhaust_nodelist['Node_1_Name'] = zone_equip['object']['Air_Inlet_Node_Name']
+                        equip_group_assembly.append(exhaust_nodelist)
                     else:
                         raise NotImplementedError('Zone HVAC type not implemented')
 
@@ -294,13 +302,13 @@ class ZoneEquipment:
                         zone_rad_func = getattr(ZoneRadiativeUnit, zone_rad_func_name)
                         zone_rad_name = zone_name + ' ' + radiative_unit_type.split(':')[1]
                         zone_rad = zone_rad_func(idf, zone_rad_name)
-                        equip_group_assembly.append(zone_rad)
+                        equip_group_assembly.append(zone_rad['object'])
                         equipments.append(zone_rad)
 
                         if 'cooling_coil' in zone_rad.keys() and zone_rad['cooling_coil'] is not None:
-                            cooling_coils.append(zone_rad['cooling_coil']['object'])
+                            cooling_coils.append(zone_rad['cooling_coil'])
                         if 'heating_coil' in zone_rad.keys() and zone_rad['heating_coil'] is not None:
-                            heating_coils.append(zone_rad['heating_coil']['object'])
+                            heating_coils.append(zone_rad['heating_coil'])
                     else:
                         raise NotImplementedError('Zone Radiative type not implemented')
 

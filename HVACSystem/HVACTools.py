@@ -36,20 +36,3 @@ class SomeFields(object):
         "Supply Side Outlet Node Names",
     ]
 
-
-class PlantLoop:
-    @staticmethod
-    def chilled_water_loop(
-            idf: IDF,
-            loop_exit_temp=None,
-            loop_temp_diff=None,
-            secondary_pump_sys: bool = False,
-            supply_inlet_branches: dict | list[dict] = None,
-            supply_branches: list[list[dict]] | list[dict] = None,
-            demand_inlet_branches: dict | list[dict] = None,
-            demand_branches: dict | list[dict] = None):
-        pass
-
-    @staticmethod
-    def chiller_plant(idf: IDF):
-        pass

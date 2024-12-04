@@ -71,9 +71,9 @@ class AirLoop:
             1: 'ZoneHVAC:Baseboard:RadiantConvective:Water',
             2: 'ZoneHVAC:Baseboard:RadiantConvective:Steam',
             3: 'ZoneHVAC:Baseboard:RadiantConvective:Electric',
-            4: 'ZoneHVAC:CoolingPanel:RadiantConvective:Water',
-            5: 'ZoneHVAC:Baseboard:Convective:Water',
-            6: 'ZoneHVAC:Baseboard:Convective:Electric',
+            4: 'ZoneHVAC:Baseboard:Convective:Water',
+            5: 'ZoneHVAC:Baseboard:Convective:Electric',
+            6: 'ZoneHVAC:CoolingPanel:RadiantConvective:Water',
             7: 'ZoneHVAC:LowTemperatureRadiant:VariableFlow',
             8: 'ZoneHVAC:LowTemperatureRadiant:VariableFlow:Design',
             9: 'ZoneHVAC:LowTemperatureRadiant:ConstantFlow',
@@ -82,7 +82,7 @@ class AirLoop:
             12: 'ZoneHVAC:LowTemperatureRadiant:SurfaceGroup',
             13: 'ZoneHVAC:HighTemperatureRadiant',
             14: 'ZoneHVAC:VentilatedSlab',
-            15: 'ZoneHVAC:VentilatedSlab:SlabGroup',
+            15: 'ZoneHVAC:VentilatedSlab:SlabGroup'
         """
         doas_strategies = {1: 'NeutralSupplyAir', 2: 'NeutralDehumidifiedSupplyAir', 3: ' ColdSupplyAir'}
 
@@ -97,7 +97,6 @@ class AirLoop:
                 if 'Coil' in item['type'] and 'Water' in item['type']:
                     if 'Cooling' in item['type']:
                         water_clg_coils.append(item)
-
                     if 'Heating' in item['type']:
                         water_htg_coils.append(item)
 
@@ -216,8 +215,6 @@ class AirLoop:
         avail_manager_list['Availability_Manager_1_Name'] = avail_manager_name
         loop_assembly.append(avail_manager_list)
 
-        # avail_manager = idf.newidfobject('AvailabilityManager:Scheduled', Name=avail_manager_name)
-        # avail_manager['Schedule_Name'] = 'Always On Discrete'
         if availability_manager is not None:
             loop_assembly.append(availability_manager)
         else:

@@ -19,7 +19,7 @@ class ZoneForcedAirUnit:
             outdoor_air_schedule=None,
             max_cold_water_flow_rate='AutoSize',
             min_cold_water_flow_rate=None,
-            max_hot_water_flow_rate=None,
+            max_hot_water_flow_rate='AutoSize',
             min_hot_water_flow_rate=None,
             supply_air_fan_operating_mode_schedule=None,
             min_supply_air_temp_cooling='AutoSize',
@@ -58,7 +58,7 @@ class ZoneForcedAirUnit:
 
         # Create a OA Mixer object:
         mixer_name = f'{name} OA Mixer'
-        oa_mixer = idf.newidfobject('OutdoorAir:Mixer'.upper(), Name=mixer_name)
+        oa_mixer = idf.newidfobject('OutdoorAir:Mixer', Name=mixer_name)
         mixed_air_node_name = f'{mixer_name} Mixed Air Node'
         oa_node_name = f'{mixer_name} Outdoor Air Node'
         relief_air_node_name = f'{mixer_name} Relief Air Node'
@@ -67,6 +67,12 @@ class ZoneForcedAirUnit:
         oa_mixer['Outdoor_Air_Stream_Node_Name'] = oa_node_name
         oa_mixer['Relief_Air_Stream_Node_Name'] = relief_air_node_name
         oa_mixer['Return_Air_Stream_Node_Name'] = return_air_node_name
+        fcu_assembly.append(oa_mixer)
+
+        # Create OutdoorAir NodeList:
+        oa_nodelist = idf.newidfobject('OutdoorAir:NodeList')
+        oa_nodelist['Node_or_NodeList_Name_1'] = oa_node_name
+        fcu_assembly.append(oa_nodelist)
 
         # Create a fan object based on control method:
         match capacity_control_method:
@@ -86,7 +92,7 @@ class ZoneForcedAirUnit:
 
         # Create a cooling coil object:
         clg_coil_name = f'{name} Cooling Coil'
-        cooling_coil = AirLoopComponent.cooling_coil_water(idf, name=clg_coil_name)
+        cooling_coil = AirLoopComponent.cooling_coil_water(idf, name=clg_coil_name, need_controller=False)
         cooling_coil['object'][cooling_coil['air_inlet_field']] = fan_outlet_node_name
         clg_coil_outlet_node_name = f'{clg_coil_name} Coil Outlet Node'
         cooling_coil['object'][cooling_coil['air_outlet_field']] = clg_coil_outlet_node_name
@@ -96,7 +102,7 @@ class ZoneForcedAirUnit:
         htg_coil_name = f'{name} Heating Coil'
         match heating_coil_type:
             case 1:
-                heating_coil = AirLoopComponent.heating_coil_water(idf, name=htg_coil_name)
+                heating_coil = AirLoopComponent.heating_coil_water(idf, name=htg_coil_name, need_controller=False)
             case 2 | _:
                 heating_coil = AirLoopComponent.heating_coil_electric(idf, name=htg_coil_name)
         heating_coil['object'][heating_coil['air_inlet_field']] = clg_coil_outlet_node_name
@@ -127,8 +133,7 @@ class ZoneForcedAirUnit:
         fcu['Maximum_Cold_Water_Flow_Rate'] = max_cold_water_flow_rate
         if min_cold_water_flow_rate is not None:
             fcu['Minimum_Cold_Water_Flow_Rate'] = min_cold_water_flow_rate
-        if max_hot_water_flow_rate is not None:
-            fcu['Maximum_Hot_Water_Flow_Rate'] = max_hot_water_flow_rate
+        fcu['Maximum_Hot_Water_Flow_Rate'] = max_hot_water_flow_rate
         if min_hot_water_flow_rate is not None:
             fcu['Minimum_Hot_Water_Flow_Rate'] = min_hot_water_flow_rate
         if supply_air_fan_operating_mode_schedule is not None:

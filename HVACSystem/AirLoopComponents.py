@@ -208,7 +208,8 @@ class AirLoopComponent:
             design_outlet_air_humidity_ratio='Autosize',
             type_of_analysis: int = 1,
             heat_exchanger_config: int = 1,
-            control_variable: int = 1):
+            control_variable: int = 1,
+            need_controller: bool = True,):
         """
         -Type_of_analysis: 1.SimpleAnalysis 2.DetailedAnalysis \n
         -Heat_exchanger_config: 1.CrossFlow 2.CounterFlow \n
@@ -250,10 +251,13 @@ class AirLoopComponent:
         coil['Air_Outlet_Node_Name'] = f'{name}_air_outlet'
 
         # Controller:
-        controller_name = f'{name} Controller'
-        controller = Controller.controller_watercoil(idf, controller_name, control_variable, 2)
-        controller['Sensor_Node_Name'] = coil.Air_Outlet_Node_Name
-        controller['Actuator_Node_Name'] = coil.Water_Inlet_Node_Name
+        if need_controller:
+            controller_name = f'{name} Controller'
+            controller = Controller.controller_watercoil(idf, controller_name, control_variable, 2)
+            controller['Sensor_Node_Name'] = coil.Air_Outlet_Node_Name
+            controller['Actuator_Node_Name'] = coil.Water_Inlet_Node_Name
+        else:
+            controller = None
 
         component = {
             'object': coil,
@@ -445,7 +449,7 @@ class AirLoopComponent:
             motor_efficiency=0.93,
             motor_in_airstream_fraction=1):
         name = 'Fan Constant Speed' if name is None else name
-        fan = idf.newidfobject('Fan:VariableVolume', Name=name)
+        fan = idf.newidfobject('Fan:ConstantVolume', Name=name)
 
         if schedule is None:
             fan['Availability_Schedule_Name'] = 'Always On Discrete hvac_library'

@@ -10,8 +10,8 @@ class ZoneRadiativeUnit:
             available_schedule: EpBunch | str = None,
             heating_capacity_method: int = 1,
             heating_design_capacity='AutoSize',
-            heating_design_capacity_per_floor_area=None,
-            fraction_of_autosized_capacity=None,
+            heating_design_capacity_per_floor_area=0,
+            fraction_of_autosized_capacity=0.8,
             u_factor_times_area_value='AutoSize',
             max_water_flow_rate='AutoSize',
             convergence_tol=0.001):
@@ -36,11 +36,9 @@ class ZoneRadiativeUnit:
 
         equip['Heating_Design_Capacity_Method'] = capacity_methods[heating_capacity_method]
         equip['Heating_Design_Capacity'] = heating_design_capacity
-        if heating_design_capacity_per_floor_area is not None:
-            equip['Heating_Design_Capacity_Per_Floor_Area'] = heating_design_capacity_per_floor_area
-        if fraction_of_autosized_capacity is not None:
-            equip['Fraction_of_Autosized_Heating_Design_Capacity'] = fraction_of_autosized_capacity
-        equip['U_Factor_Times_Area_Value'] = u_factor_times_area_value
+        equip['Heating_Design_Capacity_Per_Floor_Area'] = heating_design_capacity_per_floor_area
+        equip['Fraction_of_Autosized_Heating_Design_Capacity'] = fraction_of_autosized_capacity
+        equip['UFactor_Times_Area_Value'] = u_factor_times_area_value
         equip['Maximum_Water_Flow_Rate'] = max_water_flow_rate
         equip['Convergence_Tolerance'] = convergence_tol
 

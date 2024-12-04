@@ -1052,13 +1052,18 @@ ZoneHVAC:EquipmentConnections,
   Test_Office_0,                          !- Zone Name
   Test_Office_0 Equipment List,           !- Zone Conditioning Equipment List Name
   Test_Office_0 Inlet Node List,          !- Zone Air Inlet Node or NodeList Name
-  ,                                       !- Zone Air Exhaust Node or NodeList Name
+  Test_Office_0 Exhaust Node List,        !- Zone Air Exhaust Node or NodeList Name
   Node 1,                                 !- Zone Air Node Name
   Test_Office_0 Return Node List;         !- Zone Return Air Node or NodeList Name
 
 NodeList,
   Test_Office_0 Inlet Node List,          !- Name
-  Node 6;                                 !- Node Name 1
+  Node 6,                                 !- Node Name 1
+  Node 22;                                !- Node Name 2
+
+NodeList,
+  Test_Office_0 Exhaust Node List,        !- Name
+  Node 19;                                !- Node Name 1
 
 NodeList,
   Test_Office_0 Return Node List,         !- Name
@@ -1113,6 +1118,106 @@ Schedule:Constant,
   OnOff hvac_library,                     !- Schedule Type Limits Name
   1;                                      !- Hourly Value
 
+Fan:ConstantVolume,
+  Fan Coil with Const Fan Var Fluid Flow - Fan, !- Name
+  Always On Discrete hvac_library,        !- Availability Schedule Name
+  0.7,                                    !- Fan Total Efficiency
+  250,                                    !- Pressure Rise {Pa}
+  AutoSize,                               !- Maximum Flow Rate {m3/s}
+  0.9,                                    !- Motor Efficiency
+  1,                                      !- Motor In Airstream Fraction
+  Fan Coil with Const Fan Var Fluid Flow Mixed Air Node, !- Air Inlet Node Name
+  Fan Coil with Const Fan Var Fluid Flow Fan Outlet Node, !- Air Outlet Node Name
+  ;                                       !- End-Use Subcategory
+
+Coil:Cooling:Water,
+  Fan Coil with Const Fan Var Fluid Flow - Cooling Coil, !- Name
+  Always On Discrete hvac_library,        !- Availability Schedule Name
+  Autosize,                               !- Design Water Flow Rate {m3/s}
+  Autosize,                               !- Design Air Flow Rate {m3/s}
+  Autosize,                               !- Design Inlet Water Temperature {C}
+  Autosize,                               !- Design Inlet Air Temperature {C}
+  Autosize,                               !- Design Outlet Air Temperature {C}
+  Autosize,                               !- Design Inlet Air Humidity Ratio {kgWater/kgDryAir}
+  Autosize,                               !- Design Outlet Air Humidity Ratio {kgWater/kgDryAir}
+  Node 66,                                !- Water Inlet Node Name
+  Node 67,                                !- Water Outlet Node Name
+  Fan Coil with Const Fan Var Fluid Flow Fan Outlet Node, !- Air Inlet Node Name
+  Fan Coil with Const Fan Var Fluid Flow Cooling Coil Outlet Node, !- Air Outlet Node Name
+  SimpleAnalysis,                         !- Type of Analysis
+  CrossFlow;                              !- Heat Exchanger Configuration
+
+Coil:Heating:Water,
+  Fan Coil with Const Fan Var Fluid Flow - Heating Coil, !- Name
+  Always On Discrete hvac_library,        !- Availability Schedule Name
+  Autosize,                               !- U-Factor Times Area Value {W/K}
+  Autosize,                               !- Maximum Water Flow Rate {m3/s}
+  Node 64,                                !- Water Inlet Node Name
+  Node 65,                                !- Water Outlet Node Name
+  Fan Coil with Const Fan Var Fluid Flow Cooling Coil Outlet Node, !- Air Inlet Node Name
+  Node 22,                                !- Air Outlet Node Name
+  UFactorTimesAreaAndDesignWaterFlowRate, !- Performance Input Method
+  Autosize,                               !- Rated Capacity {W}
+  82.2,                                   !- Rated Inlet Water Temperature {C}
+  16.6,                                   !- Rated Inlet Air Temperature {C}
+  71.1,                                   !- Rated Outlet Water Temperature {C}
+  32.2,                                   !- Rated Outlet Air Temperature {C}
+  0.5;                                    !- Rated Ratio for Air and Water Convection
+
+ZoneHVAC:FourPipeFanCoil,
+  Fan Coil with Const Fan Var Fluid Flow, !- Name
+  Always On Discrete hvac_library,        !- Availability Schedule Name
+  ConstantFanVariableFlow,                !- Capacity Control Method
+  Autosize,                               !- Maximum Supply Air Flow Rate {m3/s}
+  ,                                       !- Low Speed Supply Air Flow Ratio
+  ,                                       !- Medium Speed Supply Air Flow Ratio
+  Autosize,                               !- Maximum Outdoor Air Flow Rate {m3/s}
+  ,                                       !- Outdoor Air Schedule Name
+  Node 19,                                !- Air Inlet Node Name
+  Node 22,                                !- Air Outlet Node Name
+  OutdoorAir:Mixer,                       !- Outdoor Air Mixer Object Type
+  Fan Coil with Const Fan Var Fluid Flow OA Mixer, !- Outdoor Air Mixer Name
+  Fan:ConstantVolume,                     !- Supply Air Fan Object Type
+  Fan Coil with Const Fan Var Fluid Flow - Fan, !- Supply Air Fan Name
+  Coil:Cooling:Water,                     !- Cooling Coil Object Type
+  Fan Coil with Const Fan Var Fluid Flow - Cooling Coil, !- Cooling Coil Name
+  Autosize,                               !- Maximum Cold Water Flow Rate {m3/s}
+  ,                                       !- Minimum Cold Water Flow Rate {m3/s}
+  ,                                       !- Cooling Convergence Tolerance
+  Coil:Heating:Water,                     !- Heating Coil Object Type
+  Fan Coil with Const Fan Var Fluid Flow - Heating Coil, !- Heating Coil Name
+  Autosize,                               !- Maximum Hot Water Flow Rate {m3/s}
+  ,                                       !- Minimum Hot Water Flow Rate {m3/s}
+  ,                                       !- Heating Convergence Tolerance
+  ,                                       !- Availability Manager List Name
+  ,                                       !- Design Specification ZoneHVAC Sizing Object Name
+  ,                                       !- Supply Air Fan Operating Mode Schedule Name
+  Autosize,                               !- Minimum Supply Air Temperature in Cooling Mode {C}
+  Autosize;                               !- Maximum Supply Air Temperature in Heating Mode {C}
+
+OutdoorAir:Mixer,
+  Fan Coil with Const Fan Var Fluid Flow OA Mixer, !- Name
+  Fan Coil with Const Fan Var Fluid Flow Mixed Air Node, !- Mixed Air Node Name
+  Fan Coil with Const Fan Var Fluid Flow OA Node, !- Outdoor Air Stream Node Name
+  Fan Coil with Const Fan Var Fluid Flow Relief Air Node, !- Relief Air Stream Node Name
+  Node 19;                                !- Return Air Stream Node Name
+
+OutdoorAir:NodeList,
+  Fan Coil with Const Fan Var Fluid Flow OA Node; !- Node or NodeList Name 1
+
+ZoneHVAC:Baseboard:Convective:Water,
+  HW Baseboard,                           !- Name
+  Always On Discrete hvac_library,        !- Availability Schedule Name
+  Node 68,                                !- Inlet Node Name
+  Node 69,                                !- Outlet Node Name
+  HeatingDesignCapacity,                  !- Heating Design Capacity Method
+  Autosize,                               !- Heating Design Capacity {W}
+  0,                                      !- Heating Design Capacity Per Floor Area {W/m2}
+  0.8,                                    !- Fraction of Autosized Heating Design Capacity
+  Autosize,                               !- U-Factor Times Area Value {W/K}
+  Autosize,                               !- Maximum Water Flow Rate {m3/s}
+  0.001;                                  !- Convergence Tolerance
+
 ZoneHVAC:EquipmentList,
   Test_Office_0 Equipment List,           !- Name
   SequentialLoad,                         !- Load Distribution Scheme
@@ -1121,7 +1226,19 @@ ZoneHVAC:EquipmentList,
   1,                                      !- Zone Equipment Cooling Sequence 1
   1,                                      !- Zone Equipment Heating or No-Load Sequence 1
   ,                                       !- Zone Equipment Sequential Cooling Fraction Schedule Name 1
-  ;                                       !- Zone Equipment Sequential Heating Fraction Schedule Name 1
+  ,                                       !- Zone Equipment Sequential Heating Fraction Schedule Name 1
+  ZoneHVAC:FourPipeFanCoil,               !- Zone Equipment Object Type 2
+  Fan Coil with Const Fan Var Fluid Flow, !- Zone Equipment Name 2
+  2,                                      !- Zone Equipment Cooling Sequence 2
+  2,                                      !- Zone Equipment Heating or No-Load Sequence 2
+  ,                                       !- Zone Equipment Sequential Cooling Fraction Schedule Name 2
+  ,                                       !- Zone Equipment Sequential Heating Fraction Schedule Name 2
+  ZoneHVAC:Baseboard:Convective:Water,    !- Zone Equipment Object Type 3
+  HW Baseboard,                           !- Zone Equipment Name 3
+  3,                                      !- Zone Equipment Cooling Sequence 3
+  3,                                      !- Zone Equipment Heating or No-Load Sequence 3
+  ,                                       !- Zone Equipment Sequential Cooling Fraction Schedule Name 3
+  ;                                       !- Zone Equipment Sequential Heating Fraction Schedule Name 3
 
 Sizing:Zone,
   Test_Office_0,                          !- Zone or ZoneList Name
@@ -2049,7 +2166,7 @@ SetpointManager:MixedAir,
 
 SetpointManager:Scheduled,
   Humidity SPM,                           !- Name
-  MaximumTemperature,                     !- Control Variable
+  MaximumHumidityRatio,                   !- Control Variable
   DOAS Humidity,                          !- Schedule Name
   Node 10;                                !- Setpoint Node or NodeList Name
 
@@ -2340,8 +2457,9 @@ BranchList,
   Chilled Water Loop Demand Inlet Branch, !- Branch Name 1
   Chilled Water Loop Demand Branch 1,     !- Branch Name 2
   Chilled Water Loop Demand Branch 2,     !- Branch Name 3
-  Chilled Water Loop Demand Bypass Branch, !- Branch Name 4
-  Chilled Water Loop Demand Outlet Branch; !- Branch Name 5
+  Chilled Water Loop Demand Branch 3,     !- Branch Name 4
+  Chilled Water Loop Demand Bypass Branch, !- Branch Name 5
+  Chilled Water Loop Demand Outlet Branch; !- Branch Name 6
 
 ConnectorList,
   Chilled Water Loop Demand Connector List, !- Name
@@ -2355,14 +2473,16 @@ Connector:Splitter,
   Chilled Water Loop Demand Inlet Branch, !- Inlet Branch Name
   Chilled Water Loop Demand Branch 1,     !- Outlet Branch Name 1
   Chilled Water Loop Demand Branch 2,     !- Outlet Branch Name 2
-  Chilled Water Loop Demand Bypass Branch; !- Outlet Branch Name 3
+  Chilled Water Loop Demand Branch 3,     !- Outlet Branch Name 3
+  Chilled Water Loop Demand Bypass Branch; !- Outlet Branch Name 4
 
 Connector:Mixer,
   Chilled Water Loop Demand Mixer,        !- Name
   Chilled Water Loop Demand Outlet Branch, !- Outlet Branch Name
   Chilled Water Loop Demand Branch 1,     !- Inlet Branch Name 1
   Chilled Water Loop Demand Branch 2,     !- Inlet Branch Name 2
-  Chilled Water Loop Demand Bypass Branch; !- Inlet Branch Name 3
+  Chilled Water Loop Demand Branch 3,     !- Inlet Branch Name 3
+  Chilled Water Loop Demand Bypass Branch; !- Inlet Branch Name 4
 
 Branch,
   Chilled Water Loop Demand Inlet Branch, !- Name
@@ -2397,6 +2517,14 @@ Pipe:Adiabatic,
   Pipe Adiabatic 8,                       !- Name
   Node 41,                                !- Inlet Node Name
   Node 42;                                !- Outlet Node Name
+
+Branch,
+  Chilled Water Loop Demand Branch 3,     !- Name
+  ,                                       !- Pressure Drop Curve Name
+  Coil:Cooling:Water,                     !- Component Object Type 1
+  Fan Coil with Const Fan Var Fluid Flow - Cooling Coil, !- Component Name 1
+  Node 66,                                !- Component Inlet Node Name 1
+  Node 67;                                !- Component Outlet Node Name 1
 
 Branch,
   Chilled Water Loop Demand Bypass Branch, !- Name
@@ -2880,8 +3008,10 @@ BranchList,
   Hot Water Loop Demand Inlet Branch,     !- Branch Name 1
   Hot Water Loop Demand Branch 1,         !- Branch Name 2
   Hot Water Loop Demand Branch 2,         !- Branch Name 3
-  Hot Water Loop Demand Bypass Branch,    !- Branch Name 4
-  Hot Water Loop Demand Outlet Branch;    !- Branch Name 5
+  Hot Water Loop Demand Branch 3,         !- Branch Name 4
+  Hot Water Loop Demand Branch 4,         !- Branch Name 5
+  Hot Water Loop Demand Bypass Branch,    !- Branch Name 6
+  Hot Water Loop Demand Outlet Branch;    !- Branch Name 7
 
 ConnectorList,
   Hot Water Loop Demand Connector List,   !- Name
@@ -2895,14 +3025,18 @@ Connector:Splitter,
   Hot Water Loop Demand Inlet Branch,     !- Inlet Branch Name
   Hot Water Loop Demand Branch 1,         !- Outlet Branch Name 1
   Hot Water Loop Demand Branch 2,         !- Outlet Branch Name 2
-  Hot Water Loop Demand Bypass Branch;    !- Outlet Branch Name 3
+  Hot Water Loop Demand Branch 3,         !- Outlet Branch Name 3
+  Hot Water Loop Demand Branch 4,         !- Outlet Branch Name 4
+  Hot Water Loop Demand Bypass Branch;    !- Outlet Branch Name 5
 
 Connector:Mixer,
   Hot Water Loop Demand Mixer,            !- Name
   Hot Water Loop Demand Outlet Branch,    !- Outlet Branch Name
   Hot Water Loop Demand Branch 1,         !- Inlet Branch Name 1
   Hot Water Loop Demand Branch 2,         !- Inlet Branch Name 2
-  Hot Water Loop Demand Bypass Branch;    !- Inlet Branch Name 3
+  Hot Water Loop Demand Branch 3,         !- Inlet Branch Name 3
+  Hot Water Loop Demand Branch 4,         !- Inlet Branch Name 4
+  Hot Water Loop Demand Bypass Branch;    !- Inlet Branch Name 5
 
 Branch,
   Hot Water Loop Demand Inlet Branch,     !- Name
@@ -2932,6 +3066,22 @@ Branch,
   VAV HW Rht Coil,                        !- Component Name 1
   Node 43,                                !- Component Inlet Node Name 1
   Node 44;                                !- Component Outlet Node Name 1
+
+Branch,
+  Hot Water Loop Demand Branch 3,         !- Name
+  ,                                       !- Pressure Drop Curve Name
+  Coil:Heating:Water,                     !- Component Object Type 1
+  Fan Coil with Const Fan Var Fluid Flow - Heating Coil, !- Component Name 1
+  Node 64,                                !- Component Inlet Node Name 1
+  Node 65;                                !- Component Outlet Node Name 1
+
+Branch,
+  Hot Water Loop Demand Branch 4,         !- Name
+  ,                                       !- Pressure Drop Curve Name
+  ZoneHVAC:Baseboard:Convective:Water,    !- Component Object Type 1
+  HW Baseboard,                           !- Component Name 1
+  Node 68,                                !- Component Inlet Node Name 1
+  Node 69;                                !- Component Outlet Node Name 1
 
 Branch,
   Hot Water Loop Demand Bypass Branch,    !- Name

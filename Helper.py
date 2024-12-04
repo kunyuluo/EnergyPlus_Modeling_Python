@@ -314,30 +314,46 @@ def find_always_on(idf: IDF):
         for item in all_year['object']:
             all_objs.append(item)
 
-    target_schedule = None
+    target_schedule = []
     for i, field in enumerate(all_fields):
         if 'ALWAYS' in field.upper() and 'ON' in field.upper():
-            target_schedule = all_objs[i]
-            break
+            target_schedule.append(all_objs[i])
+
     return target_schedule
 
 
-def set_always_on(idf: IDF, new_name: str = 'Always On Discrete', inplace: bool = False):
+def set_always_on(
+        idf: IDF,
+        new_name: str = 'Always On Discrete',
+        new_name_hvac: str = 'Always On Discrete hvac_library',
+        inplace: bool = False):
     """
     First, find if there is an existing 'always on' schedule in the model,
     if yes, rename it with the given new name,
     if no, create a new 'always on' schedule.
     """
     target_schedule = find_always_on(idf)
-    if target_schedule is not None:
-        name = target_schedule['Name']
-        if name == new_name:
-            on_schedule = target_schedule
-        else:
+
+    if len(target_schedule) != 0:
+        on_schedule = None
+        on_schedule_hvac = None
+        for target in target_schedule:
+            name = target['Name']
+            if name == new_name:
+                on_schedule = target
+            if name == new_name_hvac:
+                on_schedule_hvac = target
+        if on_schedule is None:
             on_schedule = Schedule.always_on(idf, new_name)
+        else:
+            print(f'\'{new_name}\' already exists')
+        if on_schedule_hvac is None:
+            on_schedule_hvac = Schedule.always_on(idf, new_name_hvac)
+        else:
+            print(f'\'{new_name_hvac}\' already exists')
     else:
         on_schedule = Schedule.always_on(idf, new_name)
+        on_schedule_hvac = Schedule.always_on(idf, 'Always On Discrete hvac_library')
 
-    on_schedule_hvac = Schedule.always_on(idf, 'Always On Discrete hvac_library')
     if not inplace:
         return on_schedule, on_schedule_hvac
