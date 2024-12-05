@@ -14,6 +14,36 @@ class PerformanceCurve:
     # Distance
 
     @staticmethod
+    def linear(
+            idf: IDF,
+            coeff_constant=1.0,
+            coeff_x=1.0,
+            min_x=0.0,
+            max_x=1.0,
+            min_out=None,
+            max_out=None,
+            input_unit_type: str = "Dimensionless",
+            output_unit_type: str = "Dimensionless",
+            name: str = None):
+        """
+        f(x) = c1 + c2*x
+        """
+        name = 'Curve Linear' if name is None else name
+        curve = idf.newidfobject('Curve:Linear', Name=name)
+        curve['Coefficient1_Constant'] = coeff_constant
+        curve['Coefficient2_x'] = coeff_x
+        curve['Minimum_Value_of_x'] = min_x
+        curve['Maximum_Value_of_x'] = max_x
+        if min_out is not None:
+            curve['Minimum_Curve_Output'] = min_out
+        if max_out is not None:
+            curve['Maximum_Curve_Output'] = max_out
+        curve['Input_Unit_Type_for_X'] = input_unit_type
+        curve['Output_Unit_Type'] = output_unit_type
+
+        return curve
+
+    @staticmethod
     def biquadratic(
             idf: IDF,
             coeff_constant=1.0,
@@ -168,6 +198,40 @@ class PerformanceCurve:
         return curve
 
     @staticmethod
+    def exponent(
+            idf: IDF,
+            coeff1_constant=1.0,
+            coeff2_constant=1.0,
+            coeff3_constant=1.0,
+            min_x=0.0,
+            max_x=1.0,
+            min_out=None,
+            max_out=None,
+            input_unit_type: str = "Dimensionless",
+            output_unit_type: str = "Dimensionless",
+            name: str = None):
+
+        """
+        f(x) = c1 + c2*x^c3
+        """
+        name = 'Curve Cubic' if name is None else name
+        curve = idf.newidfobject('Curve:Cubic'.upper(), Name=name)
+
+        curve['Coefficient1_Constant'] = coeff1_constant
+        curve['Coefficient1_Constant'] = coeff2_constant
+        curve['Coefficient1_Constant'] = coeff3_constant
+        curve['Minimum_Value_of_x'] = min_x
+        curve['Maximum_Value_of_x'] = max_x
+        if min_out is not None:
+            curve['Minimum_Curve_Output'] = min_out
+        if max_out is not None:
+            curve['Maximum_Curve_Output'] = max_out
+        curve['Input_Unit_Type_for_X'] = input_unit_type
+        curve['Output_Unit_Type'] = output_unit_type
+
+        return curve
+
+    @staticmethod
     def pump_curve_set(control_strategy: int = 0):
         """
         :param str control_strategy:
@@ -267,5 +331,218 @@ class PerformanceCurve:
         # Electric Input to Cooling Output Ratio Function of Part Load Ratio Curve
         curves.append(PerformanceCurve.quadratic(
             idf, 0.055483, 0.451866, 0.488242, 0, 1, name=f"{name} CoolingEIRRatioPLRCurve_Title24"))
+
+        return curves
+
+    @staticmethod
+    def vrf_performance_curve_set_1(idf: IDF):
+
+        """
+        1.Cooling Capacity Ratio Boundary Curve \n
+        2.Cooling Capacity Ratio Modifier Function of Low Temperature Curve \n
+        3.Cooling Capacity Ratio Modifier Function of High Temperature Curve \n
+        4.Cooling Energy Input Ratio Boundary Curve \n
+        5.Cooling Energy Input Ratio Modifier Function of Low Temperature Curve \n
+        6.Cooling Energy Input Ratio Modifier Function of High Temperature Curve \n
+        7.Cooling Energy Input Ratio Modifier Function of Low Part-Load Ratio Curve \n
+        8.Cooling Energy Input Ratio Modifier Function of High Part-Load Ratio Curve \n
+        9.Cooling Combination Ratio Correction Factor Curve \n
+        10.Cooling Part-Load Fraction Correlation Curve \n
+        11.Heating Capacity Ratio Boundary Curve \n
+        12.Heating Capacity Ratio Modifier Function of Low Temperature Curve \n
+        13.Heating Capacity Ratio Modifier Function of High Temperature Curve \n
+        14.Heating Energy Input Ratio Boundary Curve \n
+        15.Heating Energy Input Ratio Modifier Function of Low Temperature Curve \n
+        16.Heating Energy Input Ratio Modifier Function of High Temperature Curve \n
+        17.Heating Energy Input Ratio Modifier Function of Low Part-Load Ratio Curve \n
+        18.Heating Energy Input Ratio Modifier Function of High Part-Load Ratio Curve \n
+        19.Heating Combination Ratio Correction Factor Curve \n
+        20.Heating Part-Load Fraction Correlation Curve \n
+        21.Piping Correction Factor for Length in Cooling Mode Curve \n
+        22.Piping Correction Factor for Length in Heating Mode Curve \n
+        23.Heat Recovery Cooling Capacity Modifier Curve \n
+        24.Heat Recovery Cooling Energy Modifier Curve \n
+        25.Heat Recovery Heating Capacity Modifier Curve \n
+        26.Heat Recovery Heating Energy Modifier Curve
+        """
+
+        curves = {}
+
+        # Cooling
+        # ******************************************************************************
+        # Cooling Capacity Ratio Boundary Curve
+        curves["Cooling_Capacity_Ratio_Boundary_Curve_Name"] = \
+            PerformanceCurve.cubic(idf, 140.9991, -18.7871, 1.1756, -0.02507, 13.89, 23.89,
+                                   input_unit_type="Temperature", output_unit_type="Temperature",
+                                   name="CapRatioBoundary_Cooling")
+
+        # Cooling Capacity Ratio Modifier Function of Low Temperature Curve
+        curves["Cooling_Capacity_Ratio_Modifier_Function_of_Low_Temperature_Curve_Name"] = \
+            PerformanceCurve.biquadratic(idf, -0.0901953919, 0.0505070990, 0.0003088882, 0.0031865985, -0.0000130163,
+                                         -0.0001563836,
+                                         13.89, 23.89, 10, 39.44,
+                                         input_unit_type_x="Temperature", input_unit_type_y="Temperature",
+                                         name="CapRatioLowTempCurve_Cooling")
+
+        # Cooling Capacity Ratio Modifier Function of High Temperature Curve
+        curves["Cooling_Capacity_Ratio_Modifier_Function_of_High_Temperature_Curve_Name"] = \
+            PerformanceCurve.biquadratic(idf, -3.2081703349, 0.2302688916, -0.0026585963, 0.0960582706, -0.0008516839,
+                                         -0.0022864878,
+                                         13.89, 23.89, 21.11, 47.78,
+                                         input_unit_type_x="Temperature", input_unit_type_y="Temperature",
+                                         name="CapRatioHighTempCurve_Cooling")
+
+        # Cooling Energy Input Ratio Boundary Curve
+        curves["Cooling_Energy_Input_Ratio_Boundary_Curve_Name"] = \
+            PerformanceCurve.cubic(idf, 140.9991, -18.7871, 1.1756, -0.02507, 13.89, 23.89,
+                                   input_unit_type="Temperature", output_unit_type="Temperature",
+                                   name="EIRRatioBoundary_Cooling")
+
+        # Cooling Energy Input Ratio Modifier Function of Low Temperature Curve
+        curves["Cooling_Energy_Input_Ratio_Modifier_Function_of_Low_Temperature_Curve_Name"] = \
+            PerformanceCurve.biquadratic(idf, 0.6888245196, -0.0172281621, 0.0005241366, 0.0009858312, 0.0005792064,
+                                         -0.0004213067,
+                                         13.89, 23.89, 10, 39.44,
+                                         input_unit_type_x="Temperature", input_unit_type_y="Temperature",
+                                         name="EIRRatioLowTempCurve_Cooling")
+
+        # Cooling Energy Input Ratio Modifier Function of High Temperature Curve
+        curves["Cooling_Energy_Input_Ratio_Modifier_Function_of_High_Temperature_Curve_Name"] = \
+            PerformanceCurve.biquadratic(idf, 0.4404769569, -0.0439185866, 0.0018265019, 0.0293315774, 0.0003795638,
+                                         -0.0011518238,
+                                         13.89, 23.89, 21.11, 47.78,
+                                         input_unit_type_x="Temperature", input_unit_type_y="Temperature",
+                                         name="EIRRatioHighTempCurve_Cooling")
+
+        # Cooling Energy Input Ratio Modifier Function of Low Part-Load Ratio Curve
+        curves["Cooling_Energy_Input_Ratio_Modifier_Function_of_Low_PartLoad_Ratio_Curve_Name"] = \
+            PerformanceCurve.cubic(idf, -1.246792429, 5.155371753, -6.128396226, 3.217813168, 0.25, 1.0,
+                                   name="EIRRatioLowPLR_Cooling")
+
+        # Cooling Energy Input Ratio Modifier Function of High Part-Load Ratio Curve
+        curves["Cooling_Energy_Input_Ratio_Modifier_Function_of_High_PartLoad_Ratio_Curve_Name"] = \
+            PerformanceCurve.cubic(idf, -30.6717767898, 86.1535796412, -78.5620113444, 24.0802084930, 1.0,
+                                   1.152777778,
+                                   name="EIRRatioHighPLR_Cooling")
+
+        # Cooling Combination Ratio Correction Factor Curve
+        curves["Cooling_Combination_Ratio_Correction_Factor_Curve_Name"] = \
+            PerformanceCurve.cubic(idf, -30.6717767898, 86.1535796412, -78.5620113444, 24.0802084930, 1.0,
+                                   1.152777778,
+                                   name="CombinationRatio_Cooling")
+
+        # Cooling Part-Load Fraction Correlation Curve
+        curves["Cooling_PartLoad_Fraction_Correlation_Curve_Name"] = \
+            PerformanceCurve.linear(idf, 0.85, 0.15, 0, 1, name="PLRFractionCorrelation_Cooling")
+
+        # Heating
+        # ******************************************************************************
+        # Heating Capacity Ratio Boundary Curve
+        curves["Heating_Capacity_Ratio_Boundary_Curve_Name"] = \
+            PerformanceCurve.cubic(idf, 203.8006305, -26.23815416, 1.097486087, -0.0152378, 16.11, 23.89,
+                                   input_unit_type="Temperature", output_unit_type="Temperature",
+                                   name="CapRatioBoundary_Heating")
+
+        # Heating Capacity Ratio Modifier Function of Low Temperature Curve
+        curves["Heating_Capacity_Ratio_Modifier_Function_of_Low_Temperature_Curve_Name"] = \
+            PerformanceCurve.biquadratic(idf, 1.0475954826, 0.0299030501, -0.0014437977, 0.0224657841, -0.0005924488,
+                                         -0.0008933140,
+                                         16.11, 23.89, -20, 2.2,
+                                         input_unit_type_x="Temperature", input_unit_type_y="Temperature",
+                                         name="CapRatioLowTempCurve_Heating")
+
+        # Heating Capacity Ratio Modifier Function of High Temperature Curve
+        curves["Heating_Capacity_Ratio_Modifier_Function_of_High_Temperature_Curve_Name"] = \
+            PerformanceCurve.biquadratic(idf, 1.2761141679, 0.0105535358, -0.0011110665, 0.0003551723, -0.0000182544,
+                                         -0.0000038670,
+                                         16.11, 23.89, -4.4, 13.33,
+                                         input_unit_type_x="Temperature", input_unit_type_y="Temperature",
+                                         name="CapRatioHighTempCurve_Heating")
+
+        # Heating Energy Input Ratio Boundary Curve
+        curves["Heating_Energy_Input_Ratio_Boundary_Curve_Name"] = \
+            PerformanceCurve.cubic(idf, 429.0791605507, -61.4939116463, 2.9055009778, -0.0455092410, 16.11, 23.89,
+                                   input_unit_type="Temperature", output_unit_type="Temperature",
+                                   name="EIRRatioBoundary_Heating")
+
+        # Heating Energy Input Ratio Modifier Function of Low Temperature Curve
+        curves["Heating_Energy_Input_Ratio_Modifier_Function_of_Low_Temperature_Curve_Name"] = \
+            PerformanceCurve.biquadratic(idf, 1.7317223341, -0.0994807311, 0.0032543423, -0.0232819641, 0.0004068197,
+                                         -0.0010269258,
+                                         16.11, 23.89, -20, 2.22,
+                                         input_unit_type_x="Temperature", input_unit_type_y="Temperature",
+                                         name="EIRRatioLowTempCurve_Heating")
+
+        # Heating Energy Input Ratio Modifier Function of High Temperature Curve
+        curves["Heating_Energy_Input_Ratio_Modifier_Function_of_High_Temperature_Curve_Name"] = \
+            PerformanceCurve.biquadratic(idf, 1.8630353188, -0.1084122085, 0.0034798649, -0.0061726628, -0.0002882955,
+                                         -0.0005421480,
+                                         16.11, 23.89, -4.44, 13.33,
+                                         input_unit_type_x="Temperature", input_unit_type_y="Temperature",
+                                         name="EIRRatioHighTempCurve_Heating")
+
+        # Heating Energy Input Ratio Modifier Function of Low Part-Load Ratio Curve
+        curves["Heating_Energy_Input_Ratio_Modifier_Function_of_Low_PartLoad_Ratio_Curve_Name"] = \
+            PerformanceCurve.cubic(idf, -0.5528951749, 3.0525728816, -2.4847593777, 0.9829690708,
+                                   0.25, 1.0,
+                                   name="EIRRatioLowPLR_Heating")
+
+        # Heating Energy Input Ratio Modifier Function of High Part-Load Ratio Curve
+        curves["Heating_Energy_Input_Ratio_Modifier_Function_of_High_PartLoad_Ratio_Curve_Name"] = \
+            PerformanceCurve.cubic(idf, -4.3790604236, 13.0115360115, -10.5447636312, 2.9122880433,
+                                   1.0, 1.212962963,
+                                   name="EIRRatioHighPLR_Heating")
+
+        # Heating Combination Ratio Correction Factor Curve
+        curves["Heating_Combination_Ratio_Correction_Factor_Curve_Name"] = \
+            PerformanceCurve.cubic(idf, -15.8827160494, 42.7057613169, -36.1111111111, 10.2880658436,
+                                   1.0, 1.3,
+                                   name="CombinationRatio_Heating")
+
+        # Heating Part-Load Fraction Correlation Curve
+        curves["Heating_PartLoad_Fraction_Correlation_Curve_Name"] = \
+            PerformanceCurve.linear(idf, 0.85, 0.15, 0, 1, name="PLRFractionCorrelation_Heating")
+
+        # Piping
+        # ******************************************************************************
+        # Piping Correction Factor for Length in Cooling Mode Curve
+        curves["Piping_Correction_Factor_for_Length_in_Cooling_Mode_Curve_Name"] = \
+            PerformanceCurve.cubic(idf, 0.9989504106, -0.0007550999, 0.0000011566, -0.0000000029,
+                                   7.62, 220.07, input_unit_type="Distance",
+                                   name="PipingCorrectionFactorCurve_Cooling")
+
+        # Piping Correction Factor for Length in Heating Mode Curve
+        curves["Piping_Correction_Factor_for_Length_in_Heating_Mode_Curve_Name"] = \
+            PerformanceCurve.cubic(idf, 1.0022992262, -0.0004389003, 0.0000014007, -0.0000000042,
+                                   7.62, 220.07, input_unit_type="Distance",
+                                   name="PipingCorrectionFactorCurve_Heating")
+
+        # Heat Recovery
+        # ******************************************************************************
+        # Heat Recovery Cooling Capacity Modifier Curve
+        curves["Heat_Recovery_Cooling_Capacity_Modifier_Curve_Name"] = \
+            PerformanceCurve.biquadratic(idf, 0.9, 0, 0, 0, 0, 0,
+                                         0, 1, 0, 1,
+                                         input_unit_type_x="Dimensionless", input_unit_type_y="Dimensionless",
+                                         name="HeatRecoveryCapModifier_Cooling")
+        # Heat Recovery Cooling Energy Modifier Curve
+        curves["Heat_Recovery_Cooling_Energy_Modifier_Curve_Name"] = \
+            PerformanceCurve.biquadratic(idf, 1.1, 0, 0, 0, 0, 0,
+                                         0, 1, 0, 1,
+                                         input_unit_type_x="Dimensionless", input_unit_type_y="Dimensionless",
+                                         name="HeatRecoveryEnergyModifier_Cooling")
+
+        # Heat Recovery Heating Capacity Modifier Curve
+        curves["Heat_Recovery_Heating_Capacity_Modifier_Curve_Name"] = \
+            PerformanceCurve.biquadratic(idf, 0.9, 0, 0, 0, 0, 0,
+                                         0, 1, 0, 1,
+                                         input_unit_type_x="Dimensionless", input_unit_type_y="Dimensionless",
+                                         name="HeatRecoveryCapModifier_Heating")
+        # Heat Recovery Heating Energy Modifier Curve
+        curves["Heat_Recovery_Heating_Energy_Modifier_Curve_Name"] = \
+            PerformanceCurve.biquadratic(idf, 1.1, 0, 0, 0, 0, 0,
+                                         0, 1, 0, 1,
+                                         input_unit_type_x="Dimensionless", input_unit_type_y="Dimensionless",
+                                         name="HeatRecoveryEnergyModifier_Heating")
 
         return curves

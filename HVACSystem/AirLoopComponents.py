@@ -1,5 +1,6 @@
 from eppy.modeleditor import IDF
 from eppy.bunch_subclass import EpBunch
+from configs import *
 from HVACSystem.Controllers import Controller
 from HVACSystem.PerformanceCurves import PerformanceCurve
 from HVACSystem.PerformanceTables import PerformanceTable
@@ -12,8 +13,8 @@ class AirLoopComponent:
             airloop: EpBunch | str = None,
             doas: bool = False,
             type_of_load: int = 1,
-            design_outdoor_air_flow_rate='Autosize',
-            central_heating_max_flow_ratio='Autosize',
+            design_outdoor_air_flow_rate=autosize,
+            central_heating_max_flow_ratio=autosize,
             system_outdoor_air_method: int = 1,
             max_outdoor_air_fraction: float = 1.0,
             preheat_temp=7,
@@ -40,8 +41,8 @@ class AirLoopComponent:
             heating_supply_air_flow_rate_per_unit_capacity=3.1588213e-05,
             cooling_design_capacity_method: int = 2,
             heating_design_capacity_method: int = 2,
-            cooling_design_capacity='Autosize',
-            heating_design_capacity='Autosize',
+            cooling_design_capacity=autosize,
+            heating_design_capacity=autosize,
             cooling_design_capacity_per_floor_area=234.7,
             heating_design_capacity_per_floor_area=157,
             fraction_of_autosized_cooling_design_capacity: float = 1.0,
@@ -193,19 +194,21 @@ class AirLoopComponent:
 
         return sizing
 
+    # Coils
+    # ********************************************************************************
     @staticmethod
     def cooling_coil_water(
             idf: IDF,
             name: str = None,
             schedule: EpBunch | str = None,
             design_water_temp_diff: float = None,
-            design_water_flow_rate='Autosize',
-            design_air_flow_rate='Autosize',
-            design_inlet_water_temp='Autosize',
-            design_inlet_air_temp='Autosize',
-            design_outlet_air_temp='Autosize',
-            design_inlet_air_humidity_ratio='Autosize',
-            design_outlet_air_humidity_ratio='Autosize',
+            design_water_flow_rate=autosize,
+            design_air_flow_rate=autosize,
+            design_inlet_water_temp=autosize,
+            design_inlet_air_temp=autosize,
+            design_outlet_air_temp=autosize,
+            design_inlet_air_humidity_ratio=autosize,
+            design_outlet_air_humidity_ratio=autosize,
             type_of_analysis: int = 1,
             heat_exchanger_config: int = 1,
             control_variable: int = 1,
@@ -223,7 +226,7 @@ class AirLoopComponent:
         coil = idf.newidfobject('Coil:Cooling:Water', Name=name)
 
         if schedule is None:
-            coil['Availability_Schedule_Name'] = 'Always On Discrete hvac_library'
+            coil['Availability_Schedule_Name'] = schedule_always_on_hvac
         else:
             if isinstance(schedule, EpBunch):
                 coil['Availability_Schedule_Name'] = schedule.Name
@@ -271,15 +274,132 @@ class AirLoopComponent:
 
         return component
 
+    # @staticmethod
+    # def cooling_coil_dx_single_speed(
+    #         idf: IDF,
+    #         name: str = None,
+    #         schedule: EpBunch | str = None,
+    #         capacity=autosize,
+    #         sensible_heat_ratio=None,
+    #         cop=None,
+    #         rated_air_flow_rate=None,
+    #         evaporator_fan_power_per_flow_2017=None,
+    #         evaporator_fan_power_per_flow_2023=None,
+    #         min_outdoor_air_temp_compressor_operation=None,
+    #         crankcase_heater_capacity=None,
+    #         max_outdoor_air_temp_crankcase_operation=None,
+    #         condenser_type: str = None,
+    #         evaporative_condenser_effectiveness=None,
+    #         evaporative_condenser_air_flow_rate=None,
+    #         evaporative_condenser_pump_power=None,
+    #         capacity_temperature_curve = None,
+    #         capacity_flow_curve = None,
+    #         cop_temperature_curve = None,
+    #         cop_flow_curve = None,
+    #         plr_curve = None):
+    #
+    #     name = 'Coil Cooling DX Single Speed' if name is None else name
+    #     coil = idf.newidfobject('Coil:Cooling:DX:SingleSpeed', Name=name)
+    #
+    #     if schedule is None:
+    #         coil['Availability_Schedule_Name'] = schedule_always_on_hvac
+    #     else:
+    #         if isinstance(schedule, EpBunch):
+    #             coil['Availability_Schedule_Name'] = schedule.Name
+    #         elif isinstance(schedule, str):
+    #             coil['Availability_Schedule_Name'] = schedule
+    #         else:
+    #             raise TypeError('Invalid type of schedule.')
+    #
+    #     component = {
+    #         'object': coil,
+    #         'type': 'Coil:Cooling:Water',
+    #         'air_inlet_field': 'Air_Inlet_Node_Name',
+    #         'air_outlet_field': 'Air_Outlet_Node_Name',
+    #     }
+    #
+    #     return component
+
+    @staticmethod
+    def cooling_coil_vrf(
+            idf: IDF,
+            name: str = None,
+            schedule: EpBunch | str = None,
+            cooling_capacity=autosize,
+            sensible_heat_ratio=autosize,
+            air_flow_rate=autosize,
+            capacity_temperature_curve=None,
+            capacity_flow_curve=None):
+        name = 'VRF Cooling Coil' if name is None else name
+        coil = idf.newidfobject('Coil:Cooling:DX:VariableRefrigerantFlow', Nmae=name)
+
+        if schedule is None:
+            coil['Availability_Schedule_Name'] = schedule_always_on_hvac
+        else:
+            if isinstance(schedule, EpBunch):
+                coil['Availability_Schedule_Name'] = schedule.Name
+            elif isinstance(schedule, str):
+                coil['Availability_Schedule_Name'] = schedule
+            else:
+                raise TypeError('Invalid type of schedule.')
+
+        coil['Gross_Rated_Total_Cooling_Capacity'] = cooling_capacity
+        coil['Gross_Rated_Sensible_Heat_Ratio'] = sensible_heat_ratio
+        coil['Rated_Air_Flow_Rate'] = air_flow_rate
+        if capacity_temperature_curve is None:
+            capacity_temperature_curve = PerformanceCurve.biquadratic(
+                idf,
+                name=f'{name} VRFTUCoolCapFT',
+                coeff_constant=0.0585884077803259,
+                coeff_x=0.0587396532718384,
+                coeff_x2=-0.000210274979759697,
+                coeff_y=0.0109370473889647,
+                coeff_y2=-0.0001219549,
+                coeff_xy=-0.0005246615,
+                min_x=15,
+                max_x=23.89,
+                min_y=20,
+                max_y=43.33,
+                min_out=0.8083,
+                max_out=1.2583,
+                input_unit_type_x='Temperature',
+                input_unit_type_y='Temperature',
+                output_unit_type='Dimensionless')
+            coil['Cooling_Capacity_Ratio_Modifier_Function_of_Temperature_Curve_Name'] = capacity_temperature_curve.Name
+        else:
+            coil['Cooling_Capacity_Ratio_Modifier_Function_of_Temperature_Curve_Name'] = capacity_temperature_curve.Name
+        if capacity_flow_curve is None:
+            capacity_flow_curve = PerformanceCurve.quadratic(
+                idf, name=f'{name} VRFACCoolCapFFF',
+                coeff_constant=0.8,
+                coeff_x=0.2,
+                coeff_x2=0.0,
+                min_x=0.5,
+                max_x=1.5)
+            coil['Cooling_Capacity_Modifier_Curve_Function_of_Flow_Fraction_Name'] = capacity_flow_curve.Name
+        else:
+            coil['Cooling_Capacity_Modifier_Curve_Function_of_Flow_Fraction_Name'] = capacity_flow_curve.Name
+
+        coil['Coil_Air_Inlet_Node'] = f'{name} Air Inlet'
+        coil['Coil_Air_Outlet_Node'] = f'{name} Air Outlet'
+
+        comp = {
+            'object': coil,
+            'type': 'Coil:Cooling:DX:VariableRefrigerantFlow',
+            'air_inlet_field': 'Coil_Air_Inlet_Node',
+            'air_outlet_field': 'Coil_Air_Outlet_Node'
+        }
+        return comp
+
     @staticmethod
     def heating_coil_water(
             idf: IDF,
             name: str = None,
             schedule: EpBunch | str = None,
-            ufactor_times_area='Autosize',
-            max_water_flow_rate='Autosize',
+            ufactor_times_area=autosize,
+            max_water_flow_rate=autosize,
             performance_input_method: int = 1,
-            rated_capacity='Autosize',
+            rated_capacity=autosize,
             design_water_temp_diff: float = 20,
             inlet_water_temp=60,
             inlet_air_temp=16.6,
@@ -298,7 +418,7 @@ class AirLoopComponent:
         coil = idf.newidfobject('Coil:Heating:Water', Name=name)
 
         if schedule is None:
-            coil['Availability_Schedule_Name'] = 'Always On Discrete hvac_library'
+            coil['Availability_Schedule_Name'] = schedule_always_on_hvac
         else:
             if isinstance(schedule, EpBunch):
                 coil['Availability_Schedule_Name'] = schedule.Name
@@ -351,12 +471,12 @@ class AirLoopComponent:
             name: str = None,
             schedule: EpBunch | str = None,
             efficiency=1,
-            capacity='Autosize'):
+            capacity=autosize):
         name = 'Heating Coil Electric' if name is None else name
         coil = idf.newidfobject('Coil:Heating:Electric', Name=name)
 
         if schedule is None:
-            coil['Availability_Schedule_Name'] = 'Always On Discrete hvac_library'
+            coil['Availability_Schedule_Name'] = schedule_always_on_hvac
         else:
             if isinstance(schedule, EpBunch):
                 coil['Availability_Schedule_Name'] = schedule.Name
@@ -378,13 +498,84 @@ class AirLoopComponent:
         return component
 
     @staticmethod
+    def heating_coil_vrf(
+            idf: IDF,
+            name: str = None,
+            schedule: EpBunch | str = None,
+            heating_capacity=autosize,
+            air_flow_rate=autosize,
+            capacity_temperature_curve=None,
+            capacity_flow_curve=None):
+        name = 'VRF Heating Coil' if name is None else name
+        coil = idf.newidfobject('Coil:Heating:DX:VariableRefrigerantFlow', Nmae=name)
+
+        if schedule is None:
+            coil['Availability_Schedule_Name'] = schedule_always_on_hvac
+        else:
+            if isinstance(schedule, EpBunch):
+                coil['Availability_Schedule_Name'] = schedule.Name
+            elif isinstance(schedule, str):
+                coil['Availability_Schedule_Name'] = schedule
+            else:
+                raise TypeError('Invalid type of schedule.')
+
+        coil['Gross_Rated_Heating_Capacity'] = heating_capacity
+        coil['Rated_Air_Flow_Rate'] = air_flow_rate
+        if capacity_temperature_curve is None:
+            capacity_temperature_curve = PerformanceCurve.biquadratic(
+                idf,
+                name=f'{name} VRFTUHeatCAPFT',
+                coeff_constant=0.375443994956127,
+                coeff_x=0.0668190645147821,
+                coeff_x2=-0.00194171026482001,
+                coeff_y=0.0442618420640187,
+                coeff_y2=-0.0004009578,
+                coeff_xy=-0.0014819801,
+                min_x=21.11,
+                max_x=27.22,
+                min_y=-15,
+                max_y=18.33,
+                min_out=0.6074,
+                max_out=1,
+                input_unit_type_x='Temperature',
+                input_unit_type_y='Temperature',
+                output_unit_type='Dimensionless')
+            coil['Heating_Capacity_Ratio_Modifier_Function_of_Temperature_Curve_Name'] = capacity_temperature_curve.Name
+        else:
+            coil['Heating_Capacity_Ratio_Modifier_Function_of_Temperature_Curve_Name'] = capacity_temperature_curve.Name
+        if capacity_flow_curve is None:
+            capacity_flow_curve = PerformanceCurve.quadratic(
+                idf, name=f'{name} VRFACHeatCapFFF',
+                coeff_constant=0.8,
+                coeff_x=0.2,
+                coeff_x2=0.0,
+                min_x=0.5,
+                max_x=1.5)
+            coil['Heating_Capacity_Modifier_Function_of_Flow_Fraction_Curve_Name'] = capacity_flow_curve.Name
+        else:
+            coil['Heating_Capacity_Modifier_Function_of_Flow_Fraction_Curve_Name'] = capacity_flow_curve.Name
+
+        coil['Coil_Air_Inlet_Node'] = f'{name} Air Inlet'
+        coil['Coil_Air_Outlet_Node'] = f'{name} Air Outlet'
+
+        comp = {
+            'object': coil,
+            'type': 'Coil:Heating:DX:VariableRefrigerantFlow',
+            'air_inlet_field': 'Coil_Air_Inlet_Node',
+            'air_outlet_field': 'Coil_Air_Outlet_Node'
+        }
+        return comp
+
+    # Fan
+    # ********************************************************************************
+    @staticmethod
     def fan_variable_speed(
             idf: IDF,
             name: str = None,
             schedule: EpBunch | str = None,
             fan_total_efficiency=0.6,
-            pressure_rise=500,
-            max_flow_rate='AutoSize',
+            pressure_rise=fan_pressure_rise_default,
+            max_flow_rate=autosize,
             power_min_flow_rate_input_method: str = "FixedFlowRate",
             power_min_flow_rate_fraction=0,
             power_min_flow_rate=0,
@@ -399,7 +590,7 @@ class AirLoopComponent:
         fan = idf.newidfobject('Fan:VariableVolume', Name=name)
 
         if schedule is None:
-            fan['Availability_Schedule_Name'] = 'Always On Discrete hvac_library'
+            fan['Availability_Schedule_Name'] = schedule_always_on_hvac
         else:
             if isinstance(schedule, EpBunch):
                 fan['Availability_Schedule_Name'] = schedule.Name
@@ -444,15 +635,15 @@ class AirLoopComponent:
             name: str = None,
             schedule: EpBunch | str = None,
             fan_total_efficiency=0.6,
-            pressure_rise=500,
-            max_flow_rate='AutoSize',
+            pressure_rise=fan_pressure_rise_default,
+            max_flow_rate=autosize,
             motor_efficiency=0.93,
             motor_in_airstream_fraction=1):
         name = 'Fan Constant Speed' if name is None else name
         fan = idf.newidfobject('Fan:ConstantVolume', Name=name)
 
         if schedule is None:
-            fan['Availability_Schedule_Name'] = 'Always On Discrete hvac_library'
+            fan['Availability_Schedule_Name'] = schedule_always_on_hvac
         else:
             if isinstance(schedule, EpBunch):
                 fan['Availability_Schedule_Name'] = schedule.Name
@@ -485,18 +676,18 @@ class AirLoopComponent:
             idf: IDF,
             name: str = None,
             schedule: EpBunch | str = None,
-            pressure_rise=500,
-            max_flow_rate='AutoSize',
+            pressure_rise=fan_pressure_rise_default,
+            max_flow_rate=autosize,
             fan_total_efficiency=0.6,
             motor_efficiency=0.93,
             motor_in_airstream_fraction=1,
-            power_ratio_function_speed_ratio_curve=None,
-            efficiency_ratio_function_speed_ratio_curve=None):
+            power_ratio_function_speed_ratio_curve: dict = None,
+            efficiency_ratio_function_speed_ratio_curve: dict = None):
         name = 'Fan On Off' if name is None else name
         fan = idf.newidfobject('Fan:OnOff', Name=name)
 
         if schedule is None:
-            fan['Availability_Schedule_Name'] = 'Always On Discrete hvac_library'
+            fan['Availability_Schedule_Name'] = schedule_always_on_hvac
         else:
             if isinstance(schedule, EpBunch):
                 fan['Availability_Schedule_Name'] = schedule.Name
@@ -511,10 +702,29 @@ class AirLoopComponent:
         fan['Motor_Efficiency'] = motor_efficiency
         fan['Motor_In_Airstream_Fraction'] = motor_in_airstream_fraction
         fan['EndUse_Subcategory'] = 'General'
-        if power_ratio_function_speed_ratio_curve is not None:
-            fan['Fan_Power_Ratio_Function_of_Speed_Ratio_Curve_Name'] = power_ratio_function_speed_ratio_curve
-        if efficiency_ratio_function_speed_ratio_curve is not None:
-            fan['Fan_Efficiency_Ratio_Function_of_Speed_Ratio_Curve_Name'] = efficiency_ratio_function_speed_ratio_curve
+        if power_ratio_function_speed_ratio_curve is None:
+            power_ratio_function_speed_ratio_curve = PerformanceCurve.exponent(
+                idf,
+                coeff1_constant=1,
+                coeff2_constant=0,
+                coeff3_constant=0,
+                min_x=0.0,
+                max_x=1.0,
+                min_out=0.0,
+                max_out=1.0,
+                name=f'{name} Power Ratio Curve')
+        fan['Fan_Power_Ratio_Function_of_Speed_Ratio_Curve_Name'] = power_ratio_function_speed_ratio_curve
+        if efficiency_ratio_function_speed_ratio_curve is None:
+            efficiency_ratio_function_speed_ratio_curve = PerformanceCurve.cubic(
+                idf,
+                coeff1_constant=1,
+                coeff2_x=0,
+                coeff3_x2=0,
+                coeff4_x3=0,
+                min_x=0.0,
+                max_x=1.0,
+                name=f'{name} Efficiency Curve')
+        fan['Fan_Efficiency_Ratio_Function_of_Speed_Ratio_Curve_Name'] = efficiency_ratio_function_speed_ratio_curve
 
         fan['Air_Inlet_Node_Name'] = f'{name} air inlet'
         fan['Air_Outlet_Node_Name'] = f'{name} air outlet'
@@ -528,11 +738,13 @@ class AirLoopComponent:
 
         return component
 
+    # Heat exchanger:
+    # ***************************************************************************
     @staticmethod
     def heat_exchanger_air_to_air(
             idf: IDF,
             name: str = None,
-            supply_air_flow_rate='Autosize',
+            supply_air_flow_rate=autosize,
             sensible_only: bool = False,
             sensible_effectiveness_100_heating=0.75,
             latent_effectiveness_100_heating=0.68,
@@ -564,7 +776,7 @@ class AirLoopComponent:
         hx = idf.newidfobject('HeatExchanger:AirToAir:SensibleAndLatent', Name=name)
 
         if availability_schedule is None:
-            hx['Availability_Schedule_Name'] = 'Always On Discrete hvac_library'
+            hx['Availability_Schedule_Name'] = schedule_always_on_hvac
         else:
             if isinstance(availability_schedule, EpBunch):
                 hx['Availability_Schedule_Name'] = availability_schedule.Name
@@ -619,7 +831,7 @@ class AirLoopComponent:
     def heat_exchanger_air_to_air_v24(
             idf: IDF,
             name: str = None,
-            supply_air_flow_rate='Autosize',
+            supply_air_flow_rate=autosize,
             sensible_only: bool = False,
             sensible_effectiveness_100_heating=0.75,
             latent_effectiveness_100_heating=0.68,
@@ -651,7 +863,7 @@ class AirLoopComponent:
         hx = idf.newidfobject('HeatExchanger:AirToAir:SensibleAndLatent', Name=name)
 
         if availability_schedule is None:
-            hx['Availability_Schedule_Name'] = 'Always On Discrete hvac_library'
+            hx['Availability_Schedule_Name'] = schedule_always_on_hvac
         else:
             if isinstance(availability_schedule, EpBunch):
                 hx['Availability_Schedule_Name'] = availability_schedule.Name

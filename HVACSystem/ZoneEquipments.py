@@ -46,6 +46,7 @@ class ZoneEquipment:
             zones: list[EpBunch] | list[str] = None,
             air_terminal_type: int = 1,
             terminal_for_outdoor_air: bool = False,
+            vrf_terminal: bool = False,
             zone_air_unit_type: int = None,
             zone_radiative_type: int = None):
         """
@@ -227,46 +228,57 @@ class ZoneEquipment:
                 equip_group_assembly.append(return_air_nodelist)
                 zone_mixer_in_nodes.append(return_air_node_name)
 
-                # AirDistributionUnit:
+                equipments = []
+                if air_terminal_type is not None:
+                    # AirDistributionUnit:
+                    ###############################################################################################
+                    air_distribute_name = f'{zone_name} Air Distribution Unit'
+                    air_distribute = AirTerminal.air_distribution_unit(idf, name=air_distribute_name)
+                    air_distribute['object']['Air_Distribution_Unit_Outlet_Node_Name'] = terminal_node_name
+                    air_distribute['object']['Air_Terminal_Object_Type'] = terminal_type
+                    terminal_name = f'{zone_name} terminal'
+                    air_distribute['object']['Air_Terminal_Name'] = terminal_name
+                    equip_group_assembly.append(air_distribute['object'])
+
+                    # Air Terminal Unit:
+                    ###############################################################################################
+                    terminal_func_name = Air_Terminal_types[air_terminal_type][1]
+                    if terminal_func_name is not None:
+                        terminal_func = getattr(AirTerminal, terminal_func_name)
+                        terminal = terminal_func(idf, name=terminal_name)
+
+                        terminal_air_inlet = f'{zone_name} terminal inlet'
+                        terminal['object'][terminal['air_inlet_field']] = terminal_air_inlet
+                        terminal['object'][terminal['air_outlet_field']] = terminal_node_name
+                        if terminal_for_outdoor_air:
+                            try:
+                                dsoa_for_zone = find_dsoa_by_zone(idf, zone_name)
+                                terminal['object']['Design_Specification_Outdoor_Air_Object_Name'] = dsoa_for_zone
+                            except Exception:
+                                pass
+                        zone_splitter_out_nodes.append(terminal_air_inlet)
+
+                        # Reheat coil if available:
+                        if 'reheat_coil' in terminal.keys():
+                            terminal['reheat_coil']['object'][terminal['reheat_coil']['air_outlet_field']] = terminal_node_name
+
+                        equip_group_assembly.append(terminal['object'])
+                        if 'reheat_coil' in terminal.keys():
+                            heating_coils.append(terminal['reheat_coil'])
+                            equip_group_assembly.append(terminal['reheat_coil']['object'])
+                    else:
+                        raise NotImplementedError('Air terminal type not implemented')
+
+                    equipments.append(air_distribute)
+                    
+                # VRF Terminal if available:
                 ###############################################################################################
-                air_distribute_name = f'{zone_name} Air Distribution Unit'
-                air_distribute = AirTerminal.air_distribution_unit(idf, name=air_distribute_name)
-                air_distribute['object']['Air_Distribution_Unit_Outlet_Node_Name'] = terminal_node_name
-                air_distribute['object']['Air_Terminal_Object_Type'] = terminal_type
-                terminal_name = f'{zone_name} terminal'
-                air_distribute['object']['Air_Terminal_Name'] = terminal_name
-                equip_group_assembly.append(air_distribute['object'])
+                if vrf_terminal:
+                    vrf_terminal_name = f'{zone_name} VRF Terminal'
+                    vrf_terminal = ZoneForcedAirUnit.vrf_terminal(idf, name=vrf_terminal_name)
 
-                # Air Terminal Unit:
-                ###############################################################################################
-                terminal_func_name = Air_Terminal_types[air_terminal_type][1]
-                if terminal_func_name is not None:
-                    terminal_func = getattr(AirTerminal, terminal_func_name)
-                    terminal = terminal_func(idf, name=terminal_name)
+                    equipments.append(vrf_terminal)
 
-                    terminal_air_inlet = f'{zone_name} terminal inlet'
-                    terminal['object'][terminal['air_inlet_field']] = terminal_air_inlet
-                    terminal['object'][terminal['air_outlet_field']] = terminal_node_name
-                    if terminal_for_outdoor_air:
-                        try:
-                            dsoa_for_zone = find_dsoa_by_zone(idf, zone_name)
-                            terminal['object']['Design_Specification_Outdoor_Air_Object_Name'] = dsoa_for_zone
-                        except Exception:
-                            pass
-                    zone_splitter_out_nodes.append(terminal_air_inlet)
-
-                    # Reheat coil if available:
-                    if 'reheat_coil' in terminal.keys():
-                        terminal['reheat_coil']['object'][terminal['reheat_coil']['air_outlet_field']] = terminal_node_name
-
-                    equip_group_assembly.append(terminal['object'])
-                    if 'reheat_coil' in terminal.keys():
-                        heating_coils.append(terminal['reheat_coil'])
-                        equip_group_assembly.append(terminal['reheat_coil']['object'])
-                else:
-                    raise NotImplementedError('Air terminal type not implemented')
-
-                equipments = [air_distribute]
                 # Zone HVAC Equipment if available:
                 ###############################################################################################
                 if zone_air_unit_type is not None:

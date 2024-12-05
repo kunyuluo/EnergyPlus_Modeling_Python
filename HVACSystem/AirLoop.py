@@ -533,3 +533,48 @@ class AirLoop:
         }
 
         return output_assembly
+
+    @staticmethod
+    def no_air_loop(
+            idf: IDF,
+            name: str = None,
+            zones: list[str] | list[EpBunch] = None,
+            vrf_system: bool = False,
+            zone_air_unit_type: int = None,
+            zone_radiative_type: int = None,):
+        """
+        Zone HVAC Types:
+            1: 'ZoneHVAC:IdealLoadsAirSystem',
+            2: 'ZoneHVAC:FourPipeFanCoil',
+            3: 'ZoneHVAC:UnitVentilator',
+            4: 'ZoneHVAC:UnitHeater',
+            5: 'ZoneHVAC:EvaporativeCoolerUnit',
+            6: 'ZoneHVAC:OutdoorAirUnit',
+            7: 'ZoneHVAC:OutdoorAirUnit:EquipmentList',
+            8: 'ZoneHVAC:WindowAirConditioner',
+            9: 'ZoneHVAC:PackagedTerminalAirConditioner',
+            10: 'ZoneHVAC:PackagedTerminalHeatPump',
+            11: 'ZoneHVAC:RefrigerationChillerSet',
+            12: 'ZoneHVAC:WaterToAirHeatPump',
+            13: 'ZoneHVAC:Dehumidifier:DX',
+            14: 'ZoneHVAC:EnergyRecoveryVentilator',
+            15: 'ZoneHVAC:TerminalUnit:VariableRefrigerantFlow',
+            16: 'ZoneHVAC:HybridUnitaryHVAC',
+
+        Zone Radiative Unit Types:
+            1: 'ZoneHVAC:Baseboard:RadiantConvective:Water',
+            2: 'ZoneHVAC:Baseboard:RadiantConvective:Steam',
+            3: 'ZoneHVAC:Baseboard:RadiantConvective:Electric',
+            4: 'ZoneHVAC:Baseboard:Convective:Water',
+            5: 'ZoneHVAC:Baseboard:Convective:Electric',
+            6: 'ZoneHVAC:CoolingPanel:RadiantConvective:Water',
+            7: 'ZoneHVAC:LowTemperatureRadiant:VariableFlow',
+            8: 'ZoneHVAC:LowTemperatureRadiant:VariableFlow:Design',
+            9: 'ZoneHVAC:LowTemperatureRadiant:ConstantFlow',
+            10: 'ZoneHVAC:LowTemperatureRadiant:ConstantFlow:Design',
+            11: 'ZoneHVAC:LowTemperatureRadiant:Electric',
+            12: 'ZoneHVAC:LowTemperatureRadiant:SurfaceGroup',
+            13: 'ZoneHVAC:HighTemperatureRadiant',
+            14: 'ZoneHVAC:VentilatedSlab',
+            15: 'ZoneHVAC:VentilatedSlab:SlabGroup'
+        """
