@@ -448,34 +448,6 @@ ScheduleTypeLimits,
     Continuous,               !- Numeric Type
     velocity;                 !- Unit Type
 
-SCHEDULETYPELIMITS,
-    AHU Setpoint Manager Type Limits,    !- Name
-    0,                        !- Lower Limit Value
-    100,                      !- Upper Limit Value
-    Continuous,               !- Numeric Type
-    Temperature;              !- Unit Type
-
-SCHEDULETYPELIMITS,
-    DOAS System Humidity SPM Type Limits,    !- Name
-    0,                        !- Lower Limit Value
-    100,                      !- Upper Limit Value
-    Continuous,               !- Numeric Type
-    Dimensionless;            !- Unit Type
-
-SCHEDULETYPELIMITS,
-    Chilled Water Temp Type Limits,    !- Name
-    0,                        !- Lower Limit Value
-    100,                      !- Upper Limit Value
-    Continuous,               !- Numeric Type
-    Temperature;              !- Unit Type
-
-SCHEDULETYPELIMITS,
-    Hot Water Temperature Type Limits,    !- Name
-    0,                        !- Lower Limit Value
-    100,                      !- Upper Limit Value
-    Continuous,               !- Numeric Type
-    Temperature;              !- Unit Type
-
 Schedule:Day:Interval,
     Office Bldg Light Default Schedule,    !- Name
     Schedule Type Limits 1,    !- Schedule Type Limits Name
@@ -910,34 +882,6 @@ Schedule:Day:Interval,
     24:00,                    !- Time 1
     0.00799999999999997;      !- Value Until Time 1
 
-SCHEDULE:DAY:INTERVAL,
-    AHU Setpoint Manager Day Schedule,    !- Name
-    AHU Setpoint Manager Type Limits,    !- Schedule Type Limits Name
-    No,                       !- Interpolate to Timestep
-    24:00,                    !- Time 1
-    12.8;                     !- Value Until Time 1
-
-SCHEDULE:DAY:INTERVAL,
-    DOAS System Humidity SPM Day Schedule,    !- Name
-    DOAS System Humidity SPM Type Limits,    !- Schedule Type Limits Name
-    No,                       !- Interpolate to Timestep
-    24:00,                    !- Time 1
-    0.008;                    !- Value Until Time 1
-
-SCHEDULE:DAY:INTERVAL,
-    Chilled Water Temp Day Schedule,    !- Name
-    Chilled Water Temp Type Limits,    !- Schedule Type Limits Name
-    No,                       !- Interpolate to Timestep
-    24:00,                    !- Time 1
-    7;                        !- Value Until Time 1
-
-SCHEDULE:DAY:INTERVAL,
-    Hot Water Temperature Day Schedule,    !- Name
-    Hot Water Temperature Type Limits,    !- Schedule Type Limits Name
-    No,                       !- Interpolate to Timestep
-    24:00,                    !- Time 1
-    60;                       !- Value Until Time 1
-
 Schedule:Week:Daily,
     Schedule:Week:Daily {77782ce5-1a70-49a7-b72d-db0988271982},    !- Name
     Office Bldg Light Default Schedule,    !- Sunday ScheduleDay Name
@@ -1208,66 +1152,6 @@ Schedule:Week:Daily,
     Hot_Water_Temperature_Default,    !- CustomDay1 ScheduleDay Name
     Hot_Water_Temperature_Default;    !- CustomDay2 ScheduleDay Name
 
-SCHEDULE:WEEK:DAILY,
-    AHU Setpoint Manager Week Schedule,    !- Name
-    AHU Setpoint Manager Day Schedule,    !- Sunday ScheduleDay Name
-    AHU Setpoint Manager Day Schedule,    !- Monday ScheduleDay Name
-    AHU Setpoint Manager Day Schedule,    !- Tuesday ScheduleDay Name
-    AHU Setpoint Manager Day Schedule,    !- Wednesday ScheduleDay Name
-    AHU Setpoint Manager Day Schedule,    !- Thursday ScheduleDay Name
-    AHU Setpoint Manager Day Schedule,    !- Friday ScheduleDay Name
-    AHU Setpoint Manager Day Schedule,    !- Saturday ScheduleDay Name
-    AHU Setpoint Manager Day Schedule,    !- Holiday ScheduleDay Name
-    AHU Setpoint Manager Day Schedule,    !- SummerDesignDay ScheduleDay Name
-    AHU Setpoint Manager Day Schedule,    !- WinterDesignDay ScheduleDay Name
-    AHU Setpoint Manager Day Schedule,    !- CustomDay1 ScheduleDay Name
-    AHU Setpoint Manager Day Schedule;    !- CustomDay2 ScheduleDay Name
-
-SCHEDULE:WEEK:DAILY,
-    DOAS System Humidity SPM Week Schedule,    !- Name
-    DOAS System Humidity SPM Day Schedule,    !- Sunday ScheduleDay Name
-    DOAS System Humidity SPM Day Schedule,    !- Monday ScheduleDay Name
-    DOAS System Humidity SPM Day Schedule,    !- Tuesday ScheduleDay Name
-    DOAS System Humidity SPM Day Schedule,    !- Wednesday ScheduleDay Name
-    DOAS System Humidity SPM Day Schedule,    !- Thursday ScheduleDay Name
-    DOAS System Humidity SPM Day Schedule,    !- Friday ScheduleDay Name
-    DOAS System Humidity SPM Day Schedule,    !- Saturday ScheduleDay Name
-    DOAS System Humidity SPM Day Schedule,    !- Holiday ScheduleDay Name
-    DOAS System Humidity SPM Day Schedule,    !- SummerDesignDay ScheduleDay Name
-    DOAS System Humidity SPM Day Schedule,    !- WinterDesignDay ScheduleDay Name
-    DOAS System Humidity SPM Day Schedule,    !- CustomDay1 ScheduleDay Name
-    DOAS System Humidity SPM Day Schedule;    !- CustomDay2 ScheduleDay Name
-
-SCHEDULE:WEEK:DAILY,
-    Chilled Water Temp Week Schedule,    !- Name
-    Chilled Water Temp Day Schedule,    !- Sunday ScheduleDay Name
-    Chilled Water Temp Day Schedule,    !- Monday ScheduleDay Name
-    Chilled Water Temp Day Schedule,    !- Tuesday ScheduleDay Name
-    Chilled Water Temp Day Schedule,    !- Wednesday ScheduleDay Name
-    Chilled Water Temp Day Schedule,    !- Thursday ScheduleDay Name
-    Chilled Water Temp Day Schedule,    !- Friday ScheduleDay Name
-    Chilled Water Temp Day Schedule,    !- Saturday ScheduleDay Name
-    Chilled Water Temp Day Schedule,    !- Holiday ScheduleDay Name
-    Chilled Water Temp Day Schedule,    !- SummerDesignDay ScheduleDay Name
-    Chilled Water Temp Day Schedule,    !- WinterDesignDay ScheduleDay Name
-    Chilled Water Temp Day Schedule,    !- CustomDay1 ScheduleDay Name
-    Chilled Water Temp Day Schedule;    !- CustomDay2 ScheduleDay Name
-
-SCHEDULE:WEEK:DAILY,
-    Hot Water Temperature Week Schedule,    !- Name
-    Hot Water Temperature Day Schedule,    !- Sunday ScheduleDay Name
-    Hot Water Temperature Day Schedule,    !- Monday ScheduleDay Name
-    Hot Water Temperature Day Schedule,    !- Tuesday ScheduleDay Name
-    Hot Water Temperature Day Schedule,    !- Wednesday ScheduleDay Name
-    Hot Water Temperature Day Schedule,    !- Thursday ScheduleDay Name
-    Hot Water Temperature Day Schedule,    !- Friday ScheduleDay Name
-    Hot Water Temperature Day Schedule,    !- Saturday ScheduleDay Name
-    Hot Water Temperature Day Schedule,    !- Holiday ScheduleDay Name
-    Hot Water Temperature Day Schedule,    !- SummerDesignDay ScheduleDay Name
-    Hot Water Temperature Day Schedule,    !- WinterDesignDay ScheduleDay Name
-    Hot Water Temperature Day Schedule,    !- CustomDay1 ScheduleDay Name
-    Hot Water Temperature Day Schedule;    !- CustomDay2 ScheduleDay Name
-
 Schedule:Year,
     Office Bldg Light,        !- Name
     Schedule Type Limits 1,    !- Schedule Type Limits Name
@@ -1401,42 +1285,6 @@ Schedule:Year,
     Hot_Water_Temperature,    !- Name
     Temperature,              !- Schedule Type Limits Name
     Hot_Water_Temperature Week Rule - Jan1-Dec31,    !- ScheduleWeek Name 1
-    1,                        !- Start Month 1
-    1,                        !- Start Day 1
-    12,                       !- End Month 1
-    31;                       !- End Day 1
-
-SCHEDULE:YEAR,
-    AHU Setpoint Manager,     !- Name
-    AHU Setpoint Manager Type Limits,    !- Schedule Type Limits Name
-    AHU Setpoint Manager Week Schedule,    !- ScheduleWeek Name 1
-    1,                        !- Start Month 1
-    1,                        !- Start Day 1
-    12,                       !- End Month 1
-    31;                       !- End Day 1
-
-SCHEDULE:YEAR,
-    DOAS System Humidity SPM,    !- Name
-    DOAS System Humidity SPM Type Limits,    !- Schedule Type Limits Name
-    DOAS System Humidity SPM Week Schedule,    !- ScheduleWeek Name 1
-    1,                        !- Start Month 1
-    1,                        !- Start Day 1
-    12,                       !- End Month 1
-    31;                       !- End Day 1
-
-SCHEDULE:YEAR,
-    Chilled Water Temp,       !- Name
-    Chilled Water Temp Type Limits,    !- Schedule Type Limits Name
-    Chilled Water Temp Week Schedule,    !- ScheduleWeek Name 1
-    1,                        !- Start Month 1
-    1,                        !- Start Day 1
-    12,                       !- End Month 1
-    31;                       !- End Day 1
-
-SCHEDULE:YEAR,
-    Hot Water Temperature,    !- Name
-    Hot Water Temperature Type Limits,    !- Schedule Type Limits Name
-    Hot Water Temperature Week Schedule,    !- ScheduleWeek Name 1
     1,                        !- Start Month 1
     1,                        !- Start Day 1
     12,                       !- End Month 1
@@ -1962,10 +1810,10 @@ Sizing:Zone,
     0.1415762,                !- Heating Maximum Air Flow
     0.3,                      !- Heating Maximum Air Flow Fraction
     ,                         !- Design Specification Zone Air Distribution Object Name
-    Yes,                      !- Account for Dedicated Outdoor Air System
-    NeutralSupplyAir,         !- Dedicated Outdoor Air System Control Strategy
-    21.1,                     !- Dedicated Outdoor Air Low Setpoint Temperature for Design
-    23.9,                     !- Dedicated Outdoor Air High Setpoint Temperature for Design
+    No,                       !- Account for Dedicated Outdoor Air System
+    ,                         !- Dedicated Outdoor Air System Control Strategy
+    ,                         !- Dedicated Outdoor Air Low Setpoint Temperature for Design
+    ,                         !- Dedicated Outdoor Air High Setpoint Temperature for Design
     Sensible Load Only No Latent Load,    !- Zone Load Sizing Method
     HumidityRatioDifference,    !- Zone Latent Cooling Design Supply Air Humidity Ratio Input Method
     ,                         !- Zone Dehumidification Design Supply Air Humidity Ratio
@@ -1973,73 +1821,6 @@ Sizing:Zone,
     HumidityRatioDifference,    !- Zone Latent Heating Design Supply Air Humidity Ratio Input Method
     ,                         !- Zone Humidification Design Supply Air Humidity Ratio
     0.005;                    !- Zone Humidification Design Supply Air Humidity Ratio Difference
-
-SIZING:SYSTEM,
-    DOAS System,              !- AirLoop Name
-    VentilationRequirement,    !- Type of Load to Size On
-    Autosize,                 !- Design Outdoor Air Flow Rate
-    Autosize,                 !- Central Heating Maximum System Air Flow Ratio
-    7,                        !- Preheat Design Temperature
-    0.008,                    !- Preheat Design Humidity Ratio
-    12.8,                     !- Precool Design Temperature
-    0.008,                    !- Precool Design Humidity Ratio
-    12.8,                     !- Central Cooling Design Supply Air Temperature
-    12.8,                     !- Central Heating Design Supply Air Temperature
-    NonCoincident,            !- Type of Zone Sum to Use
-    Yes,                      !- 100 Outdoor Air in Cooling
-    Yes,                      !- 100 Outdoor Air in Heating
-    0.0085,                   !- Central Cooling Design Supply Air Humidity Ratio
-    0.008,                    !- Central Heating Design Supply Air Humidity Ratio
-    DesignDay,                !- Cooling Supply Air Flow Rate Method
-    0,                        !- Cooling Supply Air Flow Rate
-    0.0099676501,             !- Cooling Supply Air Flow Rate Per Floor Area
-    1,                        !- Cooling Fraction of Autosized Cooling Supply Air Flow Rate
-    3.9475456e-05,            !- Cooling Supply Air Flow Rate Per Unit Cooling Capacity
-    DesignDay,                !- Heating Supply Air Flow Rate Method
-    0,                        !- Heating Supply Air Flow Rate
-    0.0099676501,             !- Heating Supply Air Flow Rate Per Floor Area
-    1,                        !- Heating Fraction of Autosized Heating Supply Air Flow Rate
-    1,                        !- Heating Fraction of Autosized Cooling Supply Air Flow Rate
-    3.1588213e-05,            !- Heating Supply Air Flow Rate Per Unit Heating Capacity
-    ZoneSum,                  !- System Outdoor Air Method
-    1,                        !- Zone Maximum Outdoor Air Fraction
-    CoolingDesignCapacity,    !- Cooling Design Capacity Method
-    Autosize,                 !- Cooling Design Capacity
-    234.7,                    !- Cooling Design Capacity Per Floor Area
-    1,                        !- Fraction of Autosized Cooling Design Capacity
-    HeatingDesignCapacity,    !- Heating Design Capacity Method
-    Autosize,                 !- Heating Design Capacity
-    157,                      !- Heating Design Capacity Per Floor Area
-    1,                        !- Fraction of Autosized Heating Design Capacity
-    OnOff,                    !- Central Cooling Capacity Control Method
-    autosize;                 !- Occupant Diversity
-
-SIZING:PLANT,
-    Test Chilled Water Loop,    !- Plant or Condenser Loop Name
-    Cooling,                  !- Loop Type
-    7,                        !- Design Loop Exit Temperature
-    6,                        !- Loop Design Temperature Difference
-    NonCoincident,            !- Sizing Option
-    1,                        !- Zone Timesteps in Averaging Window
-    None;                     !- Coincident Sizing Factor Mode
-
-SIZING:PLANT,
-    Test Condenser Water Loop,    !- Plant or Condenser Loop Name
-    Condenser,                !- Loop Type
-    30,                       !- Design Loop Exit Temperature
-    15,                       !- Loop Design Temperature Difference
-    NonCoincident,            !- Sizing Option
-    1,                        !- Zone Timesteps in Averaging Window
-    None;                     !- Coincident Sizing Factor Mode
-
-SIZING:PLANT,
-    Test Hot Water Loop,      !- Plant or Condenser Loop Name
-    Heating,                  !- Loop Type
-    50,                       !- Design Loop Exit Temperature
-    50,                       !- Loop Design Temperature Difference
-    NonCoincident,            !- Sizing Option
-    1,                        !- Zone Timesteps in Averaging Window
-    None;                     !- Coincident Sizing Factor Mode
 
 ZoneControl:Thermostat,
     Test_Office_0 Thermostat,    !- Name
@@ -2060,36 +1841,37 @@ ThermostatSetpoint:DualSetpoint,
     Medium Office HtgSetp,    !- Heating Setpoint Temperature Schedule Name
     Medium Office ClgSetp;    !- Cooling Setpoint Temperature Schedule Name
 
-ZONEHVAC:FOURPIPEFANCOIL,
-    Test_Office_0 FourPipeFanCoil,    !- Name
-    Always On Discrete hvac_library,    !- Availability Schedule Name
-    ConstantFanVariableFlow,    !- Capacity Control Method
-    AutoSize,                 !- Maximum Supply Air Flow Rate
-    0.33,                     !- Low Speed Supply Air Flow Ratio
-    0.66,                     !- Medium Speed Supply Air Flow Ratio
-    AutoSize,                 !- Maximum Outdoor Air Flow Rate
-    ,                         !- Outdoor Air Schedule Name
-    Test_Office_0 FourPipeFanCoil OA Mixer Return Air Node,    !- Air Inlet Node Name
-    Test_Office_0 FourPipeFanCoil Heating Coil Coil Outlet Node,    !- Air Outlet Node Name
-    OutdoorAir:Mixer,         !- Outdoor Air Mixer Object Type
-    Test_Office_0 FourPipeFanCoil OA Mixer,    !- Outdoor Air Mixer Name
-    Fan:ConstantVolume,       !- Supply Air Fan Object Type
-    Test_Office_0 FourPipeFanCoil Const Speed Fan,    !- Supply Air Fan Name
-    Coil:Cooling:Water,       !- Cooling Coil Object Type
-    Test_Office_0 FourPipeFanCoil Cooling Coil,    !- Cooling Coil Name
-    AutoSize,                 !- Maximum Cold Water Flow Rate
-    0,                        !- Minimum Cold Water Flow Rate
-    0.001,                    !- Cooling Convergence Tolerance
-    Coil:Heating:Water,       !- Heating Coil Object Type
-    Test_Office_0 FourPipeFanCoil Heating Coil,    !- Heating Coil Name
-    AutoSize,                 !- Maximum Hot Water Flow Rate
-    0,                        !- Minimum Hot Water Flow Rate
-    0.001,                    !- Heating Convergence Tolerance
+ZONEHVAC:TERMINALUNIT:VARIABLEREFRIGERANTFLOW,
+    Test_Office_0 VRF Terminal,    !- Zone Terminal Unit Name
+    Always On Discrete hvac_library,    !- Terminal Unit Availability Schedule
+    Test_Office_0 VRF Terminal OA Mixer Return Air Node,    !- Terminal Unit Air Inlet Node Name
+    Test_Office_0 VRF Terminal Terminal Air Outlet Node,    !- Terminal Unit Air Outlet Node Name
+    Autosize,                 !- Cooling Supply Air Flow Rate
+    Autosize,                 !- No Cooling Supply Air Flow Rate
+    Autosize,                 !- Heating Supply Air Flow Rate
+    Autosize,                 !- No Heating Supply Air Flow Rate
+    0,                        !- Cooling Outdoor Air Flow Rate
+    0,                        !- Heating Outdoor Air Flow Rate
+    0,                        !- No Load Outdoor Air Flow Rate
+    Always On Discrete hvac_library,    !- Supply Air Fan Operating Mode Schedule Name
+    BlowThrough,              !- Supply Air Fan Placement
+    Fan:OnOff,                !- Supply Air Fan Object Type
+    Test_Office_0 VRF Terminal Fan OnOff,    !- Supply Air Fan Object Name
+    OutdoorAir:Mixer,         !- Outside Air Mixer Object Type
+    Test_Office_0 VRF Terminal OA Mixer,    !- Outside Air Mixer Object Name
+    Coil:Cooling:DX:VariableRefrigerantFlow,    !- Cooling Coil Object Type
+    Test_Office_0 VRF Terminal Cooling Coil,    !- Cooling Coil Object Name
+    Coil:Heating:DX:VariableRefrigerantFlow,    !- Heating Coil Object Type
+    Test_Office_0 VRF Terminal Heating Coil,    !- Heating Coil Object Name
+    30,                       !- Zone Terminal Unit On Parasitic Electric Energy Use
+    20,                       !- Zone Terminal Unit Off Parasitic Electric Energy Use
+    1,                        !- Rated Heating Capacity Sizing Ratio
     ,                         !- Availability Manager List Name
     ,                         !- Design Specification ZoneHVAC Sizing Object Name
-    ,                         !- Supply Air Fan Operating Mode Schedule Name
-    AutoSize,                 !- Minimum Supply Air Temperature in Cooling Mode
-    AutoSize;                 !- Maximum Supply Air Temperature in Heating Mode
+    ,                         !- Supplemental Heating Coil Object Type
+    ,                         !- Supplemental Heating Coil Name
+    Autosize,                 !- Maximum Supply Air Temperature from Supplemental Heater
+    21;                       !- Maximum Outdoor DryBulb Temperature for Supplemental Heater Operation
 
 ZONEHVAC:BASEBOARD:CONVECTIVE:ELECTRIC,
     Test_Office_0 Baseboard,    !- Name
@@ -2100,228 +1882,148 @@ ZONEHVAC:BASEBOARD:CONVECTIVE:ELECTRIC,
     1,                        !- Fraction of Autosized Heating Design Capacity
     1;                        !- Efficiency
 
-AIRTERMINAL:SINGLEDUCT:CONSTANTVOLUME:NOREHEAT,
-    Test_Office_0 terminal,    !- Name
-    Always On Discrete hvac_library,    !- Availability Schedule Name
-    Test_Office_0 terminal inlet,    !- Air Inlet Node Name
-    Test_Office_0 terminal outlet,    !- Air Outlet Node Name
-    Autosize,                 !- Maximum Air Flow Rate
-    ,                         !- Design Specification Outdoor Air Object Name
-    CurrentOccupancy;         !- Per Person Ventilation Rate Mode
-
-ZONEHVAC:AIRDISTRIBUTIONUNIT,
-    Test_Office_0 Air Distribution Unit,    !- Name
-    Test_Office_0 terminal outlet,    !- Air Distribution Unit Outlet Node Name
-    AirTerminal:SingleDuct:ConstantVolume:NoReheat,    !- Air Terminal Object Type
-    Test_Office_0 terminal,    !- Air Terminal Name
-    0,                        !- Nominal Upstream Leakage Fraction
-    0;                        !- Constant Downstream Leakage Fraction
-
 ZONEHVAC:EQUIPMENTLIST,
     Test_Office_0 Equipment List,    !- Name
     SequentialLoad,           !- Load Distribution Scheme
-    ZoneHVAC:AirDistributionUnit,    !- Zone Equipment 1 Object Type
-    Test_Office_0 Air Distribution Unit,    !- Zone Equipment 1 Name
+    ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,    !- Zone Equipment 1 Object Type
+    Test_Office_0 VRF Terminal,    !- Zone Equipment 1 Name
     1,                        !- Zone Equipment 1 Cooling Sequence
     1,                        !- Zone Equipment 1 Heating or NoLoad Sequence
     ,                         !- Zone Equipment 1 Sequential Cooling Fraction Schedule Name
     ,                         !- Zone Equipment 1 Sequential Heating Fraction Schedule Name
-    ZoneHVAC:FourPipeFanCoil,    !- Zone Equipment 2 Object Type
-    Test_Office_0 FourPipeFanCoil,    !- Zone Equipment 2 Name
+    ZoneHVAC:Baseboard:Convective:Electric,    !- Zone Equipment 2 Object Type
+    Test_Office_0 Baseboard,    !- Zone Equipment 2 Name
     2,                        !- Zone Equipment 2 Cooling Sequence
-    2,                        !- Zone Equipment 2 Heating or NoLoad Sequence
-    ,                         !- Zone Equipment 2 Sequential Cooling Fraction Schedule Name
-    ,                         !- Zone Equipment 2 Sequential Heating Fraction Schedule Name
-    ZoneHVAC:Baseboard:Convective:Electric,    !- Zone Equipment 3 Object Type
-    Test_Office_0 Baseboard,    !- Zone Equipment 3 Name
-    3,                        !- Zone Equipment 3 Cooling Sequence
-    3;                        !- Zone Equipment 3 Heating or NoLoad Sequence
+    2;                        !- Zone Equipment 2 Heating or NoLoad Sequence
 
 ZONEHVAC:EQUIPMENTCONNECTIONS,
     Test_Office_0,            !- Zone Name
     Test_Office_0 Equipment List,    !- Zone Conditioning Equipment List Name
     Test_Office_0 Inlet Node List,    !- Zone Air Inlet Node or NodeList Name
     Test_Office_0 Exhaust Node List,    !- Zone Air Exhaust Node or NodeList Name
-    Test_Office_0 Air Node,    !- Zone Air Node Name
-    Test_Office_0 Return Air Node List;    !- Zone Return Air Node or NodeList Name
+    Test_Office_0 Air Node;    !- Zone Air Node Name
 
-FAN:CONSTANTVOLUME,
-    Test_Office_0 FourPipeFanCoil Const Speed Fan,    !- Name
+FAN:ONOFF,
+    Test_Office_0 VRF Terminal Fan OnOff,    !- Name
     Always On Discrete hvac_library,    !- Availability Schedule Name
     0.6,                      !- Fan Total Efficiency
     500,                      !- Pressure Rise
-    AutoSize,                 !- Maximum Flow Rate
+    Autosize,                 !- Maximum Flow Rate
     0.93,                     !- Motor Efficiency
     1,                        !- Motor In Airstream Fraction
-    Test_Office_0 FourPipeFanCoil OA Mixer Mixed Air Node,    !- Air Inlet Node Name
-    Test_Office_0 FourPipeFanCoil Const Speed Fan Fan Outlet Node,    !- Air Outlet Node Name
+    Test_Office_0 VRF Terminal OA Mixer Mixed Air Node,    !- Air Inlet Node Name
+    Test_Office_0 VRF Terminal Fan OnOff air outlet,    !- Air Outlet Node Name
+    Test_Office_0 VRF Terminal Fan OnOff Power Ratio Curve,    !- Fan Power Ratio Function of Speed Ratio Curve Name
+    Test_Office_0 VRF Terminal Fan OnOff Efficiency Curve,    !- Fan Efficiency Ratio Function of Speed Ratio Curve Name
     General;                  !- EndUse Subcategory
 
-FAN:VARIABLEVOLUME,
-    Fan,                      !- Name
+COIL:COOLING:DX:VARIABLEREFRIGERANTFLOW,
+    Test_Office_0 VRF Terminal Cooling Coil,    !- Name
     Always On Discrete hvac_library,    !- Availability Schedule Name
-    0.6,                      !- Fan Total Efficiency
-    500,                      !- Pressure Rise
-    AutoSize,                 !- Maximum Flow Rate
-    FixedFlowRate,            !- Fan Power Minimum Flow Rate Input Method
-    0,                        !- Fan Power Minimum Flow Fraction
-    0,                        !- Fan Power Minimum Air Flow Rate
-    0.93,                     !- Motor Efficiency
-    1,                        !- Motor In Airstream Fraction
-    0.0013,                   !- Fan Power Coefficient 1
-    0.147,                    !- Fan Power Coefficient 2
-    0.9506,                   !- Fan Power Coefficient 3
-    -0.0998,                  !- Fan Power Coefficient 4
-    0,                        !- Fan Power Coefficient 5
-    Fan air inlet,            !- Air Inlet Node Name
-    DOAS System Supply Outlet Node,    !- Air Outlet Node Name
-    General;                  !- EndUse Subcategory
+    Autosize,                 !- Gross Rated Total Cooling Capacity
+    Autosize,                 !- Gross Rated Sensible Heat Ratio
+    Autosize,                 !- Rated Air Flow Rate
+    Test_Office_0 VRF Terminal Cooling Coil VRFTUCoolCapFT,    !- Cooling Capacity Ratio Modifier Function of Temperature Curve Name
+    Test_Office_0 VRF Terminal Cooling Coil VRFACCoolCapFFF,    !- Cooling Capacity Modifier Curve Function of Flow Fraction Name
+    Test_Office_0 VRF Terminal Fan OnOff air outlet,    !- Coil Air Inlet Node
+    Test_Office_0 VRF Terminal Cooling Coil Air Outlet;    !- Coil Air Outlet Node
 
-COIL:COOLING:WATER,
-    AHU Cooling Coil,         !- Name
+COIL:HEATING:DX:VARIABLEREFRIGERANTFLOW,
+    Test_Office_0 VRF Terminal Heating Coil,    !- Name
+    Always On Discrete hvac_library,    !- Availability Schedule
+    Autosize,                 !- Gross Rated Heating Capacity
+    Autosize,                 !- Rated Air Flow Rate
+    Test_Office_0 VRF Terminal Cooling Coil Air Outlet,    !- Coil Air Inlet Node
+    Test_Office_0 VRF Terminal Terminal Air Outlet Node,    !- Coil Air Outlet Node
+    Test_Office_0 VRF Terminal Heating Coil VRFTUHeatCAPFT,    !- Heating Capacity Ratio Modifier Function of Temperature Curve Name
+    Test_Office_0 VRF Terminal Heating Coil VRFACHeatCapFFF;    !- Heating Capacity Modifier Function of Flow Fraction Curve Name
+
+AIRCONDITIONER:VARIABLEREFRIGERANTFLOW,
+    My VRF System,            !- Heat Pump Name
     Always On Discrete hvac_library,    !- Availability Schedule Name
-    Autosize,                 !- Design Water Flow Rate
-    Autosize,                 !- Design Air Flow Rate
-    Autosize,                 !- Design Inlet Water Temperature
-    Autosize,                 !- Design Inlet Air Temperature
-    Autosize,                 !- Design Outlet Air Temperature
-    Autosize,                 !- Design Inlet Air Humidity Ratio
-    Autosize,                 !- Design Outlet Air Humidity Ratio
-    AHU Cooling Coil_water_inlet,    !- Water Inlet Node Name
-    AHU Cooling Coil_water_outlet,    !- Water Outlet Node Name
-    DOAS System Outdoor Air System Controller mixed_air,    !- Air Inlet Node Name
-    AHU Cooling Coil_air_outlet,    !- Air Outlet Node Name
-    SimpleAnalysis,           !- Type of Analysis
-    CrossFlow;                !- Heat Exchanger Configuration
+    Autosize,                 !- Gross Rated Total Cooling Capacity
+    3.3,                      !- Gross Rated Cooling COP
+    -6,                       !- Minimum Condenser Inlet Node Temperature in Cooling Mode
+    43,                       !- Maximum Condenser Inlet Node Temperature in Cooling Mode
+    CapRatioLowTempCurve_Cooling,    !- Cooling Capacity Ratio Modifier Function of Low Temperature Curve Name
+    CapRatioBoundary_Cooling,    !- Cooling Capacity Ratio Boundary Curve Name
+    CapRatioHighTempCurve_Cooling,    !- Cooling Capacity Ratio Modifier Function of High Temperature Curve Name
+    EIRRatioLowTempCurve_Cooling,    !- Cooling Energy Input Ratio Modifier Function of Low Temperature Curve Name
+    EIRRatioBoundary_Cooling,    !- Cooling Energy Input Ratio Boundary Curve Name
+    EIRRatioHighTempCurve_Cooling,    !- Cooling Energy Input Ratio Modifier Function of High Temperature Curve Name
+    EIRRatioLowPLR_Cooling,    !- Cooling Energy Input Ratio Modifier Function of Low PartLoad Ratio Curve Name
+    EIRRatioHighPLR_Cooling,    !- Cooling Energy Input Ratio Modifier Function of High PartLoad Ratio Curve Name
+    CombinationRatio_Cooling,    !- Cooling Combination Ratio Correction Factor Curve Name
+    PLRFractionCorrelation_Cooling,    !- Cooling PartLoad Fraction Correlation Curve Name
+    Autosize,                 !- Gross Rated Heating Capacity
+    1,                        !- Rated Heating Capacity Sizing Ratio
+    3.5,                      !- Gross Rated Heating COP
+    -20,                      !- Minimum Condenser Inlet Node Temperature in Heating Mode
+    16,                       !- Maximum Condenser Inlet Node Temperature in Heating Mode
+    CapRatioLowTempCurve_Heating,    !- Heating Capacity Ratio Modifier Function of Low Temperature Curve Name
+    CapRatioBoundary_Heating,    !- Heating Capacity Ratio Boundary Curve Name
+    CapRatioHighTempCurve_Heating,    !- Heating Capacity Ratio Modifier Function of High Temperature Curve Name
+    EIRRatioLowTempCurve_Heating,    !- Heating Energy Input Ratio Modifier Function of Low Temperature Curve Name
+    EIRRatioBoundary_Heating,    !- Heating Energy Input Ratio Boundary Curve Name
+    EIRRatioHighTempCurve_Heating,    !- Heating Energy Input Ratio Modifier Function of High Temperature Curve Name
+    WetBulbTemperature,       !- Heating Performance Curve Outdoor Temperature Type
+    EIRRatioLowPLR_Heating,    !- Heating Energy Input Ratio Modifier Function of Low PartLoad Ratio Curve Name
+    EIRRatioHighPLR_Heating,    !- Heating Energy Input Ratio Modifier Function of High PartLoad Ratio Curve Name
+    CombinationRatio_Heating,    !- Heating Combination Ratio Correction Factor Curve Name
+    PLRFractionCorrelation_Heating,    !- Heating PartLoad Fraction Correlation Curve Name
+    0.15,                     !- Minimum Heat Pump PartLoad Ratio
+    ,                         !- Zone Name for Master Thermostat Location
+    LoadPriority,             !- Master Thermostat Priority Control Type
+    ,                         !- Thermostat Priority Schedule Name
+    My VRF System Terminal List,    !- Zone Terminal Unit List Name
+    No,                       !- Heat Pump Waste Heat Recovery
+    30,                       !- Equivalent Piping Length used for Piping Correction Factor in Cooling Mode
+    10,                       !- Vertical Height used for Piping Correction Factor
+    PipingCorrectionFactorCurve_Cooling,    !- Piping Correction Factor for Length in Cooling Mode Curve Name
+    -0.000386,                !- Piping Correction Factor for Height in Cooling Mode Coefficient
+    30,                       !- Equivalent Piping Length used for Piping Correction Factor in Heating Mode
+    PipingCorrectionFactorCurve_Heating,    !- Piping Correction Factor for Length in Heating Mode Curve Name
+    0,                        !- Piping Correction Factor for Height in Heating Mode Coefficient
+    15,                       !- Crankcase Heater Power per Compressor
+    3,                        !- Number of Compressors
+    0.3333333333333333,       !- Ratio of Compressor Size to Total Compressor Capacity
+    7,                        !- Maximum Outdoor DryBulb Temperature for Crankcase Heater
+    Resistive,                !- Defrost Strategy
+    Timed,                    !- Defrost Control
+    ,                         !- Defrost Energy Input Ratio Modifier Function of Temperature Curve Name
+    0.058333,                 !- Defrost Time Period Fraction
+    1e-07,                    !- Resistive Defrost Heater Capacity
+    7,                        !- Maximum Outdoor Drybulb Temperature for Defrost Operation
+    AirCooled,                !- Condenser Type
+    ,                         !- Condenser Inlet Node Name
+    ,                         !- Condenser Outlet Node Name
+    ,                         !- Water Condenser Volume Flow Rate
+    0.9,                      !- Evaporative Condenser Effectiveness
+    Autosize,                 !- Evaporative Condenser Air Flow Rate
+    Autosize,                 !- Evaporative Condenser Pump Rated Power Consumption
+    ,                         !- Supply Water Storage Tank Name
+    0,                        !- Basin Heater Capacity
+    2,                        !- Basin Heater Setpoint Temperature
+    ,                         !- Basin Heater Operating Schedule Name
+    Electricity,              !- Fuel Type
+    0,                        !- Minimum Condenser Inlet Node Temperature in Heat Recovery Mode
+    20,                       !- Maximum Condenser Inlet Node Temperature in Heat Recovery Mode
+    HeatRecoveryCapModifier_Cooling,    !- Heat Recovery Cooling Capacity Modifier Curve Name
+    0.5,                      !- Initial Heat Recovery Cooling Capacity Fraction
+    0.083,                    !- Heat Recovery Cooling Capacity Time Constant
+    HeatRecoveryEnergyModifier_Cooling,    !- Heat Recovery Cooling Energy Modifier Curve Name
+    1,                        !- Initial Heat Recovery Cooling Energy Fraction
+    0,                        !- Heat Recovery Cooling Energy Time Constant
+    HeatRecoveryCapModifier_Heating,    !- Heat Recovery Heating Capacity Modifier Curve Name
+    0.5,                      !- Initial Heat Recovery Heating Capacity Fraction
+    0.083,                    !- Heat Recovery Heating Capacity Time Constant
+    HeatRecoveryEnergyModifier_Heating,    !- Heat Recovery Heating Energy Modifier Curve Name
+    0.5,                      !- Initial Heat Recovery Heating Energy Fraction
+    0;                        !- Heat Recovery Heating Energy Time Constant
 
-COIL:COOLING:WATER,
-    Test_Office_0 FourPipeFanCoil Cooling Coil,    !- Name
-    Always On Discrete hvac_library,    !- Availability Schedule Name
-    Autosize,                 !- Design Water Flow Rate
-    Autosize,                 !- Design Air Flow Rate
-    Autosize,                 !- Design Inlet Water Temperature
-    Autosize,                 !- Design Inlet Air Temperature
-    Autosize,                 !- Design Outlet Air Temperature
-    Autosize,                 !- Design Inlet Air Humidity Ratio
-    Autosize,                 !- Design Outlet Air Humidity Ratio
-    Test_Office_0 FourPipeFanCoil Cooling Coil_water_inlet,    !- Water Inlet Node Name
-    Test_Office_0 FourPipeFanCoil Cooling Coil_water_outlet,    !- Water Outlet Node Name
-    Test_Office_0 FourPipeFanCoil Const Speed Fan Fan Outlet Node,    !- Air Inlet Node Name
-    Test_Office_0 FourPipeFanCoil Cooling Coil Coil Outlet Node,    !- Air Outlet Node Name
-    SimpleAnalysis,           !- Type of Analysis
-    CrossFlow;                !- Heat Exchanger Configuration
-
-COIL:HEATING:WATER,
-    AHU Heating Coil,         !- Name
-    Always On Discrete hvac_library,    !- Availability Schedule Name
-    Autosize,                 !- UFactor Times Area Value
-    Autosize,                 !- Maximum Water Flow Rate
-    AHU Heating Coil_water_inlet,    !- Water Inlet Node Name
-    AHU Heating Coil_water_outlet,    !- Water Outlet Node Name
-    AHU Cooling Coil_air_outlet,    !- Air Inlet Node Name
-    Fan air inlet,            !- Air Outlet Node Name
-    UFactorTimesAreaAndDesignWaterFlowRate,    !- Performance Input Method
-    Autosize,                 !- Rated Capacity
-    60,                       !- Rated Inlet Water Temperature
-    16.6,                     !- Rated Inlet Air Temperature
-    40,                       !- Rated Outlet Water Temperature
-    32.2,                     !- Rated Outlet Air Temperature
-    0.5,                      !- Rated Ratio for Air and Water Convection
-    20;                       !- Design Water Temperature Difference
-
-COIL:HEATING:WATER,
-    Test_Office_0 FourPipeFanCoil Heating Coil,    !- Name
-    Always On Discrete hvac_library,    !- Availability Schedule Name
-    Autosize,                 !- UFactor Times Area Value
-    Autosize,                 !- Maximum Water Flow Rate
-    Test_Office_0 FourPipeFanCoil Heating Coil_water_inlet,    !- Water Inlet Node Name
-    Test_Office_0 FourPipeFanCoil Heating Coil_water_outlet,    !- Water Outlet Node Name
-    Test_Office_0 FourPipeFanCoil Cooling Coil Coil Outlet Node,    !- Air Inlet Node Name
-    Test_Office_0 FourPipeFanCoil Heating Coil Coil Outlet Node,    !- Air Outlet Node Name
-    UFactorTimesAreaAndDesignWaterFlowRate,    !- Performance Input Method
-    Autosize,                 !- Rated Capacity
-    60,                       !- Rated Inlet Water Temperature
-    16.6,                     !- Rated Inlet Air Temperature
-    40,                       !- Rated Outlet Water Temperature
-    32.2,                     !- Rated Outlet Air Temperature
-    0.5,                      !- Rated Ratio for Air and Water Convection
-    20;                       !- Design Water Temperature Difference
-
-HEATEXCHANGER:AIRTOAIR:SENSIBLEANDLATENT,
-    DOAS System Outdoor Air System Heat Exchanger,    !- Name
-    Always On Discrete hvac_library,    !- Availability Schedule Name
-    Autosize,                 !- Nominal Supply Air Flow Rate
-    0.75,                     !- Sensible Effectiveness at 100 Heating Air Flow
-    0.68,                     !- Latent Effectiveness at 100 Heating Air Flow
-    0.75,                     !- Sensible Effectiveness at 100 Cooling Air Flow
-    0.68,                     !- Latent Effectiveness at 100 Cooling Air Flow
-    DOAS System Outdoor Air System Controller outdoor_air_inlet,    !- Supply Air Inlet Node Name
-    DOAS System Outdoor Air System Heat Exchanger_supply_air_outlet,    !- Supply Air Outlet Node Name
-    DOAS System Outdoor Air System Controller relief_air_outlet,    !- Exhaust Air Inlet Node Name
-    DOAS System Outdoor Air System Heat Exchanger_exhaust_air_outlet,    !- Exhaust Air Outlet Node Name
-    0,                        !- Nominal Electric Power
-    Yes,                      !- Supply Air Outlet Temperature Control
-    Plate,                    !- Heat Exchanger Type
-    None,                     !- Frost Control Type
-    1.7,                      !- Threshold Temperature
-    0.083,                    !- Initial Defrost Time Fraction
-    0.012,                    !- Rate of Defrost Time Fraction Increase
-    No,                       !- Economizer Lockout
-    DOAS System Outdoor Air System Heat Exchanger HX_SensHeatEff,    !- Sensible Effectiveness of Heating Air Flow Curve Name
-    DOAS System Outdoor Air System Heat Exchanger HX_LatHeatEff,    !- Latent Effectiveness of Heating Air Flow Curve Name
-    DOAS System Outdoor Air System Heat Exchanger HX_SensCoolEff,    !- Sensible Effectiveness of Cooling Air Flow Curve Name
-    DOAS System Outdoor Air System Heat Exchanger HX_LatCoolEff;    !- Latent Effectiveness of Cooling Air Flow Curve Name
-
-CONTROLLER:WATERCOIL,
-    AHU Cooling Coil Controller,    !- Name
-    HumidityRatio,            !- Control Variable
-    Reverse,                  !- Action
-    Flow,                     !- Actuator Variable
-    AHU Cooling Coil_air_outlet,    !- Sensor Node Name
-    AHU Cooling Coil_water_inlet,    !- Actuator Node Name
-    autosize,                 !- Controller Convergence Tolerance
-    autosize,                 !- Maximum Actuated Flow
-    0;                        !- Minimum Actuated Flow
-
-CONTROLLER:WATERCOIL,
-    AHU Heating Coil Controller,    !- Name
-    Temperature,              !- Control Variable
-    Normal,                   !- Action
-    Flow,                     !- Actuator Variable
-    Fan air inlet,            !- Sensor Node Name
-    AHU Heating Coil_water_inlet,    !- Actuator Node Name
-    autosize,                 !- Controller Convergence Tolerance
-    autosize,                 !- Maximum Actuated Flow
-    0;                        !- Minimum Actuated Flow
-
-CONTROLLER:OUTDOORAIR,
-    DOAS System Outdoor Air System Controller,    !- Name
-    DOAS System Outdoor Air System Controller relief_air_outlet,    !- Relief Air Outlet Node Name
-    DOAS System Supply Inlet Node,    !- Return Air Node Name
-    DOAS System Outdoor Air System Controller mixed_air,    !- Mixed Air Node Name
-    DOAS System Outdoor Air System Controller outdoor_air_inlet,    !- Actuator Node Name
-    0,                        !- Minimum Outdoor Air Flow Rate
-    Autosize,                 !- Maximum Outdoor Air Flow Rate
-    NoEconomizer,             !- Economizer Control Type
-    ModulateFlow,             !- Economizer Control Action Type
-    28,                       !- Economizer Maximum Limit DryBulb Temperature
-    64000,                    !- Economizer Maximum Limit Enthalpy
-    ,                         !- Economizer Maximum Limit Dewpoint Temperature
-    ,                         !- Electronic Enthalpy Limit Curve Name
-    -100,                     !- Economizer Minimum Limit DryBulb Temperature
-    NoLockout,                !- Lockout Type
-    FixedMinimum,             !- Minimum Limit Type
-    ,                         !- Minimum Outdoor Air Schedule Name
-    ,                         !- Minimum Fraction of Outdoor Air Schedule Name
-    ,                         !- Maximum Fraction of Outdoor Air Schedule Name
-    ,                         !- Mechanical Ventilation Controller Name
-    ,                         !- Time of Day Economizer Control Schedule Name
-    No,                       !- High Humidity Control
-    ,                         !- Humidistat Control Zone Name
-    1,                        !- High Humidity Outdoor Air Flow Ratio
-    Yes,                      !- Control High Indoor Humidity Based on Outdoor Humidity Ratio
-    BypassWhenWithinEconomizerLimits,    !- Heat Recovery Bypass Control Type
-    InterlockedWithMechanicalCooling;    !- Economizer Operation Staging
+ZONETERMINALUNITLIST,
+    My VRF System Terminal List,    !- Zone Terminal Unit List Name
+    Test_Office_0 VRF Terminal;    !- Zone Terminal Unit Name 1
 
 Controller:MechanicalVentilation,
     Controller Mechanical Ventilation 1,    !- Name
@@ -2333,883 +2035,28 @@ Controller:MechanicalVentilation,
     Test_Office_0_DSOA,       !- Design Specification Outdoor Air Object Name 1
     ;                         !- Design Specification Zone Air Distribution Object Name 1
 
-AIRLOOPHVAC:CONTROLLERLIST,
-    DOAS System Controllers,    !- Name
-    Controller:WaterCoil,     !- Controller 1 Object Type
-    AHU Cooling Coil Controller,    !- Controller 1 Name
-    Controller:WaterCoil,     !- Controller 2 Object Type
-    AHU Heating Coil Controller;    !- Controller 2 Name
-
-AIRLOOPHVAC:CONTROLLERLIST,
-    DOAS System Outdoor Air System Controller List,    !- Name
-    Controller:OutdoorAir,    !- Controller 1 Object Type
-    DOAS System Outdoor Air System Controller;    !- Controller 1 Name
-
-AIRLOOPHVAC,
-    DOAS System,              !- Name
-    DOAS System Controllers,    !- Controller List Name
-    DOAS System Availability Manager List,    !- Availability Manager List Name
-    AutoSize,                 !- Design Supply Air Flow Rate
-    DOAS System Branches,     !- Branch List Name
-    ,                         !- Connector List Name
-    DOAS System Supply Inlet Node,    !- Supply Side Inlet Node Name
-    DOAS System Demand Outlet Node,    !- Demand Side Outlet Node Name
-    DOAS System Demand Inlet Nodes,    !- Demand Side Inlet Node Names
-    DOAS System Supply Outlet Nodes,    !- Supply Side Outlet Node Names
-    1;                        !- Design Return Air Flow Fraction of Supply Air Flow
-
-AIRLOOPHVAC:OUTDOORAIRSYSTEM:EQUIPMENTLIST,
-    DOAS System Outdoor Air System Equipment List,    !- Name
-    OutdoorAir:Mixer,         !- Component 1 Object Type
-    DOAS System Outdoor Air System Outdoor Air Mixer,    !- Component 1 Name
-    HeatExchanger:AirToAir:SensibleAndLatent,    !- Component 2 Object Type
-    DOAS System Outdoor Air System Heat Exchanger;    !- Component 2 Name
-
-AIRLOOPHVAC:OUTDOORAIRSYSTEM,
-    DOAS System Outdoor Air System,    !- Name
-    DOAS System Outdoor Air System Controller List,    !- Controller List Name
-    DOAS System Outdoor Air System Equipment List;    !- Outdoor Air Equipment List Name
-
 OUTDOORAIR:MIXER,
-    DOAS System Outdoor Air System Outdoor Air Mixer,    !- Name
-    DOAS System Outdoor Air System Controller mixed_air,    !- Mixed Air Node Name
-    DOAS System Outdoor Air System Heat Exchanger_supply_air_outlet,    !- Outdoor Air Stream Node Name
-    DOAS System Outdoor Air System Controller relief_air_outlet,    !- Relief Air Stream Node Name
-    DOAS System Supply Inlet Node;    !- Return Air Stream Node Name
-
-OUTDOORAIR:MIXER,
-    Test_Office_0 FourPipeFanCoil OA Mixer,    !- Name
-    Test_Office_0 FourPipeFanCoil OA Mixer Mixed Air Node,    !- Mixed Air Node Name
-    Test_Office_0 FourPipeFanCoil OA Mixer Outdoor Air Node,    !- Outdoor Air Stream Node Name
-    Test_Office_0 FourPipeFanCoil OA Mixer Relief Air Node,    !- Relief Air Stream Node Name
-    Test_Office_0 FourPipeFanCoil OA Mixer Return Air Node;    !- Return Air Stream Node Name
-
-AIRLOOPHVAC:ZONESPLITTER,
-    DOAS System Zone Splitter,    !- Name
-    DOAS System Demand Inlet Node,    !- Inlet Node Name
-    Test_Office_0 terminal inlet;    !- Outlet 1 Node Name
-
-AIRLOOPHVAC:SUPPLYPATH,
-    DOAS System Supply Path,    !- Name
-    DOAS System Demand Inlet Node,    !- Supply Air Path Inlet Node Name
-    AirLoopHVAC:ZoneSplitter,    !- Component 1 Object Type
-    DOAS System Zone Splitter;    !- Component 1 Name
-
-AIRLOOPHVAC:ZONEMIXER,
-    DOAS System Zone Mixer,    !- Name
-    DOAS System Demand Outlet Node,    !- Outlet Node Name
-    Test_Office_0 return air inlet;    !- Inlet 1 Node Name
-
-AIRLOOPHVAC:RETURNPATH,
-    DOAS System Return Path,    !- Name
-    DOAS System Demand Outlet Node,    !- Return Air Path Outlet Node Name
-    AirLoopHVAC:ZoneMixer,    !- Component 1 Object Type
-    DOAS System Zone Mixer;    !- Component 1 Name
-
-BRANCH,
-    DOAS System Main Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    AirLoopHVAC:OutdoorAirSystem,    !- Component 1 Object Type
-    DOAS System Outdoor Air System,    !- Component 1 Name
-    DOAS System Supply Inlet Node,    !- Component 1 Inlet Node Name
-    DOAS System Outdoor Air System Controller mixed_air,    !- Component 1 Outlet Node Name
-    Coil:Cooling:Water,       !- Component 2 Object Type
-    AHU Cooling Coil,         !- Component 2 Name
-    DOAS System Outdoor Air System Controller mixed_air,    !- Component 2 Inlet Node Name
-    AHU Cooling Coil_air_outlet,    !- Component 2 Outlet Node Name
-    Coil:Heating:Water,       !- Component 3 Object Type
-    AHU Heating Coil,         !- Component 3 Name
-    AHU Cooling Coil_air_outlet,    !- Component 3 Inlet Node Name
-    Fan air inlet,            !- Component 3 Outlet Node Name
-    Fan:VariableVolume,       !- Component 4 Object Type
-    Fan,                      !- Component 4 Name
-    Fan air inlet,            !- Component 4 Inlet Node Name
-    DOAS System Supply Outlet Node;    !- Component 4 Outlet Node Name
-
-BRANCH,
-    Test Chilled Water Loop Supply Inlet Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Pump:VariableSpeed,       !- Component 1 Object Type
-    Chw pump,                 !- Component 1 Name
-    Test Chilled Water Loop Supply Inlet,    !- Component 1 Inlet Node Name
-    Chw pump_Water_Outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Chilled Water Loop Supply Branch 1,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Chiller:Electric:EIR,     !- Component 1 Object Type
-    Chiller 1,                !- Component 1 Name
-    Chiller 1 Chilled_Water_Inlet,    !- Component 1 Inlet Node Name
-    Chiller 1 Chilled_Water_Outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Chilled Water Loop Supply Outlet Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Pipe:Adiabatic,           !- Component 1 Object Type
-    Test Chilled Water Loop Supply Outlet Branch Pipe,    !- Component 1 Name
-    Test Chilled Water Loop Supply Outlet Branch Pipe_inlet,    !- Component 1 Inlet Node Name
-    Test Chilled Water Loop Supply Outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Chilled Water Loop Demand Inlet Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Pipe:Adiabatic,           !- Component 1 Object Type
-    Test Chilled Water Loop Demand Inlet Branch Pipe,    !- Component 1 Name
-    Test Chilled Water Loop Demand Inlet,    !- Component 1 Inlet Node Name
-    Test Chilled Water Loop Demand Inlet Branch Pipe_outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Chilled Water Loop Demand Branch 1,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Coil:Cooling:Water,       !- Component 1 Object Type
-    AHU Cooling Coil,         !- Component 1 Name
-    AHU Cooling Coil_water_inlet,    !- Component 1 Inlet Node Name
-    AHU Cooling Coil_water_outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Chilled Water Loop Demand Branch 2,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Coil:Cooling:Water,       !- Component 1 Object Type
-    Test_Office_0 FourPipeFanCoil Cooling Coil,    !- Component 1 Name
-    Test_Office_0 FourPipeFanCoil Cooling Coil_water_inlet,    !- Component 1 Inlet Node Name
-    Test_Office_0 FourPipeFanCoil Cooling Coil_water_outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Chilled Water Loop Demand Outlet Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Pipe:Adiabatic,           !- Component 1 Object Type
-    Test Chilled Water Loop Demand Outlet Branch Pipe,    !- Component 1 Name
-    Test Chilled Water Loop Demand Outlet Branch Pipe_inlet,    !- Component 1 Inlet Node Name
-    Test Chilled Water Loop Demand Outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Condenser Water Loop Supply Inlet Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Pump:VariableSpeed,       !- Component 1 Object Type
-    CW pump,                  !- Component 1 Name
-    Test Condenser Water Loop Supply Inlet,    !- Component 1 Inlet Node Name
-    CW pump_Water_Outlet;     !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Condenser Water Loop Supply Branch 1,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    CoolingTower:SingleSpeed,    !- Component 1 Object Type
-    Cooling Tower 1,          !- Component 1 Name
-    Cooling Tower 1 Water_Inlet,    !- Component 1 Inlet Node Name
-    Cooling Tower 1 Water_Outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Condenser Water Loop Supply Outlet Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Pipe:Adiabatic,           !- Component 1 Object Type
-    Test Condenser Water Loop Supply Outlet Branch Pipe,    !- Component 1 Name
-    Test Condenser Water Loop Supply Outlet Branch Pipe_inlet,    !- Component 1 Inlet Node Name
-    Test Condenser Water Loop Supply Outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Condenser Water Loop Demand Inlet Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Pipe:Adiabatic,           !- Component 1 Object Type
-    Test Condenser Water Loop Demand Inlet Branch Pipe,    !- Component 1 Name
-    Test Condenser Water Loop Demand Inlet,    !- Component 1 Inlet Node Name
-    Test Condenser Water Loop Demand Inlet Branch Pipe_outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Condenser Water Loop Demand Branch 1,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Chiller:Electric:EIR,     !- Component 1 Object Type
-    Chiller 1,                !- Component 1 Name
-    Chiller 1 Condenser_Water_Inlet,    !- Component 1 Inlet Node Name
-    Chiller 1 Condenser_Water_Outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Condenser Water Loop Demand Outlet Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Pipe:Adiabatic,           !- Component 1 Object Type
-    Test Condenser Water Loop Demand Outlet Branch Pipe,    !- Component 1 Name
-    Test Condenser Water Loop Demand Outlet Branch Pipe_inlet,    !- Component 1 Inlet Node Name
-    Test Condenser Water Loop Demand Outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Hot Water Loop Supply Inlet Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Pump:VariableSpeed,       !- Component 1 Object Type
-    HW pump,                  !- Component 1 Name
-    Test Hot Water Loop Supply Inlet,    !- Component 1 Inlet Node Name
-    HW pump_Water_Outlet;     !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Hot Water Loop Supply Branch 1,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    DistrictHeating:Water,    !- Component 1 Object Type
-    District Heating,         !- Component 1 Name
-    District Heating Hot_Water_Inlet,    !- Component 1 Inlet Node Name
-    District Heating Hot_Water_Outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Hot Water Loop Supply Outlet Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Pipe:Adiabatic,           !- Component 1 Object Type
-    Test Hot Water Loop Supply Outlet Branch Pipe,    !- Component 1 Name
-    Test Hot Water Loop Supply Outlet Branch Pipe_inlet,    !- Component 1 Inlet Node Name
-    Test Hot Water Loop Supply Outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Hot Water Loop Demand Inlet Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Pipe:Adiabatic,           !- Component 1 Object Type
-    Test Hot Water Loop Demand Inlet Branch Pipe,    !- Component 1 Name
-    Test Hot Water Loop Demand Inlet,    !- Component 1 Inlet Node Name
-    Test Hot Water Loop Demand Inlet Branch Pipe_outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Hot Water Loop Demand Branch 1,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Coil:Heating:Water,       !- Component 1 Object Type
-    AHU Heating Coil,         !- Component 1 Name
-    AHU Heating Coil_water_inlet,    !- Component 1 Inlet Node Name
-    AHU Heating Coil_water_outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Hot Water Loop Demand Branch 2,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Coil:Heating:Water,       !- Component 1 Object Type
-    Test_Office_0 FourPipeFanCoil Heating Coil,    !- Component 1 Name
-    Test_Office_0 FourPipeFanCoil Heating Coil_water_inlet,    !- Component 1 Inlet Node Name
-    Test_Office_0 FourPipeFanCoil Heating Coil_water_outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Hot Water Loop Demand Outlet Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Pipe:Adiabatic,           !- Component 1 Object Type
-    Test Hot Water Loop Demand Outlet Branch Pipe,    !- Component 1 Name
-    Test Hot Water Loop Demand Outlet Branch Pipe_inlet,    !- Component 1 Inlet Node Name
-    Test Hot Water Loop Demand Outlet;    !- Component 1 Outlet Node Name
-
-BRANCHLIST,
-    DOAS System Branches,     !- Name
-    DOAS System Main Branch;    !- Branch 1 Name
-
-BRANCHLIST,
-    Test Chilled Water Loop Supply Branchs,    !- Name
-    Test Chilled Water Loop Supply Inlet Branch,    !- Branch 1 Name
-    Test Chilled Water Loop Supply Branch 1,    !- Branch 2 Name
-    Test Chilled Water Loop Supply Outlet Branch;    !- Branch 3 Name
-
-BRANCHLIST,
-    Test Chilled Water Loop Demand Branchs,    !- Name
-    Test Chilled Water Loop Demand Inlet Branch,    !- Branch 1 Name
-    Test Chilled Water Loop Demand Branch 1,    !- Branch 2 Name
-    Test Chilled Water Loop Demand Branch 2,    !- Branch 3 Name
-    Test Chilled Water Loop Demand Outlet Branch;    !- Branch 4 Name
-
-BRANCHLIST,
-    Test Condenser Water Loop Supply Branchs,    !- Name
-    Test Condenser Water Loop Supply Inlet Branch,    !- Branch 1 Name
-    Test Condenser Water Loop Supply Branch 1,    !- Branch 2 Name
-    Test Condenser Water Loop Supply Outlet Branch;    !- Branch 3 Name
-
-BRANCHLIST,
-    Test Condenser Water Loop Demand Branchs,    !- Name
-    Test Condenser Water Loop Demand Inlet Branch,    !- Branch 1 Name
-    Test Condenser Water Loop Demand Branch 1,    !- Branch 2 Name
-    Test Condenser Water Loop Demand Outlet Branch;    !- Branch 3 Name
-
-BRANCHLIST,
-    Test Hot Water Loop Supply Branchs,    !- Name
-    Test Hot Water Loop Supply Inlet Branch,    !- Branch 1 Name
-    Test Hot Water Loop Supply Branch 1,    !- Branch 2 Name
-    Test Hot Water Loop Supply Outlet Branch;    !- Branch 3 Name
-
-BRANCHLIST,
-    Test Hot Water Loop Demand Branchs,    !- Name
-    Test Hot Water Loop Demand Inlet Branch,    !- Branch 1 Name
-    Test Hot Water Loop Demand Branch 1,    !- Branch 2 Name
-    Test Hot Water Loop Demand Branch 2,    !- Branch 3 Name
-    Test Hot Water Loop Demand Outlet Branch;    !- Branch 4 Name
-
-CONNECTOR:SPLITTER,
-    Test Chilled Water Loop Supply Splitter,    !- Name
-    Test Chilled Water Loop Supply Inlet Branch,    !- Inlet Branch Name
-    Test Chilled Water Loop Supply Branch 1;    !- Outlet Branch 1 Name
-
-CONNECTOR:SPLITTER,
-    Test Chilled Water Loop Demand Splitter,    !- Name
-    Test Chilled Water Loop Demand Inlet Branch,    !- Inlet Branch Name
-    Test Chilled Water Loop Demand Branch 1,    !- Outlet Branch 1 Name
-    Test Chilled Water Loop Demand Branch 2;    !- Outlet Branch 2 Name
-
-CONNECTOR:SPLITTER,
-    Test Condenser Water Loop Supply Splitter,    !- Name
-    Test Condenser Water Loop Supply Inlet Branch,    !- Inlet Branch Name
-    Test Condenser Water Loop Supply Branch 1;    !- Outlet Branch 1 Name
-
-CONNECTOR:SPLITTER,
-    Test Condenser Water Loop Demand Splitter,    !- Name
-    Test Condenser Water Loop Demand Inlet Branch,    !- Inlet Branch Name
-    Test Condenser Water Loop Demand Branch 1;    !- Outlet Branch 1 Name
-
-CONNECTOR:SPLITTER,
-    Test Hot Water Loop Supply Splitter,    !- Name
-    Test Hot Water Loop Supply Inlet Branch,    !- Inlet Branch Name
-    Test Hot Water Loop Supply Branch 1;    !- Outlet Branch 1 Name
-
-CONNECTOR:SPLITTER,
-    Test Hot Water Loop Demand Splitter,    !- Name
-    Test Hot Water Loop Demand Inlet Branch,    !- Inlet Branch Name
-    Test Hot Water Loop Demand Branch 1,    !- Outlet Branch 1 Name
-    Test Hot Water Loop Demand Branch 2;    !- Outlet Branch 2 Name
-
-CONNECTOR:MIXER,
-    Test Chilled Water Loop Supply Mixer,    !- Name
-    Test Chilled Water Loop Supply Outlet Branch,    !- Outlet Branch Name
-    Test Chilled Water Loop Supply Branch 1;    !- Inlet Branch 1 Name
-
-CONNECTOR:MIXER,
-    Test Chilled Water Loop Demand Mixer,    !- Name
-    Test Chilled Water Loop Demand Outlet Branch,    !- Outlet Branch Name
-    Test Chilled Water Loop Demand Branch 1,    !- Inlet Branch 1 Name
-    Test Chilled Water Loop Demand Branch 2;    !- Inlet Branch 2 Name
-
-CONNECTOR:MIXER,
-    Test Condenser Water Loop Supply Mixer,    !- Name
-    Test Condenser Water Loop Supply Outlet Branch,    !- Outlet Branch Name
-    Test Condenser Water Loop Supply Branch 1;    !- Inlet Branch 1 Name
-
-CONNECTOR:MIXER,
-    Test Condenser Water Loop Demand Mixer,    !- Name
-    Test Condenser Water Loop Demand Outlet Branch,    !- Outlet Branch Name
-    Test Condenser Water Loop Demand Branch 1;    !- Inlet Branch 1 Name
-
-CONNECTOR:MIXER,
-    Test Hot Water Loop Supply Mixer,    !- Name
-    Test Hot Water Loop Supply Outlet Branch,    !- Outlet Branch Name
-    Test Hot Water Loop Supply Branch 1;    !- Inlet Branch 1 Name
-
-CONNECTOR:MIXER,
-    Test Hot Water Loop Demand Mixer,    !- Name
-    Test Hot Water Loop Demand Outlet Branch,    !- Outlet Branch Name
-    Test Hot Water Loop Demand Branch 1,    !- Inlet Branch 1 Name
-    Test Hot Water Loop Demand Branch 2;    !- Inlet Branch 2 Name
-
-CONNECTORLIST,
-    Test Chilled Water Loop Supply Connectors,    !- Name
-    Connector:Splitter,       !- Connector 1 Object Type
-    Test Chilled Water Loop Supply Splitter,    !- Connector 1 Name
-    Connector:Mixer,          !- Connector 2 Object Type
-    Test Chilled Water Loop Supply Mixer;    !- Connector 2 Name
-
-CONNECTORLIST,
-    Test Chilled Water Loop Demand Connectors,    !- Name
-    Connector:Splitter,       !- Connector 1 Object Type
-    Test Chilled Water Loop Demand Splitter,    !- Connector 1 Name
-    Connector:Mixer,          !- Connector 2 Object Type
-    Test Chilled Water Loop Demand Mixer;    !- Connector 2 Name
-
-CONNECTORLIST,
-    Test Condenser Water Loop Supply Connectors,    !- Name
-    Connector:Splitter,       !- Connector 1 Object Type
-    Test Condenser Water Loop Supply Splitter,    !- Connector 1 Name
-    Connector:Mixer,          !- Connector 2 Object Type
-    Test Condenser Water Loop Supply Mixer;    !- Connector 2 Name
-
-CONNECTORLIST,
-    Test Condenser Water Loop Demand Connectors,    !- Name
-    Connector:Splitter,       !- Connector 1 Object Type
-    Test Condenser Water Loop Demand Splitter,    !- Connector 1 Name
-    Connector:Mixer,          !- Connector 2 Object Type
-    Test Condenser Water Loop Demand Mixer;    !- Connector 2 Name
-
-CONNECTORLIST,
-    Test Hot Water Loop Supply Connectors,    !- Name
-    Connector:Splitter,       !- Connector 1 Object Type
-    Test Hot Water Loop Supply Splitter,    !- Connector 1 Name
-    Connector:Mixer,          !- Connector 2 Object Type
-    Test Hot Water Loop Supply Mixer;    !- Connector 2 Name
-
-CONNECTORLIST,
-    Test Hot Water Loop Demand Connectors,    !- Name
-    Connector:Splitter,       !- Connector 1 Object Type
-    Test Hot Water Loop Demand Splitter,    !- Connector 1 Name
-    Connector:Mixer,          !- Connector 2 Object Type
-    Test Hot Water Loop Demand Mixer;    !- Connector 2 Name
-
-NODELIST,
-    DOAS System Supply Outlet Nodes,    !- Name
-    DOAS System Supply Outlet Node;    !- Node 1 Name
-
-NODELIST,
-    DOAS System Demand Inlet Nodes,    !- Name
-    DOAS System Demand Inlet Node;    !- Node 1 Name
+    Test_Office_0 VRF Terminal OA Mixer,    !- Name
+    Test_Office_0 VRF Terminal OA Mixer Mixed Air Node,    !- Mixed Air Node Name
+    Test_Office_0 VRF Terminal OA Mixer Outdoor Air Node,    !- Outdoor Air Stream Node Name
+    Test_Office_0 VRF Terminal OA Mixer Relief Air Node,    !- Relief Air Stream Node Name
+    Test_Office_0 VRF Terminal OA Mixer Return Air Node;    !- Return Air Stream Node Name
 
 NODELIST,
     Test_Office_0 Inlet Node List,    !- Name
-    Test_Office_0 terminal outlet,    !- Node 1 Name
-    Test_Office_0 FourPipeFanCoil Heating Coil Coil Outlet Node;    !- Node 2 Name
-
-NODELIST,
-    Test_Office_0 Return Air Node List,    !- Name
-    Test_Office_0 return air inlet;    !- Node 1 Name
+    Test_Office_0 VRF Terminal Terminal Air Outlet Node;    !- Node 1 Name
 
 NODELIST,
     Test_Office_0 Exhaust Node List,    !- Name
-    Test_Office_0 FourPipeFanCoil OA Mixer Return Air Node;    !- Node 1 Name
+    Test_Office_0 VRF Terminal OA Mixer Return Air Node;    !- Node 1 Name
 
 OUTDOORAIR:NODELIST,
-    DOAS System Outdoor Air System Controller outdoor_air_inlet;    !- Node or NodeList Name 1
+    Test_Office_0 VRF Terminal OA Mixer Outdoor Air Node;    !- Node or NodeList Name 1
 
-OUTDOORAIR:NODELIST,
-    Test_Office_0 FourPipeFanCoil OA Mixer Outdoor Air Node;    !- Node or NodeList Name 1
-
-PIPE:ADIABATIC,
-    Test Chilled Water Loop Supply Outlet Branch Pipe,    !- Name
-    Test Chilled Water Loop Supply Outlet Branch Pipe_inlet,    !- Inlet Node Name
-    Test Chilled Water Loop Supply Outlet;    !- Outlet Node Name
-
-PIPE:ADIABATIC,
-    Test Chilled Water Loop Demand Inlet Branch Pipe,    !- Name
-    Test Chilled Water Loop Demand Inlet,    !- Inlet Node Name
-    Test Chilled Water Loop Demand Inlet Branch Pipe_outlet;    !- Outlet Node Name
-
-PIPE:ADIABATIC,
-    Test Chilled Water Loop Demand Outlet Branch Pipe,    !- Name
-    Test Chilled Water Loop Demand Outlet Branch Pipe_inlet,    !- Inlet Node Name
-    Test Chilled Water Loop Demand Outlet;    !- Outlet Node Name
-
-PIPE:ADIABATIC,
-    Test Condenser Water Loop Supply Outlet Branch Pipe,    !- Name
-    Test Condenser Water Loop Supply Outlet Branch Pipe_inlet,    !- Inlet Node Name
-    Test Condenser Water Loop Supply Outlet;    !- Outlet Node Name
-
-PIPE:ADIABATIC,
-    Test Condenser Water Loop Demand Inlet Branch Pipe,    !- Name
-    Test Condenser Water Loop Demand Inlet,    !- Inlet Node Name
-    Test Condenser Water Loop Demand Inlet Branch Pipe_outlet;    !- Outlet Node Name
-
-PIPE:ADIABATIC,
-    Test Condenser Water Loop Demand Outlet Branch Pipe,    !- Name
-    Test Condenser Water Loop Demand Outlet Branch Pipe_inlet,    !- Inlet Node Name
-    Test Condenser Water Loop Demand Outlet;    !- Outlet Node Name
-
-PIPE:ADIABATIC,
-    Test Hot Water Loop Supply Outlet Branch Pipe,    !- Name
-    Test Hot Water Loop Supply Outlet Branch Pipe_inlet,    !- Inlet Node Name
-    Test Hot Water Loop Supply Outlet;    !- Outlet Node Name
-
-PIPE:ADIABATIC,
-    Test Hot Water Loop Demand Inlet Branch Pipe,    !- Name
-    Test Hot Water Loop Demand Inlet,    !- Inlet Node Name
-    Test Hot Water Loop Demand Inlet Branch Pipe_outlet;    !- Outlet Node Name
-
-PIPE:ADIABATIC,
-    Test Hot Water Loop Demand Outlet Branch Pipe,    !- Name
-    Test Hot Water Loop Demand Outlet Branch Pipe_inlet,    !- Inlet Node Name
-    Test Hot Water Loop Demand Outlet;    !- Outlet Node Name
-
-PUMP:VARIABLESPEED,
-    Chw pump,                 !- Name
-    Test Chilled Water Loop Supply Inlet,    !- Inlet Node Name
-    Chw pump_Water_Outlet,    !- Outlet Node Name
-    Autosize,                 !- Design Maximum Flow Rate
-    179352,                   !- Design Pump Head
-    Autosize,                 !- Design Power Consumption
-    0.9,                      !- Motor Efficiency
-    0,                        !- Fraction of Motor Inefficiencies to Fluid Stream
-    0.103,                    !- Coefficient 1 of the Part Load Performance Curve
-    -0.04,                    !- Coefficient 2 of the Part Load Performance Curve
-    0.767,                    !- Coefficient 3 of the Part Load Performance Curve
-    0.1679,                   !- Coefficient 4 of the Part Load Performance Curve
-    0,                        !- Design Minimum Flow Rate
-    Intermittent,             !- Pump Control Type
-    ,                         !- Pump Flow Rate Schedule Name
-    ,                         !- Pump Curve Name
-    ,                         !- Impeller Diameter
-    ,                         !- VFD Control Type
-    ,                         !- Pump RPM Schedule Name
-    ,                         !- Minimum Pressure Schedule
-    ,                         !- Maximum Pressure Schedule
-    ,                         !- Minimum RPM Schedule
-    ,                         !- Maximum RPM Schedule
-    ,                         !- Zone Name
-    0.5,                      !- Skin Loss Radiative Fraction
-    PowerPerFlowPerPressure,    !- Design Power Sizing Method
-    348701.1,                 !- Design Electric Power per Unit Flow Rate
-    1.282051282,              !- Design Shaft Power per Unit Flow Rate per Unit Head
-    0,                        !- Design Minimum Flow Rate Fraction
-    General;                  !- EndUse Subcategory
-
-PUMP:VARIABLESPEED,
-    CW pump,                  !- Name
-    Test Condenser Water Loop Supply Inlet,    !- Inlet Node Name
-    CW pump_Water_Outlet,     !- Outlet Node Name
-    Autosize,                 !- Design Maximum Flow Rate
-    179352,                   !- Design Pump Head
-    Autosize,                 !- Design Power Consumption
-    0.9,                      !- Motor Efficiency
-    0,                        !- Fraction of Motor Inefficiencies to Fluid Stream
-    0.103,                    !- Coefficient 1 of the Part Load Performance Curve
-    -0.04,                    !- Coefficient 2 of the Part Load Performance Curve
-    0.767,                    !- Coefficient 3 of the Part Load Performance Curve
-    0.1679,                   !- Coefficient 4 of the Part Load Performance Curve
-    0,                        !- Design Minimum Flow Rate
-    Intermittent,             !- Pump Control Type
-    ,                         !- Pump Flow Rate Schedule Name
-    ,                         !- Pump Curve Name
-    ,                         !- Impeller Diameter
-    ,                         !- VFD Control Type
-    ,                         !- Pump RPM Schedule Name
-    ,                         !- Minimum Pressure Schedule
-    ,                         !- Maximum Pressure Schedule
-    ,                         !- Minimum RPM Schedule
-    ,                         !- Maximum RPM Schedule
-    ,                         !- Zone Name
-    0.5,                      !- Skin Loss Radiative Fraction
-    PowerPerFlowPerPressure,    !- Design Power Sizing Method
-    348701.1,                 !- Design Electric Power per Unit Flow Rate
-    1.282051282,              !- Design Shaft Power per Unit Flow Rate per Unit Head
-    0,                        !- Design Minimum Flow Rate Fraction
-    General;                  !- EndUse Subcategory
-
-PUMP:VARIABLESPEED,
-    HW pump,                  !- Name
-    Test Hot Water Loop Supply Inlet,    !- Inlet Node Name
-    HW pump_Water_Outlet,     !- Outlet Node Name
-    Autosize,                 !- Design Maximum Flow Rate
-    179352,                   !- Design Pump Head
-    Autosize,                 !- Design Power Consumption
-    0.9,                      !- Motor Efficiency
-    0,                        !- Fraction of Motor Inefficiencies to Fluid Stream
-    0.103,                    !- Coefficient 1 of the Part Load Performance Curve
-    -0.04,                    !- Coefficient 2 of the Part Load Performance Curve
-    0.767,                    !- Coefficient 3 of the Part Load Performance Curve
-    0.1679,                   !- Coefficient 4 of the Part Load Performance Curve
-    0,                        !- Design Minimum Flow Rate
-    Intermittent,             !- Pump Control Type
-    ,                         !- Pump Flow Rate Schedule Name
-    ,                         !- Pump Curve Name
-    ,                         !- Impeller Diameter
-    ,                         !- VFD Control Type
-    ,                         !- Pump RPM Schedule Name
-    ,                         !- Minimum Pressure Schedule
-    ,                         !- Maximum Pressure Schedule
-    ,                         !- Minimum RPM Schedule
-    ,                         !- Maximum RPM Schedule
-    ,                         !- Zone Name
-    0.5,                      !- Skin Loss Radiative Fraction
-    PowerPerFlowPerPressure,    !- Design Power Sizing Method
-    348701.1,                 !- Design Electric Power per Unit Flow Rate
-    1.282051282,              !- Design Shaft Power per Unit Flow Rate per Unit Head
-    0,                        !- Design Minimum Flow Rate Fraction
-    General;                  !- EndUse Subcategory
-
-CHILLER:ELECTRIC:EIR,
-    Chiller 1,                !- Name
-    Autosize,                 !- Reference Capacity
-    5.5,                      !- Reference COP
-    6,                        !- Reference Leaving Chilled Water Temperature
-    29,                       !- Reference Entering Condenser Fluid Temperature
-    Autosize,                 !- Reference Chilled Water Flow Rate
-    Autosize,                 !- Reference Condenser Fluid Flow Rate
-    Chiller 1 CoolingCapTempCurve_ASHRAE90.1,    !- Cooling Capacity Function of Temperature Curve Name
-    Chiller 1 CoolingEIRRatioTempCurve_ASHRAE90.1,    !- Electric Input to Cooling Output Ratio Function of Temperature Curve Name
-    Chiller 1 CoolingEIRRatioPLRCurve_ASHRAE90.1,    !- Electric Input to Cooling Output Ratio Function of Part Load Ratio Curve Name
-    0.1,                      !- Minimum Part Load Ratio
-    1,                        !- Maximum Part Load Ratio
-    1,                        !- Optimum Part Load Ratio
-    0.2,                      !- Minimum Unloading Ratio
-    Chiller 1 Chilled_Water_Inlet,    !- Chilled Water Inlet Node Name
-    Chiller 1 Chilled_Water_Outlet,    !- Chilled Water Outlet Node Name
-    Chiller 1 Condenser_Water_Inlet,    !- Condenser Inlet Node Name
-    Chiller 1 Condenser_Water_Outlet,    !- Condenser Outlet Node Name
-    WaterCooled,              !- Condenser Type
-    0,                        !- Condenser Fan Power Ratio
-    1,                        !- Fraction of Compressor Electric Consumption Rejected by Condenser
-    2,                        !- Leaving Chilled Water Lower Temperature Limit
-    NotModulated,             !- Chiller Flow Mode
-    0,                        !- Design Heat Recovery Water Flow Rate
-    ,                         !- Heat Recovery Inlet Node Name
-    ,                         !- Heat Recovery Outlet Node Name
-    1,                        !- Sizing Factor
-    0,                        !- Basin Heater Capacity
-    10,                       !- Basin Heater Setpoint Temperature
-    ,                         !- Basin Heater Operating Schedule Name
-    1,                        !- Condenser Heat Recovery Relative Capacity Fraction
-    ,                         !- Heat Recovery Inlet High Temperature Limit Schedule Name
-    ,                         !- Heat Recovery Leaving Temperature Setpoint Node Name
-    General,                  !- EndUse Subcategory
-    ConstantFlow,             !- Condenser Flow Control
-    ,                         !- Condenser Loop Flow Rate Fraction Function of Loop Part Load Ratio Curve Name
-    ,                         !- Temperature Difference Across Condenser Schedule Name
-    ,                         !- Condenser Minimum Flow Fraction
-    ,                         !- Thermosiphon Capacity Fraction Curve Name
-    0;                        !- Thermosiphon Minimum Temperature Difference
-
-DISTRICTHEATING:WATER,
-    District Heating,         !- Name
-    District Heating Hot_Water_Inlet,    !- Hot Water Inlet Node Name
-    District Heating Hot_Water_Outlet,    !- Hot Water Outlet Node Name
-    Autosize;                 !- Nominal Capacity
-
-COOLINGTOWER:SINGLESPEED,
-    Cooling Tower 1,          !- Name
-    Cooling Tower 1 Water_Inlet,    !- Water Inlet Node Name
-    Cooling Tower 1 Water_Outlet,    !- Water Outlet Node Name
-    Autosize,                 !- Design Water Flow Rate
-    Autosize,                 !- Design Air Flow Rate
-    Autosize,                 !- Design Fan Power
-    Autosize,                 !- Design UFactor Times Area Value
-    Autosize,                 !- Free Convection Regime Air Flow Rate
-    0.1,                      !- Free Convection Regime Air Flow Rate Sizing Factor
-    Autosize,                 !- Free Convection Regime UFactor Times Area Value
-    0.1,                      !- Free Convection UFactor Times Area Value Sizing Factor
-    UFactorTimesAreaAndDesignWaterFlowRate,    !- Performance Input Method
-    1.25,                     !- Heat Rejection Capacity and Nominal Capacity Sizing Ratio
-    ,                         !- Nominal Capacity
-    0,                        !- Free Convection Capacity
-    0.1,                      !- Free Convection Nominal Capacity Sizing Factor
-    35,                       !- Design Inlet Air DryBulb Temperature
-    25.6,                     !- Design Inlet Air WetBulb Temperature
-    Autosize,                 !- Design Approach Temperature
-    Autosize,                 !- Design Range Temperature
-    0,                        !- Basin Heater Capacity
-    2,                        !- Basin Heater Setpoint Temperature
-    ,                         !- Basin Heater Operating Schedule Name
-    LossFactor,               !- Evaporation Loss Mode
-    0.2,                      !- Evaporation Loss Factor
-    0.008,                    !- Drift Loss Percent
-    ConcentrationRatio,       !- Blowdown Calculation Mode
-    3,                        !- Blowdown Concentration Ratio
-    ,                         !- Blowdown Makeup Water Usage Schedule Name
-    ,                         !- Supply Water Storage Tank Name
-    ,                         !- Outdoor Air Inlet Node Name
-    FanCycling,               !- Capacity Control
-    1,                        !- Number of Cells
-    MinimalCell,              !- Cell Control
-    0.33,                     !- Cell Minimum Water Flow Rate Fraction
-    2.5,                      !- Cell Maximum Water Flow Rate Fraction
-    1,                        !- Sizing Factor
-    General;                  !- EndUse Subcategory
-
-PLANTLOOP,
-    Test Chilled Water Loop,    !- Name
-    Water,                    !- Fluid Type
-    ,                         !- User Defined Fluid Type
-    Test Chilled Water Loop Operation Schemes,    !- Plant Equipment Operation Scheme Name
-    Test Chilled Water Loop Supply Outlet,    !- Loop Temperature Setpoint Node Name
-    100,                      !- Maximum Loop Temperature
-    0,                        !- Minimum Loop Temperature
-    Autosize,                 !- Maximum Loop Flow Rate
-    0,                        !- Minimum Loop Flow Rate
-    Autocalculate,            !- Plant Loop Volume
-    Test Chilled Water Loop Supply Inlet,    !- Plant Side Inlet Node Name
-    Test Chilled Water Loop Supply Outlet,    !- Plant Side Outlet Node Name
-    Test Chilled Water Loop Supply Branchs,    !- Plant Side Branch List Name
-    Test Chilled Water Loop Supply Connectors,    !- Plant Side Connector List Name
-    Test Chilled Water Loop Demand Inlet,    !- Demand Side Inlet Node Name
-    Test Chilled Water Loop Demand Outlet,    !- Demand Side Outlet Node Name
-    Test Chilled Water Loop Demand Branchs,    !- Demand Side Branch List Name
-    Test Chilled Water Loop Demand Connectors,    !- Demand Side Connector List Name
-    Optimal,                  !- Load Distribution Scheme
-    ,                         !- Availability Manager List Name
-    SingleSetpoint,           !- Plant Loop Demand Calculation Scheme
-    None,                     !- Common Pipe Simulation
-    None,                     !- Pressure Simulation Type
-    2;                        !- Loop Circulation Time
-
-PLANTLOOP,
-    Test Condenser Water Loop,    !- Name
-    Water,                    !- Fluid Type
-    ,                         !- User Defined Fluid Type
-    Test Condenser Water Loop Operation Schemes,    !- Plant Equipment Operation Scheme Name
-    Test Condenser Water Loop Supply Outlet,    !- Loop Temperature Setpoint Node Name
-    100,                      !- Maximum Loop Temperature
-    0,                        !- Minimum Loop Temperature
-    Autosize,                 !- Maximum Loop Flow Rate
-    0,                        !- Minimum Loop Flow Rate
-    Autocalculate,            !- Plant Loop Volume
-    Test Condenser Water Loop Supply Inlet,    !- Plant Side Inlet Node Name
-    Test Condenser Water Loop Supply Outlet,    !- Plant Side Outlet Node Name
-    Test Condenser Water Loop Supply Branchs,    !- Plant Side Branch List Name
-    Test Condenser Water Loop Supply Connectors,    !- Plant Side Connector List Name
-    Test Condenser Water Loop Demand Inlet,    !- Demand Side Inlet Node Name
-    Test Condenser Water Loop Demand Outlet,    !- Demand Side Outlet Node Name
-    Test Condenser Water Loop Demand Branchs,    !- Demand Side Branch List Name
-    Test Condenser Water Loop Demand Connectors,    !- Demand Side Connector List Name
-    Optimal,                  !- Load Distribution Scheme
-    ,                         !- Availability Manager List Name
-    SingleSetpoint,           !- Plant Loop Demand Calculation Scheme
-    None,                     !- Common Pipe Simulation
-    None,                     !- Pressure Simulation Type
-    2;                        !- Loop Circulation Time
-
-PLANTLOOP,
-    Test Hot Water Loop,      !- Name
-    Water,                    !- Fluid Type
-    ,                         !- User Defined Fluid Type
-    Test Hot Water Loop Operation Schemes,    !- Plant Equipment Operation Scheme Name
-    Test Hot Water Loop Supply Outlet,    !- Loop Temperature Setpoint Node Name
-    100,                      !- Maximum Loop Temperature
-    0,                        !- Minimum Loop Temperature
-    Autosize,                 !- Maximum Loop Flow Rate
-    0,                        !- Minimum Loop Flow Rate
-    Autocalculate,            !- Plant Loop Volume
-    Test Hot Water Loop Supply Inlet,    !- Plant Side Inlet Node Name
-    Test Hot Water Loop Supply Outlet,    !- Plant Side Outlet Node Name
-    Test Hot Water Loop Supply Branchs,    !- Plant Side Branch List Name
-    Test Hot Water Loop Supply Connectors,    !- Plant Side Connector List Name
-    Test Hot Water Loop Demand Inlet,    !- Demand Side Inlet Node Name
-    Test Hot Water Loop Demand Outlet,    !- Demand Side Outlet Node Name
-    Test Hot Water Loop Demand Branchs,    !- Demand Side Branch List Name
-    Test Hot Water Loop Demand Connectors,    !- Demand Side Connector List Name
-    Optimal,                  !- Load Distribution Scheme
-    ,                         !- Availability Manager List Name
-    SingleSetpoint,           !- Plant Loop Demand Calculation Scheme
-    None,                     !- Common Pipe Simulation
-    None,                     !- Pressure Simulation Type
-    2;                        !- Loop Circulation Time
-
-PLANTEQUIPMENTLIST,
-    Test Chilled Water Loop Equipment List,    !- Name
-    Chiller:Electric:EIR,     !- Equipment 1 Object Type
-    Chiller 1;                !- Equipment 1 Name
-
-PLANTEQUIPMENTLIST,
-    Test Condenser Water Loop Equipment List,    !- Name
-    CoolingTower:SingleSpeed,    !- Equipment 1 Object Type
-    Cooling Tower 1;          !- Equipment 1 Name
-
-PLANTEQUIPMENTLIST,
-    Test Hot Water Loop Equipment List,    !- Name
-    DistrictHeating:Water,    !- Equipment 1 Object Type
-    District Heating;         !- Equipment 1 Name
-
-PLANTEQUIPMENTOPERATION:COOLINGLOAD,
-    Test Chilled Water Loop Cooling Operation Scheme ,    !- Name
-    0,                        !- Load Range 1 Lower Limit
-    1000000000,               !- Load Range 1 Upper Limit
-    Test Chilled Water Loop Equipment List;    !- Range 1 Equipment List Name
-
-PLANTEQUIPMENTOPERATION:COOLINGLOAD,
-    Test Condenser Water Loop Cooling Operation Scheme ,    !- Name
-    0,                        !- Load Range 1 Lower Limit
-    1000000000,               !- Load Range 1 Upper Limit
-    Test Condenser Water Loop Equipment List;    !- Range 1 Equipment List Name
-
-PLANTEQUIPMENTOPERATION:HEATINGLOAD,
-    Test Hot Water Loop Heating Operation Scheme ,    !- Name
-    0,                        !- Load Range 1 Lower Limit
-    1000000000,               !- Load Range 1 Upper Limit
-    Test Hot Water Loop Equipment List;    !- Range 1 Equipment List Name
-
-PLANTEQUIPMENTOPERATIONSCHEMES,
-    Test Chilled Water Loop Operation Schemes,    !- Name
-    PlantEquipmentOperation:CoolingLoad,    !- Control Scheme 1 Object Type
-    Test Chilled Water Loop Cooling Operation Scheme ,    !- Control Scheme 1 Name
-    Always On Discrete;       !- Control Scheme 1 Schedule Name
-
-PLANTEQUIPMENTOPERATIONSCHEMES,
-    Test Condenser Water Loop Operation Schemes,    !- Name
-    PlantEquipmentOperation:CoolingLoad,    !- Control Scheme 1 Object Type
-    Test Condenser Water Loop Cooling Operation Scheme ,    !- Control Scheme 1 Name
-    Always On Discrete;       !- Control Scheme 1 Schedule Name
-
-PLANTEQUIPMENTOPERATIONSCHEMES,
-    Test Hot Water Loop Operation Schemes,    !- Name
-    PlantEquipmentOperation:HeatingLoad,    !- Control Scheme 1 Object Type
-    Test Hot Water Loop Heating Operation Scheme ,    !- Control Scheme 1 Name
-    Always On Discrete;       !- Control Scheme 1 Schedule Name
-
-AVAILABILITYMANAGER:SCHEDULED,
-    DOAS System Availability Manager,    !- Name
-    Always On Discrete;       !- Schedule Name
-
-AVAILABILITYMANAGERASSIGNMENTLIST,
-    DOAS System Availability Manager List,    !- Name
-    AvailabilityManager:Scheduled,    !- Availability Manager 1 Object Type
-    DOAS System Availability Manager;    !- Availability Manager 1 Name
-
-SETPOINTMANAGER:SCHEDULED,
-    AHU Setpoint Manager,     !- Name
-    Temperature,              !- Control Variable
-    AHU Setpoint Manager,     !- Schedule Name
-    DOAS System Supply Outlet Node;    !- Setpoint Node or NodeList Name
-
-SETPOINTMANAGER:SCHEDULED,
-    DOAS System Humidity SPM,    !- Name
-    MaximumHumidityRatio,     !- Control Variable
-    DOAS System Humidity SPM,    !- Schedule Name
-    AHU Cooling Coil_air_outlet;    !- Setpoint Node or NodeList Name
-
-SETPOINTMANAGER:SCHEDULED,
-    Chilled Water Temp,       !- Name
-    Temperature,              !- Control Variable
-    Chilled Water Temp,       !- Schedule Name
-    Test Chilled Water Loop Supply Outlet;    !- Setpoint Node or NodeList Name
-
-SETPOINTMANAGER:SCHEDULED,
-    Hot Water Temperature,    !- Name
-    Temperature,              !- Control Variable
-    Hot Water Temperature,    !- Schedule Name
-    Test Hot Water Loop Supply Outlet;    !- Setpoint Node or NodeList Name
-
-SETPOINTMANAGER:MIXEDAIR,
-    DOAS System Outdoor Air System Heat Exchanger_supply_air_outlet SPM,    !- Name
-    Temperature,              !- Control Variable
-    DOAS System Supply Outlet Node,    !- Reference Setpoint Node Name
-    Fan air inlet,            !- Fan Inlet Node Name
-    DOAS System Supply Outlet Node,    !- Fan Outlet Node Name
-    DOAS System Outdoor Air System Heat Exchanger_supply_air_outlet,    !- Setpoint Node or NodeList Name
-    ,                         !- Cooling Coil Inlet Node Name
-    ,                         !- Cooling coil Outlet Node Name
-    7.2;                      !- Minimum Temperature at Cooling Coil Outlet Node
-
-SETPOINTMANAGER:MIXEDAIR,
-    DOAS System Outdoor Air System Controller mixed_air SPM,    !- Name
-    Temperature,              !- Control Variable
-    DOAS System Supply Outlet Node,    !- Reference Setpoint Node Name
-    Fan air inlet,            !- Fan Inlet Node Name
-    DOAS System Supply Outlet Node,    !- Fan Outlet Node Name
-    DOAS System Outdoor Air System Controller mixed_air,    !- Setpoint Node or NodeList Name
-    ,                         !- Cooling Coil Inlet Node Name
-    ,                         !- Cooling coil Outlet Node Name
-    7.2;                      !- Minimum Temperature at Cooling Coil Outlet Node
-
-SETPOINTMANAGER:MIXEDAIR,
-    AHU Cooling Coil_air_outlet SPM,    !- Name
-    Temperature,              !- Control Variable
-    DOAS System Supply Outlet Node,    !- Reference Setpoint Node Name
-    Fan air inlet,            !- Fan Inlet Node Name
-    DOAS System Supply Outlet Node,    !- Fan Outlet Node Name
-    AHU Cooling Coil_air_outlet,    !- Setpoint Node or NodeList Name
-    ,                         !- Cooling Coil Inlet Node Name
-    ,                         !- Cooling coil Outlet Node Name
-    7.2;                      !- Minimum Temperature at Cooling Coil Outlet Node
-
-SETPOINTMANAGER:MIXEDAIR,
-    Fan air inlet SPM,        !- Name
-    Temperature,              !- Control Variable
-    DOAS System Supply Outlet Node,    !- Reference Setpoint Node Name
-    Fan air inlet,            !- Fan Inlet Node Name
-    DOAS System Supply Outlet Node,    !- Fan Outlet Node Name
-    Fan air inlet,            !- Setpoint Node or NodeList Name
-    ,                         !- Cooling Coil Inlet Node Name
-    ,                         !- Cooling coil Outlet Node Name
-    7.2;                      !- Minimum Temperature at Cooling Coil Outlet Node
-
-SETPOINTMANAGER:FOLLOWOUTDOORAIRTEMPERATURE,
-    Condenser Water Temperature,    !- Name
-    Temperature,              !- Control Variable
-    OutdoorAirWetBulb,        !- Reference Temperature Type
-    2.7777777777777777,       !- Offset Temperature Difference
-    32.22222222222222,        !- Maximum Setpoint Temperature
-    21.11111111111111,        !- Minimum Setpoint Temperature
-    Test Condenser Water Loop Supply Outlet;    !- Setpoint Node or NodeList Name
-
-CURVE:QUADRATIC,
-    Chiller 1 CoolingEIRRatioPLRCurve_ASHRAE90.1,    !- Name
-    0.222903,                 !- Coefficient1 Constant
-    0.313387,                 !- Coefficient2 x
-    0.46371,                  !- Coefficient3 x2
+CURVE:LINEAR,
+    PLRFractionCorrelation_Cooling,    !- Name
+    0.85,                     !- Coefficient1 Constant
+    0.15,                     !- Coefficient2 x
     0,                        !- Minimum Value of x
     1,                        !- Maximum Value of x
     ,                         !- Minimum Curve Output
@@ -3217,18 +2064,244 @@ CURVE:QUADRATIC,
     Dimensionless,            !- Input Unit Type for X
     Dimensionless;            !- Output Unit Type
 
+CURVE:LINEAR,
+    PLRFractionCorrelation_Heating,    !- Name
+    0.85,                     !- Coefficient1 Constant
+    0.15,                     !- Coefficient2 x
+    0,                        !- Minimum Value of x
+    1,                        !- Maximum Value of x
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Dimensionless,            !- Input Unit Type for X
+    Dimensionless;            !- Output Unit Type
+
+CURVE:QUADRATIC,
+    Test_Office_0 VRF Terminal Cooling Coil VRFACCoolCapFFF,    !- Name
+    0.8,                      !- Coefficient1 Constant
+    0.2,                      !- Coefficient2 x
+    0,                        !- Coefficient3 x2
+    0.5,                      !- Minimum Value of x
+    1.5,                      !- Maximum Value of x
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Dimensionless,            !- Input Unit Type for X
+    Dimensionless;            !- Output Unit Type
+
+CURVE:QUADRATIC,
+    Test_Office_0 VRF Terminal Heating Coil VRFACHeatCapFFF,    !- Name
+    0.8,                      !- Coefficient1 Constant
+    0.2,                      !- Coefficient2 x
+    0,                        !- Coefficient3 x2
+    0.5,                      !- Minimum Value of x
+    1.5,                      !- Maximum Value of x
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Dimensionless,            !- Input Unit Type for X
+    Dimensionless;            !- Output Unit Type
+
+CURVE:CUBIC,
+    Test_Office_0 VRF Terminal Fan OnOff Efficiency Curve,    !- Name
+    1,                        !- Coefficient1 Constant
+    0,                        !- Coefficient2 x
+    0,                        !- Coefficient3 x2
+    0,                        !- Coefficient4 x3
+    0,                        !- Minimum Value of x
+    1,                        !- Maximum Value of x
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Dimensionless,            !- Input Unit Type for X
+    Dimensionless;            !- Output Unit Type
+
+CURVE:CUBIC,
+    CapRatioBoundary_Cooling,    !- Name
+    25.73,                    !- Coefficient1 Constant
+    -0.03150043,              !- Coefficient2 x
+    -0.01416595,              !- Coefficient3 x2
+    0,                        !- Coefficient4 x3
+    11,                       !- Minimum Value of x
+    30,                       !- Maximum Value of x
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Temperature,              !- Input Unit Type for X
+    Temperature;              !- Output Unit Type
+
+CURVE:CUBIC,
+    EIRRatioBoundary_Cooling,    !- Name
+    25.73473775,              !- Coefficient1 Constant
+    -0.03150043,              !- Coefficient2 x
+    -0.01416595,              !- Coefficient3 x2
+    0,                        !- Coefficient4 x3
+    15,                       !- Minimum Value of x
+    24,                       !- Maximum Value of x
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Temperature,              !- Input Unit Type for X
+    Temperature;              !- Output Unit Type
+
+CURVE:CUBIC,
+    EIRRatioLowPLR_Cooling,    !- Name
+    0.4541226192,             !- Coefficient1 Constant
+    -0.1729687081,            !- Coefficient2 x
+    1.0828661347,             !- Coefficient3 x2
+    -0.3618480897,            !- Coefficient4 x3
+    0.15,                     !- Minimum Value of x
+    1,                        !- Maximum Value of x
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Dimensionless,            !- Input Unit Type for X
+    Dimensionless;            !- Output Unit Type
+
+CURVE:CUBIC,
+    EIRRatioHighPLR_Cooling,    !- Name
+    1,                        !- Coefficient1 Constant
+    0,                        !- Coefficient2 x
+    0,                        !- Coefficient3 x2
+    0,                        !- Coefficient4 x3
+    1,                        !- Minimum Value of x
+    1.5,                      !- Maximum Value of x
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Dimensionless,            !- Input Unit Type for X
+    Dimensionless;            !- Output Unit Type
+
+CURVE:CUBIC,
+    CombinationRatio_Cooling,    !- Name
+    0.576593263,              !- Coefficient1 Constant
+    0.6349408697,             !- Coefficient2 x
+    -0.3076093963,            !- Coefficient3 x2
+    0.0960752636,             !- Coefficient4 x3
+    1,                        !- Minimum Value of x
+    1.5,                      !- Maximum Value of x
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Dimensionless,            !- Input Unit Type for X
+    Dimensionless;            !- Output Unit Type
+
+CURVE:CUBIC,
+    CapRatioBoundary_Heating,    !- Name
+    58.577,                   !- Coefficient1 Constant
+    -3.0255,                  !- Coefficient2 x
+    0.0193,                   !- Coefficient3 x2
+    0,                        !- Coefficient4 x3
+    15,                       !- Minimum Value of x
+    23.89,                    !- Maximum Value of x
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Temperature,              !- Input Unit Type for X
+    Temperature;              !- Output Unit Type
+
+CURVE:CUBIC,
+    EIRRatioBoundary_Heating,    !- Name
+    58.577,                   !- Coefficient1 Constant
+    -3.0255,                  !- Coefficient2 x
+    0.0193,                   !- Coefficient3 x2
+    0,                        !- Coefficient4 x3
+    15,                       !- Minimum Value of x
+    23.89,                    !- Maximum Value of x
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Temperature,              !- Input Unit Type for X
+    Temperature;              !- Output Unit Type
+
+CURVE:CUBIC,
+    EIRRatioLowPLR_Heating,    !- Name
+    0.3924742025,             !- Coefficient1 Constant
+    0.076016374,              !- Coefficient2 x
+    0.6983235783,             !- Coefficient3 x2
+    -0.1688407813,            !- Coefficient4 x3
+    0.15,                     !- Minimum Value of x
+    1,                        !- Maximum Value of x
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Dimensionless,            !- Input Unit Type for X
+    Dimensionless;            !- Output Unit Type
+
+CURVE:CUBIC,
+    EIRRatioHighPLR_Heating,    !- Name
+    1,                        !- Coefficient1 Constant
+    0,                        !- Coefficient2 x
+    0,                        !- Coefficient3 x2
+    0,                        !- Coefficient4 x3
+    1,                        !- Minimum Value of x
+    1.5,                      !- Maximum Value of x
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Dimensionless,            !- Input Unit Type for X
+    Dimensionless;            !- Output Unit Type
+
+CURVE:CUBIC,
+    CombinationRatio_Heating,    !- Name
+    0.7667196604,             !- Coefficient1 Constant
+    0.2617302019,             !- Coefficient2 x
+    -0.0159110245,            !- Coefficient3 x2
+    -0.0125388376,            !- Coefficient4 x3
+    1,                        !- Minimum Value of x
+    1.5,                      !- Maximum Value of x
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Dimensionless,            !- Input Unit Type for X
+    Dimensionless;            !- Output Unit Type
+
+CURVE:EXPONENT,
+    Test_Office_0 VRF Terminal Fan OnOff Power Ratio Curve,    !- Name
+    1,                        !- Coefficient1 Constant
+    0,                        !- Coefficient2 Constant
+    0,                        !- Coefficient3 Constant
+    0,                        !- Minimum Value of x
+    1,                        !- Maximum Value of x
+    0,                        !- Minimum Curve Output
+    1,                        !- Maximum Curve Output
+    Dimensionless,            !- Input Unit Type for X
+    Dimensionless;            !- Output Unit Type
+
 CURVE:BIQUADRATIC,
-    Chiller 1 CoolingCapTempCurve_ASHRAE90.1,    !- Name
-    0.258,                    !- Coefficient1 Constant
-    0.0389,                   !- Coefficient2 x
-    -0.000217,                !- Coefficient3 x2
-    0.0469,                   !- Coefficient4 y
-    -0.000943,                !- Coefficient5 y2
-    -0.000343,                !- Coefficient6 xy
-    5,                        !- Minimum Value of x
-    10,                       !- Maximum Value of x
-    24,                       !- Minimum Value of y
-    35,                       !- Maximum Value of y
+    Test_Office_0 VRF Terminal Cooling Coil VRFTUCoolCapFT,    !- Name
+    0.0585884077803259,       !- Coefficient1 Constant
+    0.0587396532718384,       !- Coefficient2 x
+    -2.102750e-04,            !- Coefficient3 x2
+    0.0109370473889647,       !- Coefficient4 y
+    -0.0001219549,            !- Coefficient5 y2
+    -0.0005246615,            !- Coefficient6 xy
+    15,                       !- Minimum Value of x
+    23.89,                    !- Maximum Value of x
+    20,                       !- Minimum Value of y
+    43.33,                    !- Maximum Value of y
+    0.8083,                   !- Minimum Curve Output
+    1.2583,                   !- Maximum Curve Output
+    Temperature,              !- Input Unit Type for X
+    Temperature,              !- Input Unit Type for Y
+    Dimensionless;            !- Output Unit Type
+
+CURVE:BIQUADRATIC,
+    Test_Office_0 VRF Terminal Heating Coil VRFTUHeatCAPFT,    !- Name
+    0.375443994956127,        !- Coefficient1 Constant
+    0.0668190645147821,       !- Coefficient2 x
+    -1.941710e-03,            !- Coefficient3 x2
+    0.0442618420640187,       !- Coefficient4 y
+    -0.0004009578,            !- Coefficient5 y2
+    -0.0014819801,            !- Coefficient6 xy
+    21.11,                    !- Minimum Value of x
+    27.22,                    !- Maximum Value of x
+    -15,                      !- Minimum Value of y
+    18.33,                    !- Maximum Value of y
+    0.6074,                   !- Minimum Curve Output
+    1,                        !- Maximum Curve Output
+    Temperature,              !- Input Unit Type for X
+    Temperature,              !- Input Unit Type for Y
+    Dimensionless;            !- Output Unit Type
+
+CURVE:BIQUADRATIC,
+    CapRatioLowTempCurve_Cooling,    !- Name
+    0.576882692,              !- Coefficient1 Constant
+    0.017447952,              !- Coefficient2 x
+    0.000583269,              !- Coefficient3 x2
+    -1.76324e-06,             !- Coefficient4 y
+    -7.474e-09,               !- Coefficient5 y2
+    -1.30413e-07,             !- Coefficient6 xy
+    15,                       !- Minimum Value of x
+    24,                       !- Maximum Value of x
+    -5,                       !- Minimum Value of y
+    23,                       !- Maximum Value of y
     ,                         !- Minimum Curve Output
     ,                         !- Maximum Curve Output
     Temperature,              !- Input Unit Type for X
@@ -3236,150 +2309,238 @@ CURVE:BIQUADRATIC,
     Dimensionless;            !- Output Unit Type
 
 CURVE:BIQUADRATIC,
-    Chiller 1 CoolingEIRRatioTempCurve_ASHRAE90.1,    !- Name
-    0.934,                    !- Coefficient1 Constant
-    -0.0582,                  !- Coefficient2 x
-    0.0045,                   !- Coefficient3 x2
-    0.00243,                  !- Coefficient4 y
-    0.000486,                 !- Coefficient5 y2
-    -0.00122,                 !- Coefficient6 xy
-    5,                        !- Minimum Value of x
-    10,                       !- Maximum Value of x
-    24,                       !- Minimum Value of y
-    35,                       !- Maximum Value of y
+    CapRatioHighTempCurve_Cooling,    !- Name
+    0.6867358,                !- Coefficient1 Constant
+    0.0207631,                !- Coefficient2 x
+    0.0005447,                !- Coefficient3 x2
+    -0.0016218,               !- Coefficient4 y
+    -4.259e-07,               !- Coefficient5 y2
+    -0.0003392,               !- Coefficient6 xy
+    15,                       !- Minimum Value of x
+    24,                       !- Maximum Value of x
+    16,                       !- Minimum Value of y
+    43,                       !- Maximum Value of y
     ,                         !- Minimum Curve Output
     ,                         !- Maximum Curve Output
     Temperature,              !- Input Unit Type for X
     Temperature,              !- Input Unit Type for Y
     Dimensionless;            !- Output Unit Type
 
-TABLE:INDEPENDENTVARIABLE,
-    DOAS System Outdoor Air System Heat Exchanger HX_SensHeatEff_IndependentVariable,    !- Name
-    Linear,                   !- Interpolation Method
-    Linear,                   !- Extrapolation Method
-    0,                        !- Minimum Value
-    10,                       !- Maximum Value
-    ,                         !- Normalization Reference Value
-    Dimensionless,            !- Unit Type
-    ,                         !- External File Name
-    ,                         !- External File Column Number
-    ,                         !- External File Starting Row Number
-    0.75,                     !- Value 1
-    1;                        !- Value 2
+CURVE:BIQUADRATIC,
+    EIRRatioLowTempCurve_Cooling,    !- Name
+    0.989010541,              !- Coefficient1 Constant
+    -0.02347967,              !- Coefficient2 x
+    0.000199711,              !- Coefficient3 x2
+    0.005968336,              !- Coefficient4 y
+    -1.0289e-07,              !- Coefficient5 y2
+    -0.00015686,              !- Coefficient6 xy
+    15,                       !- Minimum Value of x
+    24,                       !- Maximum Value of x
+    -5,                       !- Minimum Value of y
+    23,                       !- Maximum Value of y
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Temperature,              !- Input Unit Type for X
+    Temperature,              !- Input Unit Type for Y
+    Dimensionless;            !- Output Unit Type
 
-TABLE:INDEPENDENTVARIABLE,
-    DOAS System Outdoor Air System Heat Exchanger HX_LatHeatEff_IndependentVariable,    !- Name
-    Linear,                   !- Interpolation Method
-    Linear,                   !- Extrapolation Method
-    0,                        !- Minimum Value
-    10,                       !- Maximum Value
-    ,                         !- Normalization Reference Value
-    Dimensionless,            !- Unit Type
-    ,                         !- External File Name
-    ,                         !- External File Column Number
-    ,                         !- External File Starting Row Number
-    0.75,                     !- Value 1
-    1;                        !- Value 2
+CURVE:BIQUADRATIC,
+    EIRRatioHighTempCurve_Cooling,    !- Name
+    -1.4395110176,            !- Coefficient1 Constant
+    0.1619850459,             !- Coefficient2 x
+    -0.0034911781,            !- Coefficient3 x2
+    0.0269442645,             !- Coefficient4 y
+    0.0001346163,             !- Coefficient5 y2
+    -0.0006714941,            !- Coefficient6 xy
+    15,                       !- Minimum Value of x
+    23.89,                    !- Maximum Value of x
+    16.8,                     !- Minimum Value of y
+    43.3,                     !- Maximum Value of y
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Temperature,              !- Input Unit Type for X
+    Temperature,              !- Input Unit Type for Y
+    Dimensionless;            !- Output Unit Type
 
-TABLE:INDEPENDENTVARIABLE,
-    DOAS System Outdoor Air System Heat Exchanger HX_SensCoolEff_IndependentVariable,    !- Name
-    Linear,                   !- Interpolation Method
-    Linear,                   !- Extrapolation Method
-    0,                        !- Minimum Value
-    10,                       !- Maximum Value
-    ,                         !- Normalization Reference Value
-    Dimensionless,            !- Unit Type
-    ,                         !- External File Name
-    ,                         !- External File Column Number
-    ,                         !- External File Starting Row Number
-    0.75,                     !- Value 1
-    1;                        !- Value 2
+CURVE:BIQUADRATIC,
+    CapRatioLowTempCurve_Heating,    !- Name
+    1.012090154,              !- Coefficient1 Constant
+    -0.0012467553,            !- Coefficient2 x
+    -0.0001271847,            !- Coefficient3 x2
+    0.0267564328,             !- Coefficient4 y
+    -4.986e-07,               !- Coefficient5 y2
+    -0.0002635239,            !- Coefficient6 xy
+    21.1,                     !- Minimum Value of x
+    27.2,                     !- Maximum Value of x
+    -20,                      !- Minimum Value of y
+    3.33,                     !- Maximum Value of y
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Temperature,              !- Input Unit Type for X
+    Temperature,              !- Input Unit Type for Y
+    Dimensionless;            !- Output Unit Type
 
-TABLE:INDEPENDENTVARIABLE,
-    DOAS System Outdoor Air System Heat Exchanger HX_LatCoolEff_IndependentVariable,    !- Name
-    Linear,                   !- Interpolation Method
-    Linear,                   !- Extrapolation Method
-    0,                        !- Minimum Value
-    10,                       !- Maximum Value
-    ,                         !- Normalization Reference Value
-    Dimensionless,            !- Unit Type
-    ,                         !- External File Name
-    ,                         !- External File Column Number
-    ,                         !- External File Starting Row Number
-    0.75,                     !- Value 1
-    1;                        !- Value 2
+CURVE:BIQUADRATIC,
+    CapRatioHighTempCurve_Heating,    !- Name
+    2.5859872368,             !- Coefficient1 Constant
+    -0.0953227101,            !- Coefficient2 x
+    0.0009553288,             !- Coefficient3 x2
+    0,                        !- Coefficient4 y
+    0,                        !- Coefficient5 y2
+    0,                        !- Coefficient6 xy
+    21.1,                     !- Minimum Value of x
+    27.2,                     !- Maximum Value of x
+    -9.44,                    !- Minimum Value of y
+    15,                       !- Maximum Value of y
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Temperature,              !- Input Unit Type for X
+    Temperature,              !- Input Unit Type for Y
+    Dimensionless;            !- Output Unit Type
 
-TABLE:INDEPENDENTVARIABLELIST,
-    DOAS System Outdoor Air System Heat Exchanger HX_SensHeatEff Independent Variable List,    !- Name
-    DOAS System Outdoor Air System Heat Exchanger HX_SensHeatEff_IndependentVariable;    !- Independent Variable 1 Name
+CURVE:BIQUADRATIC,
+    EIRRatioLowTempCurve_Heating,    !- Name
+    0.7224292683,             !- Coefficient1 Constant
+    0.0034566628,             !- Coefficient2 x
+    0.0006507028,             !- Coefficient3 x2
+    -0.0026435362,            !- Coefficient4 y
+    0.0012464766,             !- Coefficient5 y2
+    -0.0001009161,            !- Coefficient6 xy
+    21.1,                     !- Minimum Value of x
+    27.2,                     !- Maximum Value of x
+    -20,                      !- Minimum Value of y
+    3.33,                     !- Maximum Value of y
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Temperature,              !- Input Unit Type for X
+    Temperature,              !- Input Unit Type for Y
+    Dimensionless;            !- Output Unit Type
 
-TABLE:INDEPENDENTVARIABLELIST,
-    DOAS System Outdoor Air System Heat Exchanger HX_LatHeatEff Independent Variable List,    !- Name
-    DOAS System Outdoor Air System Heat Exchanger HX_LatHeatEff_IndependentVariable;    !- Independent Variable 1 Name
+CURVE:BIQUADRATIC,
+    EIRRatioHighTempCurve_Heating,    !- Name
+    1.3885703646,             !- Coefficient1 Constant
+    -0.0229771462,            !- Coefficient2 x
+    0.000537274,              !- Coefficient3 x2
+    -0.0273936962,            !- Coefficient4 y
+    0.0004030426,             !- Coefficient5 y2
+    -5.9786e-05,              !- Coefficient6 xy
+    21.1,                     !- Minimum Value of x
+    27.2,                     !- Maximum Value of x
+    -4.44,                    !- Minimum Value of y
+    13.33,                    !- Maximum Value of y
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Temperature,              !- Input Unit Type for X
+    Temperature,              !- Input Unit Type for Y
+    Dimensionless;            !- Output Unit Type
 
-TABLE:INDEPENDENTVARIABLELIST,
-    DOAS System Outdoor Air System Heat Exchanger HX_SensCoolEff Independent Variable List,    !- Name
-    DOAS System Outdoor Air System Heat Exchanger HX_SensCoolEff_IndependentVariable;    !- Independent Variable 1 Name
+CURVE:BIQUADRATIC,
+    PipingCorrectionFactorCurve_Cooling,    !- Name
+    2.0388158625,             !- Coefficient1 Constant
+    -0.0024260645,            !- Coefficient2 x
+    3.5512e-06,               !- Coefficient3 x2
+    -1.6858129772,            !- Coefficient4 y
+    0.668703358,              !- Coefficient5 y2
+    -4.5706e-05,              !- Coefficient6 xy
+    7.62,                     !- Minimum Value of x
+    182.88,                   !- Maximum Value of x
+    0.8,                      !- Minimum Value of y
+    1.5,                      !- Maximum Value of y
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Dimensionless,            !- Input Unit Type for X
+    Dimensionless,            !- Input Unit Type for Y
+    Dimensionless;            !- Output Unit Type
 
-TABLE:INDEPENDENTVARIABLELIST,
-    DOAS System Outdoor Air System Heat Exchanger HX_LatCoolEff Independent Variable List,    !- Name
-    DOAS System Outdoor Air System Heat Exchanger HX_LatCoolEff_IndependentVariable;    !- Independent Variable 1 Name
+CURVE:BIQUADRATIC,
+    PipingCorrectionFactorCurve_Heating,    !- Name
+    1,                        !- Coefficient1 Constant
+    0,                        !- Coefficient2 x
+    0,                        !- Coefficient3 x2
+    0,                        !- Coefficient4 y
+    0,                        !- Coefficient5 y2
+    0,                        !- Coefficient6 xy
+    0,                        !- Minimum Value of x
+    1,                        !- Maximum Value of x
+    0,                        !- Minimum Value of y
+    1,                        !- Maximum Value of y
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Dimensionless,            !- Input Unit Type for X
+    Dimensionless,            !- Input Unit Type for Y
+    Dimensionless;            !- Output Unit Type
 
-TABLE:LOOKUP,
-    DOAS System Outdoor Air System Heat Exchanger HX_SensHeatEff,    !- Name
-    DOAS System Outdoor Air System Heat Exchanger HX_SensHeatEff Independent Variable List,    !- Independent Variable List Name
-    DivisorOnly,              !- Normalization Method
-    0.75,                     !- Normalization Divisor
-    0,                        !- Minimum Output
-    10,                       !- Maximum Output
-    Dimensionless,            !- Output Unit Type
-    ,                         !- External File Name
-    ,                         !- External File Column Number
-    ,                         !- External File Starting Row Number
-    0.81,                     !- Output Value 1
-    0.75;                     !- Output Value 2
+CURVE:BIQUADRATIC,
+    HeatRecoveryCapModifier_Cooling,    !- Name
+    0.9,                      !- Coefficient1 Constant
+    0,                        !- Coefficient2 x
+    0,                        !- Coefficient3 x2
+    0,                        !- Coefficient4 y
+    0,                        !- Coefficient5 y2
+    0,                        !- Coefficient6 xy
+    0,                        !- Minimum Value of x
+    1,                        !- Maximum Value of x
+    0,                        !- Minimum Value of y
+    1,                        !- Maximum Value of y
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Dimensionless,            !- Input Unit Type for X
+    Dimensionless,            !- Input Unit Type for Y
+    Dimensionless;            !- Output Unit Type
 
-TABLE:LOOKUP,
-    DOAS System Outdoor Air System Heat Exchanger HX_LatHeatEff,    !- Name
-    DOAS System Outdoor Air System Heat Exchanger HX_LatHeatEff Independent Variable List,    !- Independent Variable List Name
-    DivisorOnly,              !- Normalization Method
-    0.68,                     !- Normalization Divisor
-    0,                        !- Minimum Output
-    10,                       !- Maximum Output
-    Dimensionless,            !- Output Unit Type
-    ,                         !- External File Name
-    ,                         !- External File Column Number
-    ,                         !- External File Starting Row Number
-    0.73,                     !- Output Value 1
-    0.68;                     !- Output Value 2
+CURVE:BIQUADRATIC,
+    HeatRecoveryEnergyModifier_Cooling,    !- Name
+    1.1,                      !- Coefficient1 Constant
+    0,                        !- Coefficient2 x
+    0,                        !- Coefficient3 x2
+    0,                        !- Coefficient4 y
+    0,                        !- Coefficient5 y2
+    0,                        !- Coefficient6 xy
+    0,                        !- Minimum Value of x
+    1,                        !- Maximum Value of x
+    0,                        !- Minimum Value of y
+    1,                        !- Maximum Value of y
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Dimensionless,            !- Input Unit Type for X
+    Dimensionless,            !- Input Unit Type for Y
+    Dimensionless;            !- Output Unit Type
 
-TABLE:LOOKUP,
-    DOAS System Outdoor Air System Heat Exchanger HX_SensCoolEff,    !- Name
-    DOAS System Outdoor Air System Heat Exchanger HX_SensCoolEff Independent Variable List,    !- Independent Variable List Name
-    DivisorOnly,              !- Normalization Method
-    0.75,                     !- Normalization Divisor
-    0,                        !- Minimum Output
-    10,                       !- Maximum Output
-    Dimensionless,            !- Output Unit Type
-    ,                         !- External File Name
-    ,                         !- External File Column Number
-    ,                         !- External File Starting Row Number
-    0.81,                     !- Output Value 1
-    0.75;                     !- Output Value 2
+CURVE:BIQUADRATIC,
+    HeatRecoveryCapModifier_Heating,    !- Name
+    0.9,                      !- Coefficient1 Constant
+    0,                        !- Coefficient2 x
+    0,                        !- Coefficient3 x2
+    0,                        !- Coefficient4 y
+    0,                        !- Coefficient5 y2
+    0,                        !- Coefficient6 xy
+    0,                        !- Minimum Value of x
+    1,                        !- Maximum Value of x
+    0,                        !- Minimum Value of y
+    1,                        !- Maximum Value of y
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Dimensionless,            !- Input Unit Type for X
+    Dimensionless,            !- Input Unit Type for Y
+    Dimensionless;            !- Output Unit Type
 
-TABLE:LOOKUP,
-    DOAS System Outdoor Air System Heat Exchanger HX_LatCoolEff,    !- Name
-    DOAS System Outdoor Air System Heat Exchanger HX_LatCoolEff Independent Variable List,    !- Independent Variable List Name
-    DivisorOnly,              !- Normalization Method
-    0.68,                     !- Normalization Divisor
-    0,                        !- Minimum Output
-    10,                       !- Maximum Output
-    Dimensionless,            !- Output Unit Type
-    ,                         !- External File Name
-    ,                         !- External File Column Number
-    ,                         !- External File Starting Row Number
-    0.73,                     !- Output Value 1
-    0.68;                     !- Output Value 2
+CURVE:BIQUADRATIC,
+    HeatRecoveryEnergyModifier_Heating,    !- Name
+    1.1,                      !- Coefficient1 Constant
+    0,                        !- Coefficient2 x
+    0,                        !- Coefficient3 x2
+    0,                        !- Coefficient4 y
+    0,                        !- Coefficient5 y2
+    0,                        !- Coefficient6 xy
+    0,                        !- Minimum Value of x
+    1,                        !- Maximum Value of x
+    0,                        !- Minimum Value of y
+    1,                        !- Maximum Value of y
+    ,                         !- Minimum Curve Output
+    ,                         !- Maximum Curve Output
+    Dimensionless,            !- Input Unit Type for X
+    Dimensionless,            !- Input Unit Type for Y
+    Dimensionless;            !- Output Unit Type
 
 LifeCycleCost:Parameters,
     Life Cycle Cost Parameters,    !- Name

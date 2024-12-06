@@ -1191,12 +1191,12 @@ OS:Connection,
 OS:PortList,
   {1f9abb44-4cab-4d53-8f42-b77c611b5441}, !- Handle
   {42bfd6c2-2f1b-4b61-bb6e-d6cc34ef8402}, !- HVAC Component
-  {ade4cd12-274b-4244-bde9-851d9a023a99}; !- Port 1
+  {8b19a406-532d-4d48-ab67-8f3462ba5f97}; !- Port 1
 
 OS:PortList,
   {c1a8a617-60d2-4174-9d6f-2acc3ab4a88a}, !- Handle
   {42bfd6c2-2f1b-4b61-bb6e-d6cc34ef8402}, !- HVAC Component
-  {cfba2699-c44d-422a-90ba-2cdcbe161b97}; !- Port 1
+  {f63d663f-17a9-4847-897a-4c38e30b57ed}; !- Port 1
 
 OS:Sizing:Zone,
   {18570070-67db-46d9-92d7-ab6073451468}, !- Handle
@@ -1238,7 +1238,7 @@ OS:ZoneHVAC:EquipmentList,
   Zone HVAC Equipment List 1,             !- Name
   {42bfd6c2-2f1b-4b61-bb6e-d6cc34ef8402}, !- Thermal Zone
   ,                                       !- Load Distribution Scheme
-  {814d19a2-3c6d-4928-a41f-412d630fe7ed}, !- Zone Equipment 1
+  {4403eff9-9937-4e86-bba3-c5cb108d6d8c}, !- Zone Equipment 1
   1,                                      !- Zone Equipment Cooling Sequence 1
   1,                                      !- Zone Equipment Heating or No-Load Sequence 1
   ,                                       !- Zone Equipment Sequential Cooling Fraction Schedule Name 1
@@ -2365,51 +2365,51 @@ OS:Schedule:Day,
   0.00799999999999997;                    !- Value Until Time 1
 
 OS:AirConditioner:VariableRefrigerantFlow,
-  {df3a0446-a3a3-4c23-9593-86ac4dda6999}, !- Handle
+  {566a357c-9244-4341-bb4c-b669bd1995bb}, !- Handle
   VRF System,                             !- Name
   {3c603b94-4223-427a-8b64-83119ccbfe77}, !- Availability Schedule
   autosize,                               !- Gross Rated Total Cooling Capacity {W}
   3.3,                                    !- Gross Rated Cooling COP {W/W}
   -5,                                     !- Minimum Outdoor Temperature in Cooling Mode {C}
   43,                                     !- Maximum Outdoor Temperature in Cooling Mode {C}
-  {e63b8812-197e-485e-b95f-e424b5aec384}, !- Cooling Capacity Ratio Modifier Function of Low Temperature Curve Name
-  {2a7dc939-2d9b-4a14-98bb-055a4caf7e10}, !- Cooling Capacity Ratio Boundary Curve Name
-  {133cb9c6-32dd-407e-bc15-544d5d235620}, !- Cooling Capacity Ratio Modifier Function of High Temperature Curve Name
-  {38a22f76-d02b-4230-a44b-af86bd1d894c}, !- Cooling Energy Input Ratio Modifier Function of Low Temperature Curve Name
-  {1fed6a86-7143-4013-b0f6-c0c319f52532}, !- Cooling Energy Input Ratio Boundary Curve Name
-  {5da73ac8-0542-4519-b69d-168bc9817e39}, !- Cooling Energy Input Ratio Modifier Function of High Temperature Curve Name
-  {d503ec79-de2a-4bae-9c4f-4e3c4e1e7bf1}, !- Cooling Energy Input Ratio Modifier Function of Low Part-Load Ratio Curve Name
-  {800007e7-add8-4a88-bb7a-10f507450f37}, !- Cooling Energy Input Ratio Modifier Function of High Part-Load Ratio Curve Name
-  {e6de04a7-436a-4c09-a81b-7e12235fbad3}, !- Cooling Combination Ratio Correction Factor Curve Name
-  {016ca202-3676-4908-a236-35558c9ef62f}, !- Cooling Part-Load Fraction Correlation Curve Name
+  {16b13850-6f2f-4480-a7a3-82c0340c952b}, !- Cooling Capacity Ratio Modifier Function of Low Temperature Curve Name
+  {2bf36af5-b03a-4d5f-8b5a-1109e849213e}, !- Cooling Capacity Ratio Boundary Curve Name
+  {d02090f6-5519-4e65-8c11-24f1d4633aad}, !- Cooling Capacity Ratio Modifier Function of High Temperature Curve Name
+  {7f881568-3d3a-4dff-990b-fe30fa610009}, !- Cooling Energy Input Ratio Modifier Function of Low Temperature Curve Name
+  {e2a103fa-ae40-45c7-b85d-45b5a6b34244}, !- Cooling Energy Input Ratio Boundary Curve Name
+  {24773bcb-2cca-4867-a1cb-d5792420546f}, !- Cooling Energy Input Ratio Modifier Function of High Temperature Curve Name
+  {a671d5e7-fa9a-4c3c-acda-be1ab7bfe77d}, !- Cooling Energy Input Ratio Modifier Function of Low Part-Load Ratio Curve Name
+  {ce2a224e-3b86-41a4-974c-1c6ed850dc6c}, !- Cooling Energy Input Ratio Modifier Function of High Part-Load Ratio Curve Name
+  {a27c8d16-9d43-45ac-9e74-205c854a9f98}, !- Cooling Combination Ratio Correction Factor Curve Name
+  {1bd50171-6b10-4612-bd6e-1ffd72f2ad26}, !- Cooling Part-Load Fraction Correlation Curve Name
   autosize,                               !- Gross Rated Heating Capacity {W}
   1,                                      !- Rated Heating Capacity Sizing Ratio {W/W}
   3.5,                                    !- Rated Heating COP {W/W}
   -20,                                    !- Minimum Outdoor Temperature in Heating Mode {C}
   30,                                     !- Maximum Outdoor Temperature in Heating Mode {C}
-  {d9c6c48a-3852-45ac-b7c6-6908eb04400f}, !- Heating Capacity Ratio Modifier Function of Low Temperature Curve Name
-  {3156aa5a-e428-4268-aa79-74eb89cce513}, !- Heating Capacity Ratio Boundary Curve Name
-  {c4cb5cca-70ef-4ab2-aac8-b4afe91ba9ab}, !- Heating Capacity Ratio Modifier Function of High Temperature Curve Name
-  {1e057790-5e4e-47e1-916b-eca5e84f6eb8}, !- Heating Energy Input Ratio Modifier Function of Low Temperature Curve Name
-  {44016d56-7244-4cf8-9ffe-f4c4f1ee4df3}, !- Heating Energy Input Ratio Boundary Curve Name
-  {8c83bdc9-3bae-4e22-a23f-977029a252ea}, !- Heating Energy Input Ratio Modifier Function of High Temperature Curve Name
+  {23ef02e8-94f3-47c3-8a39-1b9b821741bd}, !- Heating Capacity Ratio Modifier Function of Low Temperature Curve Name
+  {0f2f7da6-9437-481f-959c-79e16423fcad}, !- Heating Capacity Ratio Boundary Curve Name
+  {d4eefcf9-3831-49c3-9723-0a851751e6cb}, !- Heating Capacity Ratio Modifier Function of High Temperature Curve Name
+  {c4b8756f-e697-4a58-b18b-093c41771ca9}, !- Heating Energy Input Ratio Modifier Function of Low Temperature Curve Name
+  {d9ca424d-11d1-4e74-b425-f6841abe2745}, !- Heating Energy Input Ratio Boundary Curve Name
+  {87be7676-381a-4cf5-9f9d-2e617d5edf7d}, !- Heating Energy Input Ratio Modifier Function of High Temperature Curve Name
   WetBulbTemperature,                     !- Heating Performance Curve Outdoor Temperature Type
-  {c5e64c5a-def8-4531-8e0e-831b503574cc}, !- Heating Energy Input Ratio Modifier Function of Low Part-Load Ratio Curve Name
-  {5eea5de6-52f5-42e1-b366-936744356f49}, !- Heating Energy Input Ratio Modifier Function of High Part-Load Ratio Curve Name
-  {7efe658f-3093-4dcd-b2ba-8e5f85c3c09d}, !- Heating Combination Ratio Correction Factor Curve Name
-  {016ca202-3676-4908-a236-35558c9ef62f}, !- Heating Part-Load Fraction Correlation Curve Name
+  {64b827d1-6338-4281-8997-63c14da46c2d}, !- Heating Energy Input Ratio Modifier Function of Low Part-Load Ratio Curve Name
+  {92df5650-2ada-4b51-9a6e-16def174a4e2}, !- Heating Energy Input Ratio Modifier Function of High Part-Load Ratio Curve Name
+  {bbf0ecff-1a8c-43e2-ba13-d270cba3b701}, !- Heating Combination Ratio Correction Factor Curve Name
+  {1bd50171-6b10-4612-bd6e-1ffd72f2ad26}, !- Heating Part-Load Fraction Correlation Curve Name
   0.5,                                    !- Minimum Heat Pump Part-Load Ratio {dimensionless}
   ,                                       !- Zone Name for Master Thermostat Location
   LoadPriority,                           !- Master Thermostat Priority Control Type
   ,                                       !- Thermostat Priority Schedule
-  {a975a55a-94a6-40bc-999a-ce5c25b5ff4d}, !- Zone Terminal Unit List
+  {a9844913-a31e-44f6-9d8a-e431a3926d1c}, !- Zone Terminal Unit List
   No,                                     !- Heat Pump Waste Heat Recovery
   30,                                     !- Equivalent Piping Length used for Piping Correction Factor in Cooling Mode {m}
   10,                                     !- Vertical Height used for Piping Correction Factor {m}
-  {f839eab5-f9d8-47f7-aa6b-4dae10b7b70b}, !- Piping Correction Factor for Length in Cooling Mode Curve Name
+  {2cdc656a-e244-4ad1-a9df-a309727ed26a}, !- Piping Correction Factor for Length in Cooling Mode Curve Name
   -0.000386,                              !- Piping Correction Factor for Height in Cooling Mode Coefficient {1/m}
   30,                                     !- Equivalent Piping Length used for Piping Correction Factor in Heating Mode {m}
-  {4d81e75e-21b6-4640-8f66-8d8d2ada0484}, !- Piping Correction Factor for Length in Heating Mode Curve Name
+  {d4d5328d-aaa6-446c-80e8-42b3c175bada}, !- Piping Correction Factor for Length in Heating Mode Curve Name
   0,                                      !- Piping Correction Factor for Height in Heating Mode Coefficient {1/m}
   15,                                     !- Crankcase Heater Power per Compressor {W}
   3,                                      !- Number of Compressors {dimensionless}
@@ -2435,21 +2435,21 @@ OS:AirConditioner:VariableRefrigerantFlow,
   Electricity,                            !- Fuel Type
   0,                                      !- Minimum Outdoor Temperature in Heat Recovery Mode {C}
   20,                                     !- Maximum Outdoor Temperature in Heat Recovery Mode {C}
-  {4c701ec7-4ac7-4091-a2f9-4a030dd7f381}, !- Heat Recovery Cooling Capacity Modifier Curve Name
+  {365bfc7a-1e51-4ce2-9ae7-0ccd14e1208a}, !- Heat Recovery Cooling Capacity Modifier Curve Name
   0.5,                                    !- Initial Heat Recovery Cooling Capacity Fraction {W/W}
   0.083,                                  !- Heat Recovery Cooling Capacity Time Constant {hr}
-  {71ead304-98db-468d-875c-57131c8f632b}, !- Heat Recovery Cooling Energy Modifier Curve Name
+  {3a84df6b-b39b-42d5-84e3-36bd50f990e1}, !- Heat Recovery Cooling Energy Modifier Curve Name
   1,                                      !- Initial Heat Recovery Cooling Energy Fraction {W/W}
   0,                                      !- Heat Recovery Cooling Energy Time Constant {hr}
-  {74d2a935-ed92-4a79-927a-ae9268ced84d}, !- Heat Recovery Heating Capacity Modifier Curve Name
+  {4fb807e1-1d8d-4c0d-a77d-8442469748a7}, !- Heat Recovery Heating Capacity Modifier Curve Name
   0.5,                                    !- Initial Heat Recovery Heating Capacity Fraction {W/W}
   0.083,                                  !- Heat Recovery Heating Capacity Time Constant {hr}
-  {2ffd968d-c137-4981-8396-5b705553d4a7}, !- Heat Recovery Heating Energy Modifier Curve Name
+  {10101ce5-eb63-4e9d-856f-0c69bb3e6dbb}, !- Heat Recovery Heating Energy Modifier Curve Name
   0.5,                                    !- Initial Heat Recovery Heating Energy Fraction {W/W}
   0;                                      !- Heat Recovery Heating Energy Time Constant {hr}
 
 OS:Curve:Biquadratic,
-  {e63b8812-197e-485e-b95f-e424b5aec384}, !- Handle
+  {16b13850-6f2f-4480-a7a3-82c0340c952b}, !- Handle
   VRF System VRFCoolCapFT,                !- Name
   0.576882692,                            !- Coefficient1 Constant
   0.017447952,                            !- Coefficient2 x
@@ -2468,7 +2468,7 @@ OS:Curve:Biquadratic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Cubic,
-  {2a7dc939-2d9b-4a14-98bb-055a4caf7e10}, !- Handle
+  {2bf36af5-b03a-4d5f-8b5a-1109e849213e}, !- Handle
   VRF System VRFCoolCapFTBoundary,        !- Name
   25.73,                                  !- Coefficient1 Constant
   -0.03150043,                            !- Coefficient2 x
@@ -2482,7 +2482,7 @@ OS:Curve:Cubic,
   Temperature;                            !- Output Unit Type
 
 OS:Curve:Biquadratic,
-  {133cb9c6-32dd-407e-bc15-544d5d235620}, !- Handle
+  {d02090f6-5519-4e65-8c11-24f1d4633aad}, !- Handle
   VRF System VRFCoolCapFTHi,              !- Name
   0.6867358,                              !- Coefficient1 Constant
   0.0207631,                              !- Coefficient2 x
@@ -2501,7 +2501,7 @@ OS:Curve:Biquadratic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Biquadratic,
-  {38a22f76-d02b-4230-a44b-af86bd1d894c}, !- Handle
+  {7f881568-3d3a-4dff-990b-fe30fa610009}, !- Handle
   VRF System VRFCoolEIRFT,                !- Name
   0.989010541,                            !- Coefficient1 Constant
   -0.02347967,                            !- Coefficient2 x
@@ -2520,7 +2520,7 @@ OS:Curve:Biquadratic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Cubic,
-  {1fed6a86-7143-4013-b0f6-c0c319f52532}, !- Handle
+  {e2a103fa-ae40-45c7-b85d-45b5a6b34244}, !- Handle
   VRF System VRFCoolEIRFTBoundary,        !- Name
   25.73473775,                            !- Coefficient1 Constant
   -0.03150043,                            !- Coefficient2 x
@@ -2534,7 +2534,7 @@ OS:Curve:Cubic,
   Temperature;                            !- Output Unit Type
 
 OS:Curve:Biquadratic,
-  {5da73ac8-0542-4519-b69d-168bc9817e39}, !- Handle
+  {24773bcb-2cca-4867-a1cb-d5792420546f}, !- Handle
   VRF System VRFCoolEIRFTHi,              !- Name
   -1.4395110176,                          !- Coefficient1 Constant
   0.1619850459,                           !- Coefficient2 x
@@ -2553,7 +2553,7 @@ OS:Curve:Biquadratic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Cubic,
-  {d503ec79-de2a-4bae-9c4f-4e3c4e1e7bf1}, !- Handle
+  {a671d5e7-fa9a-4c3c-acda-be1ab7bfe77d}, !- Handle
   VRF System CoolingEIRLowPLR,            !- Name
   0.4541226192,                           !- Coefficient1 Constant
   -0.1729687081,                          !- Coefficient2 x
@@ -2567,7 +2567,7 @@ OS:Curve:Cubic,
   Temperature;                            !- Output Unit Type
 
 OS:Curve:Cubic,
-  {800007e7-add8-4a88-bb7a-10f507450f37}, !- Handle
+  {ce2a224e-3b86-41a4-974c-1c6ed850dc6c}, !- Handle
   VRF System CoolingEIRHiPLR,             !- Name
   1,                                      !- Coefficient1 Constant
   0,                                      !- Coefficient2 x
@@ -2581,7 +2581,7 @@ OS:Curve:Cubic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Cubic,
-  {e6de04a7-436a-4c09-a81b-7e12235fbad3}, !- Handle
+  {a27c8d16-9d43-45ac-9e74-205c854a9f98}, !- Handle
   VRF System CoolingCombRatio,            !- Name
   0.576593263,                            !- Coefficient1 Constant
   0.6349408697,                           !- Coefficient2 x
@@ -2595,7 +2595,7 @@ OS:Curve:Cubic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Cubic,
-  {016ca202-3676-4908-a236-35558c9ef62f}, !- Handle
+  {1bd50171-6b10-4612-bd6e-1ffd72f2ad26}, !- Handle
   VRF System VRFCPLFFPLR,                 !- Name
   0.85,                                   !- Coefficient1 Constant
   0.15,                                   !- Coefficient2 x
@@ -2609,7 +2609,7 @@ OS:Curve:Cubic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Biquadratic,
-  {d9c6c48a-3852-45ac-b7c6-6908eb04400f}, !- Handle
+  {23ef02e8-94f3-47c3-8a39-1b9b821741bd}, !- Handle
   VRF System VRFHeatCapFT,                !- Name
   1.012090154,                            !- Coefficient1 Constant
   -0.0012467553,                          !- Coefficient2 x
@@ -2628,7 +2628,7 @@ OS:Curve:Biquadratic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Cubic,
-  {3156aa5a-e428-4268-aa79-74eb89cce513}, !- Handle
+  {0f2f7da6-9437-481f-959c-79e16423fcad}, !- Handle
   VRF System VRFHeatCapFTBoundary,        !- Name
   58.577,                                 !- Coefficient1 Constant
   -3.0255,                                !- Coefficient2 x
@@ -2642,7 +2642,7 @@ OS:Curve:Cubic,
   Temperature;                            !- Output Unit Type
 
 OS:Curve:Biquadratic,
-  {c4cb5cca-70ef-4ab2-aac8-b4afe91ba9ab}, !- Handle
+  {d4eefcf9-3831-49c3-9723-0a851751e6cb}, !- Handle
   VRF System VRFHeatCapFTHi,              !- Name
   2.5859872368,                           !- Coefficient1 Constant
   -0.0953227101,                          !- Coefficient2 x
@@ -2661,7 +2661,7 @@ OS:Curve:Biquadratic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Biquadratic,
-  {1e057790-5e4e-47e1-916b-eca5e84f6eb8}, !- Handle
+  {c4b8756f-e697-4a58-b18b-093c41771ca9}, !- Handle
   VRF System VRFHeatEIRFT,                !- Name
   0.7224292683,                           !- Coefficient1 Constant
   0.0034566628,                           !- Coefficient2 x
@@ -2680,7 +2680,7 @@ OS:Curve:Biquadratic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Cubic,
-  {44016d56-7244-4cf8-9ffe-f4c4f1ee4df3}, !- Handle
+  {d9ca424d-11d1-4e74-b425-f6841abe2745}, !- Handle
   VRF System VRFHeatEIRFTBoundary,        !- Name
   58.577,                                 !- Coefficient1 Constant
   -3.0255,                                !- Coefficient2 x
@@ -2694,7 +2694,7 @@ OS:Curve:Cubic,
   Temperature;                            !- Output Unit Type
 
 OS:Curve:Biquadratic,
-  {8c83bdc9-3bae-4e22-a23f-977029a252ea}, !- Handle
+  {87be7676-381a-4cf5-9f9d-2e617d5edf7d}, !- Handle
   VRF System VRFHeatEIRFTHi,              !- Name
   1.3885703646,                           !- Coefficient1 Constant
   -0.0229771462,                          !- Coefficient2 x
@@ -2713,7 +2713,7 @@ OS:Curve:Biquadratic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Cubic,
-  {c5e64c5a-def8-4531-8e0e-831b503574cc}, !- Handle
+  {64b827d1-6338-4281-8997-63c14da46c2d}, !- Handle
   VRF System HeatingEIRLowPLR,            !- Name
   0.3924742025,                           !- Coefficient1 Constant
   0.076016374,                            !- Coefficient2 x
@@ -2727,7 +2727,7 @@ OS:Curve:Cubic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Cubic,
-  {5eea5de6-52f5-42e1-b366-936744356f49}, !- Handle
+  {92df5650-2ada-4b51-9a6e-16def174a4e2}, !- Handle
   VRF System HeatingEIRHiPLR,             !- Name
   1,                                      !- Coefficient1 Constant
   0,                                      !- Coefficient2 x
@@ -2741,7 +2741,7 @@ OS:Curve:Cubic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Cubic,
-  {7efe658f-3093-4dcd-b2ba-8e5f85c3c09d}, !- Handle
+  {bbf0ecff-1a8c-43e2-ba13-d270cba3b701}, !- Handle
   VRF System HeatingCombRatio,            !- Name
   0.7667196604,                           !- Coefficient1 Constant
   0.2617302019,                           !- Coefficient2 x
@@ -2755,7 +2755,7 @@ OS:Curve:Cubic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Biquadratic,
-  {f839eab5-f9d8-47f7-aa6b-4dae10b7b70b}, !- Handle
+  {2cdc656a-e244-4ad1-a9df-a309727ed26a}, !- Handle
   VRF System CoolingLengthCorrectionFactor, !- Name
   2.0388158625,                           !- Coefficient1 Constant
   -0.0024260645,                          !- Coefficient2 x
@@ -2774,7 +2774,7 @@ OS:Curve:Biquadratic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Biquadratic,
-  {4d81e75e-21b6-4640-8f66-8d8d2ada0484}, !- Handle
+  {d4d5328d-aaa6-446c-80e8-42b3c175bada}, !- Handle
   VRF System HeatingLengthCorrectionFactor, !- Name
   1,                                      !- Coefficient1 Constant
   0,                                      !- Coefficient2 x
@@ -2793,7 +2793,7 @@ OS:Curve:Biquadratic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Biquadratic,
-  {4c701ec7-4ac7-4091-a2f9-4a030dd7f381}, !- Handle
+  {365bfc7a-1e51-4ce2-9ae7-0ccd14e1208a}, !- Handle
   VRF System Heat Recovery Cooling Cap Modifier, !- Name
   0.9,                                    !- Coefficient1 Constant
   0,                                      !- Coefficient2 x
@@ -2812,7 +2812,7 @@ OS:Curve:Biquadratic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Biquadratic,
-  {71ead304-98db-468d-875c-57131c8f632b}, !- Handle
+  {3a84df6b-b39b-42d5-84e3-36bd50f990e1}, !- Handle
   VRF System Heat Recovery Cooling Energy Modifier, !- Name
   1.1,                                    !- Coefficient1 Constant
   0,                                      !- Coefficient2 x
@@ -2831,7 +2831,7 @@ OS:Curve:Biquadratic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Biquadratic,
-  {74d2a935-ed92-4a79-927a-ae9268ced84d}, !- Handle
+  {4fb807e1-1d8d-4c0d-a77d-8442469748a7}, !- Handle
   VRF System Heat Recovery Heating Cap Modifier, !- Name
   0.9,                                    !- Coefficient1 Constant
   0,                                      !- Coefficient2 x
@@ -2850,7 +2850,7 @@ OS:Curve:Biquadratic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Biquadratic,
-  {2ffd968d-c137-4981-8396-5b705553d4a7}, !- Handle
+  {10101ce5-eb63-4e9d-856f-0c69bb3e6dbb}, !- Handle
   VRF System Heat Recovery Heating Energy Modifier, !- Name
   1.1,                                    !- Coefficient1 Constant
   0,                                      !- Coefficient2 x
@@ -2869,16 +2869,16 @@ OS:Curve:Biquadratic,
   Dimensionless;                          !- Output Unit Type
 
 OS:ModelObjectList,
-  {a975a55a-94a6-40bc-999a-ce5c25b5ff4d}, !- Handle
-  {52cad0c1-a8a4-44a8-9bce-fdfd0e180e5a}, !- Name
-  {814d19a2-3c6d-4928-a41f-412d630fe7ed}; !- Model Object 1
+  {a9844913-a31e-44f6-9d8a-e431a3926d1c}, !- Handle
+  {3d003a6e-36b1-4e56-82c7-f639886c11ca}, !- Name
+  {4403eff9-9937-4e86-bba3-c5cb108d6d8c}; !- Model Object 1
 
 OS:ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,
-  {814d19a2-3c6d-4928-a41f-412d630fe7ed}, !- Handle
+  {4403eff9-9937-4e86-bba3-c5cb108d6d8c}, !- Handle
   VRF Zone Terminal,                      !- Name
   {3c603b94-4223-427a-8b64-83119ccbfe77}, !- Terminal Unit Availability schedule
-  {c35cb7f5-7e67-41ba-b81d-18b051f1f471}, !- Terminal Unit Air Inlet Node
-  {66172deb-ce43-4ffc-8723-1a84538d8900}, !- Terminal Unit Air Outlet Node
+  {ac66368f-7c51-4aa0-9cbc-52f6758649e1}, !- Terminal Unit Air Inlet Node
+  {dd8b9a69-339a-424c-8915-400e9f132cda}, !- Terminal Unit Air Outlet Node
   autosize,                               !- Supply Air Flow Rate During Cooling Operation {m3/s}
   autosize,                               !- Supply Air Flow Rate When No Cooling is Needed {m3/s}
   autosize,                               !- Supply Air Flow Rate During Heating Operation {m3/s}
@@ -2888,10 +2888,10 @@ OS:ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,
   autosize,                               !- Outdoor Air Flow Rate When No Cooling or Heating is Needed {m3/s}
   {3c603b94-4223-427a-8b64-83119ccbfe77}, !- Supply Air Fan Operating Mode Schedule
   DrawThrough,                            !- Supply Air Fan Placement
-  {1fe3457b-37b9-4f76-9f46-45771319b1aa}, !- Supply Air Fan
+  {f27769a0-4045-4893-b7eb-24e779b5308a}, !- Supply Air Fan
   ,                                       !- Outside Air Mixer
-  {bd45089f-af38-4b14-b078-318e03619fdc}, !- Cooling Coil
-  {771753af-5407-4aa1-8c47-52bb5e5c8ff1}, !- Heating Coil
+  {ab03f4f7-96a9-4cab-85d5-ebbf6df815cb}, !- Cooling Coil
+  {7d1f570b-a58a-4240-b02e-e8041bfb7e71}, !- Heating Coil
   30,                                     !- Zone Terminal Unit On Parasitic Electric Energy Use {W}
   20,                                     !- Zone Terminal Unit Off Parasitic Electric Energy Use {W}
   1,                                      !- Rated Total Heating Capacity Sizing Ratio {W/W}
@@ -2902,7 +2902,7 @@ OS:ZoneHVAC:TerminalUnit:VariableRefrigerantFlow,
   21;                                     !- Maximum Outdoor Dry-Bulb Temperature for Supplemental Heater Operation {C}
 
 OS:Fan:OnOff,
-  {1fe3457b-37b9-4f76-9f46-45771319b1aa}, !- Handle
+  {f27769a0-4045-4893-b7eb-24e779b5308a}, !- Handle
   VRF Zone Terminal Fan,                  !- Name
   {3c603b94-4223-427a-8b64-83119ccbfe77}, !- Availability Schedule Name
   0.6,                                    !- Fan Total Efficiency
@@ -2912,12 +2912,12 @@ OS:Fan:OnOff,
   1,                                      !- Motor In Airstream Fraction
   ,                                       !- Air Inlet Node Name
   ,                                       !- Air Outlet Node Name
-  {11c9cbfe-e0ca-497d-9bcb-b78b3a996f48}, !- Fan Power Ratio Function of Speed Ratio Curve Name
-  {a40c61f4-29eb-421d-9858-2e3e24dfdf74}, !- Fan Efficiency Ratio Function of Speed Ratio Curve Name
+  {5bff2303-5322-432d-9570-cb35eff8082a}, !- Fan Power Ratio Function of Speed Ratio Curve Name
+  {ff40a30b-7806-4d47-9c59-d09b5bad3031}, !- Fan Efficiency Ratio Function of Speed Ratio Curve Name
   ;                                       !- End-Use Subcategory
 
 OS:Curve:Exponent,
-  {11c9cbfe-e0ca-497d-9bcb-b78b3a996f48}, !- Handle
+  {5bff2303-5322-432d-9570-cb35eff8082a}, !- Handle
   Fan On Off Power Curve 19,              !- Name
   1,                                      !- Coefficient1 Constant
   0,                                      !- Coefficient2 Constant
@@ -2930,7 +2930,7 @@ OS:Curve:Exponent,
   ;                                       !- Output Unit Type
 
 OS:Curve:Cubic,
-  {a40c61f4-29eb-421d-9858-2e3e24dfdf74}, !- Handle
+  {ff40a30b-7806-4d47-9c59-d09b5bad3031}, !- Handle
   Fan On Off Efficiency Curve 6,          !- Name
   1,                                      !- Coefficient1 Constant
   0,                                      !- Coefficient2 x
@@ -2944,19 +2944,19 @@ OS:Curve:Cubic,
   ;                                       !- Output Unit Type
 
 OS:Coil:Cooling:DX:VariableRefrigerantFlow,
-  {bd45089f-af38-4b14-b078-318e03619fdc}, !- Handle
+  {ab03f4f7-96a9-4cab-85d5-ebbf6df815cb}, !- Handle
   VRF Zone Terminal Cooling Coil,         !- Name
   {3c603b94-4223-427a-8b64-83119ccbfe77}, !- Availability Schedule
   autosize,                               !- Rated Total Cooling Capacity {W}
   autosize,                               !- Rated Sensible Heat Ratio
   autosize,                               !- Rated Air Flow Rate {m3/s}
-  {b690b69d-be14-4fad-9ab8-635c595a2594}, !- Cooling Capacity Ratio Modifier Function of Temperature Curve
-  {52ef8c03-d81d-4fc5-b422-326bb1544b85}, !- Cooling Capacity Modifier Curve Function of Flow Fraction
+  {403eafd2-2e46-4000-882d-b5d9384c3ddb}, !- Cooling Capacity Ratio Modifier Function of Temperature Curve
+  {b6c588da-f1b7-4d58-8e70-b3552ae2e3e4}, !- Cooling Capacity Modifier Curve Function of Flow Fraction
   ,                                       !- Coil Air Inlet Node
   ;                                       !- Coil Air Outlet Node
 
 OS:Curve:Biquadratic,
-  {b690b69d-be14-4fad-9ab8-635c595a2594}, !- Handle
+  {403eafd2-2e46-4000-882d-b5d9384c3ddb}, !- Handle
   VRFTUCoolCapFT,                         !- Name
   0.0585884077803259,                     !- Coefficient1 Constant
   0.0587396532718384,                     !- Coefficient2 x
@@ -2975,7 +2975,7 @@ OS:Curve:Biquadratic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Quadratic,
-  {52ef8c03-d81d-4fc5-b422-326bb1544b85}, !- Handle
+  {b6c588da-f1b7-4d58-8e70-b3552ae2e3e4}, !- Handle
   VRFACCoolCapFFF,                        !- Name
   0.8,                                    !- Coefficient1 Constant
   0.2,                                    !- Coefficient2 x
@@ -2988,18 +2988,18 @@ OS:Curve:Quadratic,
   ;                                       !- Output Unit Type
 
 OS:Coil:Heating:DX:VariableRefrigerantFlow,
-  {771753af-5407-4aa1-8c47-52bb5e5c8ff1}, !- Handle
+  {7d1f570b-a58a-4240-b02e-e8041bfb7e71}, !- Handle
   VRF Zone Terminal Heating Coil,         !- Name
   {3c603b94-4223-427a-8b64-83119ccbfe77}, !- Availability Schedule
   autosize,                               !- Rated Total Heating Capacity {W}
   autosize,                               !- Rated Air Flow Rate {m3/s}
   ,                                       !- Coil Air Inlet Node
   ,                                       !- Coil Air Outlet Node
-  {b0cdd638-d5e7-4390-926a-dc4052b29e72}, !- Heating Capacity Ratio Modifier Function of Temperature Curve
-  {c83af935-48b2-46d8-96a5-066fc426df4e}; !- Heating Capacity Modifier Function of Flow Fraction Curve
+  {48e8bdcb-bbc9-4a76-b280-01cd1b9063d7}, !- Heating Capacity Ratio Modifier Function of Temperature Curve
+  {da3aef25-be85-4403-a41f-50a225ac49e5}; !- Heating Capacity Modifier Function of Flow Fraction Curve
 
 OS:Curve:Biquadratic,
-  {b0cdd638-d5e7-4390-926a-dc4052b29e72}, !- Handle
+  {48e8bdcb-bbc9-4a76-b280-01cd1b9063d7}, !- Handle
   Coil Heating DX Variable Refrigerant Flow 1 VRFTUHeatCAPFT, !- Name
   0.375443994956127,                      !- Coefficient1 Constant
   0.0668190645147821,                     !- Coefficient2 x
@@ -3018,7 +3018,7 @@ OS:Curve:Biquadratic,
   Dimensionless;                          !- Output Unit Type
 
 OS:Curve:Quadratic,
-  {c83af935-48b2-46d8-96a5-066fc426df4e}, !- Handle
+  {da3aef25-be85-4403-a41f-50a225ac49e5}, !- Handle
   Coil Heating DX Variable Refrigerant Flow 1 VRFACCoolCapFFF, !- Name
   0.8,                                    !- Coefficient1 Constant
   0.2,                                    !- Coefficient2 x
@@ -3031,42 +3031,42 @@ OS:Curve:Quadratic,
   ;                                       !- Output Unit Type
 
 OS:Node,
-  {8871eb69-e563-4be6-b507-36f55422fa28}, !- Handle
+  {daa79bc4-28e6-4506-a3a0-b97bef06631b}, !- Handle
   Node 2,                                 !- Name
-  {cfba2699-c44d-422a-90ba-2cdcbe161b97}, !- Inlet Port
-  {c35cb7f5-7e67-41ba-b81d-18b051f1f471}; !- Outlet Port
+  {f63d663f-17a9-4847-897a-4c38e30b57ed}, !- Inlet Port
+  {ac66368f-7c51-4aa0-9cbc-52f6758649e1}; !- Outlet Port
 
 OS:Connection,
-  {cfba2699-c44d-422a-90ba-2cdcbe161b97}, !- Handle
+  {f63d663f-17a9-4847-897a-4c38e30b57ed}, !- Handle
   {c1a8a617-60d2-4174-9d6f-2acc3ab4a88a}, !- Source Object
   2,                                      !- Outlet Port
-  {8871eb69-e563-4be6-b507-36f55422fa28}, !- Target Object
+  {daa79bc4-28e6-4506-a3a0-b97bef06631b}, !- Target Object
   2;                                      !- Inlet Port
 
 OS:Connection,
-  {c35cb7f5-7e67-41ba-b81d-18b051f1f471}, !- Handle
-  {8871eb69-e563-4be6-b507-36f55422fa28}, !- Source Object
+  {ac66368f-7c51-4aa0-9cbc-52f6758649e1}, !- Handle
+  {daa79bc4-28e6-4506-a3a0-b97bef06631b}, !- Source Object
   3,                                      !- Outlet Port
-  {814d19a2-3c6d-4928-a41f-412d630fe7ed}, !- Target Object
+  {4403eff9-9937-4e86-bba3-c5cb108d6d8c}, !- Target Object
   3;                                      !- Inlet Port
 
 OS:Node,
-  {a6f79184-8f27-4252-a619-751867fd9382}, !- Handle
+  {9c1562eb-22ca-4818-b822-2af6762543a5}, !- Handle
   Node 3,                                 !- Name
-  {66172deb-ce43-4ffc-8723-1a84538d8900}, !- Inlet Port
-  {ade4cd12-274b-4244-bde9-851d9a023a99}; !- Outlet Port
+  {dd8b9a69-339a-424c-8915-400e9f132cda}, !- Inlet Port
+  {8b19a406-532d-4d48-ab67-8f3462ba5f97}; !- Outlet Port
 
 OS:Connection,
-  {ade4cd12-274b-4244-bde9-851d9a023a99}, !- Handle
-  {a6f79184-8f27-4252-a619-751867fd9382}, !- Source Object
+  {8b19a406-532d-4d48-ab67-8f3462ba5f97}, !- Handle
+  {9c1562eb-22ca-4818-b822-2af6762543a5}, !- Source Object
   3,                                      !- Outlet Port
   {1f9abb44-4cab-4d53-8f42-b77c611b5441}, !- Target Object
   2;                                      !- Inlet Port
 
 OS:Connection,
-  {66172deb-ce43-4ffc-8723-1a84538d8900}, !- Handle
-  {814d19a2-3c6d-4928-a41f-412d630fe7ed}, !- Source Object
+  {dd8b9a69-339a-424c-8915-400e9f132cda}, !- Handle
+  {4403eff9-9937-4e86-bba3-c5cb108d6d8c}, !- Source Object
   4,                                      !- Outlet Port
-  {a6f79184-8f27-4252-a619-751867fd9382}, !- Target Object
+  {9c1562eb-22ca-4818-b822-2af6762543a5}, !- Target Object
   2;                                      !- Inlet Port
 

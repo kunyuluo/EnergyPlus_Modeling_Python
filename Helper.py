@@ -357,3 +357,49 @@ def set_always_on(
 
     if not inplace:
         return on_schedule, on_schedule_hvac
+
+
+def sort_zone_by_condition(idf: IDF):
+    all_zones = get_all_targets(idf, key='Zone', field='Name')
+    all_sizing = get_all_targets(idf, key='Sizing:Zone', field='Zone_or_ZoneList_Name')
+
+    conditioned_zones = {}
+    unconditioned_zones = {}
+    conditioned_zone_obj = []
+    conditioned_zone_field = []
+    unconditioned_zone_obj = []
+    unconditioned_zone_field = []
+    for i, zone_name in enumerate(all_zones['field']):
+        zone_obj = all_zones['object'][i]
+        zone_field = zone_name
+        if zone_name in all_sizing['field']:
+            conditioned_zone_obj.append(zone_obj)
+            conditioned_zone_field.append(zone_field)
+        else:
+            unconditioned_zone_obj.append(zone_obj)
+            unconditioned_zone_field.append(zone_field)
+
+    conditioned_zones['object'] = conditioned_zone_obj
+    conditioned_zones['field'] = conditioned_zone_field
+    unconditioned_zones['object'] = unconditioned_zone_obj
+    unconditioned_zones['field'] = unconditioned_zone_field
+
+    return conditioned_zones, unconditioned_zones
+
+
+def sort_zone_by_name(zones: list[str]):
+    sorted_zones = {}
+
+    category = []
+    unique_index = []
+    for zone in zones:
+        category_index = zone.split('_')[0][0]
+        category.append(category_index)
+        if category_index not in unique_index:
+            unique_index.append(category_index)
+            sorted_zones[category_index] = [zone]
+        else:
+            sorted_zones[category_index].append(zone)
+
+    return sorted_zones
+

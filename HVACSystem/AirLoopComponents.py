@@ -331,7 +331,7 @@ class AirLoopComponent:
             capacity_temperature_curve=None,
             capacity_flow_curve=None):
         name = 'VRF Cooling Coil' if name is None else name
-        coil = idf.newidfobject('Coil:Cooling:DX:VariableRefrigerantFlow', Nmae=name)
+        coil = idf.newidfobject('Coil:Cooling:DX:VariableRefrigerantFlow', Name=name)
 
         if schedule is None:
             coil['Availability_Schedule_Name'] = schedule_always_on_hvac
@@ -507,15 +507,15 @@ class AirLoopComponent:
             capacity_temperature_curve=None,
             capacity_flow_curve=None):
         name = 'VRF Heating Coil' if name is None else name
-        coil = idf.newidfobject('Coil:Heating:DX:VariableRefrigerantFlow', Nmae=name)
+        coil = idf.newidfobject('Coil:Heating:DX:VariableRefrigerantFlow', Name=name)
 
         if schedule is None:
-            coil['Availability_Schedule_Name'] = schedule_always_on_hvac
+            coil['Availability_Schedule'] = schedule_always_on_hvac
         else:
             if isinstance(schedule, EpBunch):
-                coil['Availability_Schedule_Name'] = schedule.Name
+                coil['Availability_Schedule'] = schedule.Name
             elif isinstance(schedule, str):
-                coil['Availability_Schedule_Name'] = schedule
+                coil['Availability_Schedule'] = schedule
             else:
                 raise TypeError('Invalid type of schedule.')
 
@@ -713,7 +713,7 @@ class AirLoopComponent:
                 min_out=0.0,
                 max_out=1.0,
                 name=f'{name} Power Ratio Curve')
-        fan['Fan_Power_Ratio_Function_of_Speed_Ratio_Curve_Name'] = power_ratio_function_speed_ratio_curve
+        fan['Fan_Power_Ratio_Function_of_Speed_Ratio_Curve_Name'] = power_ratio_function_speed_ratio_curve.Name
         if efficiency_ratio_function_speed_ratio_curve is None:
             efficiency_ratio_function_speed_ratio_curve = PerformanceCurve.cubic(
                 idf,
@@ -724,7 +724,7 @@ class AirLoopComponent:
                 min_x=0.0,
                 max_x=1.0,
                 name=f'{name} Efficiency Curve')
-        fan['Fan_Efficiency_Ratio_Function_of_Speed_Ratio_Curve_Name'] = efficiency_ratio_function_speed_ratio_curve
+        fan['Fan_Efficiency_Ratio_Function_of_Speed_Ratio_Curve_Name'] = efficiency_ratio_function_speed_ratio_curve.Name
 
         fan['Air_Inlet_Node_Name'] = f'{name} air inlet'
         fan['Air_Outlet_Node_Name'] = f'{name} air outlet'

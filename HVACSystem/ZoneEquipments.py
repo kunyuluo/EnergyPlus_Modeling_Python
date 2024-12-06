@@ -33,8 +33,10 @@ class ZoneEquipment:
                 equipment_sequences.append(i + 1)
 
         for i, equip in enumerate(equipments):
+            equip_type = equip['type']
+            name_field = 'Zone_Terminal_Unit_Name' if 'VariableRefrigerantFlow' in equip_type else 'Name'
             equip_list[f'Zone_Equipment_{i + 1}_Object_Type'] = equip['type']
-            equip_list[f'Zone_Equipment_{i + 1}_Name'] = equip['object'].Name
+            equip_list[f'Zone_Equipment_{i + 1}_Name'] = equip['object'][name_field]
             equip_list[f'Zone_Equipment_{i + 1}_Cooling_Sequence'] = equipment_sequences[i]
             equip_list[f'Zone_Equipment_{i + 1}_Heating_or_NoLoad_Sequence'] = equipment_sequences[i]
 
@@ -44,7 +46,7 @@ class ZoneEquipment:
     def zone_equipment_group(
             idf: IDF,
             zones: list[EpBunch] | list[str] = None,
-            air_terminal_type: int = 1,
+            air_terminal_type: int = None,
             terminal_for_outdoor_air: bool = False,
             vrf_terminal: bool = False,
             zone_air_unit_type: int = None,
@@ -156,12 +158,13 @@ class ZoneEquipment:
             15: ['ZoneHVAC:VentilatedSlab:SlabGroup', None],
         }
 
-        terminal_type = Air_Terminal_types[air_terminal_type][0]
+        terminal_type = Air_Terminal_types[air_terminal_type][0] if air_terminal_type is not None else None
         zone_equip_type = Zone_HVAC_types[zone_air_unit_type][0] if zone_air_unit_type is not None else None
         radiative_unit_type = Radiative_Unit_types[zone_radiative_type][0] if zone_radiative_type is not None else None
         equip_group_assembly = []
         cooling_coils = []
         heating_coils = []
+        vrf_terminals = []
         zone_splitter_out_nodes = []
         zone_mixer_in_nodes = []
 
@@ -187,11 +190,12 @@ class ZoneEquipment:
 
                 # Inlet NodeList:
                 inlet_nodelist_name = f'{zone_name} Inlet Node List'
-                connection['Zone_Air_Inlet_Node_or_NodeList_Name'] = inlet_nodelist_name
+                if vrf_terminal or zone_air_unit_type is not None:
+                    connection['Zone_Air_Inlet_Node_or_NodeList_Name'] = inlet_nodelist_name
 
                 # Exhaust NodeList:
                 exhaust_nodelist_name = f'{zone_name} Exhaust Node List'
-                if zone_air_unit_type is not None:
+                if zone_air_unit_type is not None or vrf_terminal:
                     connection['Zone_Air_Exhaust_Node_or_NodeList_Name'] = exhaust_nodelist_name
 
                 # Air Node:
@@ -200,33 +204,36 @@ class ZoneEquipment:
 
                 # Return Air NodeList:
                 return_air_nodelist_name = f'{zone_name} Return Air Node List'
-                connection['Zone_Return_Air_Node_or_NodeList_Name'] = return_air_nodelist_name
+                if air_terminal_type is not None:
+                    connection['Zone_Return_Air_Node_or_NodeList_Name'] = return_air_nodelist_name
 
                 equip_group_assembly.append(connection)
 
                 # Node List:
                 ###############################################################################################
                 # Inlet NodeList:
-                inlet_nodelist = idf.newidfobject('NodeList', Name=inlet_nodelist_name)
-                terminal_node_name = f'{zone_name} terminal outlet'
-                zone_equip_node_name = f'{zone_name} zone hvac outlet'
-                inlet_nodelist['Node_1_Name'] = terminal_node_name
-                # if zone_air_unit_type is not None:
-                #     inlet_nodelist['Node_2_Name'] = zone_equip_node_name
-                equip_group_assembly.append(inlet_nodelist)
+                inlet_node_count = 0
+                if vrf_terminal or zone_air_unit_type is not None:
+                    inlet_nodelist = idf.newidfobject('NodeList', Name=inlet_nodelist_name)
+                    equip_group_assembly.append(inlet_nodelist)
+                else:
+                    inlet_nodelist = None
 
                 # Exhaust NodeList:
-                # if zone_air_unit_type is not None:
-                #     exhaust_nodelist = idf.newidfobject('NodeList', Name=exhaust_nodelist_name)
-                #     # exhaust_nodelist['Node_1_Name'] = zone_air_unit_type['object']['Air_Inlet_Node_Name']
-                #     equip_group_assembly.append(exhaust_nodelist)
+                exhaust_node_count = 0
+                if zone_air_unit_type is not None or vrf_terminal:
+                    exhaust_nodelist = idf.newidfobject('NodeList', Name=exhaust_nodelist_name)
+                    equip_group_assembly.append(exhaust_nodelist)
+                else:
+                    exhaust_nodelist = None
 
                 # Return Air NodeList:
-                return_air_nodelist = idf.newidfobject('NodeList', Name=return_air_nodelist_name)
-                return_air_node_name = f'{zone_name} return air inlet'
-                return_air_nodelist['Node_1_Name'] = return_air_node_name
-                equip_group_assembly.append(return_air_nodelist)
-                zone_mixer_in_nodes.append(return_air_node_name)
+                if air_terminal_type is not None:
+                    return_air_nodelist = idf.newidfobject('NodeList', Name=return_air_nodelist_name)
+                    return_air_node_name = f'{zone_name} return air inlet'
+                    return_air_nodelist['Node_1_Name'] = return_air_node_name
+                    equip_group_assembly.append(return_air_nodelist)
+                    zone_mixer_in_nodes.append(return_air_node_name)
 
                 equipments = []
                 if air_terminal_type is not None:
@@ -234,11 +241,18 @@ class ZoneEquipment:
                     ###############################################################################################
                     air_distribute_name = f'{zone_name} Air Distribution Unit'
                     air_distribute = AirTerminal.air_distribution_unit(idf, name=air_distribute_name)
+
+                    terminal_node_name = f'{zone_name} terminal outlet'
                     air_distribute['object']['Air_Distribution_Unit_Outlet_Node_Name'] = terminal_node_name
                     air_distribute['object']['Air_Terminal_Object_Type'] = terminal_type
                     terminal_name = f'{zone_name} terminal'
                     air_distribute['object']['Air_Terminal_Name'] = terminal_name
                     equip_group_assembly.append(air_distribute['object'])
+
+                    # Add Inlet node:
+                    if inlet_nodelist is not None:
+                        inlet_node_count += 1
+                        inlet_nodelist[f'Node_{inlet_node_count}_Name'] = terminal_node_name
 
                     # Air Terminal Unit:
                     ###############################################################################################
@@ -270,13 +284,26 @@ class ZoneEquipment:
                         raise NotImplementedError('Air terminal type not implemented')
 
                     equipments.append(air_distribute)
-                    
+
                 # VRF Terminal if available:
                 ###############################################################################################
                 if vrf_terminal:
                     vrf_terminal_name = f'{zone_name} VRF Terminal'
                     vrf_terminal = ZoneForcedAirUnit.vrf_terminal(idf, name=vrf_terminal_name)
 
+                    # Add Inlet node:
+                    if inlet_nodelist is not None:
+                        inlet_node_count += 1
+                        inlet_nodelist[f'Node_{inlet_node_count}_Name'] =\
+                            vrf_terminal['object']['Terminal_Unit_Air_Outlet_Node_Name']
+
+                    # Add exhaust node:
+                    if exhaust_nodelist is not None:
+                        exhaust_node_count += 1
+                        exhaust_nodelist[f'Node_{exhaust_node_count}_Name'] =\
+                            vrf_terminal['object']['Terminal_Unit_Air_Inlet_Node_Name']
+
+                    vrf_terminals.append(vrf_terminal['object'])
                     equipments.append(vrf_terminal)
 
                 # Zone HVAC Equipment if available:
@@ -296,13 +323,17 @@ class ZoneEquipment:
                         if 'heating_coil' in zone_equip.keys() and zone_equip['heating_coil'] is not None:
                             heating_coils.append(zone_equip['heating_coil'])
 
-                        # Add to Inlet Node List:
-                        inlet_nodelist['Node_2_Name'] = zone_equip['object']['Air_Outlet_Node_Name']
+                        # Add Inlet node:
+                        if inlet_nodelist is not None:
+                            inlet_node_count += 1
+                            inlet_nodelist[f'Node_{inlet_node_count}_Name'] =\
+                                zone_equip['object']['Air_Outlet_Node_Name']
 
-                        # Add exhaust nodelist accordingly:
-                        exhaust_nodelist = idf.newidfobject('NodeList', Name=exhaust_nodelist_name)
-                        exhaust_nodelist['Node_1_Name'] = zone_equip['object']['Air_Inlet_Node_Name']
-                        equip_group_assembly.append(exhaust_nodelist)
+                        # Add exhaust node:
+                        if exhaust_nodelist is not None:
+                            exhaust_node_count += 1
+                            exhaust_nodelist[f'Node_{exhaust_node_count}_Name'] =\
+                                zone_equip['object']['Air_Inlet_Node_Name']
                     else:
                         raise NotImplementedError('Zone HVAC type not implemented')
 
@@ -333,6 +364,7 @@ class ZoneEquipment:
                 'Equipments': equip_group_assembly,
                 'Cooling_Coils': cooling_coils,
                 'Heating_Coils': heating_coils,
+                'VRF_Terminals': vrf_terminals,
                 'Zone_Splitter_Nodes': zone_splitter_out_nodes,
                 'Zone_Mixer_Nodes': zone_mixer_in_nodes,
             }

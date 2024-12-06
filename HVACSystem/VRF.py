@@ -24,7 +24,7 @@ class VRF:
             condenser_type: int = 1,
             fuel_type: int = 1,
             performance_curve_set=None,
-            terminals: list[str] | list[EpBunch] | list[dict] = None,
+            terminals: list[EpBunch] = None,
             test_mode: bool = False):
         """
         -Heating Performance Curve Outdoor Temperature Type \n
@@ -88,7 +88,7 @@ class VRF:
         vrf['Defrost_Strategy'] = defrost_types[2]
         vrf['Defrost_Control'] = defrost_controls[1]
         vrf['Defrost_Time_Period_Fraction'] = 0.058333
-        vrf['Resistive_Defrost_Heater_Capacity'] = 0
+        vrf['Resistive_Defrost_Heater_Capacity'] = 1e-07
         vrf['Maximum_Outdoor_Drybulb_Temperature_for_Defrost_Operation'] = 7
         vrf['Condenser_Type'] = condenser_types[condenser_type]
         if condenser_type == 3:
@@ -114,14 +114,6 @@ class VRF:
 
         vrf_assembly.append(vrf)
 
-        # Performance curves:
-        if performance_curve_set is None:
-            performance_curve_set = PerformanceCurve.vrf_performance_curve_set_1(idf)
-        for key in performance_curve_set.keys():
-            vrf[key] = performance_curve_set[key]['Name']
-        for curve in performance_curve_set.values():
-            vrf_assembly.append(curve)
-
         # Terminal units:
         terminal_list_name = f'{name} Terminal List'
         terminal_list = idf.newidfobject('ZoneTerminalUnitList')
@@ -129,17 +121,21 @@ class VRF:
         terminals = [] if terminals is None else terminals
         if len(terminals) > 0:
             for i, terminal in enumerate(terminals):
-                if isinstance(terminal, str):
-                    terminal_list[f'Zone_Terminal_Unit_Name_{i + 1}'] = terminal
-                elif isinstance(terminal, dict):
-                    terminal_list[f'Zone_Terminal_Unit_Name_{i + 1}'] = terminal['object'].Name
-                elif isinstance(terminal, EpBunch):
-                    terminal_list[f'Zone_Terminal_Unit_Name_{i + 1}'] = terminal.Name
+                if isinstance(terminal, EpBunch):
+                    terminal_list[f'Zone_Terminal_Unit_Name_{i + 1}'] = terminal['Zone_Terminal_Unit_Name']
                 else:
                     raise TypeError('Invalid type of terminal.')
 
         vrf['Zone_Terminal_Unit_List_Name'] = terminal_list_name
         vrf_assembly.append(terminal_list)
+
+        # Performance curves:
+        if performance_curve_set is None:
+            performance_curve_set = PerformanceCurve.vrf_performance_curve_set_1(idf)
+        for key in performance_curve_set.keys():
+            vrf[key] = performance_curve_set[key]['Name']
+        for curve in performance_curve_set.values():
+            vrf_assembly.append(curve)
 
         comp = {
             'object': vrf,

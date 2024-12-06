@@ -220,8 +220,6 @@ class ZoneForcedAirUnit:
             else:
                 raise TypeError('Invalid type of supply_air_fan_schedule.')
 
-        terminal['Supply_Air_Fan_Placement'] = placements[supply_air_fan_placement]
-
         # OutdoorAir Mixer object:
         mixer_name = f'{name} OA Mixer'
         oa_mixer = idf.newidfobject('OutdoorAir:Mixer', Name=mixer_name)
@@ -233,41 +231,74 @@ class ZoneForcedAirUnit:
         oa_mixer['Outdoor_Air_Stream_Node_Name'] = oa_node_name
         oa_mixer['Relief_Air_Stream_Node_Name'] = relief_air_node_name
         oa_mixer['Return_Air_Stream_Node_Name'] = return_air_node_name
+        terminal['Outside_Air_Mixer_Object_Type'] = 'OutdoorAir:Mixer'
+        terminal['Outside_Air_Mixer_Object_Name'] = mixer_name
 
         # Node list:
         node_list = idf.newidfobject('OutdoorAir:NodeList')
         node_list['Node_or_NodeList_Name_1'] = oa_node_name
 
         terminal['Terminal_Unit_Air_Inlet_Node_Name'] = return_air_node_name
-        terminal_air_out_node = f'{name} Terminal Air Outlet Node'
-        terminal['Terminal_Unit_Air_Outlet_Node_Name'] = terminal_air_out_node
+        terminal_air_out_node_name = f'{name} Terminal Air Outlet Node'
+        terminal['Terminal_Unit_Air_Outlet_Node_Name'] = terminal_air_out_node_name
 
-        # Cooling coil object:
-        if cooling_coil is None:
-            clg_coil_name = f'{name} Cooling Coil'
-            cooling_coil = AirLoopComponent.cooling_coil_vrf(idf, clg_coil_name)
-        terminal['Cooling_Coil_Object_Type'] = cooling_coil['type']
-        terminal['Cooling_Coil_Object_Name'] = cooling_coil['object'].Name
-        cooling_coil['object'][cooling_coil['air_inlet_field']] = mixed_air_node_name
+        terminal['Supply_Air_Fan_Placement'] = placements[supply_air_fan_placement]
 
-        # Heating coil object:
-        if heating_coil is None:
-            htg_coil_name = f'{name} Cooling Coil'
-            heating_coil = AirLoopComponent.heating_coil_vrf(idf, htg_coil_name)
-        terminal['Heating_Coil_Object_Type'] = heating_coil['type']
-        terminal['Heating_Coil_Object_Name'] = heating_coil['object'].Name
-        heating_coil['object'][heating_coil['air_inlet_field']] =\
-            cooling_coil['object'][cooling_coil['air_outlet_field']]
+        if supply_air_fan_placement == 1:  # Blow through
+            # Supply air fan object:
+            if supply_air_fan is None:
+                fan_name = f'{name} Fan OnOff'
+                supply_air_fan = AirLoopComponent.fan_on_off(idf, fan_name)
+            terminal['Supply_Air_Fan_Object_Type'] = supply_air_fan['type']
+            terminal['Supply_Air_Fan_Object_Name'] = supply_air_fan['object'].Name
+            supply_air_fan['object'][supply_air_fan['air_inlet_field']] = mixed_air_node_name
 
-        # Supply air fan object:
-        if supply_air_fan is None:
-            fan_name = f'{name} Fan OnOff'
-            supply_air_fan = AirLoopComponent.fan_on_off(idf, fan_name)
-        terminal['Supply_Air_Fan_Object_Type'] = supply_air_fan['type']
-        terminal['Supply_Air_Fan_Object_Name'] = supply_air_fan['object'].Name
-        supply_air_fan['object'][supply_air_fan['air_inlet_field']] =\
-            heating_coil['object'][heating_coil['air_outlet_field']]
-        supply_air_fan['object'][supply_air_fan['air_outlet_field']] = terminal_air_out_node
+            # Cooling coil object:
+            if cooling_coil is None:
+                clg_coil_name = f'{name} Cooling Coil'
+                cooling_coil = AirLoopComponent.cooling_coil_vrf(idf, clg_coil_name)
+            terminal['Cooling_Coil_Object_Type'] = cooling_coil['type']
+            terminal['Cooling_Coil_Object_Name'] = cooling_coil['object'].Name
+            cooling_coil['object'][cooling_coil['air_inlet_field']] =\
+                supply_air_fan['object'][supply_air_fan['air_outlet_field']]
+
+            # Heating coil object:
+            if heating_coil is None:
+                htg_coil_name = f'{name} Heating Coil'
+                heating_coil = AirLoopComponent.heating_coil_vrf(idf, htg_coil_name)
+            terminal['Heating_Coil_Object_Type'] = heating_coil['type']
+            terminal['Heating_Coil_Object_Name'] = heating_coil['object'].Name
+            heating_coil['object'][heating_coil['air_inlet_field']] =\
+                cooling_coil['object'][cooling_coil['air_outlet_field']]
+            heating_coil['object'][heating_coil['air_outlet_field']] = terminal_air_out_node_name
+
+        else:  # Draw through
+            # Cooling coil object:
+            if cooling_coil is None:
+                clg_coil_name = f'{name} Cooling Coil'
+                cooling_coil = AirLoopComponent.cooling_coil_vrf(idf, clg_coil_name)
+            terminal['Cooling_Coil_Object_Type'] = cooling_coil['type']
+            terminal['Cooling_Coil_Object_Name'] = cooling_coil['object'].Name
+            cooling_coil['object'][cooling_coil['air_inlet_field']] = mixed_air_node_name
+
+            # Heating coil object:
+            if heating_coil is None:
+                htg_coil_name = f'{name} Heating Coil'
+                heating_coil = AirLoopComponent.heating_coil_vrf(idf, htg_coil_name)
+            terminal['Heating_Coil_Object_Type'] = heating_coil['type']
+            terminal['Heating_Coil_Object_Name'] = heating_coil['object'].Name
+            heating_coil['object'][heating_coil['air_inlet_field']] =\
+                cooling_coil['object'][cooling_coil['air_outlet_field']]
+
+            # Supply air fan object:
+            if supply_air_fan is None:
+                fan_name = f'{name} Fan OnOff'
+                supply_air_fan = AirLoopComponent.fan_on_off(idf, fan_name)
+            terminal['Supply_Air_Fan_Object_Type'] = supply_air_fan['type']
+            terminal['Supply_Air_Fan_Object_Name'] = supply_air_fan['object'].Name
+            supply_air_fan['object'][supply_air_fan['air_inlet_field']] =\
+                heating_coil['object'][heating_coil['air_outlet_field']]
+            supply_air_fan['object'][supply_air_fan['air_outlet_field']] = terminal_air_out_node_name
 
         if supplemental_heating_coil is not None:
             terminal['Supplemental_Heating_Coil_Object_Type'] = supplemental_heating_coil['type']

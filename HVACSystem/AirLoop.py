@@ -24,6 +24,7 @@ class AirLoop:
             setpoint_manager: EpBunch = None,
             zones: list[str] | list[EpBunch] = None,
             air_terminal_type: int = 1,
+            vrf_system: bool = False,
             zone_air_unit_type: int = None,
             zone_radiative_type: int = None,
             design_supply_air_flow_rate: float = None,
@@ -89,6 +90,7 @@ class AirLoop:
         loop_assembly = []
         water_clg_coils = []
         water_htg_coils = []
+        vrf_terminals = []
 
         # Add water coils from supply branch if available:
         ###############################################################################################
@@ -469,6 +471,7 @@ class AirLoop:
             idf,
             zones=zones,
             air_terminal_type=air_terminal_type,
+            vrf_terminal=vrf_system,
             zone_air_unit_type=zone_air_unit_type,
             zone_radiative_type=zone_radiative_type)
         loop_assembly.extend(zone_equips['Equipments'])
@@ -477,6 +480,7 @@ class AirLoop:
         zone_mixer_nodes = zone_equips['Zone_Mixer_Nodes']
         water_clg_coils.extend(zone_equips['Cooling_Coils'])
         water_htg_coils.extend(zone_equips['Heating_Coils'])
+        vrf_terminals.extend(zone_equips['VRF_Terminals'])
 
         # Supply / Return Path:
         ###############################################################################################
@@ -514,22 +518,11 @@ class AirLoop:
                 zone_mixer[f'Inlet_{i+1}_Node_Name'] = node
         loop_assembly.append(zone_mixer)
 
-        # Get all water coils:
-        ###############################################################################################
-        for item in supply_branches:
-            if 'WATER' in item['type'].upper():
-                category = item['type'].split(':')[1]
-                if category == 'COOLING':
-                    water_clg_coils.append(item)
-                if category == 'HEATING':
-                    water_htg_coils.append(item)
-                else:
-                    pass
-
         output_assembly = {
             'Loop': loop_assembly,
             'Cooling_Coils': water_clg_coils,
             'Heating_Coils': water_htg_coils,
+            'VRF_Terminals': vrf_terminals,
         }
 
         return output_assembly
@@ -537,7 +530,6 @@ class AirLoop:
     @staticmethod
     def no_air_loop(
             idf: IDF,
-            name: str = None,
             zones: list[str] | list[EpBunch] = None,
             vrf_system: bool = False,
             zone_air_unit_type: int = None,
@@ -578,3 +570,33 @@ class AirLoop:
             14: 'ZoneHVAC:VentilatedSlab',
             15: 'ZoneHVAC:VentilatedSlab:SlabGroup'
         """
+        loop_assembly = []
+        water_clg_coils = []
+        water_htg_coils = []
+        vrf_terminals = []
+
+        # Zone Equipment List:
+        ###############################################################################################
+        zone_equips = ZoneEquipment.zone_equipment_group(
+            idf,
+            zones=zones,
+            air_terminal_type=None,
+            vrf_terminal=vrf_system,
+            zone_air_unit_type=zone_air_unit_type,
+            zone_radiative_type=zone_radiative_type)
+        loop_assembly.extend(zone_equips['Equipments'])
+
+        water_clg_coils.extend(zone_equips['Cooling_Coils'])
+        water_htg_coils.extend(zone_equips['Heating_Coils'])
+        vrf_terminals.extend(zone_equips['VRF_Terminals'])
+
+        output_assembly = {
+            'Loop': loop_assembly,
+            'Cooling_Coils': water_clg_coils,
+            'Heating_Coils': water_htg_coils,
+            'VRF_Terminals': vrf_terminals,
+        }
+
+        return output_assembly
+
+
