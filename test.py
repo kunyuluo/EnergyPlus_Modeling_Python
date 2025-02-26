@@ -18,6 +18,7 @@ except eppy.modeleditor.IDDAlreadySetError as e:
 # file_path = 'Data/CIB-Office.idf'
 file_path = 'Data/TestOffice.idf'
 # file_path = 'Data/SmallOffice_CentralDOAS.idf'
+# file_path = 'Data/RefBldgs/ASHRAE901_ApartmentHighRise_STD2022_NewYork.idf'
 
 my_model = IDF(file_path)
 # my_model = IDF(file_path)
@@ -40,25 +41,26 @@ delete_hvac_objs(my_model)
 
 # Creating new air loop:
 #####################################################################
-clg_coil = AirLoopComponent.cooling_coil_water(my_model, 'AHU Cooling Coil', control_variable=2)
+clg_coil = AirLoopComponent.cooling_coil_water(my_model, 'AHU Cooling Coil', control_variable=1)
 htg_coil = AirLoopComponent.heating_coil_water(my_model, 'AHU Heating Coil')
 fan = AirLoopComponent.fan_variable_speed(my_model, 'Fan', fan_curve_coeff=PerformanceCurve.fan_curve_set())
 ahu_spm = SetpointManager.scheduled(my_model, name='AHU Setpoint Manager', constant_value=12.8)
+# ahu_spm_dehum = SetpointManager.scheduled(my_model, name='AHU Setpoint Manager Dehum', constant_value=0.008)
 # sizing = AirLoopComponent.sizing(my_model, doas=False)
 
 loop = AirLoop.air_loop_hvac(
     my_model,
-    name='DOAS System',
-    doas=True,
-    heat_recovery=True,
+    name='VAV System',
+    doas=False,
+    heat_recovery=False,
     supply_branches=[clg_coil, htg_coil],
     supply_fan=fan,
     setpoint_manager=ahu_spm,
     zones=zones,
-    air_terminal_type=1,
+    air_terminal_type=3,
     # sizing=sizing,
-    zone_air_unit_type=2,
-    zone_radiative_type=5)
+    zone_air_unit_type=None,
+    zone_radiative_type=None)
 print(loop['Loop'])
 # print(clg_coil['object'])
 # print(htg_coil['object'])
@@ -107,6 +109,7 @@ cw_loop = PlantLoop.water_loop(
 #####################################################################
 pump_hw = PlantLoopComponent.pump_variable_speed(my_model, name='HW pump')
 district = PlantLoopComponent.district_heating_v24(my_model, name='District Heating')
+# district = PlantLoopComponent.district_heating(my_model, name='District Heating')
 hw_spm = SetpointManager.scheduled(my_model, name='Hot Water Temperature', constant_value=60)
 
 hw_loop = PlantLoop.water_loop(
@@ -130,4 +133,5 @@ hw_loop = PlantLoop.water_loop(
 
 # Save to a new file:
 #####################################################################
-my_model.saveas('Data/TestOffice_new.idf')
+my_model.saveas('Data/TestOffice_vav_test.idf')
+# my_model.saveas('Data/RefBldgs/ASHRAE901_ApartmentHighRise_STD2022_NewYork_test.idf')

@@ -190,12 +190,12 @@ class ZoneEquipment:
 
                 # Inlet NodeList:
                 inlet_nodelist_name = f'{zone_name} Inlet Node List'
-                if vrf_terminal or zone_air_unit_type is not None:
+                if vrf_terminal is not None or zone_air_unit_type is not None:
                     connection['Zone_Air_Inlet_Node_or_NodeList_Name'] = inlet_nodelist_name
 
                 # Exhaust NodeList:
                 exhaust_nodelist_name = f'{zone_name} Exhaust Node List'
-                if zone_air_unit_type is not None or vrf_terminal:
+                if zone_air_unit_type is not None or vrf_terminal is not None:
                     connection['Zone_Air_Exhaust_Node_or_NodeList_Name'] = exhaust_nodelist_name
 
                 # Air Node:

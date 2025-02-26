@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20a373d1-d6e9-4a2c-8f6f-629a3b4b64a9" name="Changes" comment="some modifications">
-      <change afterPath="$PROJECT_DIR$/HVACSystem/ZoneForcedAirUnits.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HVACSystem/ZoneRadiativeUnits.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/EnergyPlus_Modeling_Python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/EnergyPlus_Modeling_Python.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HVACSystem/AirLoop.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/AirLoop.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HVACSystem/ZoneEquipments.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/ZoneEquipments.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_zone.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_zone.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +29,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2pcIUssXeelnz52sJxZFFmIUCyH" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -41,9 +41,15 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/luokunyu/OneDrive - Carrier Corporation/Desktop/Projects/EnergyPlus_Modeling&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\luokunyu\OneDrive - Carrier Corporation\Desktop\Projects\EnergyPlus_Modeling" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

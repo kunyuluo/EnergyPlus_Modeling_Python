@@ -403,3 +403,145 @@ def sort_zone_by_name(zones: list[str]):
 
     return sorted_zones
 
+
+def sort_zone_by_floor_1(zones: dict[str], display_field: bool = False):
+    """
+    Used for: ApartmentHighRise, ApartmentMidRise
+    """
+    zone_objs = zones['object']
+    zone_fields = zones['field']
+
+    sorted_zones = {'G': [], 'M': [], 'T': []}
+    for i, field in enumerate(zone_fields):
+        floor = field.split(' ')[0].upper()
+        match floor:
+            case 'M':
+                sorted_zones['M'].append(zone_fields[i]) if display_field else sorted_zones['M'].append(zone_objs[i])
+            case 'T':
+                sorted_zones['T'].append(zone_fields[i]) if display_field else sorted_zones['T'].append(zone_objs[i])
+            case 'G' | _:
+                sorted_zones['G'].append(zone_fields[i]) if display_field else sorted_zones['G'].append(zone_objs[i])
+
+    return sorted_zones
+
+
+def sort_zone_by_floor_2(zones: dict[str], display_field: bool = False):
+    """
+    Used for: Hospital, LargeHotel, SchoolPrimary, SchoolSecondary
+    """
+    zone_objs = zones['object']
+    zone_fields = zones['field']
+
+    sorted_zones = {0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: []}
+    for i, field in enumerate(zone_fields):
+        try:
+            if field.split('_')[-2].upper() == 'FLR':
+                floor = int(field.split('_')[-1])
+                sorted_zones[floor].append(zone_fields[i]) if display_field else sorted_zones[floor].append(zone_objs[i])
+            else:
+                raise ValueError('Can\'t find floor info')
+        except IndexError:
+            if field.upper() == 'BASEMENT':
+                sorted_zones[0].append(zone_fields[i]) if display_field else sorted_zones[0].append(zone_objs[i])
+
+    # Delete the empty list in the dict:
+    empty_keys = []
+    for key in sorted_zones.keys():
+        if len(sorted_zones[key]) == 0:
+            empty_keys.append(key)
+    for key in empty_keys:
+        del sorted_zones[key]
+
+    return sorted_zones
+
+
+def sort_zone_by_floor_3(zones: dict[str], display_field: bool = False):
+    """
+    Used for: OfficeLarge, OfficeMedium
+    """
+
+    zone_objs = zones['object']
+    zone_fields = zones['field']
+
+    sorted_zones = {'other': [], 'bot': [], 'mid': [], 'top': []}
+    for i, field in enumerate(zone_fields):
+        try:
+            floor = field.split('_')[1].lower()
+            if floor in 'bottom':
+                floor = 'bot'
+            elif floor in 'basement':
+                floor = 'other'
+            else:
+                pass
+        except IndexError:
+            floor = 'other'
+        sorted_zones[floor].append(zone_fields[i]) if display_field else sorted_zones[floor].append(zone_objs[i])
+
+    # Delete the empty list in the dict:
+    empty_keys = []
+    for key in sorted_zones.keys():
+        if len(sorted_zones[key]) == 0:
+            empty_keys.append(key)
+    for key in empty_keys:
+        del sorted_zones[key]
+
+    return sorted_zones
+
+
+def sort_zone_by_floor_4(zones: dict[str], display_field: bool = False):
+    """
+    Used for: OutPatientHealthCare
+    """
+    zone_objs = zones['object']
+    zone_fields = zones['field']
+
+    sorted_zones = {0: [], 1: [], 2: [], 3: [], 4: [], 5: [], 6: [], 7: [], 8: [], 9: [], 10: []}
+    for i, field in enumerate(zone_fields):
+        try:
+            if field.split(' ')[0].upper() == 'FLOOR':
+                floor = int(field.split(' ')[1])
+                sorted_zones[floor].append(zone_fields[i]) if display_field else sorted_zones[floor].append(zone_objs[i])
+            else:
+                sorted_zones[0].append(zone_fields[i]) if display_field else sorted_zones[0].append(zone_objs[i])
+        except IndexError:
+            if field.upper() == 'BASEMENT':
+                sorted_zones[0].append(zone_fields[i]) if display_field else sorted_zones[0].append(zone_objs[i])
+
+    # Delete the empty list in the dict:
+    empty_keys = []
+    for key in sorted_zones.keys():
+        if len(sorted_zones[key]) == 0:
+            empty_keys.append(key)
+    for key in empty_keys:
+        del sorted_zones[key]
+
+    return sorted_zones
+
+
+def sort_zone_by_bldg_type(zones: list[str], bldg_type: int = 1):
+    """
+    Building Types \
+    1. ApartmentHighRise,
+    2. ApartmentMidRise,
+    3. Hospital,
+    4. HotelLarge,
+    5. HotelSmall,
+    6. OfficeLarge,
+    7. OfficeMedium,
+    8. OfficeSmall,
+    9. OutPatientHealthCare,
+    10. RestaurantFastFood,
+    11. RestaurantSitDown,
+    12. RetailStandalone,
+    13. RetailStripmall,
+    14. SchoolPrimary,
+    15. SchoolSecondary,
+    16. Warehouse,
+    """
+    bldg_types = {1: 'ApartmentHighRise', 2: 'ApartmentMidRise', 3: 'Hospital', 4: 'HotelLarge', 5: 'HotelSmall',
+                  6: 'OfficeLarge', 7: 'OfficeMedium', 8: 'OfficeSmall', 9: 'OutPatientHealthCare',
+                  10: 'RestaurantFastFood', 11: 'RestaurantSitDown', 12: 'RetailStandalone', 13: 'RetailStripmall',
+                  14: 'SchoolPrimary', 15: 'SchoolSecondary'}
+    # match bldg_type:
+    #     case 1:
+

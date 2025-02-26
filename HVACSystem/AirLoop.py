@@ -337,6 +337,7 @@ class AirLoop:
             if heat_recovery:
                 hx_name = f'{oa_sys_name} Heat Exchanger'
                 hx = AirLoopComponent.heat_exchanger_air_to_air_v24(idf, hx_name)
+                # hx = AirLoopComponent.heat_exchanger_air_to_air(idf, hx_name)
                 os_sys_equip_list['Component_2_Object_Type'] = hx['type']
                 os_sys_equip_list['Component_2_Name'] = hx['object'].Name
 
