@@ -493,6 +493,7 @@ class AirLoopComponent:
             'type': 'Coil:Heating:Electric',
             'air_inlet_field': 'Air_Inlet_Node_Name',
             'air_outlet_field': 'Air_Outlet_Node_Name',
+            'setpoint_node_field': 'Temperature_Setpoint_Node_Name'
         }
 
         return component

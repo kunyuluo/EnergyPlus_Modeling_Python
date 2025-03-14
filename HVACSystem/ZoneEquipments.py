@@ -195,7 +195,7 @@ class ZoneEquipment:
 
                 # Exhaust NodeList:
                 exhaust_nodelist_name = f'{zone_name} Exhaust Node List'
-                if zone_air_unit_type is not None or vrf_terminal is not None:
+                if zone_air_unit_type is not None or vrf_terminal:
                     connection['Zone_Air_Exhaust_Node_or_NodeList_Name'] = exhaust_nodelist_name
 
                 # Air Node:
@@ -213,7 +213,7 @@ class ZoneEquipment:
                 ###############################################################################################
                 # Inlet NodeList:
                 inlet_node_count = 0
-                if vrf_terminal or zone_air_unit_type is not None:
+                if air_terminal_type is not None or vrf_terminal or zone_air_unit_type is not None:
                     inlet_nodelist = idf.newidfobject('NodeList', Name=inlet_nodelist_name)
                     equip_group_assembly.append(inlet_nodelist)
                 else:
@@ -259,7 +259,10 @@ class ZoneEquipment:
                     terminal_func_name = Air_Terminal_types[air_terminal_type][1]
                     if terminal_func_name is not None:
                         terminal_func = getattr(AirTerminal, terminal_func_name)
-                        terminal = terminal_func(idf, name=terminal_name)
+                        if 'reheat' in terminal_func_name and 'no' not in terminal_func_name:
+                            terminal = terminal_func(idf, name=terminal_name, reheat_coil_type=1)
+                        else:
+                            terminal = terminal_func(idf, name=terminal_name)
 
                         terminal_air_inlet = f'{zone_name} terminal inlet'
                         terminal['object'][terminal['air_inlet_field']] = terminal_air_inlet
@@ -278,7 +281,8 @@ class ZoneEquipment:
 
                         equip_group_assembly.append(terminal['object'])
                         if 'reheat_coil' in terminal.keys():
-                            heating_coils.append(terminal['reheat_coil'])
+                            if 'Water' in terminal['reheat_coil']['type']:
+                                heating_coils.append(terminal['reheat_coil'])
                             equip_group_assembly.append(terminal['reheat_coil']['object'])
                     else:
                         raise NotImplementedError('Air terminal type not implemented')

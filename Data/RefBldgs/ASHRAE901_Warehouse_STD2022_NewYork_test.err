@@ -1,0 +1,155 @@
+Program Version,EnergyPlus, Version 24.2.0-94a887817b, YMD=2025.03.12 13:41,
+   ************* Beginning Zone Sizing Calculations
+   ** Warning ** Weather file location will be used rather than entered (IDF) Location object.
+   **   ~~~   ** ..Location object=NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA WMO=744860
+   **   ~~~   ** ..Weather File Location=New York J F Kennedy IntL Ar NY USA TMY3 WMO#=744860
+   **   ~~~   ** ..due to location differences, Latitude difference=[1.00E-002] degrees, Longitude difference=[0.00] degrees.
+   **   ~~~   ** ..Time Zone difference=[0.0] hour(s), Elevation difference=[28.57] percent, [2.00] meters.
+   ** Warning ** CheckUsedConstructions: There are 33 nominally unused constructions in input.
+   **   ~~~   ** Each Unused construction is shown.
+   ************* Construction=INTERIORFURNISHINGS
+   ************* Construction=AIR_WALL
+   ************* Construction=DROPCEILING
+   ************* Construction=OPAQUEDOOR
+   ************* Construction=ATTICROOFDECK
+   ************* Construction=INT_WALL
+   ************* Construction=EXT_SLAB_8IN_WITH_CARPET
+   ************* Construction=EXT_SLAB_8IN
+   ************* Construction=EXT_SLAB_6IN_WITH_CARPET
+   ************* Construction=EXT_SLAB_6IN
+   ************* Construction=INT_SLAB_FLOOR
+   ************* Construction=INT_SLAB_CEILING
+   ************* Construction=BASEMENT_WALL
+   ************* Construction=INT_WOOD_FLOOR
+   ************* Construction=EXT_SOFFIT_FLOOR
+   ************* Construction=RES_ROOF
+   ************* Construction=NONRES_EXT_WALL_MID
+   ************* Construction=NONRES_EXT_WALL_TOP
+   ************* Construction=RES_EXT_WALL_GRD
+   ************* Construction=RES_EXT_WALL_MID
+   ************* Construction=RES_EXT_WALL_TOP
+   ************* Construction=SEMIHEATED_EXT_WALL_MID
+   ************* Construction=SEMIHEATED_EXT_WALL_TOP
+   ************* Construction=NONRES_FLOOR
+   ************* Construction=RES_FLOOR
+   ************* Construction=SEMIHEATED_FLOOR
+   ************* Construction=NONRES_FLOOR_CEILING
+   ************* Construction=RES_FLOOR_CEILING
+   ************* Construction=SEMIHEATED_FLOOR_CEILING
+   ************* Construction=NONRESWINDOW_U_0.362_SHGC_SOUTH_0.359
+   ************* Construction=NONRESWINDOW_U_0.362_SHGC_EAST_0.359
+   ************* Construction=INTERIOR WALL_1
+   ************* Construction=SKYLIGHT DOUBLE CLEAR
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="ZONE2 FINE STORAGE_DAYLCTRL", only 0.500 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="ZONE3 BULK STORAGE_DAYLCTRL", only 0.500 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="ZONE1 OFFICE_DAYLCTRL", only 0.390 of the zone or space is controlled.
+   ** Warning ** GeneratorController constructor ElectricLoadCenter:Generators, Availability Schedule for Generator:PVWatts 'PV_MODULE' will be be ignored (runs all the time).
+   ** Warning ** Calculated design cooling load for zone=ZONE3 BULK STORAGE is zero.
+   **   ~~~   ** Check Sizing:Zone and ZoneControl:Thermostat inputs.
+   ** Warning ** GetVRFInput: AirConditioner:VariableRefrigerantFlow="MY VRF SYSTEM" curve values
+   **   ~~~   ** ... Cooling Capacity Ratio Modifier Function of Low Temperature Curve Name = CAPRATIOLOWTEMPCURVE_COOLING output is not equal to 1.0 (+ or - 10%) at rated conditions.
+   **   ~~~   ** ... Curve output at rated conditions = 1.136
+   ** Warning ** ManageSizing: For a plant sizing run, there must be at least 1 Sizing:Plant object input. SimulationControl Plant Sizing option ignored.
+   ** Warning ** SizeDXCoil Coil:Cooling:DX:VariableRefrigerantFlow ZONE1 OFFICE VRF TERMINAL COOLING COIL
+   **   ~~~   ** ...Gross Rated Total Cooling Capacity [W] will be limited by the maximum rated volume flow per rated total capacity ratio.
+   **   ~~~   ** ...DX coil volume flow rate ( m3/s ) = 0.958144
+   **   ~~~   ** ...Requested capacity ( W ) = 15487.412
+   **   ~~~   ** ...Requested flow/capacity ratio ( m3/s/W ) = 6.186E-005
+   **   ~~~   ** ...Maximum flow/capacity ratio ( m3/s/W ) = 6.041E-005
+   **   ~~~   ** ...Adjusted capacity ( W ) = 15860.697
+   ** Warning ** SizeDXCoil Coil:Cooling:DX:VariableRefrigerantFlow ZONE3 BULK STORAGE VRF TERMINAL COOLING COIL
+   **   ~~~   ** ...Gross Rated Total Cooling Capacity [W] will be limited by the maximum rated volume flow per rated total capacity ratio.
+   **   ~~~   ** ...DX coil volume flow rate ( m3/s ) = 4.580116
+   **   ~~~   ** ...Requested capacity ( W ) = 4411.615
+   **   ~~~   ** ...Requested flow/capacity ratio ( m3/s/W ) = 1.038E-003
+   **   ~~~   ** ...Maximum flow/capacity ratio ( m3/s/W ) = 6.041E-005
+   **   ~~~   ** ...Adjusted capacity ( W ) = 75817.195
+   ************* SizeVRF: Potential issue with equipment sizing for AirConditioner:VariableRefrigerantFlow ZONE1 OFFICE VRF TERMINAL
+   **   ~~~   ** User-Specified Resistive Defrost Heater Capacity of 1.00E-007 [W]
+   **   ~~~   ** differs from Design Size Resistive Defrost Heater Capacity of 136887.05 [W]
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ** Warning ** AirConditioner:VariableRefrigerantFlow "MY VRF SYSTEM".
+   **   ~~~   ** ...InitVRF: VRF Heat Pump Min/Max Operating Temperature in Cooling Mode Limits have been exceeded and VRF system is disabled.
+   **   ~~~   ** ... Outdoor Unit Inlet Air Temperature                 = -10.699
+   **   ~~~   ** ... Cooling Minimum Outdoor Unit Inlet Temperature = -5.999
+   **   ~~~   ** ... Cooling Maximum Outdoor Unit Inlet Temperature = 43.000
+   **   ~~~   ** ... Check VRF Heat Pump Min/Max Outdoor Temperature in Cooling Mode limits.
+   **   ~~~   **  During Warmup, Environment=NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, at Simulation time=01/21 00:00 - 00:10
+   ** Warning ** Output:Meter:MeterFileOnly: invalid Key Name="GAS:FACILITY" - not found.
+   ** Warning ** Output:Meter:MeterFileOnly requested for "Electricity:Facility" (Hourly), already on "Output:Meter". Will report to both eplusout.eso and eplusout.mtr
+   ** Warning ** Output:Meter:MeterFileOnly requested for "ElectricityNet:Facility" (Hourly), already on "Output:Meter". Will report to both eplusout.eso and eplusout.mtr
+   ** Warning ** Output:Meter:MeterFileOnly: invalid Key Name="GAS:FACILITY" - not found.
+   ************* Testing Individual Branch Integrity
+   ************* All Branches passed integrity testing
+   ************* Testing Individual Supply Air Path Integrity
+   ************* All Supply Air Paths passed integrity testing
+   ************* Testing Individual Return Air Path Integrity
+   ************* All Return Air Paths passed integrity testing
+   ************* No node connection errors were found.
+   ************* Beginning Simulation
+   ** Warning ** Coil:Cooling:DX:VariableRefrigerantFlow "ZONE3 BULK STORAGE VRF TERMINAL COOLING COIL" - Full load outlet air dry-bulb temperature < 2C. This indicates the possibility of coil frost/freeze. Outlet temperature = -0.92 C.
+   **   ~~~   **  ...Occurrence info = RUNPERIOD 1, 01/12 13:20 - 13:25
+   **   ~~~   ** ... Possible reasons for low outlet air dry-bulb temperatures are: This DX coil
+   **   ~~~   **    1) may have a low inlet air dry-bulb temperature. Inlet air temperature = 11.091 C.
+   **   ~~~   **    2) may have a low air flow rate per watt of cooling capacity. Check inputs.
+   **   ~~~   **    3) is used as part of a HX assisted cooling coil which uses a high sensible effectiveness. Check inputs.
+   ** Warning ** AirConditioner:VariableRefrigerantFlow "MY VRF SYSTEM".
+   **   ~~~   ** ...InitVRF: VRF Heat Pump Min/Max Operating Temperature in Heating Mode Limits have been exceeded and VRF system is disabled.
+   **   ~~~   ** ... Outdoor Unit Inlet Air Temperature             = 16.700
+   **   ~~~   ** ... Heating Minimum Outdoor Unit Inlet Temperature = -19.999
+   **   ~~~   ** ... Heating Maximum Outdoor Unit Inlet Temperature = 16.000
+   **   ~~~   ** ... Check VRF Heat Pump Min/Max Outdoor Temperature in Heating Mode limits.
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=03/02 19:50 - 20:00
+   ** Warning ** Temperature out of range [-100. to 200.] (PsyPsatFnTemp)
+   **   ~~~   **  Routine=PsyTwbFnTdbWPb, Environment=RUNPERIOD 1, at Simulation time=03/12 12:00 - 12:10
+   **   ~~~   **  Input Temperature=-170.82
+   ************* Simulation Error Summary *************
+   ************* There are 6 unused objects in input.
+   ************* Use Output:Diagnostics,DisplayUnusedObjects; to see them.
+   ************* There are 26 unused schedules in input.
+   ************* There are 1 unused week schedules in input.
+   ************* There are 1 unused day schedules in input.
+   ************* Use Output:Diagnostics,DisplayUnusedSchedules; to see them.
+   *************
+   ************* ===== Recurring Error Summary =====
+   ************* The following recurring error messages occurred.
+   *************
+   *************  ** Warning ** AirConditioner:VariableRefrigerantFlow "MY VRF SYSTEM" -- Exceeded VRF Heat Pump min/max cooling temperature limit error continues...
+   *************  **   ~~~   **   This error occurred 110 total times;
+   *************  **   ~~~   **   during Warmup 110 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************  **   ~~~   **   Max=-6.016667  Min=-10.700000
+   *************
+   *************  ** Warning ** Coil:Cooling:DX:VariableRefrigerantFlow "ZONE3 BULK STORAGE VRF TERMINAL COOLING COIL" - Full load outlet temperature indicates a possibility of frost/freeze error continues. Outlet air temperature statistics follow:
+   *************  **   ~~~   **   This error occurred 7657 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************  **   ~~~   **   Max=1.998186  Min=-1.761103
+   *************
+   *************  ** Warning ** AirConditioner:VariableRefrigerantFlow "MY VRF SYSTEM" -- Exceeded VRF Heat Pump min/max heating temperature limit error continues...
+   *************  **   ~~~   **   This error occurred 29 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************  **   ~~~   **   Max=17.700000  Min=16.150000
+   *************
+   *************  ** Warning ** Temperature out of range [-100. to 200.] (PsyPsatFnTemp)
+   *************  **   ~~~   **   This error occurred 1 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************  **   ~~~   **   Max=-170.820312 C  Min=-170.820312 C
+   *************
+   *************
+   ************* ===== Final Error Summary =====
+   ************* The following error categories occurred.  Consider correcting or noting.
+   ************* Nominally Unused Constructions
+   ************* ..The nominally unused constructions warning is provided to alert you to potential conditions that can cause
+   ************* ..extra time during simulation. Each construction is calculated by the algorithm indicated in the HeatBalanceAlgorithm
+   ************* ..object. You may remove the constructions indicated (when you use the DisplayExtraWarnings option).
+   *************
+   ************* EnergyPlus Warmup Error Summary. During Warmup: 0 Warning; 0 Severe Errors.
+   ************* EnergyPlus Sizing Error Summary. During Sizing: 9 Warning; 0 Severe Errors.
+   ************* EnergyPlus Completed Successfully-- 7812 Warning; 0 Severe Errors; Elapsed Time=00hr 00min 17.60sec

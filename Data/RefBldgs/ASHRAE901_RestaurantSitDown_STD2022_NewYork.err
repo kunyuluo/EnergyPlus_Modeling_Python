@@ -1,0 +1,501 @@
+Program Version,EnergyPlus, Version 24.2.0-94a887817b, YMD=2025.03.12 09:42,
+   ************* Beginning Zone Sizing Calculations
+   ** Warning ** Weather file location will be used rather than entered (IDF) Location object.
+   **   ~~~   ** ..Location object=NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA WMO=744860
+   **   ~~~   ** ..Weather File Location=Shanghai Shanghai CHN CSWD WMO#=583620
+   **   ~~~   ** ..due to location differences, Latitude difference=[9.26] degrees, Longitude difference=[195.25] degrees.
+   **   ~~~   ** ..Time Zone difference=[13.0] hour(s), Elevation difference=[21.43] percent, [1.50] meters.
+   ** Warning ** CheckUsedConstructions: There are 31 nominally unused constructions in input.
+   **   ~~~   ** Each Unused construction is shown.
+   ************* Construction=AIR_WALL
+   ************* Construction=DROPCEILING
+   ************* Construction=OPAQUEDOOR
+   ************* Construction=EXT_SLAB_8IN_WITH_CARPET
+   ************* Construction=EXT_SLAB_8IN
+   ************* Construction=EXT_SLAB_6IN_WITH_CARPET
+   ************* Construction=EXT_SLAB_6IN
+   ************* Construction=INT_SLAB_FLOOR
+   ************* Construction=INT_SLAB_CEILING
+   ************* Construction=BASEMENT_WALL
+   ************* Construction=INT_WOOD_FLOOR
+   ************* Construction=EXT_SOFFIT_FLOOR
+   ************* Construction=RES_ROOF
+   ************* Construction=SEMIHEATED_ROOF
+   ************* Construction=RES_ROOF_FLOOR
+   ************* Construction=SEMIHEATED_ROOF_FLOOR
+   ************* Construction=NONRES_EXT_WALL_MID
+   ************* Construction=NONRES_EXT_WALL_TOP
+   ************* Construction=RES_EXT_WALL_GRD
+   ************* Construction=RES_EXT_WALL_MID
+   ************* Construction=RES_EXT_WALL_TOP
+   ************* Construction=SEMIHEATED_EXT_WALL_GRD
+   ************* Construction=SEMIHEATED_EXT_WALL_MID
+   ************* Construction=SEMIHEATED_EXT_WALL_TOP
+   ************* Construction=NONRES_FLOOR
+   ************* Construction=RES_FLOOR
+   ************* Construction=SEMIHEATED_FLOOR
+   ************* Construction=NONRES_FLOOR_CEILING
+   ************* Construction=RES_FLOOR_CEILING
+   ************* Construction=SEMIHEATED_FLOOR_CEILING
+   ************* Construction=NONRESWINDOW_U_0.362_SHGC_NORTH_0.359
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="DINING_DAYLCTRL", only 0.500 of the zone or space is controlled.
+   ************* Beginning System Sizing Calculations
+   ************* Beginning Plant Sizing Calculations
+   ************* SizeDXCoil: Potential issue with equipment sizing for Coil:Cooling:DX:MultiSpeed PSZ-AC_1:1 COOLING COIL
+   **   ~~~   ** User-Specified Speed 1 Rated Air Flow Rate [m3/s] = 2.20158
+   **   ~~~   ** differs from Design Size Speed 1 Rated Air Flow Rate [m3/s] = 1.62490
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ** Warning ** The Standard Ratings is calculated for Coil:Cooling:DX:MultiSpeed = PSZ-AC_1:1 COOLING COIL but not at the AHRI test condition due to curve out of bound.
+   **   ~~~   **  Review the Standard Ratings calculations in the Engineering Reference for this coil type. Also, use Output:Diagnostics, DisplayExtraWarnings for further guidance.
+   **   ~~~   ** CheckCurveLimitsForStandardRatings: The max and/or min limits specified in the corresponding curve objects
+   **   ~~~   **  do not include the AHRI test conditions required to calculate one or more of the Standard Rating values.
+   **   ~~~   ** Coil:Cooling:DX:MultiSpeed=PSZ-AC_1:1 COOLING COIL:  The Seasonal Energy Efficiency Ratio (SEER) calculated is not at the AHRI test condition.
+   **   ~~~   **  Check limits in Total Cooling Capacity Function of Temperature Curve, Curve Type = Curve:Biquadratic, Curve Name = LGDX_CAPFT
+   **   ~~~   **  Check limits in Energy Input Ratio Function of Temperature Curve, Curve Type = Curve:Biquadratic, Curve Name = LGDX_EIRFT
+   ** Warning ** The Standard Ratings is calculated for Coil:Cooling:DX:MultiSpeed = PSZ-AC_1:1 COOLING COIL but not at the AHRI test condition due to curve out of bound.
+   **   ~~~   **  Review the Standard Ratings calculations in the Engineering Reference for this coil type. Also, use Output:Diagnostics, DisplayExtraWarnings for further guidance.
+   **   ~~~   ** CheckCurveLimitsForStandardRatings: The max and/or min limits specified in the corresponding curve objects
+   **   ~~~   **  do not include the AHRI test conditions required to calculate one or more of the Standard Rating values.
+   **   ~~~   ** Coil:Cooling:DX:MultiSpeed=PSZ-AC_1:1 COOLING COIL:  The Seasonal Energy Efficiency Ratio (SEER) calculated is not at the AHRI test condition.
+   **   ~~~   **  Check limits in Total Cooling Capacity Function of Temperature Curve, Curve Type = Curve:Biquadratic, Curve Name = LGDX_CAPFT
+   **   ~~~   **  Check limits in Energy Input Ratio Function of Temperature Curve, Curve Type = Curve:Biquadratic, Curve Name = LGDX_EIRFT
+   ************* SizeDXCoil: Potential issue with equipment sizing for Coil:Cooling:DX:MultiSpeed PSZ-AC_2:2 COOLING COIL
+   **   ~~~   ** User-Specified Speed 1 Rated Air Flow Rate [m3/s] = 0.92719
+   **   ~~~   ** differs from Design Size Speed 1 Rated Air Flow Rate [m3/s] = 0.69339
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ** Warning ** The Standard Ratings is calculated for Coil:Cooling:DX:MultiSpeed = PSZ-AC_2:2 COOLING COIL but not at the AHRI test condition due to curve out of bound.
+   **   ~~~   **  Review the Standard Ratings calculations in the Engineering Reference for this coil type. Also, use Output:Diagnostics, DisplayExtraWarnings for further guidance.
+   **   ~~~   ** CheckCurveLimitsForStandardRatings: The max and/or min limits specified in the corresponding curve objects
+   **   ~~~   **  do not include the AHRI test conditions required to calculate one or more of the Standard Rating values.
+   **   ~~~   ** Coil:Cooling:DX:MultiSpeed=PSZ-AC_2:2 COOLING COIL:  The Seasonal Energy Efficiency Ratio (SEER) calculated is not at the AHRI test condition.
+   **   ~~~   **  Check limits in Total Cooling Capacity Function of Temperature Curve, Curve Type = Curve:Biquadratic, Curve Name = LGDX_CAPFT
+   **   ~~~   **  Check limits in Energy Input Ratio Function of Temperature Curve, Curve Type = Curve:Biquadratic, Curve Name = LGDX_EIRFT
+   ** Warning ** The Standard Ratings is calculated for Coil:Cooling:DX:MultiSpeed = PSZ-AC_2:2 COOLING COIL but not at the AHRI test condition due to curve out of bound.
+   **   ~~~   **  Review the Standard Ratings calculations in the Engineering Reference for this coil type. Also, use Output:Diagnostics, DisplayExtraWarnings for further guidance.
+   **   ~~~   ** CheckCurveLimitsForStandardRatings: The max and/or min limits specified in the corresponding curve objects
+   **   ~~~   **  do not include the AHRI test conditions required to calculate one or more of the Standard Rating values.
+   **   ~~~   ** Coil:Cooling:DX:MultiSpeed=PSZ-AC_2:2 COOLING COIL:  The Seasonal Energy Efficiency Ratio (SEER) calculated is not at the AHRI test condition.
+   **   ~~~   **  Check limits in Total Cooling Capacity Function of Temperature Curve, Curve Type = Curve:Biquadratic, Curve Name = LGDX_CAPFT
+   **   ~~~   **  Check limits in Energy Input Ratio Function of Temperature Curve, Curve Type = Curve:Biquadratic, Curve Name = LGDX_EIRFT
+   ** Warning ** For zone=KITCHEN return air cooling by refrigerated cases will be applied to the zone air.
+   **   ~~~   **   This zone has no return air or is served by an on/off HVAC system.
+   ** Warning ** Output:Meter:MeterFileOnly: invalid Key Name="GAS:FACILITY" - not found.
+   ************* Testing Individual Branch Integrity
+   ************* All Branches passed integrity testing
+   ************* Testing Individual Supply Air Path Integrity
+   ************* All Supply Air Paths passed integrity testing
+   ************* Testing Individual Return Air Path Integrity
+   ************* All Return Air Paths passed integrity testing
+   ************* No node connection errors were found.
+   ************* Beginning Simulation
+   ** Warning ** CalcEquipmentFlowRates: "KITCHEN WATER EQUIPMENT" - Target water temperature is greater than the hot water temperature by (1.13 C)
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=01/01 00:00 - 00:10
+   **   ~~~   ** ...target water temperature     = 60.00 C
+   **   ~~~   ** ...hot water temperature        = 58.87 C
+   **   ~~~   ** ...Target water temperature should be less than or equal to the hot water temperature. Verify temperature setpoints and schedules.
+   ** Warning ** In zone KITCHEN there is unbalanced air flow. Load due to induced outdoor air is neglected.
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=01/01 00:00 - 00:10
+   **   ~~~   **   Flows [m3/s]: Inlets: 0.954735  Unbalanced exhausts: 1.217002  Returns: 0.000000
+   **   ~~~   **   Infiltration: 3.515042E-003  Zone Ventilation: 0.000000  Mixing (incoming): 0.000000
+   **   ~~~   **   Imbalance (excess outflow): 0.258752  Total system OA flow (for all airloops serving this zone): 1.386789
+   **   ~~~   **   This error will only be reported once per zone.
+   ** Warning ** Coil control failed for AirLoopHVAC:UnitarySystem:PSZ-AC_2:2_UNITARY_PACKAGE_DX
+   **   ~~~   **   sensible part-load ratio determined to be outside the range of 0-1.
+   **   ~~~   ** Sensible load to be met = -25849.09 (watts), and the simulation continues.
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=01/06 04:40 - 04:42
+   ** Warning ** In zone DINING there is unbalanced air flow. Load due to induced outdoor air is neglected.
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=01/09 04:00 - 04:10
+   **   ~~~   **   Flows [m3/s]: Inlets: 0.221755  Unbalanced exhausts: 1.331514  Returns: 0.000000
+   **   ~~~   **   Infiltration: 5.923168E-003  Zone Ventilation: 0.000000  Mixing (incoming): 0.000000
+   **   ~~~   **   Imbalance (excess outflow): 1.103836  Total system OA flow (for all airloops serving this zone): 2.437287
+   **   ~~~   **   This error will only be reported once per zone.
+   ** Severe  ** CheckAirLoopFlowBalance: AirLoopHVAC PSZ-AC_1:1 is unbalanced. Supply is > return plus outdoor air.
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=01/09 04:00 - 04:10
+   **   ~~~   **   Flows [m3/s at standard density]: Supply=0.510422  Return=0.000000  Outdoor Air=0.382817
+   **   ~~~   **   Imbalance=0.127606
+   **   ~~~   **   This error will only be reported once per system.
+   ** Warning ** SimHVAC: Maximum iterations (20) exceeded for all HVAC loops, at RUNPERIOD 1, 01/09 04:00 - 04:03
+   **   ~~~   ** The solution for one or more of the Air Loop HVAC systems did not appear to converge
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for mass flow rate
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface mass flow rate check value iteration history trace: 0.319380,0.319380,0.319380,0.319380,0.319380,0.000000,0.319380,0.319380,0.319380,0.319380,
+   **   ~~~   ** Supply-to-demand interface deck 1 mass flow rate check value iteration history trace: 0.549260,0.549260,0.549260,0.549260,0.549260,0.549260,0.549260,0.549260,0.549260,0.549260,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for temperature
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface temperature check value iteration history trace: 7.105427E-015,7.105427E-015,7.105427E-015,7.105427E-015,7.105427E-015,0.000000,7.105427E-015,7.105427E-015,7.105427E-015,7.105427E-015,
+   **   ~~~   ** Supply-to-demand interface deck 1 temperature check value iteration history trace: 4.087591,4.087591,4.087591,4.087591,0.000000,4.087591,4.087591,4.087591,4.087591,4.087591,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for energy
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface energy check value iteration history trace: 6401.799808,6401.799808,6401.799808,6401.799808,6401.799808,0.000000,6401.799808,6401.799808,6401.799808,6401.799808,
+   **   ~~~   ** Supply-to-demand interface deck 1 energy check value iteration history trace: 11009.627711,-11009.627711,11009.627711,-11009.627711,16647.550668,11009.627711,-11009.627711,11009.627711,-11009.627711,11009.627711,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating humidity ratio across iterations with a repeated value of 1.800940E-003
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE humidity ratio [kg-water/kg-dryair] iteration history trace (most recent first): 1.800940E-003,1.885204E-003,1.800940E-003,1.885204E-003,1.800940E-003,1.885204E-003,1.800940E-003,1.885204E-003,1.800940E-003,1.885204E-003,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating mass flow rate across iterations with a repeated value of 1.921888
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE mass flow rate [kg/s] iteration history trace (most recent first): 1.921888,1.372629,1.921888,1.372629,1.921888,1.372629,1.921888,1.372629,1.921888,1.372629,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating temperatures across iterations with a repeated value of 30.162961
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE temperature [C] iteration history trace (most recent first): 30.162961,34.250552,30.162961,34.250552,30.162961,34.250552,30.162961,34.250552,30.162961,34.250552,
+   ** Warning ** SimHVAC: Maximum iterations (20) exceeded for all HVAC loops, at RUNPERIOD 1, 01/10 04:00 - 04:03
+   **   ~~~   ** The solution for one or more of the Air Loop HVAC systems did not appear to converge
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for mass flow rate
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface mass flow rate check value iteration history trace: 0.491386,0.491386,0.491386,0.491386,0.491386,0.000000,0.491386,0.491386,0.491386,0.491386,
+   **   ~~~   ** Supply-to-demand interface deck 1 mass flow rate check value iteration history trace: 0.790208,0.790208,0.790208,0.790208,0.790208,0.790208,0.790208,0.790208,0.790208,0.790208,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for temperature
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface temperature check value iteration history trace: 3.552714E-015,3.552714E-015,3.552714E-015,3.552714E-015,3.552714E-015,0.000000,3.552714E-015,3.552714E-015,3.552714E-015,3.552714E-015,
+   **   ~~~   ** Supply-to-demand interface deck 1 temperature check value iteration history trace: 5.600912,5.600912,5.600912,5.600912,0.000000,5.600912,5.600912,5.600912,5.600912,5.600912,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for energy
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface energy check value iteration history trace: 9855.557051,9855.557051,9855.557051,9855.557051,9855.557051,0.000000,9855.557051,9855.557051,9855.557051,9855.557051,
+   **   ~~~   ** Supply-to-demand interface deck 1 energy check value iteration history trace: 15848.916322,-15848.916322,15848.916322,-15848.916322,23186.122435,15848.916322,-15848.916322,15848.916322,-15848.916322,15848.916322,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating humidity ratio across iterations with a repeated value of 2.009966E-003
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE humidity ratio [kg-water/kg-dryair] iteration history trace (most recent first): 2.009966E-003,2.089119E-003,2.009966E-003,2.089119E-003,2.009966E-003,2.089119E-003,2.009966E-003,2.089119E-003,2.009966E-003,2.089119E-003,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating mass flow rate across iterations with a repeated value of 2.093895
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE mass flow rate [kg/s] iteration history trace (most recent first): 2.093895,1.303687,2.093895,1.303687,2.093895,1.303687,2.093895,1.303687,2.093895,1.303687,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating temperatures across iterations with a repeated value of 29.200339
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE temperature [C] iteration history trace (most recent first): 29.200339,34.801250,29.200339,34.801250,29.200339,34.801250,29.200339,34.801250,29.200339,34.801250,
+   ** Warning ** Temperature out of range [-100. to 200.] (PsyPsatFnTemp)
+   **   ~~~   **  Routine=PsyTwbFnTdbWPb, Environment=RUNPERIOD 1, at Simulation time=01/10 21:00 - 21:10
+   **   ~~~   **  Input Temperature=-127.66
+   ** Warning ** SimHVAC: Maximum iterations (20) exceeded for all HVAC loops, at RUNPERIOD 1, 01/16 04:00 - 04:03
+   **   ~~~   ** The solution for one or more of the Air Loop HVAC systems did not appear to converge
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for mass flow rate
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface mass flow rate check value iteration history trace: 0.147531,0.147531,0.147531,0.147531,0.147531,0.000000,0.147531,0.147531,0.147531,0.147531,
+   **   ~~~   ** Supply-to-demand interface deck 1 mass flow rate check value iteration history trace: 0.232072,0.232072,0.232072,0.232072,0.232072,0.232072,0.232072,0.232072,0.232072,0.232072,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for temperature
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface temperature check value iteration history trace: 0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,
+   **   ~~~   ** Supply-to-demand interface deck 1 temperature check value iteration history trace: 1.987711,1.987711,1.987711,1.987711,0.000000,1.987711,1.987711,1.987711,1.987711,1.987711,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for energy
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface energy check value iteration history trace: 2930.921210,2930.921210,2930.921210,2930.921210,2930.921210,0.000000,2930.921210,2930.921210,2930.921210,2930.921210,
+   **   ~~~   ** Supply-to-demand interface deck 1 energy check value iteration history trace: 4610.476511,-4610.476511,4610.476511,-4610.476511,7642.371193,4610.476511,-4610.476511,4610.476511,-4610.476511,4610.476511,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating humidity ratio across iterations with a repeated value of 3.029777E-003
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE humidity ratio [kg-water/kg-dryair] iteration history trace (most recent first): 3.029777E-003,3.087432E-003,3.029777E-003,3.087432E-003,3.029777E-003,3.087432E-003,3.029777E-003,3.087432E-003,3.029777E-003,3.087432E-003,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating mass flow rate across iterations with a repeated value of 1.750039
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE mass flow rate [kg/s] iteration history trace (most recent first): 1.750039,1.517967,1.750039,1.517967,1.750039,1.517967,1.750039,1.517967,1.750039,1.517967,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating temperatures across iterations with a repeated value of 32.772228
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE temperature [C] iteration history trace (most recent first): 32.772228,34.759939,32.772228,34.759939,32.772228,34.759939,32.772228,34.759939,32.772228,34.759939,
+   ** Warning ** SimHVAC: Maximum iterations (20) exceeded for all HVAC loops, at RUNPERIOD 1, 01/20 04:00 - 04:03
+   **   ~~~   ** The solution for one or more of the Air Loop HVAC systems did not appear to converge
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for mass flow rate
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface mass flow rate check value iteration history trace: 0.301964,0.301964,0.301964,0.301964,0.301964,0.000000,0.301964,0.301964,0.301964,0.301964,
+   **   ~~~   ** Supply-to-demand interface deck 1 mass flow rate check value iteration history trace: 0.449290,0.449290,0.449290,0.449290,0.449290,0.449290,0.449290,0.449290,0.449290,0.449290,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for humidity ratio
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface humidity ratio check value iteration history trace: 4.336809E-019,4.336809E-019,4.336809E-019,4.336809E-019,4.336809E-019,0.000000,4.336809E-019,4.336809E-019,4.336809E-019,4.336809E-019,
+   **   ~~~   ** Supply-to-demand interface deck 1 humidity ratio check value iteration history trace: 1.250220E-004,1.250220E-004,1.250220E-004,1.250220E-004,0.000000,1.250220E-004,1.250220E-004,1.250220E-004,1.250220E-004,1.250220E-004,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for temperature
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface temperature check value iteration history trace: 3.552714E-015,3.552714E-015,3.552714E-015,3.552714E-015,3.552714E-015,0.000000,3.552714E-015,3.552714E-015,3.552714E-015,3.552714E-015,
+   **   ~~~   ** Supply-to-demand interface deck 1 temperature check value iteration history trace: 3.644060,3.644060,3.644060,3.644060,0.000000,3.644060,3.644060,3.644060,3.644060,3.644060,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for energy
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface energy check value iteration history trace: 6003.281548,6003.281548,6003.281548,6003.281548,6003.281548,0.000000,6003.281548,6003.281548,6003.281548,6003.281548,
+   **   ~~~   ** Supply-to-demand interface deck 1 energy check value iteration history trace: 8932.245299,-8932.245299,8932.245299,-8932.245299,14260.703993,8932.245299,-8932.245299,8932.245299,-8932.245299,8932.245299,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating humidity ratio across iterations with a repeated value of 2.776005E-003
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE humidity ratio [kg-water/kg-dryair] iteration history trace (most recent first): 2.776005E-003,2.901027E-003,2.776005E-003,2.901027E-003,2.776005E-003,2.901027E-003,2.776005E-003,2.901027E-003,2.776005E-003,2.901027E-003,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating mass flow rate across iterations with a repeated value of 1.904473
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE mass flow rate [kg/s] iteration history trace (most recent first): 1.904473,1.455182,1.904473,1.455182,1.904473,1.455182,1.904473,1.455182,1.904473,1.455182,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating temperatures across iterations with a repeated value of 31.587496
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE temperature [C] iteration history trace (most recent first): 31.587496,35.231556,31.587496,35.231556,31.587496,35.231556,31.587496,35.231556,31.587496,35.231556,
+   ** Warning ** Coil control failed for AirLoopHVAC:UnitarySystem:PSZ-AC_1:1_UNITARY_PACKAGE_DX
+   **   ~~~   **   sensible part-load ratio determined to be outside the range of 0-1.
+   **   ~~~   ** Sensible load to be met = -638.03 (watts), and the simulation continues.
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=04/14 03:32 - 03:33
+   ** Warning ** Coil control failed to converge for AirLoopHVAC:UnitarySystem:PSZ-AC_1:1_UNITARY_PACKAGE_DX
+   **   ~~~   **   Iteration limit exceeded in calculating system sensible part-load ratio.
+   **   ~~~   ** Sensible load to be met = -995.79 (watts), sensible output = -1003.82 (watts), and the simulation continues.
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=04/14 03:39 - 03:40
+   ** Warning ** SimHVAC: Maximum iterations (20) exceeded for all HVAC loops, at RUNPERIOD 1, 06/25 03:06 - 03:07
+   **   ~~~   ** The solution for one or more of the Air Loop HVAC systems did not appear to converge
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for mass flow rate
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface mass flow rate check value iteration history trace: 8.312408E-002,8.312408E-002,8.312408E-002,8.312408E-002,8.312408E-002,0.000000,8.312408E-002,8.312408E-002,8.312408E-002,8.312408E-002,
+   **   ~~~   ** Supply-to-demand interface deck 1 mass flow rate check value iteration history trace: 0.105926,0.105926,0.105926,0.105926,0.105926,0.105926,0.105926,0.105926,0.105926,0.105926,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for humidity ratio
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface humidity ratio check value iteration history trace: 0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,
+   **   ~~~   ** Supply-to-demand interface deck 1 humidity ratio check value iteration history trace: 1.546066E-004,1.546066E-004,1.546066E-004,1.546066E-004,0.000000,1.546066E-004,1.546066E-004,1.546066E-004,1.546066E-004,1.546066E-004,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for temperature
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface temperature check value iteration history trace: 7.105427E-015,7.105427E-015,7.105427E-015,7.105427E-015,7.105427E-015,0.000000,7.105427E-015,7.105427E-015,7.105427E-015,7.105427E-015,
+   **   ~~~   ** Supply-to-demand interface deck 1 temperature check value iteration history trace: 0.174095,0.174095,0.174095,0.174095,0.000000,0.174095,0.174095,0.174095,0.174095,0.174095,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for energy
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface energy check value iteration history trace: 1997.704125,1997.704125,1997.704125,1997.704125,1997.704125,0.000000,1997.704125,1997.704125,1997.704125,1997.704125,
+   **   ~~~   ** Supply-to-demand interface deck 1 energy check value iteration history trace: 2545.691975,-2545.691975,2545.691975,-2545.691975,2269.340288,2545.691975,-2545.691975,2545.691975,-2545.691975,2545.691975,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating humidity ratio across iterations with a repeated value of 1.527454E-002
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE humidity ratio [kg-water/kg-dryair] iteration history trace (most recent first): 1.527454E-002,1.511993E-002,1.527454E-002,1.511993E-002,1.527454E-002,1.511993E-002,1.527454E-002,1.511993E-002,1.527454E-002,1.511993E-002,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating mass flow rate across iterations with a repeated value of 1.685633
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE mass flow rate [kg/s] iteration history trace (most recent first): 1.685633,1.579707,1.685633,1.579707,1.685633,1.579707,1.685633,1.579707,1.685633,1.579707,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating temperatures across iterations with a repeated value of 21.320600
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE temperature [C] iteration history trace (most recent first): 21.320600,21.146505,21.320600,21.146505,21.320600,21.146505,21.320600,21.146505,21.320600,21.146505,
+   ** Warning ** SimHVAC: Maximum iterations (20) exceeded for all HVAC loops, at RUNPERIOD 1, 06/25 03:07 - 03:08
+   **   ~~~   ** The solution for one or more of the Air Loop HVAC systems did not appear to converge
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for mass flow rate
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface mass flow rate check value iteration history trace: 0.139703,0.139703,0.139703,0.139703,0.139703,0.000000,0.139703,0.139703,0.139703,0.139703,
+   **   ~~~   ** Supply-to-demand interface deck 1 mass flow rate check value iteration history trace: 0.171426,0.171426,0.171426,0.171426,0.171426,0.171426,0.171426,0.171426,0.171426,0.171426,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for humidity ratio
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface humidity ratio check value iteration history trace: 0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,
+   **   ~~~   ** Supply-to-demand interface deck 1 humidity ratio check value iteration history trace: 2.451668E-004,2.451668E-004,2.451668E-004,2.451668E-004,0.000000,2.451668E-004,2.451668E-004,2.451668E-004,2.451668E-004,2.451668E-004,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for temperature
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface temperature check value iteration history trace: 7.105427E-015,7.105427E-015,7.105427E-015,7.105427E-015,7.105427E-015,0.000000,7.105427E-015,7.105427E-015,7.105427E-015,7.105427E-015,
+   **   ~~~   ** Supply-to-demand interface deck 1 temperature check value iteration history trace: 0.314832,0.314832,0.314832,0.314832,0.000000,0.314832,0.314832,0.314832,0.314832,0.314832,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for energy
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface energy check value iteration history trace: 3368.602057,3368.602057,3368.602057,3368.602057,3368.602057,0.000000,3368.602057,3368.602057,3368.602057,3368.602057,
+   **   ~~~   ** Supply-to-demand interface deck 1 energy check value iteration history trace: 4176.767187,-4176.767187,4176.767187,-4176.767187,3679.838035,4176.767187,-4176.767187,4176.767187,-4176.767187,4176.767187,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating humidity ratio across iterations with a repeated value of 1.527454E-002
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE humidity ratio [kg-water/kg-dryair] iteration history trace (most recent first): 1.527454E-002,1.502937E-002,1.527454E-002,1.502937E-002,1.527454E-002,1.502937E-002,1.527454E-002,1.502937E-002,1.527454E-002,1.502937E-002,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating mass flow rate across iterations with a repeated value of 1.742212
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE mass flow rate [kg/s] iteration history trace (most recent first): 1.742212,1.570786,1.742212,1.570786,1.742212,1.570786,1.742212,1.570786,1.742212,1.570786,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating temperatures across iterations with a repeated value of 21.362547
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE temperature [C] iteration history trace (most recent first): 21.362547,21.047715,21.362547,21.047715,21.362547,21.047715,21.362547,21.047715,21.362547,21.047715,
+   ** Warning ** SimHVAC: Maximum iterations (20) exceeded for all HVAC loops, at RUNPERIOD 1, 06/25 03:20 - 03:21
+   **   ~~~   ** The solution for one or more of the Air Loop HVAC systems did not appear to converge
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for mass flow rate
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface mass flow rate check value iteration history trace: 5.227301E-002,7.330092E-002,8.259114E-002,7.557122E-002,7.945878E-002,0.000000,8.416214E-002,8.845048E-002,9.372010E-002,7.813656E-002,
+   **   ~~~   ** Supply-to-demand interface deck 1 mass flow rate check value iteration history trace: 5.227301E-002,7.330092E-002,8.259114E-002,7.557122E-002,7.945878E-002,7.945878E-002,8.416214E-002,8.845048E-002,9.372010E-002,7.813656E-002,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for humidity ratio
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface humidity ratio check value iteration history trace: 0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,
+   **   ~~~   ** Supply-to-demand interface deck 1 humidity ratio check value iteration history trace: 1.135903E-004,1.294538E-004,1.193971E-004,1.261443E-004,0.000000,1.329000E-004,1.404188E-004,1.479031E-004,1.209588E-004,9.392341E-005,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for temperature
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface temperature check value iteration history trace: 0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,
+   **   ~~~   ** Supply-to-demand interface deck 1 temperature check value iteration history trace: 7.917425E-002,9.607872E-002,0.127399,0.134585,0.000000,0.141827,0.149831,0.157858,0.167159,0.138181,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for energy
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface energy check value iteration history trace: 1261.281936,1768.658813,1992.820018,1823.438394,1917.240240,0.000000,2030.726338,2134.198634,2261.347949,1885.336663,
+   **   ~~~   ** Supply-to-demand interface deck 1 energy check value iteration history trace: 1236.549159,-1709.090875,1957.984857,-1823.438394,1671.137877,1917.240240,-2030.726338,2134.198634,-2262.044876,1886.033590,
+   ** Warning ** SimHVAC: Maximum iterations (20) exceeded for all HVAC loops, at RUNPERIOD 1, 06/25 03:21 - 03:22
+   **   ~~~   ** The solution for one or more of the Air Loop HVAC systems did not appear to converge
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for mass flow rate
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface mass flow rate check value iteration history trace: 0.374937,0.374937,0.374937,0.374937,0.374937,0.000000,0.374937,0.374937,0.374937,0.374937,
+   **   ~~~   ** Supply-to-demand interface deck 1 mass flow rate check value iteration history trace: 0.374986,0.374986,0.374986,0.374986,0.374986,0.374986,0.374986,0.374986,0.374986,0.374986,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for humidity ratio
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface humidity ratio check value iteration history trace: 0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,
+   **   ~~~   ** Supply-to-demand interface deck 1 humidity ratio check value iteration history trace: 6.073887E-004,6.073887E-004,6.073887E-004,6.073887E-004,0.000000,6.073887E-004,6.073887E-004,6.073887E-004,6.073887E-004,6.073887E-004,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for temperature
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface temperature check value iteration history trace: 0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,
+   **   ~~~   ** Supply-to-demand interface deck 1 temperature check value iteration history trace: 0.594095,0.594095,0.594095,0.594095,0.000000,0.594095,0.594095,0.594095,0.594095,0.594095,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for energy
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface energy check value iteration history trace: 9042.274727,9042.274727,9042.274727,9042.274727,9042.274727,0.000000,9042.274727,9042.274727,9042.274727,9042.274727,
+   **   ~~~   ** Supply-to-demand interface deck 1 energy check value iteration history trace: 8945.430264,-8945.430264,8945.430264,-8945.430264,7988.804976,8945.430264,-8945.430264,8945.430264,-8945.430264,8945.430264,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating humidity ratio across iterations with a repeated value of 1.516209E-002
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE humidity ratio [kg-water/kg-dryair] iteration history trace (most recent first): 1.516209E-002,1.455470E-002,1.516209E-002,1.455470E-002,1.516209E-002,1.455470E-002,1.516209E-002,1.455470E-002,1.516209E-002,1.455470E-002,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating mass flow rate across iterations with a repeated value of 1.977446
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE mass flow rate [kg/s] iteration history trace (most recent first): 1.977446,1.602461,1.977446,1.602461,1.977446,1.602461,1.977446,1.602461,1.977446,1.602461,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating temperatures across iterations with a repeated value of 21.201596
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE temperature [C] iteration history trace (most recent first): 21.201596,20.607501,21.201596,20.607501,21.201596,20.607501,21.201596,20.607501,21.201596,20.607501,
+   ** Warning ** SimHVAC: Maximum iterations (20) exceeded for all HVAC loops, at RUNPERIOD 1, 06/25 03:22 - 03:23
+   **   ~~~   ** The solution for one or more of the Air Loop HVAC systems did not appear to converge
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for mass flow rate
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface mass flow rate check value iteration history trace: 2.164117E-002,8.694668E-003,1.144587E-002,2.328885E-002,1.937612E-002,0.000000,1.968918E-002,2.396571E-002,2.820490E-002,2.874988E-002,
+   **   ~~~   ** Supply-to-demand interface deck 1 mass flow rate check value iteration history trace: 2.164117E-002,8.694668E-003,1.144587E-002,2.328885E-002,1.937612E-002,1.937612E-002,1.968918E-002,2.396571E-002,2.820490E-002,2.874988E-002,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for temperature
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface temperature check value iteration history trace: 7.105427E-015,7.105427E-015,7.105427E-015,0.000000,7.105427E-015,0.000000,7.105427E-015,0.000000,0.000000,7.105427E-015,
+   **   ~~~   ** Supply-to-demand interface deck 1 temperature check value iteration history trace: 1.492143E-002,1.961939E-002,8.040786E-002,7.371720E-002,0.000000,3.458543E-002,8.089948E-004,8.341121E-003,5.035393E-002,5.131119E-002,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for energy
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface energy check value iteration history trace: 521.883059,209.674420,276.020554,561.617317,467.260579,0.000000,474.810231,577.939977,680.169297,693.311560,
+   **   ~~~   ** Supply-to-demand interface deck 1 energy check value iteration history trace: -479.489460,216.965820,-383.447758,619.359522,-405.451691,-467.260579,414.116716,-517.246463,680.169297,-693.311560,
+   ** Warning ** SimHVAC: Maximum iterations (20) exceeded for all HVAC loops, at RUNPERIOD 1, 06/25 03:23 - 03:24
+   **   ~~~   ** The solution for one or more of the Air Loop HVAC systems did not appear to converge
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for mass flow rate
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface mass flow rate check value iteration history trace: 0.414508,0.414508,0.414508,0.414508,0.414508,0.000000,0.414508,0.414508,0.414508,0.414508,
+   **   ~~~   ** Supply-to-demand interface deck 1 mass flow rate check value iteration history trace: 0.419957,0.419957,0.419957,0.419957,0.419957,0.419957,0.419957,0.419957,0.419957,0.419957,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for humidity ratio
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface humidity ratio check value iteration history trace: 0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,
+   **   ~~~   ** Supply-to-demand interface deck 1 humidity ratio check value iteration history trace: 6.801734E-004,6.801734E-004,6.801734E-004,6.801734E-004,0.000000,6.801734E-004,6.801734E-004,6.801734E-004,6.801734E-004,6.801734E-004,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for temperature
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface temperature check value iteration history trace: 1.421085E-014,1.421085E-014,1.421085E-014,1.421085E-014,1.421085E-014,0.000000,1.421085E-014,1.421085E-014,1.421085E-014,1.421085E-014,
+   **   ~~~   ** Supply-to-demand interface deck 1 temperature check value iteration history trace: 0.712692,0.712692,0.712692,0.712692,0.000000,0.712692,0.712692,0.712692,0.712692,0.712692,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for energy
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface energy check value iteration history trace: 9996.366600,9996.366600,9996.366600,9996.366600,9996.366600,0.000000,9996.366600,9996.366600,9996.366600,9996.366600,
+   **   ~~~   ** Supply-to-demand interface deck 1 energy check value iteration history trace: 10090.608766,-10090.608766,10090.608766,-10090.608766,8946.883902,10090.608766,-10090.608766,10090.608766,-10090.608766,10090.608766,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating humidity ratio across iterations with a repeated value of 1.516209E-002
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE humidity ratio [kg-water/kg-dryair] iteration history trace (most recent first): 1.516209E-002,1.448191E-002,1.516209E-002,1.448191E-002,1.516209E-002,1.448191E-002,1.516209E-002,1.448191E-002,1.516209E-002,1.448191E-002,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating mass flow rate across iterations with a repeated value of 2.017017
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE mass flow rate [kg/s] iteration history trace (most recent first): 2.017017,1.597060,2.017017,1.597060,2.017017,1.597060,2.017017,1.597060,2.017017,1.597060,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating temperatures across iterations with a repeated value of 21.201596
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE temperature [C] iteration history trace (most recent first): 21.201596,20.488905,21.201596,20.488905,21.201596,20.488905,21.201596,20.488905,21.201596,20.488905,
+   ** Warning ** SimHVAC: Maximum iterations (20) exceeded for all HVAC loops, at RUNPERIOD 1, 06/25 03:24 - 03:25
+   **   ~~~   ** The solution for one or more of the Air Loop HVAC systems did not appear to converge
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for mass flow rate
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface mass flow rate check value iteration history trace: 0.373166,0.373166,0.373166,0.373166,0.373166,0.000000,0.373166,0.373166,0.373166,0.373166,
+   **   ~~~   ** Supply-to-demand interface deck 1 mass flow rate check value iteration history trace: 0.388018,0.388018,0.388018,0.388018,0.388018,0.388018,0.388018,0.388018,0.388018,0.388018,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for humidity ratio
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface humidity ratio check value iteration history trace: 0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,
+   **   ~~~   ** Supply-to-demand interface deck 1 humidity ratio check value iteration history trace: 6.497540E-004,6.497540E-004,6.497540E-004,6.497540E-004,0.000000,6.497540E-004,6.497540E-004,6.497540E-004,6.497540E-004,6.497540E-004,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for temperature
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface temperature check value iteration history trace: 1.065814E-014,1.065814E-014,1.065814E-014,1.065814E-014,1.065814E-014,0.000000,1.065814E-014,1.065814E-014,1.065814E-014,1.065814E-014,
+   **   ~~~   ** Supply-to-demand interface deck 1 temperature check value iteration history trace: 0.706240,0.706240,0.706240,0.706240,0.000000,0.706240,0.706240,0.706240,0.706240,0.706240,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for energy
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface energy check value iteration history trace: 8999.060848,8999.060848,8999.060848,8999.060848,8999.060848,0.000000,8999.060848,8999.060848,8999.060848,8999.060848,
+   **   ~~~   ** Supply-to-demand interface deck 1 energy check value iteration history trace: 9404.696995,-9404.696995,9404.696995,-9404.696995,8277.997759,9404.696995,-9404.696995,9404.696995,-9404.696995,9404.696995,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating humidity ratio across iterations with a repeated value of 1.516209E-002
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE humidity ratio [kg-water/kg-dryair] iteration history trace (most recent first): 1.516209E-002,1.451233E-002,1.516209E-002,1.451233E-002,1.516209E-002,1.451233E-002,1.516209E-002,1.451233E-002,1.516209E-002,1.451233E-002,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating mass flow rate across iterations with a repeated value of 1.975675
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE mass flow rate [kg/s] iteration history trace (most recent first): 1.975675,1.587657,1.975675,1.587657,1.975675,1.587657,1.975675,1.587657,1.975675,1.587657,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating temperatures across iterations with a repeated value of 21.231217
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE temperature [C] iteration history trace (most recent first): 21.231217,20.524976,21.231217,20.524976,21.231217,20.524976,21.231217,20.524976,21.231217,20.524976,
+   ** Warning ** SimHVAC: Maximum iterations (20) exceeded for all HVAC loops, at RUNPERIOD 1, 06/25 03:25 - 03:26
+   **   ~~~   ** The solution for one or more of the Air Loop HVAC systems did not appear to converge
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for mass flow rate
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface mass flow rate check value iteration history trace: 0.441937,0.441937,0.441937,0.441937,0.441937,0.000000,0.441937,0.441937,0.441937,0.441937,
+   **   ~~~   ** Supply-to-demand interface deck 1 mass flow rate check value iteration history trace: 0.449382,0.449382,0.449382,0.449382,0.449382,0.449382,0.449382,0.449382,0.449382,0.449382,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for humidity ratio
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface humidity ratio check value iteration history trace: 0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,
+   **   ~~~   ** Supply-to-demand interface deck 1 humidity ratio check value iteration history trace: 7.347423E-004,7.347423E-004,7.347423E-004,7.347423E-004,0.000000,7.347423E-004,7.347423E-004,7.347423E-004,7.347423E-004,7.347423E-004,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for temperature
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface temperature check value iteration history trace: 7.105427E-015,7.105427E-015,7.105427E-015,7.105427E-015,7.105427E-015,0.000000,7.105427E-015,7.105427E-015,7.105427E-015,7.105427E-015,
+   **   ~~~   ** Supply-to-demand interface deck 1 temperature check value iteration history trace: 0.739302,0.739302,0.739302,0.739302,0.000000,0.739302,0.739302,0.739302,0.739302,0.739302,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for energy
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface energy check value iteration history trace: 10658.328206,10658.328206,10658.328206,10658.328206,10658.328206,0.000000,10658.328206,10658.328206,10658.328206,10658.328206,
+   **   ~~~   ** Supply-to-demand interface deck 1 energy check value iteration history trace: 10770.491290,-10770.491290,10770.491290,-10770.491290,9585.544481,10770.491290,-10770.491290,10770.491290,-10770.491290,10770.491290,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating humidity ratio across iterations with a repeated value of 1.516209E-002
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE humidity ratio [kg-water/kg-dryair] iteration history trace (most recent first): 1.516209E-002,1.442735E-002,1.516209E-002,1.442735E-002,1.516209E-002,1.442735E-002,1.516209E-002,1.442735E-002,1.516209E-002,1.442735E-002,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating mass flow rate across iterations with a repeated value of 2.044446
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE mass flow rate [kg/s] iteration history trace (most recent first): 2.044446,1.595064,2.044446,1.595064,2.044446,1.595064,2.044446,1.595064,2.044446,1.595064,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating temperatures across iterations with a repeated value of 21.227686
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE temperature [C] iteration history trace (most recent first): 21.227686,20.488383,21.227686,20.488383,21.227686,20.488383,21.227686,20.488383,21.227686,20.488383,
+   ** Warning ** SimHVAC: Maximum iterations (20) exceeded for all HVAC loops, at RUNPERIOD 1, 06/25 03:26 - 03:27
+   **   ~~~   ** The solution for one or more of the Air Loop HVAC systems did not appear to converge
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for mass flow rate
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface mass flow rate check value iteration history trace: 0.377661,0.377661,0.377661,0.377661,0.377661,0.000000,0.377661,0.377661,0.377661,0.377661,
+   **   ~~~   ** Supply-to-demand interface deck 1 mass flow rate check value iteration history trace: 0.395718,0.395718,0.382330,0.382330,0.395718,0.395718,0.395718,0.382330,0.382330,0.395718,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for humidity ratio
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface humidity ratio check value iteration history trace: 0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,
+   **   ~~~   ** Supply-to-demand interface deck 1 humidity ratio check value iteration history trace: 6.764010E-004,6.764010E-004,6.764010E-004,6.764010E-004,0.000000,6.764010E-004,6.764010E-004,6.764010E-004,6.764010E-004,6.764010E-004,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for temperature
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface temperature check value iteration history trace: 0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,
+   **   ~~~   ** Supply-to-demand interface deck 1 temperature check value iteration history trace: 0.698919,0.698919,0.648994,0.648994,0.000000,0.698919,0.698919,0.648994,0.648994,0.698919,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for energy
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface energy check value iteration history trace: 9107.794531,9107.794531,9107.794531,9107.794531,9107.794531,0.000000,9107.794531,9107.794531,9107.794531,9107.794531,
+   **   ~~~   ** Supply-to-demand interface deck 1 energy check value iteration history trace: 9543.271001,-9543.271001,9187.286789,-9187.286789,8430.504225,9543.271001,-9543.271001,9187.286789,-9187.286789,9543.271001,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating humidity ratio across iterations with a repeated value of 1.516209E-002
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE humidity ratio [kg-water/kg-dryair] iteration history trace (most recent first): 1.516209E-002,1.448569E-002,1.516209E-002,1.448569E-002,1.516209E-002,1.448569E-002,1.516209E-002,1.448569E-002,1.516209E-002,1.448569E-002,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating mass flow rate across iterations with a repeated value of 1.980170
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE mass flow rate [kg/s] iteration history trace (most recent first): 1.980170,1.584452,1.980170,1.597840,1.980170,1.584452,1.980170,1.597840,1.980170,1.584452,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating temperatures across iterations with a repeated value of 21.201596
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE temperature [C] iteration history trace (most recent first): 21.201596,20.502678,21.201596,20.552602,21.201596,20.502678,21.201596,20.552602,21.201596,20.502678,
+   ** Warning ** SimHVAC: Maximum iterations (20) exceeded for all HVAC loops, at RUNPERIOD 1, 06/25 03:27 - 03:28
+   **   ~~~   ** The solution for one or more of the Air Loop HVAC systems did not appear to converge
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for mass flow rate
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface mass flow rate check value iteration history trace: 0.392770,0.392770,0.392770,0.392770,0.392770,0.000000,0.392770,0.392770,0.392770,0.392770,
+   **   ~~~   ** Supply-to-demand interface deck 1 mass flow rate check value iteration history trace: 0.398732,0.398732,0.398732,0.398732,0.398732,0.398732,0.398732,0.398732,0.398732,0.398732,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for humidity ratio
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface humidity ratio check value iteration history trace: 0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,0.000000,
+   **   ~~~   ** Supply-to-demand interface deck 1 humidity ratio check value iteration history trace: 7.029422E-004,7.029422E-004,7.029422E-004,7.029422E-004,0.000000,7.029422E-004,7.029422E-004,7.029422E-004,7.029422E-004,7.029422E-004,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for temperature
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface temperature check value iteration history trace: 3.552714E-015,3.552714E-015,3.552714E-015,3.552714E-015,3.552714E-015,0.000000,3.552714E-015,3.552714E-015,3.552714E-015,3.552714E-015,
+   **   ~~~   ** Supply-to-demand interface deck 1 temperature check value iteration history trace: 0.724378,0.724378,0.724378,0.724378,0.000000,0.724378,0.724378,0.724378,0.724378,0.724378,
+   **   ~~~   ** Air System Named = PSZ-AC_1:1 did not converge for energy
+   **   ~~~   ** Check values should be zero. Most Recent values listed first.
+   **   ~~~   ** Demand-to-Supply interface energy check value iteration history trace: 9472.141447,9472.141447,9472.141447,9472.141447,9472.141447,0.000000,9472.141447,9472.141447,9472.141447,9472.141447,
+   **   ~~~   ** Supply-to-demand interface deck 1 energy check value iteration history trace: 9656.804604,-9656.804604,9656.804604,-9656.804604,8494.699102,9656.804604,-9656.804604,9656.804604,-9656.804604,9656.804604,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating humidity ratio across iterations with a repeated value of 1.516209E-002
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE humidity ratio [kg-water/kg-dryair] iteration history trace (most recent first): 1.516209E-002,1.445915E-002,1.516209E-002,1.445915E-002,1.516209E-002,1.445915E-002,1.516209E-002,1.445915E-002,1.516209E-002,1.445915E-002,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating mass flow rate across iterations with a repeated value of 1.995279
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE mass flow rate [kg/s] iteration history trace (most recent first): 1.995279,1.596547,1.995279,1.596547,1.995279,1.596547,1.995279,1.596547,1.995279,1.596547,
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE shows oscillating temperatures across iterations with a repeated value of 21.201596
+   **   ~~~   ** Node named DINING DIRECT AIR INLET NODE temperature [C] iteration history trace (most recent first): 21.201596,20.477218,21.201596,20.477218,21.201596,20.477218,21.201596,20.477218,21.201596,20.477218,
+   ** Warning ** Entered Humidity Ratio invalid (PsyTwbFnTdbWPb)
+   **   ~~~   **  Routine=CalcMultiSpeedDXCoilCooling Environment=RUNPERIOD 1, at Simulation time=08/23 23:02 - 23:03
+   **   ~~~   **  Dry-Bulb= 19.44 Humidity Ratio= -5.418E-003 Pressure= 100240.00
+   **   ~~~   ** Humidity Ratio= -5.4188E-003 ... Humidity Ratio set to .00001
+   ************* Simulation Error Summary *************
+   ************* There are 29 unused schedules in input.
+   ************* Use Output:Diagnostics,DisplayUnusedSchedules; to see them.
+   *************
+   ************* ===== Recurring Error Summary =====
+   ************* The following recurring error messages occurred.
+   *************
+   *************  ** Warning ** "KITCHEN WATER EQUIPMENT" - Target water temperature should be less than or equal to the hot water temperature error continues...
+   *************  **   ~~~   **   This error occurred 854575 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************  **   ~~~   **   Max=1.873772  Min=0.230204
+   *************
+   *************  ** Warning ** AirLoopHVAC:UnitarySystem "PSZ-AC_2:2_UNITARY_PACKAGE_DX" - sensible part-load ratio out of range error continues. Sensible load statistics:
+   *************  **   ~~~   **   This error occurred 557 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************  **   ~~~   **   Max=-4258.988578  Min=-33751.633912
+   *************
+   *************  ** Warning ** Temperature out of range [-100. to 200.] (PsyPsatFnTemp)
+   *************  **   ~~~   **   This error occurred 1 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************  **   ~~~   **   Max=-127.668457 C  Min=-127.668457 C
+   *************
+   *************  ** Warning ** AirLoopHVAC:UnitarySystem "PSZ-AC_1:1_UNITARY_PACKAGE_DX" - sensible part-load ratio out of range error continues. Sensible load statistics:
+   *************  **   ~~~   **   This error occurred 159 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************  **   ~~~   **   Max=-23.231569  Min=-24737.959084
+   *************
+   *************  ** Warning ** AirLoopHVAC:UnitarySystem "PSZ-AC_1:1_UNITARY_PACKAGE_DX" - Iteration limit exceeded in calculating sensible part-load ratio error continues. Sensible load statistics:
+   *************  **   ~~~   **   This error occurred 11923 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************  **   ~~~   **   Max=-336.491853  Min=-22268.088439
+   *************
+   *************  ** Warning ** SimHVAC: Exceeding Maximum iterations for all HVAC loops, during RUNPERIOD 1 continues
+   *************  **   ~~~   **   This error occurred 600 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************
+   *************  ** Warning ** Entered Humidity Ratio invalid (PsyTwbFnTdbWPb)
+   *************  **   ~~~   **   This error occurred 19 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************  **   ~~~   **   Max=-0.000286 []  Min=-0.019726 []
+   *************
+   *************
+   ************* ===== Final Error Summary =====
+   ************* The following error categories occurred.  Consider correcting or noting.
+   ************* Nominally Unused Constructions
+   ************* ..The nominally unused constructions warning is provided to alert you to potential conditions that can cause
+   ************* ..extra time during simulation. Each construction is calculated by the algorithm indicated in the HeatBalanceAlgorithm
+   ************* ..object. You may remove the constructions indicated (when you use the DisplayExtraWarnings option).
+   *************
+   ************* EnergyPlus Warmup Error Summary. During Warmup: 0 Warning; 0 Severe Errors.
+   ************* EnergyPlus Sizing Error Summary. During Sizing: 3 Warning; 0 Severe Errors.
+   ************* EnergyPlus Completed Successfully-- 867860 Warning; 1 Severe Errors; Elapsed Time=00hr 00min 24.23sec

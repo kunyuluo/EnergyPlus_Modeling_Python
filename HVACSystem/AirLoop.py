@@ -99,7 +99,7 @@ class AirLoop:
                 if 'Coil' in item['type'] and 'Water' in item['type']:
                     if 'Cooling' in item['type']:
                         water_clg_coils.append(item)
-                    if 'Heating' in item['type']:
+                    if 'Heating' in item['type'] and 'Water' in item['type']:
                         water_htg_coils.append(item)
 
         # Adjust zone sizing for DOAS system if needed:
@@ -338,6 +338,7 @@ class AirLoop:
                 hx_name = f'{oa_sys_name} Heat Exchanger'
                 hx = AirLoopComponent.heat_exchanger_air_to_air_v24(idf, hx_name)
                 # hx = AirLoopComponent.heat_exchanger_air_to_air(idf, hx_name)
+
                 os_sys_equip_list['Component_2_Object_Type'] = hx['type']
                 os_sys_equip_list['Component_2_Name'] = hx['object'].Name
 
@@ -427,6 +428,8 @@ class AirLoop:
                             # Rename controller sensor node name if available:
                             if 'Coil' in supply_branches[i]['type'] and 'Water' in supply_branches[i]['type']:
                                 supply_branches[i]['controller']['Sensor_Node_Name'] = fan_inlet_node
+                            if 'Coil' in supply_branches[i]['type'] and 'Electric' in supply_branches[i]['type']:
+                                supply_branches[i]['object'][supply_branches[i]['setpoint_node_field']] = fan_inlet_node
                             spm_nodes[-1] = fan_inlet_node
 
                             # Add fan to branch:

@@ -177,11 +177,13 @@ class PlantLoopComponent:
             cop_temperature_curve: EpBunch | str = None,
             cop_plr_curve: EpBunch | str = None,
             condenser_loop=None,
+            condenser_flow_control: int = 1,
             test_mode: bool = False):
 
         """
         -Condenser_type: 1:AirCooled 2:WaterCooled 3:EvapCooled \n
         -Chiller_flow_mode: 1:NotModulated 2:LeavingSetpointModulated 3:ConstantFlow
+        -Condenser Flow Control: 1:ConstantFlow 2:ModulatedChillerPLR 3:ModulatedLoopPLR 4:ModulatedDeltaTemperature
         """
 
         condenser_types = {1: "AirCooled", 2: "WaterCooled", 3: "EvapCooled"}

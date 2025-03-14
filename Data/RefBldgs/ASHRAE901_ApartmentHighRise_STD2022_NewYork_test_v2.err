@@ -1,0 +1,253 @@
+Program Version,EnergyPlus, Version 24.2.0-94a887817b, YMD=2025.03.10 14:28,
+   ************* Beginning Zone Sizing Calculations
+   ** Warning ** Weather file location will be used rather than entered (IDF) Location object.
+   **   ~~~   ** ..Location object=NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA WMO=744860
+   **   ~~~   ** ..Weather File Location=Shanghai Shanghai CHN CSWD WMO#=583620
+   **   ~~~   ** ..due to location differences, Latitude difference=[9.26] degrees, Longitude difference=[195.25] degrees.
+   **   ~~~   ** ..Time Zone difference=[13.0] hour(s), Elevation difference=[21.43] percent, [1.50] meters.
+   ** Warning ** CheckUsedConstructions: There are 21 nominally unused constructions in input.
+   **   ~~~   ** Each Unused construction is shown.
+   ************* Construction=AIR_WALL
+   ************* Construction=DROPCEILING
+   ************* Construction=OPAQUEDOOR
+   ************* Construction=ATTICROOFDECK
+   ************* Construction=EXT_SLAB_8IN_WITH_CARPET
+   ************* Construction=EXT_SLAB_8IN
+   ************* Construction=EXT_SLAB_6IN_WITH_CARPET
+   ************* Construction=EXT_SLAB_6IN
+   ************* Construction=BASEMENT_WALL
+   ************* Construction=INT_WOOD_FLOOR
+   ************* Construction=EXT_SOFFIT_FLOOR
+   ************* Construction=SEMIHEATED_ROOF
+   ************* Construction=SEMIHEATED_EXT_WALL_GRD
+   ************* Construction=SEMIHEATED_EXT_WALL_MID
+   ************* Construction=SEMIHEATED_EXT_WALL_TOP
+   ************* Construction=NONRES_FLOOR
+   ************* Construction=RES_FLOOR
+   ************* Construction=SEMIHEATED_FLOOR
+   ************* Construction=NONRES_FLOOR_CEILING
+   ************* Construction=RES_FLOOR_CEILING
+   ************* Construction=SEMIHEATED_FLOOR_CEILING
+   ** Warning ** GeneratorController constructor ElectricLoadCenter:Generators, Availability Schedule for Generator:PVWatts 'PV_MODULE' will be be ignored (runs all the time).
+   ************* Beginning System Sizing Calculations
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = G SW APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = G NW APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = OFFICE TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = G NE APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = G N1 APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = G N2 APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = G S1 APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = G S2 APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = M SW APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = M NW APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = M SE APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = M NE APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = M N1 APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = M N2 APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = M S1 APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = M S2 APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = T SW APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = T NW APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = T SE APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = T NE APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = T N1 APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = T N2 APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = T S1 APARTMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:Reheat = T S2 APARTMENT TERMINAL
+   ************* Beginning Plant Sizing Calculations
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:Reheat = "G SW APARTMENT TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.24845
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:Reheat = "G NW APARTMENT TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.25037
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:Reheat = "OFFICE TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.21038
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:Reheat = "M SW APARTMENT TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.18888
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:Reheat = "M NW APARTMENT TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.18841
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:Reheat = "M SE APARTMENT TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.21485
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:Reheat = "M NE APARTMENT TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.21308
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:Reheat = "M N1 APARTMENT TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.24680
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:Reheat = "M N2 APARTMENT TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.24791
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:Reheat = "M S1 APARTMENT TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.24782
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:Reheat = "M S2 APARTMENT TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.24901
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:Reheat = "T SW APARTMENT TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.17058
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:Reheat = "T NW APARTMENT TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.16757
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:Reheat = "T SE APARTMENT TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.20078
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:Reheat = "T NE APARTMENT TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.19560
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:Reheat = "T N1 APARTMENT TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.20911
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:Reheat = "T N2 APARTMENT TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.21106
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:Reheat = "T S1 APARTMENT TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.21474
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:Reheat = "T S2 APARTMENT TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.21684
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ** Warning ** SizeWaterCoil: Potential issue with equipment sizing for Coil:Heating:Water AHU HEATING COIL G
+   **   ~~~   ** ...Rated Total Heating Capacity = 0.00 [W]
+   **   ~~~   ** ...Air flow rate used for sizing = 0.93157 [m3/s]
+   **   ~~~   ** ...Outdoor air fraction used for sizing = 0.23
+   **   ~~~   ** ...Coil inlet air temperature used for sizing = 13.98 [C]
+   **   ~~~   ** ...Coil outlet air temperature used for sizing = 12.80 [C]
+   ** Warning ** The design coil load is zero for Coil:Heating:Water AHU HEATING COIL G
+   **   ~~~   ** The autosize value for maximum water flow rate is zero
+   **   ~~~   ** To change this, input a value for UA, change the heating design day, or raise the
+   **   ~~~   **   system heating design supply air temperature. Also check to make sure the Preheat
+   **   ~~~   **   Design Temperature is not the same as the Central Heating Design Supply Air Temperature. 
+   ** Warning ** InitController: Controller:WaterCoil="AHU HEATING COIL G CONTROLLER", Maximum Actuated Flow is zero.
+   ** Warning ** SizeWaterCoil: Potential issue with equipment sizing for Coil:Heating:Water AHU HEATING COIL M
+   **   ~~~   ** ...Rated Total Heating Capacity = 0.00 [W]
+   **   ~~~   ** ...Air flow rate used for sizing = 7.45668 [m3/s]
+   **   ~~~   ** ...Outdoor air fraction used for sizing = 0.22
+   **   ~~~   ** ...Coil inlet air temperature used for sizing = 14.47 [C]
+   **   ~~~   ** ...Coil outlet air temperature used for sizing = 12.80 [C]
+   ** Warning ** The design coil load is zero for Coil:Heating:Water AHU HEATING COIL M
+   **   ~~~   ** The autosize value for maximum water flow rate is zero
+   **   ~~~   ** To change this, input a value for UA, change the heating design day, or raise the
+   **   ~~~   **   system heating design supply air temperature. Also check to make sure the Preheat
+   **   ~~~   **   Design Temperature is not the same as the Central Heating Design Supply Air Temperature. 
+   ** Warning ** InitController: Controller:WaterCoil="AHU HEATING COIL M CONTROLLER", Maximum Actuated Flow is zero.
+   ** Warning ** SizeWaterCoil: Potential issue with equipment sizing for Coil:Heating:Water AHU HEATING COIL T
+   **   ~~~   ** ...Rated Total Heating Capacity = 0.00 [W]
+   **   ~~~   ** ...Air flow rate used for sizing = 1.34532 [m3/s]
+   **   ~~~   ** ...Outdoor air fraction used for sizing = 0.15
+   **   ~~~   ** ...Coil inlet air temperature used for sizing = 16.69 [C]
+   **   ~~~   ** ...Coil outlet air temperature used for sizing = 12.80 [C]
+   ** Warning ** The design coil load is zero for Coil:Heating:Water AHU HEATING COIL T
+   **   ~~~   ** The autosize value for maximum water flow rate is zero
+   **   ~~~   ** To change this, input a value for UA, change the heating design day, or raise the
+   **   ~~~   **   system heating design supply air temperature. Also check to make sure the Preheat
+   **   ~~~   **   Design Temperature is not the same as the Central Heating Design Supply Air Temperature. 
+   ** Warning ** InitController: Controller:WaterCoil="AHU HEATING COIL T CONTROLLER", Maximum Actuated Flow is zero.
+   ** Warning ** Chiller:Electric:EIR = CHILLER 1:  Integrated Part Load Value (IPLV) calculated is not at the AHRI test condition.
+   **   ~~~   **  Check limits in Cooling Capacity Function of Temperature Curve, Curve Type = Curve:Biquadratic, Curve Name = CHILLER 1 COOLINGCAPTEMPCURVE_ASHRAE90.1
+   **   ~~~   **  Check limits in EIR Function of Temperature Curve, Curve Type = Curve:Biquadratic, Curve Name = CHILLER 1 COOLINGEIRRATIOTEMPCURVE_ASHRAE90.1
+   ** Warning ** Output:Meter:MeterFileOnly: invalid Key Name="GAS:FACILITY" - not found.
+   ************* Testing Individual Branch Integrity
+   ************* All Branches passed integrity testing
+   ************* Testing Individual Supply Air Path Integrity
+   ************* All Supply Air Paths passed integrity testing
+   ************* Testing Individual Return Air Path Integrity
+   ************* All Return Air Paths passed integrity testing
+   ************* No node connection errors were found.
+   ************* Beginning Simulation
+   ** Warning ** Temperature out of range [-100. to 200.] (PsyPsatFnTemp)
+   **   ~~~   **  Routine=PsyTwbFnTdbWPb, Environment=RUNPERIOD 1, at Simulation time=01/10 21:00 - 21:10
+   **   ~~~   **  Input Temperature=-127.66
+   ************* Simulation Error Summary *************
+   ************* There are 24 unused objects in input.
+   ************* Use Output:Diagnostics,DisplayUnusedObjects; to see them.
+   ************* There are 38 unused schedules in input.
+   ************* Use Output:Diagnostics,DisplayUnusedSchedules; to see them.
+   *************
+   ************* ===== Recurring Error Summary =====
+   ************* The following recurring error messages occurred.
+   *************
+   *************  ** Warning ** Temperature out of range [-100. to 200.] (PsyPsatFnTemp)
+   *************  **   ~~~   **   This error occurred 1 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************  **   ~~~   **   Max=-127.668457 C  Min=-127.668457 C
+   *************
+   *************
+   ************* ===== Final Error Summary =====
+   ************* The following error categories occurred.  Consider correcting or noting.
+   ************* Nominally Unused Constructions
+   ************* ..The nominally unused constructions warning is provided to alert you to potential conditions that can cause
+   ************* ..extra time during simulation. Each construction is calculated by the algorithm indicated in the HeatBalanceAlgorithm
+   ************* ..object. You may remove the constructions indicated (when you use the DisplayExtraWarnings option).
+   *************
+   ************* EnergyPlus Warmup Error Summary. During Warmup: 0 Warning; 0 Severe Errors.
+   ************* EnergyPlus Sizing Error Summary. During Sizing: 27 Warning; 0 Severe Errors.
+   ************* EnergyPlus Completed Successfully-- 36 Warning; 0 Severe Errors; Elapsed Time=00hr 01min  6.71sec

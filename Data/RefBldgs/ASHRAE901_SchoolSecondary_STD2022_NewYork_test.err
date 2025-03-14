@@ -1,0 +1,236 @@
+Program Version,EnergyPlus, Version 24.2.0-94a887817b, YMD=2025.03.12 14:29,
+   ************* Beginning Zone Sizing Calculations
+   ** Warning ** Weather file location will be used rather than entered (IDF) Location object.
+   **   ~~~   ** ..Location object=NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA WMO=744860
+   **   ~~~   ** ..Weather File Location=New York J F Kennedy IntL Ar NY USA TMY3 WMO#=744860
+   **   ~~~   ** ..due to location differences, Latitude difference=[1.00E-002] degrees, Longitude difference=[0.00] degrees.
+   **   ~~~   ** ..Time Zone difference=[0.0] hour(s), Elevation difference=[28.57] percent, [2.00] meters.
+   ** Warning ** ProcessScheduleInput: Schedule:Constant="VAV_POD_1 MAX OA FRACTION", Blank Schedule Type Limits Name input -- will not be validated.
+   ** Warning ** ProcessScheduleInput: Schedule:Constant="VAV_POD_2 MAX OA FRACTION", Blank Schedule Type Limits Name input -- will not be validated.
+   ** Warning ** ProcessScheduleInput: Schedule:Constant="VAV_POD_3 MAX OA FRACTION", Blank Schedule Type Limits Name input -- will not be validated.
+   ** Warning ** ProcessScheduleInput: Schedule:Constant="VAV_OTHER MAX OA FRACTION", Blank Schedule Type Limits Name input -- will not be validated.
+   ** Warning ** SetUpZoneGeometry: Entered Ceiling Height for Zone="GYM_ZN_1_FLR_1" significantly different from calculated Ceiling Height
+   **   ~~~   ** SetUpZoneGeometry: Entered Ceiling Height=4.00, Calculated Ceiling Height=8.00, entered height will be used in calculations.
+   ** Warning ** SetUpZoneGeometry: Entered Ceiling Height for Zone="AUX_GYM_ZN_1_FLR_1" significantly different from calculated Ceiling Height
+   **   ~~~   ** SetUpZoneGeometry: Entered Ceiling Height=4.00, Calculated Ceiling Height=8.00, entered height will be used in calculations.
+   ** Warning ** SetUpZoneGeometry: Entered Ceiling Height for Zone="AUDITORIUM_ZN_1_FLR_1" significantly different from calculated Ceiling Height
+   **   ~~~   ** SetUpZoneGeometry: Entered Ceiling Height=4.00, Calculated Ceiling Height=8.00, entered height will be used in calculations.
+   ** Warning ** CheckUsedConstructions: There are 26 nominally unused constructions in input.
+   **   ~~~   ** Each Unused construction is shown.
+   ************* Construction=AIR_WALL
+   ************* Construction=DROPCEILING
+   ************* Construction=OPAQUEDOOR
+   ************* Construction=ATTICROOFDECK
+   ************* Construction=EXT_SLAB_8IN_WITH_CARPET
+   ************* Construction=EXT_SLAB_8IN
+   ************* Construction=EXT_SLAB_6IN_WITH_CARPET
+   ************* Construction=EXT_SLAB_6IN
+   ************* Construction=BASEMENT_WALL
+   ************* Construction=INT_WOOD_FLOOR
+   ************* Construction=EXT_SOFFIT_FLOOR
+   ************* Construction=RES_ROOF
+   ************* Construction=SEMIHEATED_ROOF
+   ************* Construction=NONRES_EXT_WALL_MID
+   ************* Construction=RES_EXT_WALL_GRD
+   ************* Construction=RES_EXT_WALL_MID
+   ************* Construction=RES_EXT_WALL_TOP
+   ************* Construction=SEMIHEATED_EXT_WALL_GRD
+   ************* Construction=SEMIHEATED_EXT_WALL_MID
+   ************* Construction=SEMIHEATED_EXT_WALL_TOP
+   ************* Construction=NONRES_FLOOR
+   ************* Construction=RES_FLOOR
+   ************* Construction=SEMIHEATED_FLOOR
+   ************* Construction=NONRES_FLOOR_CEILING
+   ************* Construction=RES_FLOOR_CEILING
+   ************* Construction=SEMIHEATED_FLOOR_CEILING
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="CORNER_CLASS_1_POD_1_ZN_1_FLR_1_DAYLCTRL", only 0.760 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="MULT_CLASS_1_POD_1_ZN_1_FLR_1_DAYLCTRL", only 0.560 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="CORNER_CLASS_2_POD_1_ZN_1_FLR_1_DAYLCTRL", only 0.760 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="MULT_CLASS_2_POD_1_ZN_1_FLR_1_DAYLCTRL", only 0.560 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="CORNER_CLASS_1_POD_1_ZN_1_FLR_2_DAYLCTRL", only 0.760 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="MULT_CLASS_1_POD_1_ZN_1_FLR_2_DAYLCTRL", only 0.560 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="CORNER_CLASS_2_POD_1_ZN_1_FLR_2_DAYLCTRL", only 0.760 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="MULT_CLASS_2_POD_1_ZN_1_FLR_2_DAYLCTRL", only 0.560 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="CORNER_CLASS_1_POD_2_ZN_1_FLR_1_DAYLCTRL", only 0.760 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="MULT_CLASS_1_POD_2_ZN_1_FLR_1_DAYLCTRL", only 0.560 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="CORNER_CLASS_2_POD_2_ZN_1_FLR_1_DAYLCTRL", only 0.760 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="MULT_CLASS_2_POD_2_ZN_1_FLR_1_DAYLCTRL", only 0.560 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="CORNER_CLASS_1_POD_2_ZN_1_FLR_2_DAYLCTRL", only 0.760 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="MULT_CLASS_1_POD_2_ZN_1_FLR_2_DAYLCTRL", only 0.560 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="CORNER_CLASS_2_POD_2_ZN_1_FLR_2_DAYLCTRL", only 0.760 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="MULT_CLASS_2_POD_2_ZN_1_FLR_2_DAYLCTRL", only 0.560 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="CORNER_CLASS_1_POD_3_ZN_1_FLR_1_DAYLCTRL", only 0.760 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="MULT_CLASS_1_POD_3_ZN_1_FLR_1_DAYLCTRL", only 0.560 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="CORNER_CLASS_2_POD_3_ZN_1_FLR_1_DAYLCTRL", only 0.760 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="MULT_CLASS_2_POD_3_ZN_1_FLR_1_DAYLCTRL", only 0.560 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="CORNER_CLASS_1_POD_3_ZN_1_FLR_2_DAYLCTRL", only 0.760 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="MULT_CLASS_1_POD_3_ZN_1_FLR_2_DAYLCTRL", only 0.560 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="CORNER_CLASS_2_POD_3_ZN_1_FLR_2_DAYLCTRL", only 0.760 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="MULT_CLASS_2_POD_3_ZN_1_FLR_2_DAYLCTRL", only 0.560 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="LOBBY_ZN_1_FLR_1_DAYLCTRL", only 0.360 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="LOBBY_ZN_1_FLR_2_DAYLCTRL", only 0.360 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="OFFICES_ZN_1_FLR_1_DAYLCTRL", only 0.440 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="OFFICES_ZN_1_FLR_2_DAYLCTRL", only 0.440 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="CAFETERIA_ZN_1_FLR_1_DAYLCTRL", only 0.360 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="LIBRARY_MEDIA_CENTER_ZN_1_FLR_2_DAYLCTRL", only 0.320 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="AUDITORIUM_ZN_1_FLR_1_DAYLCTRL", only 0.250 of the zone or space is controlled.
+   ** Warning ** GetSimpleAirModelInputs: ZoneInfiltration:DesignFlowRate="GYM_ZN_1_FLR_1_INFILTRATION", Design Flow Rate Calculation Method specifies Flow Rate per Exterior Surface Area, but Exterior Wall Area = 0.  0 Infiltration will result.
+   ** Warning ** GetSimpleAirModelInputs: ZoneInfiltration:DesignFlowRate="MECH_ZN_1_FLR_2_INFILTRATION", Design Flow Rate Calculation Method specifies Flow Rate per Exterior Surface Area, but Exterior Wall Area = 0.  0 Infiltration will result.
+   ** Warning ** GeneratorController constructor ElectricLoadCenter:Generators, Availability Schedule for Generator:PVWatts 'PV_MODULE' will be be ignored (runs all the time).
+   ** Warning ** Calculated design heating load for zone=KITCHEN_ZN_1_FLR_1 is zero.
+   **   ~~~   ** Check Sizing:Zone and ZoneControl:Thermostat inputs.
+   ** Warning ** Calculated design heating load for zone=MECH_ZN_1_FLR_1 is zero.
+   **   ~~~   ** Check Sizing:Zone and ZoneControl:Thermostat inputs.
+   ** Warning ** GetVRFInput: AirConditioner:VariableRefrigerantFlow="VRF SYSTEM 1" curve values
+   **   ~~~   ** ... Cooling Capacity Ratio Modifier Function of Low Temperature Curve Name = VRF SYSTEM 1 CAPRATIOLOWTEMPCURVE_COOLING output is not equal to 1.0 (+ or - 10%) at rated conditions.
+   **   ~~~   ** ... Curve output at rated conditions = 1.136
+   ** Warning ** GetVRFInput: AirConditioner:VariableRefrigerantFlow="VRF SYSTEM 2" curve values
+   **   ~~~   ** ... Cooling Capacity Ratio Modifier Function of Low Temperature Curve Name = VRF SYSTEM 2 CAPRATIOLOWTEMPCURVE_COOLING output is not equal to 1.0 (+ or - 10%) at rated conditions.
+   **   ~~~   ** ... Curve output at rated conditions = 1.136
+   ** Warning ** ManageSizing: For a plant sizing run, there must be at least 1 Sizing:Plant object input. SimulationControl Plant Sizing option ignored.
+   ** Warning ** SizeDXCoil Coil:Cooling:DX:VariableRefrigerantFlow MECH_ZN_1_FLR_1 VRF TERMINAL COOLING COIL
+   **   ~~~   ** ...Gross Rated Total Cooling Capacity [W] will be limited by the maximum rated volume flow per rated total capacity ratio.
+   **   ~~~   ** ...DX coil volume flow rate ( m3/s ) = 0.636063
+   **   ~~~   ** ...Requested capacity ( W ) = 10294.362
+   **   ~~~   ** ...Requested flow/capacity ratio ( m3/s/W ) = 6.178E-005
+   **   ~~~   ** ...Maximum flow/capacity ratio ( m3/s/W ) = 6.041E-005
+   **   ~~~   ** ...Adjusted capacity ( W ) = 10529.101
+   ************* SizeVRF: Potential issue with equipment sizing for AirConditioner:VariableRefrigerantFlow CORNER_CLASS_1_POD_1_ZN_1_FLR_1 VRF TERMINAL
+   **   ~~~   ** User-Specified Resistive Defrost Heater Capacity of 1.00E-007 [W]
+   **   ~~~   ** differs from Design Size Resistive Defrost Heater Capacity of 931742.63 [W]
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ** Warning ** SizeDXCoil Coil:Cooling:DX:VariableRefrigerantFlow MECH_ZN_1_FLR_2 VRF TERMINAL COOLING COIL
+   **   ~~~   ** ...Gross Rated Total Cooling Capacity [W] will be limited by the maximum rated volume flow per rated total capacity ratio.
+   **   ~~~   ** ...DX coil volume flow rate ( m3/s ) = 0.556759
+   **   ~~~   ** ...Requested capacity ( W ) = 9051.849
+   **   ~~~   ** ...Requested flow/capacity ratio ( m3/s/W ) = 6.150E-005
+   **   ~~~   ** ...Maximum flow/capacity ratio ( m3/s/W ) = 6.041E-005
+   **   ~~~   ** ...Adjusted capacity ( W ) = 9216.349
+   ************* SizeVRF: Potential issue with equipment sizing for AirConditioner:VariableRefrigerantFlow MULT_CLASS_1_POD_1_ZN_1_FLR_1 VRF TERMINAL
+   **   ~~~   ** User-Specified Resistive Defrost Heater Capacity of 1.00E-007 [W]
+   **   ~~~   ** differs from Design Size Resistive Defrost Heater Capacity of 491981.52 [W]
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* Testing Individual Branch Integrity
+   ************* All Branches passed integrity testing
+   ************* Testing Individual Supply Air Path Integrity
+   ************* All Supply Air Paths passed integrity testing
+   ************* Testing Individual Return Air Path Integrity
+   ************* All Return Air Paths passed integrity testing
+   ************* No node connection errors were found.
+   ************* Beginning Simulation
+   ** Warning ** AirConditioner:VariableRefrigerantFlow "VRF SYSTEM 2".
+   **   ~~~   ** ...InitVRF: VRF Heat Pump Min/Max Operating Temperature in Cooling Mode Limits have been exceeded and VRF system is disabled.
+   **   ~~~   ** ... Outdoor Unit Inlet Air Temperature                 = -8.599
+   **   ~~~   ** ... Cooling Minimum Outdoor Unit Inlet Temperature = -5.999
+   **   ~~~   ** ... Cooling Maximum Outdoor Unit Inlet Temperature = 43.000
+   **   ~~~   ** ... Check VRF Heat Pump Min/Max Outdoor Temperature in Cooling Mode limits.
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=01/02 10:20 - 10:30
+   ** Warning ** AirConditioner:VariableRefrigerantFlow "VRF SYSTEM 1".
+   **   ~~~   ** ...InitVRF: VRF Heat Pump Min/Max Operating Temperature in Cooling Mode Limits have been exceeded and VRF system is disabled.
+   **   ~~~   ** ... Outdoor Unit Inlet Air Temperature                 = -7.799
+   **   ~~~   ** ... Cooling Minimum Outdoor Unit Inlet Temperature = -5.999
+   **   ~~~   ** ... Cooling Maximum Outdoor Unit Inlet Temperature = 43.000
+   **   ~~~   ** ... Check VRF Heat Pump Min/Max Outdoor Temperature in Cooling Mode limits.
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=01/05 06:00 - 06:10
+   ** Warning ** Temperature out of range [-100. to 200.] (PsyPsatFnTemp)
+   **   ~~~   **  Routine=PsyTwbFnTdbWPb, Environment=RUNPERIOD 1, at Simulation time=03/12 12:00 - 12:10
+   **   ~~~   **  Input Temperature=-170.82
+   ** Warning ** AirConditioner:VariableRefrigerantFlow "VRF SYSTEM 1".
+   **   ~~~   ** ...InitVRF: VRF Heat Pump Min/Max Operating Temperature in Heating Mode Limits have been exceeded and VRF system is disabled.
+   **   ~~~   ** ... Outdoor Unit Inlet Air Temperature             = 20.000
+   **   ~~~   ** ... Heating Minimum Outdoor Unit Inlet Temperature = -19.999
+   **   ~~~   ** ... Heating Maximum Outdoor Unit Inlet Temperature = 16.000
+   **   ~~~   ** ... Check VRF Heat Pump Min/Max Outdoor Temperature in Heating Mode limits.
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=05/09 20:00 - 20:10
+   ** Warning ** AirConditioner:VariableRefrigerantFlow "VRF SYSTEM 2".
+   **   ~~~   ** ...InitVRF: VRF Heat Pump Min/Max Operating Temperature in Heating Mode Limits have been exceeded and VRF system is disabled.
+   **   ~~~   ** ... Outdoor Unit Inlet Air Temperature             = 16.100
+   **   ~~~   ** ... Heating Minimum Outdoor Unit Inlet Temperature = -19.999
+   **   ~~~   ** ... Heating Maximum Outdoor Unit Inlet Temperature = 16.000
+   **   ~~~   ** ... Check VRF Heat Pump Min/Max Outdoor Temperature in Heating Mode limits.
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=09/12 06:13 - 06:14
+   ************* Simulation Error Summary *************
+   ************* There are 18 unused objects in input.
+   ************* Use Output:Diagnostics,DisplayUnusedObjects; to see them.
+   ************* There are 77 unused schedules in input.
+   ************* There are 4 unused week schedules in input.
+   ************* There are 4 unused day schedules in input.
+   ************* Use Output:Diagnostics,DisplayUnusedSchedules; to see them.
+   *************
+   ************* ===== Recurring Error Summary =====
+   ************* The following recurring error messages occurred.
+   *************
+   *************  ** Warning ** AirConditioner:VariableRefrigerantFlow "VRF SYSTEM 2" -- Exceeded VRF Heat Pump min/max cooling temperature limit error continues...
+   *************  **   ~~~   **   This error occurred 1225 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************  **   ~~~   **   Max=-6.016667  Min=-12.200000
+   *************
+   *************  ** Warning ** AirConditioner:VariableRefrigerantFlow "VRF SYSTEM 1" -- Exceeded VRF Heat Pump min/max cooling temperature limit error continues...
+   *************  **   ~~~   **   This error occurred 535 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************  **   ~~~   **   Max=-6.016667  Min=-12.883333
+   *************
+   *************  ** Warning ** Temperature out of range [-100. to 200.] (PsyPsatFnTemp)
+   *************  **   ~~~   **   This error occurred 1 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************  **   ~~~   **   Max=-170.820312 C  Min=-170.820312 C
+   *************
+   *************  ** Warning ** AirConditioner:VariableRefrigerantFlow "VRF SYSTEM 1" -- Exceeded VRF Heat Pump min/max heating temperature limit error continues...
+   *************  **   ~~~   **   This error occurred 94 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************  **   ~~~   **   Max=28.300000  Min=16.016667
+   *************
+   *************  ** Warning ** AirConditioner:VariableRefrigerantFlow "VRF SYSTEM 2" -- Exceeded VRF Heat Pump min/max heating temperature limit error continues...
+   *************  **   ~~~   **   This error occurred 1 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************  **   ~~~   **   Max=16.100000  Min=16.100000
+   *************
+   *************
+   ************* ===== Final Error Summary =====
+   ************* The following error categories occurred.  Consider correcting or noting.
+   ************* Nominally Unused Constructions
+   ************* ..The nominally unused constructions warning is provided to alert you to potential conditions that can cause
+   ************* ..extra time during simulation. Each construction is calculated by the algorithm indicated in the HeatBalanceAlgorithm
+   ************* ..object. You may remove the constructions indicated (when you use the DisplayExtraWarnings option).
+   *************
+   ************* EnergyPlus Warmup Error Summary. During Warmup: 0 Warning; 0 Severe Errors.
+   ************* EnergyPlus Sizing Error Summary. During Sizing: 48 Warning; 0 Severe Errors.
+   ************* EnergyPlus Completed Successfully-- 1906 Warning; 0 Severe Errors; Elapsed Time=00hr 03min 18.89sec

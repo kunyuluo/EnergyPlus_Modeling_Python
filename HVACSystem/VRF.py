@@ -131,7 +131,7 @@ class VRF:
 
         # Performance curves:
         if performance_curve_set is None:
-            performance_curve_set = PerformanceCurve.vrf_performance_curve_set_1(idf)
+            performance_curve_set = PerformanceCurve.vrf_performance_curve_set_1(idf, name=name)
         for key in performance_curve_set.keys():
             vrf[key] = performance_curve_set[key]['Name']
         for curve in performance_curve_set.values():

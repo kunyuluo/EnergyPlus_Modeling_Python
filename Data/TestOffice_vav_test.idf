@@ -1,7 +1,7 @@
 !- Windows Line endings 
 
 Version,
-    24.1;                     !- Version Identifier
+    24.2;                     !- Version Identifier
 
 SimulationControl,
     Yes,                      !- Do Zone Sizing Calculation
@@ -462,13 +462,6 @@ SCHEDULETYPELIMITS,
     Continuous,               !- Numeric Type
     Temperature;              !- Unit Type
 
-SCHEDULETYPELIMITS,
-    Hot Water Temperature Type Limits,    !- Name
-    0,                        !- Lower Limit Value
-    100,                      !- Upper Limit Value
-    Continuous,               !- Numeric Type
-    Temperature;              !- Unit Type
-
 Schedule:Day:Interval,
     Office Bldg Light Default Schedule,    !- Name
     Schedule Type Limits 1,    !- Schedule Type Limits Name
@@ -917,13 +910,6 @@ SCHEDULE:DAY:INTERVAL,
     24:00,                    !- Time 1
     7;                        !- Value Until Time 1
 
-SCHEDULE:DAY:INTERVAL,
-    Hot Water Temperature Day Schedule,    !- Name
-    Hot Water Temperature Type Limits,    !- Schedule Type Limits Name
-    No,                       !- Interpolate to Timestep
-    24:00,                    !- Time 1
-    60;                       !- Value Until Time 1
-
 Schedule:Week:Daily,
     Schedule:Week:Daily {77782ce5-1a70-49a7-b72d-db0988271982},    !- Name
     Office Bldg Light Default Schedule,    !- Sunday ScheduleDay Name
@@ -1224,21 +1210,6 @@ SCHEDULE:WEEK:DAILY,
     Chilled Water Temp Day Schedule,    !- CustomDay1 ScheduleDay Name
     Chilled Water Temp Day Schedule;    !- CustomDay2 ScheduleDay Name
 
-SCHEDULE:WEEK:DAILY,
-    Hot Water Temperature Week Schedule,    !- Name
-    Hot Water Temperature Day Schedule,    !- Sunday ScheduleDay Name
-    Hot Water Temperature Day Schedule,    !- Monday ScheduleDay Name
-    Hot Water Temperature Day Schedule,    !- Tuesday ScheduleDay Name
-    Hot Water Temperature Day Schedule,    !- Wednesday ScheduleDay Name
-    Hot Water Temperature Day Schedule,    !- Thursday ScheduleDay Name
-    Hot Water Temperature Day Schedule,    !- Friday ScheduleDay Name
-    Hot Water Temperature Day Schedule,    !- Saturday ScheduleDay Name
-    Hot Water Temperature Day Schedule,    !- Holiday ScheduleDay Name
-    Hot Water Temperature Day Schedule,    !- SummerDesignDay ScheduleDay Name
-    Hot Water Temperature Day Schedule,    !- WinterDesignDay ScheduleDay Name
-    Hot Water Temperature Day Schedule,    !- CustomDay1 ScheduleDay Name
-    Hot Water Temperature Day Schedule;    !- CustomDay2 ScheduleDay Name
-
 Schedule:Year,
     Office Bldg Light,        !- Name
     Schedule Type Limits 1,    !- Schedule Type Limits Name
@@ -1390,15 +1361,6 @@ SCHEDULE:YEAR,
     Chilled Water Temp,       !- Name
     Chilled Water Temp Type Limits,    !- Schedule Type Limits Name
     Chilled Water Temp Week Schedule,    !- ScheduleWeek Name 1
-    1,                        !- Start Month 1
-    1,                        !- Start Day 1
-    12,                       !- End Month 1
-    31;                       !- End Day 1
-
-SCHEDULE:YEAR,
-    Hot Water Temperature,    !- Name
-    Hot Water Temperature Type Limits,    !- Schedule Type Limits Name
-    Hot Water Temperature Week Schedule,    !- ScheduleWeek Name 1
     1,                        !- Start Month 1
     1,                        !- Start Day 1
     12,                       !- End Month 1
@@ -1985,24 +1947,6 @@ SIZING:PLANT,
     1,                        !- Zone Timesteps in Averaging Window
     None;                     !- Coincident Sizing Factor Mode
 
-SIZING:PLANT,
-    Test Condenser Water Loop,    !- Plant or Condenser Loop Name
-    Condenser,                !- Loop Type
-    30,                       !- Design Loop Exit Temperature
-    15,                       !- Loop Design Temperature Difference
-    NonCoincident,            !- Sizing Option
-    1,                        !- Zone Timesteps in Averaging Window
-    None;                     !- Coincident Sizing Factor Mode
-
-SIZING:PLANT,
-    Test Hot Water Loop,      !- Plant or Condenser Loop Name
-    Heating,                  !- Loop Type
-    50,                       !- Design Loop Exit Temperature
-    50,                       !- Loop Design Temperature Difference
-    NonCoincident,            !- Sizing Option
-    1,                        !- Zone Timesteps in Averaging Window
-    None;                     !- Coincident Sizing Factor Mode
-
 ZoneControl:Thermostat,
     Test_Office_0 Thermostat,    !- Name
     Test_Office_0,            !- Zone or ZoneList Name
@@ -2032,8 +1976,8 @@ AIRTERMINAL:SINGLEDUCT:VAV:REHEAT,
     0.3,                      !- Constant Minimum Air Flow Fraction
     autosize,                 !- Fixed Minimum Air Flow Rate
     ,                         !- Minimum Air Flow Fraction Schedule Name
-    Coil:Heating:Water,       !- Reheat Coil Object Type
-    Test_Office_0 terminal Water Reheat Coil,    !- Reheat Coil Name
+    Coil:Heating:Electric,    !- Reheat Coil Object Type
+    Test_Office_0 terminal Electric Reheat Coil,    !- Reheat Coil Name
     Autosize,                 !- Maximum Hot Water or Steam Flow Rate
     0,                        !- Minimum Hot Water or Steam Flow Rate
     Test_Office_0 terminal outlet,    !- Air Outlet Node Name
@@ -2063,7 +2007,7 @@ ZONEHVAC:EQUIPMENTCONNECTIONS,
     Test_Office_0,            !- Zone Name
     Test_Office_0 Equipment List,    !- Zone Conditioning Equipment List Name
     Test_Office_0 Inlet Node List,    !- Zone Air Inlet Node or NodeList Name
-    Test_Office_0 Exhaust Node List,    !- Zone Air Exhaust Node or NodeList Name
+    ,                         !- Zone Air Exhaust Node or NodeList Name
     Test_Office_0 Air Node,    !- Zone Air Node Name
     Test_Office_0 Return Air Node List;    !- Zone Return Air Node or NodeList Name
 
@@ -2104,41 +2048,22 @@ COIL:COOLING:WATER,
     SimpleAnalysis,           !- Type of Analysis
     CrossFlow;                !- Heat Exchanger Configuration
 
-COIL:HEATING:WATER,
+COIL:HEATING:ELECTRIC,
     AHU Heating Coil,         !- Name
     Always On Discrete hvac_library,    !- Availability Schedule Name
-    Autosize,                 !- UFactor Times Area Value
-    Autosize,                 !- Maximum Water Flow Rate
-    AHU Heating Coil_water_inlet,    !- Water Inlet Node Name
-    AHU Heating Coil_water_outlet,    !- Water Outlet Node Name
+    1,                        !- Efficiency
+    Autosize,                 !- Nominal Capacity
     AHU Cooling Coil_air_outlet,    !- Air Inlet Node Name
     Fan air inlet,            !- Air Outlet Node Name
-    UFactorTimesAreaAndDesignWaterFlowRate,    !- Performance Input Method
-    Autosize,                 !- Rated Capacity
-    60,                       !- Rated Inlet Water Temperature
-    16.6,                     !- Rated Inlet Air Temperature
-    40,                       !- Rated Outlet Water Temperature
-    32.2,                     !- Rated Outlet Air Temperature
-    0.5,                      !- Rated Ratio for Air and Water Convection
-    20;                       !- Design Water Temperature Difference
+    Fan air inlet;            !- Temperature Setpoint Node Name
 
-COIL:HEATING:WATER,
-    Test_Office_0 terminal Water Reheat Coil,    !- Name
+COIL:HEATING:ELECTRIC,
+    Test_Office_0 terminal Electric Reheat Coil,    !- Name
     Always On Discrete hvac_library,    !- Availability Schedule Name
-    Autosize,                 !- UFactor Times Area Value
-    Autosize,                 !- Maximum Water Flow Rate
-    Test_Office_0 terminal Water Reheat Coil_water_inlet,    !- Water Inlet Node Name
-    Test_Office_0 terminal Water Reheat Coil_water_outlet,    !- Water Outlet Node Name
+    1,                        !- Efficiency
+    Autosize,                 !- Nominal Capacity
     Test_Office_0 terminal damper air outlet,    !- Air Inlet Node Name
-    Test_Office_0 terminal outlet,    !- Air Outlet Node Name
-    UFactorTimesAreaAndDesignWaterFlowRate,    !- Performance Input Method
-    Autosize,                 !- Rated Capacity
-    60,                       !- Rated Inlet Water Temperature
-    16.6,                     !- Rated Inlet Air Temperature
-    40,                       !- Rated Outlet Water Temperature
-    32.2,                     !- Rated Outlet Air Temperature
-    0.5,                      !- Rated Ratio for Air and Water Convection
-    20;                       !- Design Water Temperature Difference
+    Test_Office_0 terminal outlet;    !- Air Outlet Node Name
 
 CONTROLLER:WATERCOIL,
     AHU Cooling Coil Controller,    !- Name
@@ -2147,17 +2072,6 @@ CONTROLLER:WATERCOIL,
     Flow,                     !- Actuator Variable
     AHU Cooling Coil_air_outlet,    !- Sensor Node Name
     AHU Cooling Coil_water_inlet,    !- Actuator Node Name
-    autosize,                 !- Controller Convergence Tolerance
-    autosize,                 !- Maximum Actuated Flow
-    0;                        !- Minimum Actuated Flow
-
-CONTROLLER:WATERCOIL,
-    AHU Heating Coil Controller,    !- Name
-    Temperature,              !- Control Variable
-    Normal,                   !- Action
-    Flow,                     !- Actuator Variable
-    Fan air inlet,            !- Sensor Node Name
-    AHU Heating Coil_water_inlet,    !- Actuator Node Name
     autosize,                 !- Controller Convergence Tolerance
     autosize,                 !- Maximum Actuated Flow
     0;                        !- Minimum Actuated Flow
@@ -2204,9 +2118,7 @@ Controller:MechanicalVentilation,
 AIRLOOPHVAC:CONTROLLERLIST,
     VAV System Controllers,    !- Name
     Controller:WaterCoil,     !- Controller 1 Object Type
-    AHU Cooling Coil Controller,    !- Controller 1 Name
-    Controller:WaterCoil,     !- Controller 2 Object Type
-    AHU Heating Coil Controller;    !- Controller 2 Name
+    AHU Cooling Coil Controller;    !- Controller 1 Name
 
 AIRLOOPHVAC:CONTROLLERLIST,
     VAV System Outdoor Air System Controller List,    !- Name
@@ -2276,7 +2188,7 @@ BRANCH,
     AHU Cooling Coil,         !- Component 2 Name
     VAV System Outdoor Air System Controller mixed_air,    !- Component 2 Inlet Node Name
     AHU Cooling Coil_air_outlet,    !- Component 2 Outlet Node Name
-    Coil:Heating:Water,       !- Component 3 Object Type
+    Coil:Heating:Electric,    !- Component 3 Object Type
     AHU Heating Coil,         !- Component 3 Name
     AHU Cooling Coil_air_outlet,    !- Component 3 Inlet Node Name
     Fan air inlet,            !- Component 3 Outlet Node Name
@@ -2333,110 +2245,6 @@ BRANCH,
     Test Chilled Water Loop Demand Outlet Branch Pipe_inlet,    !- Component 1 Inlet Node Name
     Test Chilled Water Loop Demand Outlet;    !- Component 1 Outlet Node Name
 
-BRANCH,
-    Test Condenser Water Loop Supply Inlet Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Pump:VariableSpeed,       !- Component 1 Object Type
-    CW pump,                  !- Component 1 Name
-    Test Condenser Water Loop Supply Inlet,    !- Component 1 Inlet Node Name
-    CW pump_Water_Outlet;     !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Condenser Water Loop Supply Branch 1,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    CoolingTower:SingleSpeed,    !- Component 1 Object Type
-    Cooling Tower 1,          !- Component 1 Name
-    Cooling Tower 1 Water_Inlet,    !- Component 1 Inlet Node Name
-    Cooling Tower 1 Water_Outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Condenser Water Loop Supply Outlet Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Pipe:Adiabatic,           !- Component 1 Object Type
-    Test Condenser Water Loop Supply Outlet Branch Pipe,    !- Component 1 Name
-    Test Condenser Water Loop Supply Outlet Branch Pipe_inlet,    !- Component 1 Inlet Node Name
-    Test Condenser Water Loop Supply Outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Condenser Water Loop Demand Inlet Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Pipe:Adiabatic,           !- Component 1 Object Type
-    Test Condenser Water Loop Demand Inlet Branch Pipe,    !- Component 1 Name
-    Test Condenser Water Loop Demand Inlet,    !- Component 1 Inlet Node Name
-    Test Condenser Water Loop Demand Inlet Branch Pipe_outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Condenser Water Loop Demand Branch 1,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Chiller:Electric:EIR,     !- Component 1 Object Type
-    Chiller 1,                !- Component 1 Name
-    Chiller 1 Condenser_Water_Inlet,    !- Component 1 Inlet Node Name
-    Chiller 1 Condenser_Water_Outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Condenser Water Loop Demand Outlet Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Pipe:Adiabatic,           !- Component 1 Object Type
-    Test Condenser Water Loop Demand Outlet Branch Pipe,    !- Component 1 Name
-    Test Condenser Water Loop Demand Outlet Branch Pipe_inlet,    !- Component 1 Inlet Node Name
-    Test Condenser Water Loop Demand Outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Hot Water Loop Supply Inlet Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Pump:VariableSpeed,       !- Component 1 Object Type
-    HW pump,                  !- Component 1 Name
-    Test Hot Water Loop Supply Inlet,    !- Component 1 Inlet Node Name
-    HW pump_Water_Outlet;     !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Hot Water Loop Supply Branch 1,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    DistrictHeating:Water,    !- Component 1 Object Type
-    District Heating,         !- Component 1 Name
-    District Heating Hot_Water_Inlet,    !- Component 1 Inlet Node Name
-    District Heating Hot_Water_Outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Hot Water Loop Supply Outlet Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Pipe:Adiabatic,           !- Component 1 Object Type
-    Test Hot Water Loop Supply Outlet Branch Pipe,    !- Component 1 Name
-    Test Hot Water Loop Supply Outlet Branch Pipe_inlet,    !- Component 1 Inlet Node Name
-    Test Hot Water Loop Supply Outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Hot Water Loop Demand Inlet Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Pipe:Adiabatic,           !- Component 1 Object Type
-    Test Hot Water Loop Demand Inlet Branch Pipe,    !- Component 1 Name
-    Test Hot Water Loop Demand Inlet,    !- Component 1 Inlet Node Name
-    Test Hot Water Loop Demand Inlet Branch Pipe_outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Hot Water Loop Demand Branch 1,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Coil:Heating:Water,       !- Component 1 Object Type
-    AHU Heating Coil,         !- Component 1 Name
-    AHU Heating Coil_water_inlet,    !- Component 1 Inlet Node Name
-    AHU Heating Coil_water_outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Hot Water Loop Demand Branch 2,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Coil:Heating:Water,       !- Component 1 Object Type
-    Test_Office_0 terminal Water Reheat Coil,    !- Component 1 Name
-    Test_Office_0 terminal Water Reheat Coil_water_inlet,    !- Component 1 Inlet Node Name
-    Test_Office_0 terminal Water Reheat Coil_water_outlet;    !- Component 1 Outlet Node Name
-
-BRANCH,
-    Test Hot Water Loop Demand Outlet Branch,    !- Name
-    ,                         !- Pressure Drop Curve Name
-    Pipe:Adiabatic,           !- Component 1 Object Type
-    Test Hot Water Loop Demand Outlet Branch Pipe,    !- Component 1 Name
-    Test Hot Water Loop Demand Outlet Branch Pipe_inlet,    !- Component 1 Inlet Node Name
-    Test Hot Water Loop Demand Outlet;    !- Component 1 Outlet Node Name
-
 BRANCHLIST,
     VAV System Branches,      !- Name
     VAV System Main Branch;    !- Branch 1 Name
@@ -2453,31 +2261,6 @@ BRANCHLIST,
     Test Chilled Water Loop Demand Branch 1,    !- Branch 2 Name
     Test Chilled Water Loop Demand Outlet Branch;    !- Branch 3 Name
 
-BRANCHLIST,
-    Test Condenser Water Loop Supply Branchs,    !- Name
-    Test Condenser Water Loop Supply Inlet Branch,    !- Branch 1 Name
-    Test Condenser Water Loop Supply Branch 1,    !- Branch 2 Name
-    Test Condenser Water Loop Supply Outlet Branch;    !- Branch 3 Name
-
-BRANCHLIST,
-    Test Condenser Water Loop Demand Branchs,    !- Name
-    Test Condenser Water Loop Demand Inlet Branch,    !- Branch 1 Name
-    Test Condenser Water Loop Demand Branch 1,    !- Branch 2 Name
-    Test Condenser Water Loop Demand Outlet Branch;    !- Branch 3 Name
-
-BRANCHLIST,
-    Test Hot Water Loop Supply Branchs,    !- Name
-    Test Hot Water Loop Supply Inlet Branch,    !- Branch 1 Name
-    Test Hot Water Loop Supply Branch 1,    !- Branch 2 Name
-    Test Hot Water Loop Supply Outlet Branch;    !- Branch 3 Name
-
-BRANCHLIST,
-    Test Hot Water Loop Demand Branchs,    !- Name
-    Test Hot Water Loop Demand Inlet Branch,    !- Branch 1 Name
-    Test Hot Water Loop Demand Branch 1,    !- Branch 2 Name
-    Test Hot Water Loop Demand Branch 2,    !- Branch 3 Name
-    Test Hot Water Loop Demand Outlet Branch;    !- Branch 4 Name
-
 CONNECTOR:SPLITTER,
     Test Chilled Water Loop Supply Splitter,    !- Name
     Test Chilled Water Loop Supply Inlet Branch,    !- Inlet Branch Name
@@ -2488,27 +2271,6 @@ CONNECTOR:SPLITTER,
     Test Chilled Water Loop Demand Inlet Branch,    !- Inlet Branch Name
     Test Chilled Water Loop Demand Branch 1;    !- Outlet Branch 1 Name
 
-CONNECTOR:SPLITTER,
-    Test Condenser Water Loop Supply Splitter,    !- Name
-    Test Condenser Water Loop Supply Inlet Branch,    !- Inlet Branch Name
-    Test Condenser Water Loop Supply Branch 1;    !- Outlet Branch 1 Name
-
-CONNECTOR:SPLITTER,
-    Test Condenser Water Loop Demand Splitter,    !- Name
-    Test Condenser Water Loop Demand Inlet Branch,    !- Inlet Branch Name
-    Test Condenser Water Loop Demand Branch 1;    !- Outlet Branch 1 Name
-
-CONNECTOR:SPLITTER,
-    Test Hot Water Loop Supply Splitter,    !- Name
-    Test Hot Water Loop Supply Inlet Branch,    !- Inlet Branch Name
-    Test Hot Water Loop Supply Branch 1;    !- Outlet Branch 1 Name
-
-CONNECTOR:SPLITTER,
-    Test Hot Water Loop Demand Splitter,    !- Name
-    Test Hot Water Loop Demand Inlet Branch,    !- Inlet Branch Name
-    Test Hot Water Loop Demand Branch 1,    !- Outlet Branch 1 Name
-    Test Hot Water Loop Demand Branch 2;    !- Outlet Branch 2 Name
-
 CONNECTOR:MIXER,
     Test Chilled Water Loop Supply Mixer,    !- Name
     Test Chilled Water Loop Supply Outlet Branch,    !- Outlet Branch Name
@@ -2518,27 +2280,6 @@ CONNECTOR:MIXER,
     Test Chilled Water Loop Demand Mixer,    !- Name
     Test Chilled Water Loop Demand Outlet Branch,    !- Outlet Branch Name
     Test Chilled Water Loop Demand Branch 1;    !- Inlet Branch 1 Name
-
-CONNECTOR:MIXER,
-    Test Condenser Water Loop Supply Mixer,    !- Name
-    Test Condenser Water Loop Supply Outlet Branch,    !- Outlet Branch Name
-    Test Condenser Water Loop Supply Branch 1;    !- Inlet Branch 1 Name
-
-CONNECTOR:MIXER,
-    Test Condenser Water Loop Demand Mixer,    !- Name
-    Test Condenser Water Loop Demand Outlet Branch,    !- Outlet Branch Name
-    Test Condenser Water Loop Demand Branch 1;    !- Inlet Branch 1 Name
-
-CONNECTOR:MIXER,
-    Test Hot Water Loop Supply Mixer,    !- Name
-    Test Hot Water Loop Supply Outlet Branch,    !- Outlet Branch Name
-    Test Hot Water Loop Supply Branch 1;    !- Inlet Branch 1 Name
-
-CONNECTOR:MIXER,
-    Test Hot Water Loop Demand Mixer,    !- Name
-    Test Hot Water Loop Demand Outlet Branch,    !- Outlet Branch Name
-    Test Hot Water Loop Demand Branch 1,    !- Inlet Branch 1 Name
-    Test Hot Water Loop Demand Branch 2;    !- Inlet Branch 2 Name
 
 CONNECTORLIST,
     Test Chilled Water Loop Supply Connectors,    !- Name
@@ -2554,34 +2295,6 @@ CONNECTORLIST,
     Connector:Mixer,          !- Connector 2 Object Type
     Test Chilled Water Loop Demand Mixer;    !- Connector 2 Name
 
-CONNECTORLIST,
-    Test Condenser Water Loop Supply Connectors,    !- Name
-    Connector:Splitter,       !- Connector 1 Object Type
-    Test Condenser Water Loop Supply Splitter,    !- Connector 1 Name
-    Connector:Mixer,          !- Connector 2 Object Type
-    Test Condenser Water Loop Supply Mixer;    !- Connector 2 Name
-
-CONNECTORLIST,
-    Test Condenser Water Loop Demand Connectors,    !- Name
-    Connector:Splitter,       !- Connector 1 Object Type
-    Test Condenser Water Loop Demand Splitter,    !- Connector 1 Name
-    Connector:Mixer,          !- Connector 2 Object Type
-    Test Condenser Water Loop Demand Mixer;    !- Connector 2 Name
-
-CONNECTORLIST,
-    Test Hot Water Loop Supply Connectors,    !- Name
-    Connector:Splitter,       !- Connector 1 Object Type
-    Test Hot Water Loop Supply Splitter,    !- Connector 1 Name
-    Connector:Mixer,          !- Connector 2 Object Type
-    Test Hot Water Loop Supply Mixer;    !- Connector 2 Name
-
-CONNECTORLIST,
-    Test Hot Water Loop Demand Connectors,    !- Name
-    Connector:Splitter,       !- Connector 1 Object Type
-    Test Hot Water Loop Demand Splitter,    !- Connector 1 Name
-    Connector:Mixer,          !- Connector 2 Object Type
-    Test Hot Water Loop Demand Mixer;    !- Connector 2 Name
-
 NODELIST,
     VAV System Supply Outlet Nodes,    !- Name
     VAV System Supply Outlet Node;    !- Node 1 Name
@@ -2589,6 +2302,10 @@ NODELIST,
 NODELIST,
     VAV System Demand Inlet Nodes,    !- Name
     VAV System Demand Inlet Node;    !- Node 1 Name
+
+NODELIST,
+    Test_Office_0 Inlet Node List,    !- Name
+    Test_Office_0 terminal outlet;    !- Node 1 Name
 
 NODELIST,
     Test_Office_0 Return Air Node List,    !- Name
@@ -2612,104 +2329,10 @@ PIPE:ADIABATIC,
     Test Chilled Water Loop Demand Outlet Branch Pipe_inlet,    !- Inlet Node Name
     Test Chilled Water Loop Demand Outlet;    !- Outlet Node Name
 
-PIPE:ADIABATIC,
-    Test Condenser Water Loop Supply Outlet Branch Pipe,    !- Name
-    Test Condenser Water Loop Supply Outlet Branch Pipe_inlet,    !- Inlet Node Name
-    Test Condenser Water Loop Supply Outlet;    !- Outlet Node Name
-
-PIPE:ADIABATIC,
-    Test Condenser Water Loop Demand Inlet Branch Pipe,    !- Name
-    Test Condenser Water Loop Demand Inlet,    !- Inlet Node Name
-    Test Condenser Water Loop Demand Inlet Branch Pipe_outlet;    !- Outlet Node Name
-
-PIPE:ADIABATIC,
-    Test Condenser Water Loop Demand Outlet Branch Pipe,    !- Name
-    Test Condenser Water Loop Demand Outlet Branch Pipe_inlet,    !- Inlet Node Name
-    Test Condenser Water Loop Demand Outlet;    !- Outlet Node Name
-
-PIPE:ADIABATIC,
-    Test Hot Water Loop Supply Outlet Branch Pipe,    !- Name
-    Test Hot Water Loop Supply Outlet Branch Pipe_inlet,    !- Inlet Node Name
-    Test Hot Water Loop Supply Outlet;    !- Outlet Node Name
-
-PIPE:ADIABATIC,
-    Test Hot Water Loop Demand Inlet Branch Pipe,    !- Name
-    Test Hot Water Loop Demand Inlet,    !- Inlet Node Name
-    Test Hot Water Loop Demand Inlet Branch Pipe_outlet;    !- Outlet Node Name
-
-PIPE:ADIABATIC,
-    Test Hot Water Loop Demand Outlet Branch Pipe,    !- Name
-    Test Hot Water Loop Demand Outlet Branch Pipe_inlet,    !- Inlet Node Name
-    Test Hot Water Loop Demand Outlet;    !- Outlet Node Name
-
 PUMP:VARIABLESPEED,
     Chw pump,                 !- Name
     Test Chilled Water Loop Supply Inlet,    !- Inlet Node Name
     Chw pump_Water_Outlet,    !- Outlet Node Name
-    Autosize,                 !- Design Maximum Flow Rate
-    179352,                   !- Design Pump Head
-    Autosize,                 !- Design Power Consumption
-    0.9,                      !- Motor Efficiency
-    0,                        !- Fraction of Motor Inefficiencies to Fluid Stream
-    0.103,                    !- Coefficient 1 of the Part Load Performance Curve
-    -0.04,                    !- Coefficient 2 of the Part Load Performance Curve
-    0.767,                    !- Coefficient 3 of the Part Load Performance Curve
-    0.1679,                   !- Coefficient 4 of the Part Load Performance Curve
-    0,                        !- Design Minimum Flow Rate
-    Intermittent,             !- Pump Control Type
-    ,                         !- Pump Flow Rate Schedule Name
-    ,                         !- Pump Curve Name
-    ,                         !- Impeller Diameter
-    ,                         !- VFD Control Type
-    ,                         !- Pump RPM Schedule Name
-    ,                         !- Minimum Pressure Schedule
-    ,                         !- Maximum Pressure Schedule
-    ,                         !- Minimum RPM Schedule
-    ,                         !- Maximum RPM Schedule
-    ,                         !- Zone Name
-    0.5,                      !- Skin Loss Radiative Fraction
-    PowerPerFlowPerPressure,    !- Design Power Sizing Method
-    348701.1,                 !- Design Electric Power per Unit Flow Rate
-    1.282051282,              !- Design Shaft Power per Unit Flow Rate per Unit Head
-    0,                        !- Design Minimum Flow Rate Fraction
-    General;                  !- EndUse Subcategory
-
-PUMP:VARIABLESPEED,
-    CW pump,                  !- Name
-    Test Condenser Water Loop Supply Inlet,    !- Inlet Node Name
-    CW pump_Water_Outlet,     !- Outlet Node Name
-    Autosize,                 !- Design Maximum Flow Rate
-    179352,                   !- Design Pump Head
-    Autosize,                 !- Design Power Consumption
-    0.9,                      !- Motor Efficiency
-    0,                        !- Fraction of Motor Inefficiencies to Fluid Stream
-    0.103,                    !- Coefficient 1 of the Part Load Performance Curve
-    -0.04,                    !- Coefficient 2 of the Part Load Performance Curve
-    0.767,                    !- Coefficient 3 of the Part Load Performance Curve
-    0.1679,                   !- Coefficient 4 of the Part Load Performance Curve
-    0,                        !- Design Minimum Flow Rate
-    Intermittent,             !- Pump Control Type
-    ,                         !- Pump Flow Rate Schedule Name
-    ,                         !- Pump Curve Name
-    ,                         !- Impeller Diameter
-    ,                         !- VFD Control Type
-    ,                         !- Pump RPM Schedule Name
-    ,                         !- Minimum Pressure Schedule
-    ,                         !- Maximum Pressure Schedule
-    ,                         !- Minimum RPM Schedule
-    ,                         !- Maximum RPM Schedule
-    ,                         !- Zone Name
-    0.5,                      !- Skin Loss Radiative Fraction
-    PowerPerFlowPerPressure,    !- Design Power Sizing Method
-    348701.1,                 !- Design Electric Power per Unit Flow Rate
-    1.282051282,              !- Design Shaft Power per Unit Flow Rate per Unit Head
-    0,                        !- Design Minimum Flow Rate Fraction
-    General;                  !- EndUse Subcategory
-
-PUMP:VARIABLESPEED,
-    HW pump,                  !- Name
-    Test Hot Water Loop Supply Inlet,    !- Inlet Node Name
-    HW pump_Water_Outlet,     !- Outlet Node Name
     Autosize,                 !- Design Maximum Flow Rate
     179352,                   !- Design Pump Head
     Autosize,                 !- Design Power Consumption
@@ -2755,9 +2378,9 @@ CHILLER:ELECTRIC:EIR,
     0.2,                      !- Minimum Unloading Ratio
     Chiller 1 Chilled_Water_Inlet,    !- Chilled Water Inlet Node Name
     Chiller 1 Chilled_Water_Outlet,    !- Chilled Water Outlet Node Name
-    Chiller 1 Condenser_Water_Inlet,    !- Condenser Inlet Node Name
-    Chiller 1 Condenser_Water_Outlet,    !- Condenser Outlet Node Name
-    WaterCooled,              !- Condenser Type
+    ,                         !- Condenser Inlet Node Name
+    ,                         !- Condenser Outlet Node Name
+    AirCooled,                !- Condenser Type
     0,                        !- Condenser Fan Power Ratio
     1,                        !- Fraction of Compressor Electric Consumption Rejected by Condenser
     2,                        !- Leaving Chilled Water Lower Temperature Limit
@@ -2779,52 +2402,6 @@ CHILLER:ELECTRIC:EIR,
     ,                         !- Condenser Minimum Flow Fraction
     ,                         !- Thermosiphon Capacity Fraction Curve Name
     0;                        !- Thermosiphon Minimum Temperature Difference
-
-DISTRICTHEATING:WATER,
-    District Heating,         !- Name
-    District Heating Hot_Water_Inlet,    !- Hot Water Inlet Node Name
-    District Heating Hot_Water_Outlet,    !- Hot Water Outlet Node Name
-    Autosize;                 !- Nominal Capacity
-
-COOLINGTOWER:SINGLESPEED,
-    Cooling Tower 1,          !- Name
-    Cooling Tower 1 Water_Inlet,    !- Water Inlet Node Name
-    Cooling Tower 1 Water_Outlet,    !- Water Outlet Node Name
-    Autosize,                 !- Design Water Flow Rate
-    Autosize,                 !- Design Air Flow Rate
-    Autosize,                 !- Design Fan Power
-    Autosize,                 !- Design UFactor Times Area Value
-    Autosize,                 !- Free Convection Regime Air Flow Rate
-    0.1,                      !- Free Convection Regime Air Flow Rate Sizing Factor
-    Autosize,                 !- Free Convection Regime UFactor Times Area Value
-    0.1,                      !- Free Convection UFactor Times Area Value Sizing Factor
-    UFactorTimesAreaAndDesignWaterFlowRate,    !- Performance Input Method
-    1.25,                     !- Heat Rejection Capacity and Nominal Capacity Sizing Ratio
-    ,                         !- Nominal Capacity
-    0,                        !- Free Convection Capacity
-    0.1,                      !- Free Convection Nominal Capacity Sizing Factor
-    35,                       !- Design Inlet Air DryBulb Temperature
-    25.6,                     !- Design Inlet Air WetBulb Temperature
-    Autosize,                 !- Design Approach Temperature
-    Autosize,                 !- Design Range Temperature
-    0,                        !- Basin Heater Capacity
-    2,                        !- Basin Heater Setpoint Temperature
-    ,                         !- Basin Heater Operating Schedule Name
-    LossFactor,               !- Evaporation Loss Mode
-    0.2,                      !- Evaporation Loss Factor
-    0.008,                    !- Drift Loss Percent
-    ConcentrationRatio,       !- Blowdown Calculation Mode
-    3,                        !- Blowdown Concentration Ratio
-    ,                         !- Blowdown Makeup Water Usage Schedule Name
-    ,                         !- Supply Water Storage Tank Name
-    ,                         !- Outdoor Air Inlet Node Name
-    FanCycling,               !- Capacity Control
-    1,                        !- Number of Cells
-    MinimalCell,              !- Cell Control
-    0.33,                     !- Cell Minimum Water Flow Rate Fraction
-    2.5,                      !- Cell Maximum Water Flow Rate Fraction
-    1,                        !- Sizing Factor
-    General;                  !- EndUse Subcategory
 
 PLANTLOOP,
     Test Chilled Water Loop,    !- Name
@@ -2852,72 +2429,10 @@ PLANTLOOP,
     None,                     !- Pressure Simulation Type
     2;                        !- Loop Circulation Time
 
-PLANTLOOP,
-    Test Condenser Water Loop,    !- Name
-    Water,                    !- Fluid Type
-    ,                         !- User Defined Fluid Type
-    Test Condenser Water Loop Operation Schemes,    !- Plant Equipment Operation Scheme Name
-    Test Condenser Water Loop Supply Outlet,    !- Loop Temperature Setpoint Node Name
-    100,                      !- Maximum Loop Temperature
-    0,                        !- Minimum Loop Temperature
-    Autosize,                 !- Maximum Loop Flow Rate
-    0,                        !- Minimum Loop Flow Rate
-    Autocalculate,            !- Plant Loop Volume
-    Test Condenser Water Loop Supply Inlet,    !- Plant Side Inlet Node Name
-    Test Condenser Water Loop Supply Outlet,    !- Plant Side Outlet Node Name
-    Test Condenser Water Loop Supply Branchs,    !- Plant Side Branch List Name
-    Test Condenser Water Loop Supply Connectors,    !- Plant Side Connector List Name
-    Test Condenser Water Loop Demand Inlet,    !- Demand Side Inlet Node Name
-    Test Condenser Water Loop Demand Outlet,    !- Demand Side Outlet Node Name
-    Test Condenser Water Loop Demand Branchs,    !- Demand Side Branch List Name
-    Test Condenser Water Loop Demand Connectors,    !- Demand Side Connector List Name
-    Optimal,                  !- Load Distribution Scheme
-    ,                         !- Availability Manager List Name
-    SingleSetpoint,           !- Plant Loop Demand Calculation Scheme
-    None,                     !- Common Pipe Simulation
-    None,                     !- Pressure Simulation Type
-    2;                        !- Loop Circulation Time
-
-PLANTLOOP,
-    Test Hot Water Loop,      !- Name
-    Water,                    !- Fluid Type
-    ,                         !- User Defined Fluid Type
-    Test Hot Water Loop Operation Schemes,    !- Plant Equipment Operation Scheme Name
-    Test Hot Water Loop Supply Outlet,    !- Loop Temperature Setpoint Node Name
-    100,                      !- Maximum Loop Temperature
-    0,                        !- Minimum Loop Temperature
-    Autosize,                 !- Maximum Loop Flow Rate
-    0,                        !- Minimum Loop Flow Rate
-    Autocalculate,            !- Plant Loop Volume
-    Test Hot Water Loop Supply Inlet,    !- Plant Side Inlet Node Name
-    Test Hot Water Loop Supply Outlet,    !- Plant Side Outlet Node Name
-    Test Hot Water Loop Supply Branchs,    !- Plant Side Branch List Name
-    Test Hot Water Loop Supply Connectors,    !- Plant Side Connector List Name
-    Test Hot Water Loop Demand Inlet,    !- Demand Side Inlet Node Name
-    Test Hot Water Loop Demand Outlet,    !- Demand Side Outlet Node Name
-    Test Hot Water Loop Demand Branchs,    !- Demand Side Branch List Name
-    Test Hot Water Loop Demand Connectors,    !- Demand Side Connector List Name
-    Optimal,                  !- Load Distribution Scheme
-    ,                         !- Availability Manager List Name
-    SingleSetpoint,           !- Plant Loop Demand Calculation Scheme
-    None,                     !- Common Pipe Simulation
-    None,                     !- Pressure Simulation Type
-    2;                        !- Loop Circulation Time
-
 PLANTEQUIPMENTLIST,
     Test Chilled Water Loop Equipment List,    !- Name
     Chiller:Electric:EIR,     !- Equipment 1 Object Type
     Chiller 1;                !- Equipment 1 Name
-
-PLANTEQUIPMENTLIST,
-    Test Condenser Water Loop Equipment List,    !- Name
-    CoolingTower:SingleSpeed,    !- Equipment 1 Object Type
-    Cooling Tower 1;          !- Equipment 1 Name
-
-PLANTEQUIPMENTLIST,
-    Test Hot Water Loop Equipment List,    !- Name
-    DistrictHeating:Water,    !- Equipment 1 Object Type
-    District Heating;         !- Equipment 1 Name
 
 PLANTEQUIPMENTOPERATION:COOLINGLOAD,
     Test Chilled Water Loop Cooling Operation Scheme ,    !- Name
@@ -2925,34 +2440,10 @@ PLANTEQUIPMENTOPERATION:COOLINGLOAD,
     1000000000,               !- Load Range 1 Upper Limit
     Test Chilled Water Loop Equipment List;    !- Range 1 Equipment List Name
 
-PLANTEQUIPMENTOPERATION:COOLINGLOAD,
-    Test Condenser Water Loop Cooling Operation Scheme ,    !- Name
-    0,                        !- Load Range 1 Lower Limit
-    1000000000,               !- Load Range 1 Upper Limit
-    Test Condenser Water Loop Equipment List;    !- Range 1 Equipment List Name
-
-PLANTEQUIPMENTOPERATION:HEATINGLOAD,
-    Test Hot Water Loop Heating Operation Scheme ,    !- Name
-    0,                        !- Load Range 1 Lower Limit
-    1000000000,               !- Load Range 1 Upper Limit
-    Test Hot Water Loop Equipment List;    !- Range 1 Equipment List Name
-
 PLANTEQUIPMENTOPERATIONSCHEMES,
     Test Chilled Water Loop Operation Schemes,    !- Name
     PlantEquipmentOperation:CoolingLoad,    !- Control Scheme 1 Object Type
     Test Chilled Water Loop Cooling Operation Scheme ,    !- Control Scheme 1 Name
-    Always On Discrete;       !- Control Scheme 1 Schedule Name
-
-PLANTEQUIPMENTOPERATIONSCHEMES,
-    Test Condenser Water Loop Operation Schemes,    !- Name
-    PlantEquipmentOperation:CoolingLoad,    !- Control Scheme 1 Object Type
-    Test Condenser Water Loop Cooling Operation Scheme ,    !- Control Scheme 1 Name
-    Always On Discrete;       !- Control Scheme 1 Schedule Name
-
-PLANTEQUIPMENTOPERATIONSCHEMES,
-    Test Hot Water Loop Operation Schemes,    !- Name
-    PlantEquipmentOperation:HeatingLoad,    !- Control Scheme 1 Object Type
-    Test Hot Water Loop Heating Operation Scheme ,    !- Control Scheme 1 Name
     Always On Discrete;       !- Control Scheme 1 Schedule Name
 
 AVAILABILITYMANAGER:SCHEDULED,
@@ -2975,12 +2466,6 @@ SETPOINTMANAGER:SCHEDULED,
     Temperature,              !- Control Variable
     Chilled Water Temp,       !- Schedule Name
     Test Chilled Water Loop Supply Outlet;    !- Setpoint Node or NodeList Name
-
-SETPOINTMANAGER:SCHEDULED,
-    Hot Water Temperature,    !- Name
-    Temperature,              !- Control Variable
-    Hot Water Temperature,    !- Schedule Name
-    Test Hot Water Loop Supply Outlet;    !- Setpoint Node or NodeList Name
 
 SETPOINTMANAGER:MIXEDAIR,
     VAV System Outdoor Air System Controller mixed_air SPM,    !- Name
@@ -3014,15 +2499,6 @@ SETPOINTMANAGER:MIXEDAIR,
     ,                         !- Cooling Coil Inlet Node Name
     ,                         !- Cooling coil Outlet Node Name
     7.2;                      !- Minimum Temperature at Cooling Coil Outlet Node
-
-SETPOINTMANAGER:FOLLOWOUTDOORAIRTEMPERATURE,
-    Condenser Water Temperature,    !- Name
-    Temperature,              !- Control Variable
-    OutdoorAirWetBulb,        !- Reference Temperature Type
-    2.7777777777777777,       !- Offset Temperature Difference
-    32.22222222222222,        !- Maximum Setpoint Temperature
-    21.11111111111111,        !- Minimum Setpoint Temperature
-    Test Condenser Water Loop Supply Outlet;    !- Setpoint Node or NodeList Name
 
 CURVE:QUADRATIC,
     Chiller 1 CoolingEIRRatioPLRCurve_ASHRAE90.1,    !- Name

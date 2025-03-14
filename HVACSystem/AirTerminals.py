@@ -1,6 +1,7 @@
 from eppy.modeleditor import IDF
 from eppy.bunch_subclass import EpBunch
 from HVACSystem.AirLoopComponents import AirLoopComponent
+from configs import *
 
 
 class AirTerminal:
@@ -33,7 +34,7 @@ class AirTerminal:
         terminal = idf.newidfobject('AirTerminal:SingleDuct:ConstantVolume:NoReheat'.upper(), Name=name)
 
         if schedule is None:
-            terminal['Availability_Schedule_Name'] = 'Always On Discrete hvac_library'
+            terminal['Availability_Schedule_Name'] = schedule_always_on_hvac
         else:
             if isinstance(schedule, str):
                 terminal['Availability_Schedule_Name'] = schedule
@@ -91,7 +92,7 @@ class AirTerminal:
         terminal = idf.newidfobject('AirTerminal:SingleDuct:VAV:NoReheat'.upper(), Name=name)
 
         if schedule is None:
-            terminal['Availability_Schedule_Name'] = 'Always On Discrete hvac_library'
+            terminal['Availability_Schedule_Name'] = schedule_always_on_hvac
         else:
             if isinstance(schedule, str):
                 terminal['Availability_Schedule_Name'] = schedule
@@ -146,7 +147,7 @@ class AirTerminal:
     def single_duct_vav_reheat(
             idf: IDF,
             schedule: EpBunch | str = None,
-            reheat_coil_type: int = 1,
+            reheat_coil_type: int = 3,
             name: str = None,
             max_air_flow_rate='Autosize',
             min_air_flow_input_method: int = 1,
@@ -187,7 +188,7 @@ class AirTerminal:
         terminal = idf.newidfobject('AirTerminal:SingleDuct:VAV:Reheat'.upper(), Name=name)
 
         if schedule is None:
-            terminal['Availability_Schedule_Name'] = 'Always On Discrete hvac_library'
+            terminal['Availability_Schedule_Name'] = schedule_always_on_hvac
         else:
             if isinstance(schedule, str):
                 terminal['Availability_Schedule_Name'] = schedule
@@ -206,7 +207,10 @@ class AirTerminal:
 
         # reheat_coil = idf.newidfobject(coil_key.upper(), Name=coil_name)
         func = getattr(AirLoopComponent, coil_func_name)
-        reheat_coil = func(idf, name=coil_name, need_controller=False)
+        try:
+            reheat_coil = func(idf, name=coil_name, need_controller=False)
+        except:
+            reheat_coil = func(idf, name=coil_name)
 
         terminal['Maximum_Air_Flow_Rate'] = max_air_flow_rate
         terminal['Zone_Minimum_Air_Flow_Input_Method'] = methods[min_air_flow_input_method]
