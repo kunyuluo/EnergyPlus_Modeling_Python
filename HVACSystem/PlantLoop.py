@@ -136,7 +136,9 @@ class PlantLoop:
                 if isinstance(supply_branches[0], list) and isinstance(supply_branches[-1], list):
                     for i, comp_list in enumerate(supply_branches):
                         branch_name = f'{name} Supply Branch {i+1}'
+                        # print(comp_list)
                         branch = NodeBranch.branch(idf, branch_name, comp_list)
+                        # print(branch)
                         mid_branches.append(branch)
                         all_supply_branches.append(branch)
                         for comp in comp_list:

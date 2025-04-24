@@ -4,6 +4,7 @@ from Helper import delete_hvac_objs, set_always_on, sort_zone_by_condition, sort
 from Helper import SortZoneByFloor
 from HVACSystem.AirLoop import AirLoop
 from HVACSystem.VRF import VRF
+from Schedules.Schedules import Schedule, locate_change
 from configs import *
 
 # idd_file = 'Data/Energy+_v22.idd'
@@ -49,3 +50,10 @@ print(all_objs.keys())
 # Save to a new file:
 #####################################################################
 # my_model.saveas('Data/CIB-Office_new.idf')
+
+values = [0, 0.1, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1, 1, 0.5, 0.5, 0.5, 0.5, 0, 0, 0, 0]
+change = locate_change(values)
+print(change[0])
+print(change[1])
+schedule = Schedule.compact(my_model, name='Schedule:Compact', numeric_type=1, unit_type=1, daily_values=values, test_mode=True)
+print(schedule)

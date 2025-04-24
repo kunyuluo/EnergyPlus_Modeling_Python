@@ -1,0 +1,307 @@
+Program Version,EnergyPlus, Version 24.2.0-94a887817b, YMD=2025.04.14 16:15,
+   ************* Beginning Zone Sizing Calculations
+   ** Warning ** Weather file location will be used rather than entered (IDF) Location object.
+   **   ~~~   ** ..Location object=NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA WMO=744860
+   **   ~~~   ** ..Weather File Location=Paya.Lebar.AB SG SGP SRC-TMYx WMO#=486940
+   **   ~~~   ** ..due to location differences, Latitude difference=[39.30] degrees, Longitude difference=[177.71] degrees.
+   **   ~~~   ** ..Time Zone difference=[13.0] hour(s), Elevation difference=[182.86] percent, [12.80] meters.
+   ** Warning ** ProcessScheduleInput: Schedule:Constant="VAV WITH REHEAT MAX OA FRACTION", Blank Schedule Type Limits Name input -- will not be validated.
+   ** Warning ** CheckUsedConstructions: There are 22 nominally unused constructions in input.
+   **   ~~~   ** Each Unused construction is shown.
+   ************* Construction=AIR_WALL
+   ************* Construction=DROPCEILING
+   ************* Construction=OPAQUEDOOR
+   ************* Construction=ATTICROOFDECK
+   ************* Construction=EXT_SLAB_8IN_WITH_CARPET
+   ************* Construction=EXT_SLAB_8IN
+   ************* Construction=EXT_SLAB_6IN_WITH_CARPET
+   ************* Construction=EXT_SLAB_6IN
+   ************* Construction=INT_SLAB_FLOOR
+   ************* Construction=INT_SLAB_CEILING
+   ************* Construction=BASEMENT_WALL
+   ************* Construction=INT_WOOD_FLOOR
+   ************* Construction=EXT_SOFFIT_FLOOR
+   ************* Construction=SEMIHEATED_ROOF
+   ************* Construction=RES_EXT_WALL_GRD
+   ************* Construction=SEMIHEATED_EXT_WALL_GRD
+   ************* Construction=SEMIHEATED_EXT_WALL_MID
+   ************* Construction=SEMIHEATED_EXT_WALL_TOP
+   ************* Construction=RES_FLOOR
+   ************* Construction=SEMIHEATED_FLOOR
+   ************* Construction=RES_FLOOR_CEILING
+   ************* Construction=SEMIHEATED_FLOOR_CEILING
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="LOBBY_FLR_1_DAYLCTRL", only 0.140 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="CAFE_FLR_1_DAYLCTRL", only 0.780 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="DINING_FLR_6_DAYLCTRL", only 0.400 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="BANQUET_FLR_6_DAYLCTRL", only 0.400 of the zone or space is controlled.
+   ** Warning ** GeneratorController constructor ElectricLoadCenter:Generators, Availability Schedule for Generator:PVWatts 'PV_MODULE' will be be ignored (runs all the time).
+   ************* Beginning System Sizing Calculations
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = BASEMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = RETAIL_1_FLR_1 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = RETAIL_2_FLR_1 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = MECH_FLR_1 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = STORAGE_FLR_1 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = LAUNDRY_FLR_1 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = CAFE_FLR_1 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = LOBBY_FLR_1 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = ROOM_1_FLR_3 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = ROOM_2_FLR_3 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = ROOM_3_MULT19_FLR_3 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = ROOM_4_MULT19_FLR_3 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = ROOM_5_FLR_3 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = ROOM_6_FLR_3 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = CORRIDOR_FLR_3 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = ROOM_1_FLR_6 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = ROOM_2_FLR_6 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = ROOM_3_MULT9_FLR_6 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = BANQUET_FLR_6 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = DINING_FLR_6 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = KITCHEN_FLR_6 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = CORRIDOR_FLR_6 TERMINAL
+   ** Warning ** FinalSystemSizing: AirLoop="DOAS SYSTEM 1", Requested sizing on Ventilation,
+   **   ~~~   ** but Zone has no design OA Flow. Zone="MECH_FLR_1".
+   ** Warning ** FinalSystemSizing: AirLoop="DOAS SYSTEM 1", Requested sizing on Ventilation,
+   **   ~~~   ** but Zone has no design OA Flow. Zone="LAUNDRY_FLR_1".
+   ************* Beginning Plant Sizing Calculations
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "BASEMENT TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "RETAIL_1_FLR_1 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.64516
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "RETAIL_2_FLR_1 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.64517
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "MECH_FLR_1 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "STORAGE_FLR_1 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "LAUNDRY_FLR_1 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 6.05809E-002
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "CAFE_FLR_1 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.21277
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "LOBBY_FLR_1 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.52632
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "ROOM_1_FLR_3 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "ROOM_2_FLR_3 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "ROOM_3_MULT19_FLR_3 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "ROOM_4_MULT19_FLR_3 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "ROOM_5_FLR_3 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "ROOM_6_FLR_3 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "CORRIDOR_FLR_3 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "ROOM_1_FLR_6 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "ROOM_2_FLR_6 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "ROOM_3_MULT9_FLR_6 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "BANQUET_FLR_6 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.21277
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "DINING_FLR_6 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.21277
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "KITCHEN_FLR_6 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 0.38542
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "CORRIDOR_FLR_6 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ** Warning ** Controller:MechanicalVentilation="VAV WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="BASEMENT".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA BASEMENT".
+   ** Warning ** Controller:MechanicalVentilation="VAV WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="RETAIL_1_FLR_1".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA RETAIL_1_FLR_1".
+   ** Warning ** Controller:MechanicalVentilation="VAV WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="MECH_FLR_1".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA MECH_FLR_1".
+   ** Warning ** Controller:MechanicalVentilation="VAV WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="STORAGE_FLR_1".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA STORAGE_FLR_1".
+   ** Warning ** Controller:MechanicalVentilation="VAV WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="LAUNDRY_FLR_1".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA LAUNDRY_FLR_1".
+   ** Warning ** Controller:MechanicalVentilation="VAV WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="LOBBY_FLR_1".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA LOBBY_FLR_1".
+   ** Warning ** Controller:MechanicalVentilation="VAV WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="CORRIDOR_FLR_3".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA CORRIDOR_FLR_3".
+   ** Warning ** Controller:MechanicalVentilation="VAV WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="CORRIDOR_FLR_6".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA CORRIDOR_FLR_6".
+   ** Warning ** Controller:MechanicalVentilation="VAV WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="BANQUET_FLR_6".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA BANQUET_FLR_6".
+   ** Warning ** Controller:MechanicalVentilation="VAV WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="DINING_FLR_6".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA DINING_FLR_6".
+   ** Warning ** Controller:MechanicalVentilation="VAV WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="KITCHEN_FLR_6".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA KITCHEN_FLR_6".
+   ************* SizeChillerElectricEIR: Potential issue with equipment sizing for CHILLER 1
+   **   ~~~   ** User-Specified Reference Capacity of 562696.40 [W]
+   **   ~~~   ** differs from Design Size Reference Capacity of 1207237.77 [W]
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ** Warning ** Chiller:Electric:EIR = CHILLER 1:  Integrated Part Load Value (IPLV) calculated is not at the AHRI test condition.
+   **   ~~~   **  Check limits in Cooling Capacity Function of Temperature Curve, Curve Type = Curve:Biquadratic, Curve Name = CHILLER 1 COOLINGCAPTEMPCURVE_ASHRAE90.1
+   **   ~~~   **  Check limits in EIR Function of Temperature Curve, Curve Type = Curve:Biquadratic, Curve Name = CHILLER 1 COOLINGEIRRATIOTEMPCURVE_ASHRAE90.1
+   ************* SizeChillerElectricEIR: Potential issue with equipment sizing for CHILLER 2
+   **   ~~~   ** User-Specified Reference Capacity of 562696.40 [W]
+   **   ~~~   ** differs from Design Size Reference Capacity of 1207237.77 [W]
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ** Warning ** Chiller:Electric:EIR = CHILLER 2:  Integrated Part Load Value (IPLV) calculated is not at the AHRI test condition.
+   **   ~~~   **  Check limits in Cooling Capacity Function of Temperature Curve, Curve Type = Curve:Biquadratic, Curve Name = CHILLER 2 COOLINGCAPTEMPCURVE_ASHRAE90.1
+   **   ~~~   **  Check limits in EIR Function of Temperature Curve, Curve Type = Curve:Biquadratic, Curve Name = CHILLER 2 COOLINGEIRRATIOTEMPCURVE_ASHRAE90.1
+   ** Warning ** SetpointManager:Scheduled="AHU SETPOINT MANAGER DEHUM 0"
+   **   ~~~   ** ...setpoint node conflicts with another setpoint manager.
+   **   ~~~   ** ...conflicting setpoint manager = SetpointManager:MixedAir:"AHU COOLING COIL 0_AIR_OUTLET SPM"
+   **   ~~~   ** ...conflicting node name = AHU COOLING COIL 0_AIR_OUTLET
+   **   ~~~   ** ...control type variable = Temperature
+   ** Warning ** SetpointManager:Scheduled="AHU SETPOINT MANAGER DEHUM 1"
+   **   ~~~   ** ...setpoint node conflicts with another setpoint manager.
+   **   ~~~   ** ...conflicting setpoint manager = SetpointManager:MixedAir:"AHU COOLING COIL 1_AIR_OUTLET SPM"
+   **   ~~~   ** ...conflicting node name = AHU COOLING COIL 1_AIR_OUTLET
+   **   ~~~   ** ...control type variable = Temperature
+   ** Warning ** SetpointManager:Scheduled="AHU SETPOINT MANAGER DEHUM 3"
+   **   ~~~   ** ...setpoint node conflicts with another setpoint manager.
+   **   ~~~   ** ...conflicting setpoint manager = SetpointManager:MixedAir:"AHU COOLING COIL 3_AIR_OUTLET SPM"
+   **   ~~~   ** ...conflicting node name = AHU COOLING COIL 3_AIR_OUTLET
+   **   ~~~   ** ...control type variable = Temperature
+   ** Warning ** SetpointManager:Scheduled="AHU SETPOINT MANAGER DEHUM 6"
+   **   ~~~   ** ...setpoint node conflicts with another setpoint manager.
+   **   ~~~   ** ...conflicting setpoint manager = SetpointManager:MixedAir:"AHU COOLING COIL 6_AIR_OUTLET SPM"
+   **   ~~~   ** ...conflicting node name = AHU COOLING COIL 6_AIR_OUTLET
+   **   ~~~   ** ...control type variable = Temperature
+   ************* Testing Individual Branch Integrity
+   ************* All Branches passed integrity testing
+   ************* Testing Individual Supply Air Path Integrity
+   ************* All Supply Air Paths passed integrity testing
+   ************* Testing Individual Return Air Path Integrity
+   ************* All Return Air Paths passed integrity testing
+   ************* No node connection errors were found.
+   ************* Beginning Simulation
+   ** Warning ** Missing 'Humidity Ratio Setpoint' for node named named 'AHU COOLING COIL 0_AIR_OUTLET'.
+   ** Warning ** Missing 'Humidity Ratio Minimum Setpoint' for node named named 'AHU COOLING COIL 0_AIR_OUTLET'.
+   ** Warning ** Missing 'Humidity Ratio Setpoint' for node named named 'AHU COOLING COIL 1_AIR_OUTLET'.
+   ** Warning ** Missing 'Humidity Ratio Minimum Setpoint' for node named named 'AHU COOLING COIL 1_AIR_OUTLET'.
+   ** Warning ** Missing 'Humidity Ratio Setpoint' for node named named 'AHU COOLING COIL 3_AIR_OUTLET'.
+   ** Warning ** Missing 'Humidity Ratio Minimum Setpoint' for node named named 'AHU COOLING COIL 3_AIR_OUTLET'.
+   ** Warning ** Missing 'Humidity Ratio Setpoint' for node named named 'AHU COOLING COIL 6_AIR_OUTLET'.
+   ** Warning ** Missing 'Humidity Ratio Minimum Setpoint' for node named named 'AHU COOLING COIL 6_AIR_OUTLET'.
+   **  Fatal  ** checkSetpointNodesAtEnd: At least one node does not have a setpoint attached, neither via a SetpointManager, EMS:Actuator, or API
+   ...Summary of Errors that led to program termination:
+   ..... Reference severe error count=0
+   ..... Last severe error=
+   ** Warning ** There is no BYPASS component in the demand-side of PlantLoop =YMCA CHILLED WATER LOOP
+   **   ~~~   ** You may be able to fix the fatal error above by adding a demand-side BYPASS PIPE.
+   ** Warning ** There is no BYPASS component in the demand-side of PlantLoop =YMCA CONDENSER WATER LOOP
+   **   ~~~   ** You may be able to fix the fatal error above by adding a demand-side BYPASS PIPE.
+   ** Warning ** There is no BYPASS component in the demand-side of PlantLoop =TEST HOT WATER LOOP
+   **   ~~~   ** You may be able to fix the fatal error above by adding a demand-side BYPASS PIPE.
+   *************
+   ************* ===== Final Error Summary =====
+   ************* The following error categories occurred.  Consider correcting or noting.
+   ************* Nominally Unused Constructions
+   ************* ..The nominally unused constructions warning is provided to alert you to potential conditions that can cause
+   ************* ..extra time during simulation. Each construction is calculated by the algorithm indicated in the HeatBalanceAlgorithm
+   ************* ..object. You may remove the constructions indicated (when you use the DisplayExtraWarnings option).
+   *************
+   ************* EnergyPlus Warmup Error Summary. During Warmup: 0 Warning; 0 Severe Errors.
+   ************* EnergyPlus Sizing Error Summary. During Sizing: 32 Warning; 0 Severe Errors.
+   ************* EnergyPlus Terminated--Fatal Error Detected. 60 Warning; 0 Severe Errors; Elapsed Time=00hr 01min 39.24sec

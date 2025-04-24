@@ -2544,14 +2544,14 @@ OS:Connector:Mixer,
   Connector Mixer 3,                      !- Name
   {2b0e90e7-f890-4efa-b8b8-8f7c03cbbed1}, !- Outlet Branch Name
   {7ac256da-cb0e-4fb2-9597-bfa03ee633c1}, !- Inlet Branch Name 1
-  ;                                       !- Inlet Branch Name 2
+  {93397e7e-0012-4eeb-85fa-acb1cbfe7750}; !- Inlet Branch Name 2
 
 OS:Connector:Splitter,
   {0def26e2-68be-4d95-b35f-9483e08288d5}, !- Handle
   Connector Splitter 3,                   !- Name
   {25d042ce-d85a-4f15-a06c-9e896d725427}, !- Inlet Branch Name
   {656079d8-5f1b-44c4-964a-322cb04e13fb}, !- Outlet Branch Name 1
-  ;                                       !- Outlet Branch Name 2
+  {a5bc1ed3-d112-4a76-8df8-58b3ab8d7488}; !- Outlet Branch Name 2
 
 OS:Connection,
   {0856cc07-a562-41be-a4e4-557882b33470}, !- Handle
@@ -3098,14 +3098,16 @@ OS:Connector:Mixer,
   Connector Mixer 6,                      !- Name
   {46266950-4781-43ea-b164-bf0a1cece2a2}, !- Outlet Branch Name
   {94f55709-68e9-4365-ace4-6a06e8172e10}, !- Inlet Branch Name 1
-  {98df7840-3501-4fb4-9a41-615bfd23a523}; !- Inlet Branch Name 2
+  {98df7840-3501-4fb4-9a41-615bfd23a523}, !- Inlet Branch Name 2
+  {bc603e43-f478-4b20-a3f8-cf8bfc522beb}; !- Inlet Branch Name 3
 
 OS:Connector:Splitter,
   {ee9fc186-947d-46ed-8f50-007db7646eda}, !- Handle
   Connector Splitter 6,                   !- Name
   {2f7ad36a-e801-4692-93ae-72e21888ec8b}, !- Inlet Branch Name
   {660967ae-a1e6-45e2-9c0b-bd3749368fbf}, !- Outlet Branch Name 1
-  {1ab34e79-a96b-4882-8c45-69e0cf6d73f5}; !- Outlet Branch Name 2
+  {1ab34e79-a96b-4882-8c45-69e0cf6d73f5}, !- Outlet Branch Name 2
+  {e792275d-a596-4650-b7e4-043d646c6534}; !- Outlet Branch Name 3
 
 OS:Connection,
   {e3b822cc-efad-4a8e-8c90-94fb6c6ae097}, !- Handle
@@ -4448,4 +4450,199 @@ OS:Connection,
   3,                                      !- Outlet Port
   {653973d6-5704-4deb-9f0f-8291a184846c}, !- Target Object
   3;                                      !- Inlet Port
+
+OS:Chiller:Electric:EIR,
+  {d646974c-4ec1-4f84-af38-6b0a1b23088f}, !- Handle
+  Chiller - Water Cooled,                 !- Name
+  Autosize,                               !- Reference Capacity {W}
+  5.5,                                    !- Reference COP {W/W}
+  ,                                       !- Reference Leaving Chilled Water Temperature {C}
+  ,                                       !- Reference Entering Condenser Fluid Temperature {C}
+  Autosize,                               !- Reference Chilled Water Flow Rate {m3/s}
+  ,                                       !- Reference Condenser Fluid Flow Rate {m3/s}
+  {5f46b600-9dbc-460c-a664-9a5b43a517d6}, !- Cooling Capacity Function of Temperature Curve Name
+  {b05cb173-4d24-4b14-8887-f16ff831f028}, !- Electric Input to Cooling Output Ratio Function of Temperature Curve Name
+  {cf15b846-71c4-4552-b236-fda2ebbbb157}, !- Electric Input to Cooling Output Ratio Function of Part Load Ratio Curve Name
+  ,                                       !- Minimum Part Load Ratio
+  ,                                       !- Maximum Part Load Ratio
+  ,                                       !- Optimum Part Load Ratio
+  ,                                       !- Minimum Unloading Ratio
+  {51eff17f-b3ec-4502-b114-3fd05e512dad}, !- Chilled Water Inlet Node Name
+  {1ca6b273-348c-4b1c-b272-8e8768db689c}, !- Chilled Water Outlet Node Name
+  {ac1976df-57a8-4904-aefa-6459cfdce224}, !- Condenser Inlet Node Name
+  {9050e857-4072-4546-852d-88e148535db3}, !- Condenser Outlet Node Name
+  WaterCooled,                            !- Condenser Type
+  ,                                       !- Condenser Fan Power Ratio {W/W}
+  ,                                       !- Fraction of Compressor Electric Consumption Rejected by Condenser
+  ,                                       !- Leaving Chilled Water Lower Temperature Limit {C}
+  ,                                       !- Chiller Flow Mode
+  Autosize,                               !- Design Heat Recovery Water Flow Rate {m3/s}
+  ,                                       !- Heat Recovery Inlet Node Name
+  ,                                       !- Heat Recovery Outlet Node Name
+  1,                                      !- Sizing Factor
+  0,                                      !- Basin Heater Capacity {W/K}
+  10,                                     !- Basin Heater Setpoint Temperature {C}
+  ,                                       !- Basin Heater Operating Schedule Name
+  1,                                      !- Condenser Heat Recovery Relative Capacity Fraction
+  ,                                       !- Heat Recovery Inlet High Temperature Limit Schedule Name
+  ,                                       !- Heat Recovery Leaving Temperature Setpoint Node Name
+  General;                                !- End-Use Subcategory
+
+OS:Curve:Biquadratic,
+  {5f46b600-9dbc-460c-a664-9a5b43a517d6}, !- Handle
+  Water Cooled Chiller CCFofT,            !- Name
+  0.258,                                  !- Coefficient1 Constant
+  0.0389,                                 !- Coefficient2 x
+  -0.000217,                              !- Coefficient3 x**2
+  0.0469,                                 !- Coefficient4 y
+  -0.000943,                              !- Coefficient5 y**2
+  -0.000343,                              !- Coefficient6 x*y
+  5,                                      !- Minimum Value of x
+  10,                                     !- Maximum Value of x
+  24,                                     !- Minimum Value of y
+  35;                                     !- Maximum Value of y
+
+OS:Curve:Biquadratic,
+  {b05cb173-4d24-4b14-8887-f16ff831f028}, !- Handle
+  Water Cooled Chiller EItoCoolingOutputRatioFofT, !- Name
+  0.934,                                  !- Coefficient1 Constant
+  -0.0582,                                !- Coefficient2 x
+  0.0045,                                 !- Coefficient3 x**2
+  0.00243,                                !- Coefficient4 y
+  0.000486,                               !- Coefficient5 y**2
+  -0.00122,                               !- Coefficient6 x*y
+  5,                                      !- Minimum Value of x
+  10,                                     !- Maximum Value of x
+  24,                                     !- Minimum Value of y
+  35;                                     !- Maximum Value of y
+
+OS:Curve:Quadratic,
+  {cf15b846-71c4-4552-b236-fda2ebbbb157}, !- Handle
+  Water Cooled Chiller EItoCoolingOutputRatioFofPLR, !- Name
+  0.222903,                               !- Coefficient1 Constant
+  0.313387,                               !- Coefficient2 x
+  0.46371,                                !- Coefficient3 x**2
+  0,                                      !- Minimum Value of x
+  1;                                      !- Maximum Value of x
+
+OS:Node,
+  {ca426545-a993-4971-a4d0-0fec09f2a418}, !- Handle
+  Node 20,                                !- Name
+  {a5bc1ed3-d112-4a76-8df8-58b3ab8d7488}, !- Inlet Port
+  {707c67ea-de0f-45be-ab56-b0343456aa12}; !- Outlet Port
+
+OS:Connection,
+  {a5bc1ed3-d112-4a76-8df8-58b3ab8d7488}, !- Handle
+  {0def26e2-68be-4d95-b35f-9483e08288d5}, !- Source Object
+  4,                                      !- Outlet Port
+  {ca426545-a993-4971-a4d0-0fec09f2a418}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Node,
+  {c0821fc6-c171-4745-adbf-ad1d4cea701f}, !- Handle
+  Node 21,                                !- Name
+  {1ca6b273-348c-4b1c-b272-8e8768db689c}, !- Inlet Port
+  {93397e7e-0012-4eeb-85fa-acb1cbfe7750}; !- Outlet Port
+
+OS:Connection,
+  {1ca6b273-348c-4b1c-b272-8e8768db689c}, !- Handle
+  {d646974c-4ec1-4f84-af38-6b0a1b23088f}, !- Source Object
+  16,                                     !- Outlet Port
+  {c0821fc6-c171-4745-adbf-ad1d4cea701f}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {93397e7e-0012-4eeb-85fa-acb1cbfe7750}, !- Handle
+  {c0821fc6-c171-4745-adbf-ad1d4cea701f}, !- Source Object
+  3,                                      !- Outlet Port
+  {5d1bd5b9-de46-4cae-a50a-8091c736058c}, !- Target Object
+  4;                                      !- Inlet Port
+
+OS:Pump:ConstantSpeed,
+  {b7a28bfe-de5f-449b-973b-b379cdfd3c69}, !- Handle
+  Const Spd Pump 1,                       !- Name
+  {707c67ea-de0f-45be-ab56-b0343456aa12}, !- Inlet Node Name
+  {01e95da2-e4cb-4c31-8f4e-59758f9c2bd6}, !- Outlet Node Name
+  autosize,                               !- Rated Flow Rate {m3/s}
+  179352,                                 !- Rated Pump Head {Pa}
+  autosize,                               !- Rated Power Consumption {W}
+  0.9,                                    !- Motor Efficiency
+  0,                                      !- Fraction of Motor Inefficiencies to Fluid Stream
+  Intermittent,                           !- Pump Control Type
+  ,                                       !- Pump Flow Rate Schedule
+  ,                                       !- Pump Curve
+  ,                                       !- Impeller Diameter {m}
+  ,                                       !- Rotational Speed {rev/min}
+  ,                                       !- Zone
+  ,                                       !- Skin Loss Radiative Fraction
+  PowerPerFlowPerPressure,                !- Design Power Sizing Method
+  348701.1,                               !- Design Electric Power per Unit Flow Rate {W/(m3/s)}
+  1.282051282;                            !- Design Shaft Power per Unit Flow Rate per Unit Head {W-s/m3-Pa}
+
+OS:Node,
+  {bd9140d3-de23-4da9-a0a4-a7b1e6203814}, !- Handle
+  Node 66,                                !- Name
+  {01e95da2-e4cb-4c31-8f4e-59758f9c2bd6}, !- Inlet Port
+  {51eff17f-b3ec-4502-b114-3fd05e512dad}; !- Outlet Port
+
+OS:Connection,
+  {707c67ea-de0f-45be-ab56-b0343456aa12}, !- Handle
+  {ca426545-a993-4971-a4d0-0fec09f2a418}, !- Source Object
+  3,                                      !- Outlet Port
+  {b7a28bfe-de5f-449b-973b-b379cdfd3c69}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {01e95da2-e4cb-4c31-8f4e-59758f9c2bd6}, !- Handle
+  {b7a28bfe-de5f-449b-973b-b379cdfd3c69}, !- Source Object
+  3,                                      !- Outlet Port
+  {bd9140d3-de23-4da9-a0a4-a7b1e6203814}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {51eff17f-b3ec-4502-b114-3fd05e512dad}, !- Handle
+  {bd9140d3-de23-4da9-a0a4-a7b1e6203814}, !- Source Object
+  3,                                      !- Outlet Port
+  {d646974c-4ec1-4f84-af38-6b0a1b23088f}, !- Target Object
+  15;                                     !- Inlet Port
+
+OS:Node,
+  {c2dc1299-9f41-477d-86eb-e9aa9d69c508}, !- Handle
+  Node 67,                                !- Name
+  {e792275d-a596-4650-b7e4-043d646c6534}, !- Inlet Port
+  {ac1976df-57a8-4904-aefa-6459cfdce224}; !- Outlet Port
+
+OS:Connection,
+  {e792275d-a596-4650-b7e4-043d646c6534}, !- Handle
+  {ee9fc186-947d-46ed-8f50-007db7646eda}, !- Source Object
+  5,                                      !- Outlet Port
+  {c2dc1299-9f41-477d-86eb-e9aa9d69c508}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Node,
+  {f36d2d35-abcd-4b8e-aab2-cb6f7f78e056}, !- Handle
+  Node 68,                                !- Name
+  {9050e857-4072-4546-852d-88e148535db3}, !- Inlet Port
+  {bc603e43-f478-4b20-a3f8-cf8bfc522beb}; !- Outlet Port
+
+OS:Connection,
+  {ac1976df-57a8-4904-aefa-6459cfdce224}, !- Handle
+  {c2dc1299-9f41-477d-86eb-e9aa9d69c508}, !- Source Object
+  3,                                      !- Outlet Port
+  {d646974c-4ec1-4f84-af38-6b0a1b23088f}, !- Target Object
+  17;                                     !- Inlet Port
+
+OS:Connection,
+  {9050e857-4072-4546-852d-88e148535db3}, !- Handle
+  {d646974c-4ec1-4f84-af38-6b0a1b23088f}, !- Source Object
+  18,                                     !- Outlet Port
+  {f36d2d35-abcd-4b8e-aab2-cb6f7f78e056}, !- Target Object
+  2;                                      !- Inlet Port
+
+OS:Connection,
+  {bc603e43-f478-4b20-a3f8-cf8bfc522beb}, !- Handle
+  {f36d2d35-abcd-4b8e-aab2-cb6f7f78e056}, !- Source Object
+  3,                                      !- Outlet Port
+  {99b2dce6-bc14-493f-93b9-3574aa7c3a34}, !- Target Object
+  5;                                      !- Inlet Port
 

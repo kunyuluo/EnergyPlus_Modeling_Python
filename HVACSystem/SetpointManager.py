@@ -50,9 +50,18 @@ class SetpointManager:
                 case _:
                     numeric_type = 1
                     unit_type = 1
-            schedule = Schedule.year(
+
+            schedule_name = name + ' Schedule'
+            # schedule = Schedule.year(
+            #     idf,
+            #     name=schedule_name,
+            #     constant_value=constant_value,
+            #     numeric_type=numeric_type,
+            #     unit_type=unit_type,
+            #     test_mode=test_mode)
+            schedule = Schedule.compact(
                 idf,
-                name=name,
+                name=schedule_name,
                 constant_value=constant_value,
                 numeric_type=numeric_type,
                 unit_type=unit_type,

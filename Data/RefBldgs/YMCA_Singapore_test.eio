@@ -1,0 +1,1064 @@
+Program Version,EnergyPlus, Version 24.2.0-94a887817b, YMD=2025.04.14 16:15
+! <Version>, Version ID
+ Version, 24.2
+! <Timesteps per Hour>, #TimeSteps, Minutes per TimeStep {minutes}
+ Timesteps per Hour,  6, 10
+! <System Convergence Limits>, Minimum System TimeStep {minutes}, Max HVAC Iterations, Minimum Plant Iterations, Maximum Plant Iterations
+ System Convergence Limits, 1, 20, 2, 8
+! <Simulation Control>, Do Zone Sizing, Do System Sizing, Do Plant Sizing, Do Design Days, Do Weather Simulation, Do HVAC Sizing Simulation
+ Simulation Control, Yes, Yes, Yes, No, Yes, No
+! <Performance Precision Tradeoffs>, Use Coil Direct Simulation, Zone Radiant Exchange Algorithm, Override Mode, Number of Timestep In Hour, Force Euler Method, Minimum Number of Warmup Days, Force Suppress All Begin Environment Resets, Minimum System Timestep, MaxZoneTempDiff, MaxAllowedDelTemp
+ Performance Precision Tradeoffs, No, ScriptF, Normal, 6, No, 1, No, 1.0, 0.300, 2.0000E-003
+! <Output Reporting Tolerances>, Tolerance for Time Heating Setpoint Not Met, Tolerance for Zone Cooling Setpoint Not Met Time
+ Output Reporting Tolerances, 0.200, 0.200, 
+! <Site:GroundTemperature:BuildingSurface>,Jan{C},Feb{C},Mar{C},Apr{C},May{C},Jun{C},Jul{C},Aug{C},Sep{C},Oct{C},Nov{C},Dec{C}
+ Site:GroundTemperature:BuildingSurface,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00,  18.00
+! <Site:GroundTemperature:FCfactorMethod>,Jan{C},Feb{C},Mar{C},Apr{C},May{C},Jun{C},Jul{C},Aug{C},Sep{C},Oct{C},Nov{C},Dec{C}
+ Site:GroundTemperature:FCfactorMethod,  14.00,   7.30,   3.30,   1.20,  -0.20,   5.60,  10.90,  16.10,  21.70,  25.00,  24.80,  19.90
+! <Site:GroundTemperature:Shallow>,Jan{C},Feb{C},Mar{C},Apr{C},May{C},Jun{C},Jul{C},Aug{C},Sep{C},Oct{C},Nov{C},Dec{C}
+ Site:GroundTemperature:Shallow,  13.00,  13.00,  13.00,  13.00,  13.00,  13.00,  13.00,  13.00,  13.00,  13.00,  13.00,  13.00
+! <Site:GroundTemperature:Deep>,Jan{C},Feb{C},Mar{C},Apr{C},May{C},Jun{C},Jul{C},Aug{C},Sep{C},Oct{C},Nov{C},Dec{C}
+ Site:GroundTemperature:Deep,  16.00,  16.00,  16.00,  16.00,  16.00,  16.00,  16.00,  16.00,  16.00,  16.00,  16.00,  16.00
+! <Site:GroundReflectance>,Jan{dimensionless},Feb{dimensionless},Mar{dimensionless},Apr{dimensionless},May{dimensionless},Jun{dimensionless},Jul{dimensionless},Aug{dimensionless},Sep{dimensionless},Oct{dimensionless},Nov{dimensionless},Dec{dimensionless}
+ Site:GroundReflectance,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20
+! <Site:GroundReflectance:SnowModifier>, Normal, Daylighting {dimensionless}
+ Site:GroundReflectance:SnowModifier,   1.000,   1.000
+! <Site:GroundReflectance:Snow>,Jan{dimensionless},Feb{dimensionless},Mar{dimensionless},Apr{dimensionless},May{dimensionless},Jun{dimensionless},Jul{dimensionless},Aug{dimensionless},Sep{dimensionless},Oct{dimensionless},Nov{dimensionless},Dec{dimensionless}
+ Site:GroundReflectance:Snow,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20
+! <Site:GroundReflectance:Snow:Daylighting>,Jan{dimensionless},Feb{dimensionless},Mar{dimensionless},Apr{dimensionless},May{dimensionless},Jun{dimensionless},Jul{dimensionless},Aug{dimensionless},Sep{dimensionless},Oct{dimensionless},Nov{dimensionless},Dec{dimensionless}
+ Site:GroundReflectance:Snow:Daylighting,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20,  0.20
+! <Environment:Weather Station>,Wind Sensor Height Above Ground {m},Wind Speed Profile Exponent {},Wind Speed Profile Boundary Layer Thickness {m},Air Temperature Sensor Height Above Ground {m},Wind Speed Modifier Coefficient-Internal,Temperature Modifier Coefficient-Internal
+Environment:Weather Station,10.000,0.140,270.000,1.500,1.586,9.750E-003
+! <Site:Location>, Location Name, Latitude {N+/S- Deg}, Longitude {E+/W- Deg},  Time Zone Number {GMT+/-}, Elevation {m},  Standard Pressure at Elevation {Pa}, Standard RhoAir at Elevation
+Site:Location,Paya.Lebar.AB SG SGP SRC-TMYx WMO#=486940,1.36,103.91,8.00,19.80,101087,1.2015
+! <Site Water Mains Temperature Information>,Calculation Method{},Water Mains Temperature Schedule Name{},Annual Average Outdoor Air Temperature{C},Maximum Difference In Monthly Average Outdoor Air Temperatures{deltaC},Fixed Default Water Mains Temperature{C}
+Site Water Mains Temperature Information,Correlation,NA,12.47,25.20,NA
+! <Building Information>, Building Name,North Axis {deg},Terrain,  Loads Convergence Tolerance Value,Temperature Convergence Tolerance Value,  Solar Distribution,Maximum Number of Warmup Days,Minimum Number of Warmup Days
+ Building Information,HotelLarge,0.000,City,4.00000E-002,0.20000,FullInteriorAndExterior,25,6
+! <Inside Convection Algorithm>, Algorithm {Simple | TARP | CeilingDiffuser | AdaptiveConvectionAlgorithm}
+Inside Convection Algorithm,TARP
+! <Outside Convection Algorithm>, Algorithm {SimpleCombined | TARP | MoWitt | DOE-2 | AdaptiveConvectionAlgorithm}
+Outside Convection Algorithm,DOE-2
+! <Sky Radiance Distribution>, Value {Anisotropic}
+Sky Radiance Distribution,Anisotropic
+! <Zone Air Solution Algorithm>, Algorithm {ThirdOrderBackwardDifference | AnalyticalSolution | EulerMethod}, Space Heat Balance Sizing, Space Heat Balance Simulation
+ Zone Air Solution Algorithm, ThirdOrderBackwardDifference, No, No
+! <Zone Air Carbon Dioxide Balance Simulation>, Simulation {Yes/No}, Carbon Dioxide Concentration
+ Zone Air Carbon Dioxide Balance Simulation, No,N/A
+! <Zone Air Generic Contaminant Balance Simulation>, Simulation {Yes/No}, Generic Contaminant Concentration
+ Zone Air Generic Contaminant Balance Simulation, No,N/A
+! <Zone Air Mass Flow Balance Simulation>, Enforce Mass Balance, Adjust Zone Mixing and Return {AdjustMixingOnly | AdjustReturnOnly | AdjustMixingThenReturn | AdjustReturnThenMixing | None}, Adjust Zone Infiltration {AddInfiltration | AdjustInfiltration | None}, Infiltration Zones {MixingSourceZonesOnly | AllZones}
+ Zone Air Mass Flow Balance Simulation, No,N/A,N/A,N/A
+! <HVACSystemRootFindingAlgorithm>, Value {RegulaFalsi | Bisection | BisectionThenRegulaFalsi | RegulaFalsiThenBisection}
+ HVACSystemRootFindingAlgorithm, RegulaFalsi
+! <Environment:Site Atmospheric Variation>,Wind Speed Profile Exponent {},Wind Speed Profile Boundary Layer Thickness {m},Air Temperature Gradient Coefficient {K/m}
+Environment:Site Atmospheric Variation,0.330,460.000,6.500000E-003
+! <Shadowing/Sun Position Calculations Annual Simulations>, Shading Calculation Method, Shading Calculation Update Frequency Method, Shading Calculation Update Frequency {days}, Maximum Figures in Shadow Overlap Calculations {}, Polygon Clipping Algorithm, Pixel Counting Resolution, Sky Diffuse Modeling Algorithm, Output External Shading Calculation Results, Disable Self-Shading Within Shading Zone Groups, Disable Self-Shading From Shading Zone Groups to Other Zones
+Shadowing/Sun Position Calculations Annual Simulations,PolygonClipping,Periodic,7,15000,SutherlandHodgman,512,SimpleSkyDiffuseModeling,No,No,No
+! <Surface Geometry>,Starting Corner,Vertex Input Direction,Coordinate System,Daylight Reference Point Coordinate System,Rectangular (Simple) Surface Coordinate System
+ Surface Geometry,UpperLeftCorner,Counterclockwise,RelativeCoordinateSystem,RelativeCoordinateSystem,RelativeToZoneOrigin
+! <Surface Heat Transfer Algorithm>, Value {CTF - ConductionTransferFunction | EMPD - MoisturePenetrationDepthConductionTransferFunction | CondFD - ConductionFiniteDifference | HAMT - CombinedHeatAndMoistureFiniteElement} - Description,Inside Surface Max Temperature Limit{C}, Surface Convection Coefficient Lower Limit {W/m2-K}, Surface Convection Coefficient Upper Limit {W/m2-K}
+Surface Heat Transfer Algorithm, CTF - ConductionTransferFunction,200,0.10,1000.0
+! <Shading Summary>, Number of Fixed Detached Shades, Number of Building Detached Shades, Number of Attached Shades
+ Shading Summary,0,0,0
+! <Zone Summary>, Number of Zones, Number of Zone Surfaces, Number of SubSurfaces
+ Zone Summary,22,235,36
+! <Zone Information>,Zone Name,North Axis {deg},Origin X-Coordinate {m},Origin Y-Coordinate {m},Origin Z-Coordinate {m},Centroid X-Coordinate {m},Centroid Y-Coordinate {m},Centroid Z-Coordinate {m},Type,Zone Multiplier,Zone List Multiplier,Minimum X {m},Maximum X {m},Minimum Y {m},Maximum Y {m},Minimum Z {m},Maximum Z {m},Ceiling Height {m},Volume {m3},Zone Inside Convection Algorithm {Simple-Detailed-CeilingDiffuser-TrombeWall},Zone Outside Convection Algorithm {Simple-Detailed-Tarp-MoWitt-DOE-2-BLAST}, Floor Area {m2},Exterior Gross Wall Area {m2},Exterior Net Wall Area {m2},Exterior Window Area {m2}, Number of Surfaces, Number of SubSurfaces, Number of Shading SubSurfaces,  Part of Total Building Area
+ Zone Information, BASEMENT,0.0,0.00,0.00,0.00,41.45,11.51,-1.22,1,1,1,0.00,86.56,0.00,22.86,-2.44,0.00,2.44,4826.41,TARP,DOE-2,1978.83,0.00,0.00,0.00,13,0,0,Yes
+ Zone Information, RETAIL_1_FLR_1,0.0,0.00,0.00,0.00,5.79,2.90,1.98,1,1,1,0.00,11.58,0.00,5.79,0.00,3.96,3.96,265.76,TARP,DOE-2,67.07,68.84,45.58,23.26,6,1,0,Yes
+ Zone Information, RETAIL_2_FLR_1,0.0,0.00,0.00,0.00,5.79,9.14,1.98,1,1,1,0.00,11.58,5.79,12.50,0.00,3.96,3.96,307.76,TARP,DOE-2,77.67,26.57,24.62,0.00,6,1,0,Yes
+ Zone Information, MECH_FLR_1,0.0,0.00,0.00,0.00,61.87,17.68,1.98,1,1,1,53.95,69.80,12.50,22.86,0.00,3.96,3.96,650.80,TARP,DOE-2,164.24,62.80,62.80,0.00,6,0,0,Yes
+ Zone Information, STORAGE_FLR_1,0.0,0.00,0.00,0.00,74.37,17.68,1.98,1,1,1,69.80,78.94,12.50,22.86,0.00,3.96,3.96,375.47,TARP,DOE-2,94.76,36.23,28.80,0.00,6,1,0,Yes
+ Zone Information, LAUNDRY_FLR_1,0.0,0.00,0.00,0.00,84.28,14.33,1.98,1,1,1,81.99,86.56,5.79,22.86,0.00,3.96,3.96,309.22,TARP,DOE-2,78.04,85.75,83.80,0.00,6,1,0,Yes
+ Zone Information, CAFE_FLR_1,0.0,0.00,0.00,0.00,70.26,2.90,1.98,1,1,1,53.95,86.56,0.00,5.79,0.00,3.96,3.96,748.35,TARP,DOE-2,188.86,152.17,84.72,65.50,7,2,0,Yes
+ Zone Information, LOBBY_FLR_1,0.0,0.00,0.00,0.00,38.29,12.45,1.98,1,1,1,0.00,81.99,0.00,22.86,0.00,3.96,3.96,5183.56,TARP,DOE-2,1308.19,434.79,345.80,85.08,18,3,0,Yes
+ Zone Information, ROOM_1_FLR_3,0.0,0.00,0.00,0.00,2.29,10.06,8.53,1,4,1,0.00,4.57,5.79,14.33,7.01,10.06,3.05,118.94,TARP,DOE-2,39.02,39.95,26.77,13.18,6,2,0,Yes
+ Zone Information, ROOM_2_FLR_3,0.0,0.00,0.00,0.00,2.29,18.59,8.53,1,4,1,0.00,4.57,14.33,22.86,7.01,10.06,3.05,118.93,TARP,DOE-2,39.02,39.95,26.76,13.18,6,2,0,Yes
+ Zone Information, ROOM_3_MULT19_FLR_3,0.0,0.00,0.00,0.00,8.53,9.14,8.53,1,76,1,6.71,10.36,5.79,12.50,7.01,10.06,3.05,74.75,TARP,DOE-2,24.52,11.15,7.47,3.68,6,1,0,Yes
+ Zone Information, ROOM_4_MULT19_FLR_3,0.0,0.00,0.00,0.00,12.19,19.51,8.53,1,76,1,10.36,14.02,16.15,22.86,7.01,10.06,3.05,74.77,TARP,DOE-2,24.53,11.15,7.47,3.68,6,1,0,Yes
+ Zone Information, ROOM_5_FLR_3,0.0,0.00,0.00,0.00,84.28,10.06,8.53,1,4,1,81.99,86.56,5.79,14.33,7.01,10.06,3.05,118.94,TARP,DOE-2,39.02,39.95,26.77,13.18,6,2,0,Yes
+ Zone Information, ROOM_6_FLR_3,0.0,0.00,0.00,0.00,84.28,18.59,8.53,1,4,1,81.99,86.56,14.33,22.86,7.01,10.06,3.05,118.93,TARP,DOE-2,39.02,39.95,26.76,13.18,6,2,0,Yes
+ Zone Information, CORRIDOR_FLR_3,0.0,0.00,0.00,0.00,43.28,14.33,8.53,1,4,1,4.57,81.99,5.79,22.86,7.01,10.06,3.05,1186.91,TARP,DOE-2,389.40,48.31,32.37,15.94,20,4,0,Yes
+ Zone Information, ROOM_1_FLR_6,0.0,0.00,0.00,0.00,2.29,10.06,17.68,1,1,1,0.00,4.57,5.79,14.33,16.15,19.20,3.05,118.94,TARP,DOE-2,39.02,39.95,26.77,13.18,6,2,0,Yes
+ Zone Information, ROOM_2_FLR_6,0.0,0.00,0.00,0.00,2.29,18.59,17.68,1,1,1,0.00,4.57,14.33,22.86,16.15,19.20,3.05,118.93,TARP,DOE-2,39.02,39.95,26.76,13.18,6,2,0,Yes
+ Zone Information, ROOM_3_MULT9_FLR_6,0.0,0.00,0.00,0.00,7.93,7.62,17.68,1,9,1,4.57,11.28,5.79,9.45,16.15,19.20,3.05,74.77,TARP,DOE-2,24.53,20.44,13.70,6.74,6,1,0,Yes
+ Zone Information, BANQUET_FLR_6,0.0,0.00,0.00,0.00,26.37,17.68,17.68,1,1,1,10.36,42.37,12.50,22.86,16.15,19.20,3.05,1010.89,TARP,DOE-2,331.66,97.55,65.36,32.19,6,1,0,Yes
+ Zone Information, DINING_FLR_6,0.0,0.00,0.00,0.00,63.55,17.68,17.68,1,1,1,47.55,79.55,12.50,22.86,16.15,19.20,3.05,1010.89,TARP,DOE-2,331.66,97.55,65.36,32.19,6,1,0,Yes
+ Zone Information, KITCHEN_FLR_6,0.0,0.00,0.00,0.00,82.99,14.11,17.68,1,1,1,79.55,86.56,5.79,22.86,16.15,19.20,3.05,314.87,TARP,DOE-2,103.30,87.33,60.96,26.37,8,3,0,Yes
+ Zone Information, CORRIDOR_FLR_6,0.0,0.00,0.00,0.00,41.51,13.35,17.68,1,1,1,4.57,81.99,5.79,22.86,16.15,19.20,3.05,1256.16,TARP,DOE-2,412.12,85.47,57.27,28.20,15,3,0,Yes
+! <Zone Internal Gains Nominal>,Zone Name, Floor Area {m2},# Occupants,Area per Occupant {m2/person},Occupant per Area {person/m2},Interior Lighting {W/m2},Electric Load {W/m2},Gas Load {W/m2},Other Load {W/m2},Hot Water Eq {W/m2},Steam Equipment {W/m2},Sum Loads per Area {W/m2},Outdoor Controlled Baseboard Heat
+ Zone Internal Gains Nominal, BASEMENT,1978.83,106.5,18.581,5.382E-002,5.877,5.380,0.000,0.000,0.000,0.000,11.257,No
+ Zone Internal Gains Nominal, RETAIL_1_FLR_1,67.07,10.8,6.194,0.161,7.158,10.760,0.000,0.000,0.000,0.000,17.918,No
+ Zone Internal Gains Nominal, RETAIL_2_FLR_1,77.67,12.5,6.194,0.161,7.158,10.760,0.000,0.000,0.000,0.000,17.918,No
+ Zone Internal Gains Nominal, MECH_FLR_1,164.24,2.7,61.932,1.615E-002,6.878,5.380,0.000,0.000,0.000,0.000,12.258,No
+ Zone Internal Gains Nominal, STORAGE_FLR_1,94.76,2.0,46.451,2.153E-002,3.581,2.690,0.000,0.000,0.000,0.000,6.271,No
+ Zone Internal Gains Nominal, LAUNDRY_FLR_1,78.04,8.4,9.290,0.108,4.941,61.680,535.850,0.000,0.000,0.000,602.471,No
+ Zone Internal Gains Nominal, CAFE_FLR_1,188.86,142.3,1.327,0.753,7.363,5.380,0.000,0.000,0.000,0.000,12.743,No
+ Zone Internal Gains Nominal, LOBBY_FLR_1,1308.19,422.4,3.097,0.323,7.750,8.070,0.000,0.000,0.000,0.000,15.820,No
+ Zone Internal Gains Nominal, ROOM_1_FLR_3,39.02,1.5,26.015,3.844E-002,4.413,6.750,0.000,0.000,0.000,0.000,11.163,No
+ Zone Internal Gains Nominal, ROOM_2_FLR_3,39.02,1.5,26.012,3.844E-002,4.413,6.750,0.000,0.000,0.000,0.000,11.163,No
+ Zone Internal Gains Nominal, ROOM_3_MULT19_FLR_3,24.52,1.5,16.349,6.116E-002,4.413,10.520,0.000,0.000,0.000,0.000,14.933,No
+ Zone Internal Gains Nominal, ROOM_4_MULT19_FLR_3,24.53,1.5,16.354,6.115E-002,4.413,10.520,0.000,0.000,0.000,0.000,14.933,No
+ Zone Internal Gains Nominal, ROOM_5_FLR_3,39.02,1.5,26.015,3.844E-002,4.413,6.750,0.000,0.000,0.000,0.000,11.163,No
+ Zone Internal Gains Nominal, ROOM_6_FLR_3,39.02,1.5,26.012,3.844E-002,4.413,6.750,0.000,0.000,0.000,0.000,11.163,No
+ Zone Internal Gains Nominal, CORRIDOR_FLR_3,389.40,21.0,18.581,5.382E-002,4.263,0.000,0.000,0.000,0.000,0.000,4.263,No
+ Zone Internal Gains Nominal, ROOM_1_FLR_6,39.02,1.5,26.015,3.844E-002,4.413,6.750,0.000,0.000,0.000,0.000,11.163,No
+ Zone Internal Gains Nominal, ROOM_2_FLR_6,39.02,1.5,26.012,3.844E-002,4.413,6.750,0.000,0.000,0.000,0.000,11.163,No
+ Zone Internal Gains Nominal, ROOM_3_MULT9_FLR_6,24.53,1.5,16.354,6.115E-002,4.413,10.520,0.000,0.000,0.000,0.000,14.933,No
+ Zone Internal Gains Nominal, BANQUET_FLR_6,331.66,249.9,1.327,0.753,7.363,67.820,0.000,0.000,0.000,0.000,75.183,No
+ Zone Internal Gains Nominal, DINING_FLR_6,331.66,249.9,1.327,0.753,7.363,67.820,0.000,0.000,0.000,0.000,75.183,No
+ Zone Internal Gains Nominal, KITCHEN_FLR_6,103.30,22.2,4.645,0.215,11.528,512.243,2419.260,0.000,0.000,0.000,2943.031,No
+ Zone Internal Gains Nominal, CORRIDOR_FLR_6,412.12,22.2,18.581,5.382E-002,4.263,0.000,0.000,0.000,0.000,0.000,4.263,No
+! <People Internal Gains Nominal>,Name,Schedule Name,Zone Name,Zone Floor Area {m2},# Zone Occupants,Number of People {},People/Floor Area {person/m2},Floor Area per person {m2/person},Fraction Radiant,Fraction Convected,Sensible Fraction Calculation,Activity level,ASHRAE 55 Warnings,Carbon Dioxide Generation Rate,Minimum Number of People for All Day Types,Maximum Number of People for All Day Types,Minimum Number of People for Weekdays, Maximum Number of People for Weekdays, Minimum Number of People for Weekends/Holidays, Maximum Number of People for Weekends /Holidays,Minimum Number of People for Summer Design Days, Maximum Number of People for Summer Design Days,Minimum Number of People for Winter Design Days, Maximum Number of People for Winter Design Days,MRT Calculation Type,Work Efficiency, Clothing Insulation Calculation Method,Clothing Insulation Calculation Method Schedule,Clothing,Air Velocity,Fanger Calculation,Pierce Calculation,KSU Calculation,Cooling Effect Calculation,Ankle Draft Calculation
+ People Internal Gains Nominal, BASEMENT PEOPLE,BLDG_OCC_SCH,BASEMENT,1978.83,106.5,106.5,5.382E-002,18.581,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,106.5,21.3,95.8,21.3,95.8,106.5,106.5,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, RETAIL_1_FLR_1 PEOPLE,BLDG_OCC_SCH,RETAIL_1_FLR_1,67.07,10.8,10.8,0.161,6.194,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,10.8,2.2,9.7,2.2,9.7,10.8,10.8,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, RETAIL_2_FLR_1 PEOPLE,BLDG_OCC_SCH,RETAIL_2_FLR_1,77.67,12.5,12.5,0.161,6.194,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,12.5,2.5,11.3,2.5,11.3,12.5,12.5,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, LAUNDRY_FLR_1 PEOPLE,BLDG_OCC_SCH,LAUNDRY_FLR_1,78.04,8.4,8.4,0.108,9.290,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,8.4,1.7,7.6,1.7,7.6,8.4,8.4,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, CAFE_FLR_1 PEOPLE,BLDG_OCC_SCH,CAFE_FLR_1,188.86,142.3,142.3,0.753,1.327,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,142.3,28.5,128.1,28.5,128.1,142.3,142.3,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, LOBBY_FLR_1 PEOPLE,BLDG_OCC_SCH,LOBBY_FLR_1,1308.19,422.4,422.4,0.323,3.097,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,422.4,84.5,380.2,84.5,380.2,422.4,422.4,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, ROOM_1_FLR_3 PEOPLE,GUESTROOM_OCC_SCH,ROOM_1_FLR_3,39.02,1.5,1.5,3.844E-002,26.015,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,1.5,0.3,1.5,0.5,1.5,1.5,1.5,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, ROOM_2_FLR_3 PEOPLE,GUESTROOM_OCC_SCH,ROOM_2_FLR_3,39.02,1.5,1.5,3.844E-002,26.012,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,1.5,0.3,1.5,0.5,1.5,1.5,1.5,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, ROOM_3_MULT19_FLR_3 PEOPLE,ALWAYS_OFF,ROOM_3_MULT19_FLR_3,24.52,1.5,1.5,6.116E-002,16.349,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, ROOM_4_MULT19_FLR_3 PEOPLE,GUESTROOM_OCC_SCH,ROOM_4_MULT19_FLR_3,24.53,1.5,1.5,6.115E-002,16.354,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,1.5,0.3,1.5,0.5,1.5,1.5,1.5,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, ROOM_5_FLR_3 PEOPLE,GUESTROOM_OCC_SCH,ROOM_5_FLR_3,39.02,1.5,1.5,3.844E-002,26.015,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,1.5,0.3,1.5,0.5,1.5,1.5,1.5,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, ROOM_6_FLR_3 PEOPLE,GUESTROOM_OCC_SCH,ROOM_6_FLR_3,39.02,1.5,1.5,3.844E-002,26.012,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,1.5,0.3,1.5,0.5,1.5,1.5,1.5,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, ROOM_1_FLR_6 PEOPLE,GUESTROOM_OCC_SCH,ROOM_1_FLR_6,39.02,1.5,1.5,3.844E-002,26.015,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,1.5,0.3,1.5,0.5,1.5,1.5,1.5,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, ROOM_2_FLR_6 PEOPLE,GUESTROOM_OCC_SCH,ROOM_2_FLR_6,39.02,1.5,1.5,3.844E-002,26.012,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,1.5,0.3,1.5,0.5,1.5,1.5,1.5,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, ROOM_3_MULT9_FLR_6 PEOPLE,GUESTROOM_OCC_SCH,ROOM_3_MULT9_FLR_6,24.53,1.5,1.5,6.115E-002,16.354,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,1.5,0.3,1.5,0.5,1.5,1.5,1.5,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, BANQUET_FLR_6 PEOPLE,BLDG_OCC_SCH,BANQUET_FLR_6,331.66,249.9,249.9,0.753,1.327,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,249.9,50.0,224.9,50.0,224.9,249.9,249.9,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, DINING_FLR_6 PEOPLE,BLDG_OCC_SCH,DINING_FLR_6,331.66,249.9,249.9,0.753,1.327,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,249.9,50.0,224.9,50.0,224.9,249.9,249.9,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, KITCHEN_FLR_6 PEOPLE,BLDG_OCC_SCH,KITCHEN_FLR_6,103.30,22.2,22.2,0.215,4.645,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,22.2,4.4,20.0,4.4,20.0,22.2,22.2,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, STORAGE_FLR_1 PEOPLE,BLDG_OCC_SCH,STORAGE_FLR_1,94.76,2.0,2.0,2.153E-002,46.451,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,2.0,0.4,1.8,0.4,1.8,2.0,2.0,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, CORRIDOR_FLR_3 PEOPLE,BLDG_OCC_SCH,CORRIDOR_FLR_3,389.40,21.0,21.0,5.382E-002,18.581,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,21.0,4.2,18.9,4.2,18.9,21.0,21.0,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, CORRIDOR_FLR_6 PEOPLE,BLDG_OCC_SCH,CORRIDOR_FLR_6,412.12,22.2,22.2,5.382E-002,18.581,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,22.2,4.4,20.0,4.4,20.0,22.2,22.2,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+ People Internal Gains Nominal, MECH_FLR_1 PEOPLE,BLDG_OCC_SCH,MECH_FLR_1,164.24,2.7,2.7,1.615E-002,61.932,0.300,0.700,AutoCalculate,ACTIVITY_SCH,No,3.8200E-008,0.0,2.7,0.5,2.4,0.5,2.4,2.7,2.7,0.0,0.0,Zone Averaged,WORK_EFF_SCH,Clothing Insulation Schedule,N/A,CLOTHING_SCH,AIR_VELO_SCH,Yes,No,No,No,No
+! <Lights Internal Gains Nominal>,Name,Schedule Name,Zone Name,Zone Floor Area {m2},# Zone Occupants,Lighting Level {W},Lights/Floor Area {W/m2},Lights per person {W/person},Fraction Return Air,Fraction Radiant,Fraction Short Wave,Fraction Convected,Fraction Replaceable,End-Use, Minimum Lighting Level for All Day Types {W},Maximum Lighting Level for All Day Types {W},Minimum Lighting Level for Weekdays {W}, Maximum Lighting Level for Weekdays {W},Minimum Lighting Level for Weekends/Holidays {W}, Maximum Lighting Level for Weekends /Holidays {W},Minimum Lighting Level for Summer Design Days {W}, Maximum Lighting Level for Summer Design Days {W},Minimum Lighting Level for Winter Design Days {W}, Maximum Lighting Level for Winter Design Days {W}
+ Lights Internal Gains Nominal, BASEMENT_LIGHTS,LTG_SCH_BASEMENT,BASEMENT,1978.83,106.5,11630.030,5.877,109.203,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,11630.030,795.939,7163.6,795.939,6367.623,11630.030,11630.030,0.000,0.000
+ Lights Internal Gains Nominal, RETAIL_1_FLR_1_LIGHTS,LTG_SCH_RETAIL,RETAIL_1_FLR_1,67.07,10.8,480.097,7.158,44.334,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,480.097,36.021,324.2,36.021,288.165,480.097,480.097,0.000,0.000
+ Lights Internal Gains Nominal, RETAIL_2_FLR_1_LIGHTS,LTG_SCH_RETAIL,RETAIL_2_FLR_1,77.67,12.5,555.954,7.158,44.334,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,555.954,41.712,375.4,41.712,333.696,555.954,555.954,0.000,0.000
+ Lights Internal Gains Nominal, MECH_FLR_1_LIGHTS,LTG_SCH_MECHANIC,MECH_FLR_1,164.24,2.7,1129.686,6.878,425.975,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,1129.686,74.630,671.7,74.630,597.039,1129.686,1129.686,0.000,0.000
+ Lights Internal Gains Nominal, STORAGE_FLR_1_LIGHTS,LTG_SCH_STORAGE,STORAGE_FLR_1,94.76,2.0,339.286,3.581,166.317,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,339.286,17.108,154.0,17.108,136.854,339.286,339.286,0.000,0.000
+ Lights Internal Gains Nominal, LAUNDRY_FLR_1_LIGHTS,LTG_SCH_LAUNDRY,LAUNDRY_FLR_1,78.04,8.4,385.564,4.941,45.901,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,385.564,31.839,286.6,31.839,254.713,385.564,385.564,0.000,0.000
+ Lights Internal Gains Nominal, CAFE_FLR_1_LIGHTS,LTG_SCH_DINING,CAFE_FLR_1,188.86,142.3,1390.496,7.363,9.772,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,1390.496,85.298,767.7,85.298,682.386,1390.496,1390.496,0.000,0.000
+ Lights Internal Gains Nominal, LOBBY_FLR_1_LIGHTS,LTG_SCH_LOBBY,LOBBY_FLR_1,1308.19,422.4,10138.453,7.750,24.000,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,10138.453,717.612,6458.5,717.612,5740.899,10138.453,10138.453,0.000,0.000
+ Lights Internal Gains Nominal, ROOM_1_FLR_3_LIGHTS,LTG_SCH_GUESTROOM,ROOM_1_FLR_3,39.02,1.5,172.212,4.413,114.808,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,172.212,10.419,94.7,10.419,94.717,172.212,172.212,0.000,0.000
+ Lights Internal Gains Nominal, ROOM_2_FLR_3_LIGHTS,LTG_SCH_GUESTROOM,ROOM_2_FLR_3,39.02,1.5,172.192,4.413,114.795,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,172.192,10.418,94.7,10.418,94.705,172.192,172.192,0.000,0.000
+ Lights Internal Gains Nominal, ROOM_3_MULT19_FLR_3_LIGHTS,LTG_SCH_GUESTROOM,ROOM_3_MULT19_FLR_3,24.52,1.5,108.229,4.413,72.152,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,108.229,6.548,59.5,6.548,59.526,108.229,108.229,0.000,0.000
+ Lights Internal Gains Nominal, ROOM_4_MULT19_FLR_3_LIGHTS,LTG_SCH_GUESTROOM,ROOM_4_MULT19_FLR_3,24.53,1.5,108.258,4.413,72.172,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,108.258,6.550,59.5,6.550,59.542,108.258,108.258,0.000,0.000
+ Lights Internal Gains Nominal, ROOM_5_FLR_3_LIGHTS,LTG_SCH_GUESTROOM,ROOM_5_FLR_3,39.02,1.5,172.212,4.413,114.808,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,172.212,10.419,94.7,10.419,94.717,172.212,172.212,0.000,0.000
+ Lights Internal Gains Nominal, ROOM_6_FLR_3_LIGHTS,LTG_SCH_GUESTROOM,ROOM_6_FLR_3,39.02,1.5,172.192,4.413,114.795,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,172.192,10.418,94.7,10.418,94.705,172.192,172.192,0.000,0.000
+ Lights Internal Gains Nominal, CORRIDOR_FLR_3_LIGHTS,LTG_SCH_CORRIDOR,CORRIDOR_FLR_3,389.40,21.0,1659.841,4.263,79.202,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,1659.841,117.486,1057.4,117.486,939.885,1659.841,1659.841,0.000,0.000
+ Lights Internal Gains Nominal, ROOM_1_FLR_6_LIGHTS,LTG_SCH_GUESTROOM,ROOM_1_FLR_6,39.02,1.5,172.212,4.413,114.808,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,172.212,10.419,94.7,10.419,94.717,172.212,172.212,0.000,0.000
+ Lights Internal Gains Nominal, ROOM_2_FLR_6_LIGHTS,LTG_SCH_GUESTROOM,ROOM_2_FLR_6,39.02,1.5,172.192,4.413,114.795,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,172.192,10.418,94.7,10.418,94.705,172.192,172.192,0.000,0.000
+ Lights Internal Gains Nominal, ROOM_3_MULT9_FLR_6_LIGHTS,LTG_SCH_GUESTROOM,ROOM_3_MULT9_FLR_6,24.53,1.5,108.258,4.413,72.172,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,108.258,6.550,59.5,6.550,59.542,108.258,108.258,0.000,0.000
+ Lights Internal Gains Nominal, BANQUET_FLR_6_LIGHTS,LTG_SCH_DINING,BANQUET_FLR_6,331.66,249.9,2441.829,7.363,9.771,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,2441.829,149.791,1348.1,149.791,1198.328,2441.829,2441.829,0.000,0.000
+ Lights Internal Gains Nominal, DINING_FLR_6_LIGHTS,LTG_SCH_DINING,DINING_FLR_6,331.66,249.9,2441.829,7.363,9.771,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,2441.829,149.791,1348.1,149.791,1198.328,2441.829,2441.829,0.000,0.000
+ Lights Internal Gains Nominal, KITCHEN_FLR_6_LIGHTS,LTG_SCH_KITCHEN,KITCHEN_FLR_6,103.30,22.2,1190.908,11.528,53.553,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,1190.908,78.674,708.1,78.674,629.395,1190.908,1190.908,0.000,0.000
+ Lights Internal Gains Nominal, CORRIDOR_FLR_6_LIGHTS,LTG_SCH_CORRIDOR,CORRIDOR_FLR_6,412.12,22.2,1756.685,4.263,79.201,0.000,0.700,0.200,0.100,1.000,LightsWired,0.000,1756.685,124.340,1119.1,124.340,994.723,1756.685,1756.685,0.000,0.000
+! <ElectricEquipment Internal Gains Nominal>,Name,Schedule Name,Zone Name,Zone Floor Area {m2},# Zone Occupants,Equipment Level {W},Equipment/Floor Area {W/m2},Equipment per person {W/person},Fraction Latent,Fraction Radiant,Fraction Lost,Fraction Convected,End-Use SubCategory,Minimum Equipment Level for All Day Types {W},Maximum Equipment Level for All Day Types {W},Minimum Equipment Level for Weekdays {W}, Maximum Equipment Level for Weekdays {W},Minimum Equipment Level for Weekends/Holidays {W}, Maximum Equipment Level for Weekends /Holidays {W},Minimum Equipment Level for Summer Design Days {W}, Maximum Equipment Level for Summer Design Days {W},Minimum Equipment Level for Winter Design Days {W}, Maximum Equipment Level for Winter Design Days {W}
+ ElectricEquipment Internal Gains Nominal, BASEMENT_MISCPLUG_EQUIP,BASEMENT_EQUIP_SCH,BASEMENT,1978.83,106.5,10646.106,5.380,99.964,0.000,0.500,0.000,0.500,MiscPlug,0.000,10646.106,2027.901,9632.529,2027.901,9125.554,10646.106,10646.106,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, RETAIL_1_FLR_1_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,RETAIL_1_FLR_1,67.07,10.8,721.688,10.760,66.644,0.000,0.500,0.000,0.500,MiscPlug,0.000,721.688,144.338,685.604,144.338,649.519,721.688,721.688,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, RETAIL_2_FLR_1_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,RETAIL_2_FLR_1,77.67,12.5,835.717,10.760,66.644,0.000,0.500,0.000,0.500,MiscPlug,0.000,835.717,167.143,793.931,167.143,752.146,835.717,835.717,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, MECH_FLR_1_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,MECH_FLR_1,164.24,2.7,883.628,5.380,333.193,0.000,0.500,0.000,0.500,MiscPlug,0.000,883.628,176.726,839.447,176.726,795.265,883.628,883.628,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, STORAGE_FLR_1_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,STORAGE_FLR_1,94.76,2.0,254.902,2.690,124.952,0.000,0.500,0.000,0.500,MiscPlug,0.000,254.902,50.980,242.157,50.980,229.412,254.902,254.902,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, LAUNDRY_FLR_1_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,LAUNDRY_FLR_1,78.04,8.4,4813.474,61.680,573.033,0.000,0.500,0.000,0.500,MiscPlug,0.000,4813.474,962.695,4572.801,962.695,4332.127,4813.474,4813.474,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, CAFE_FLR_1_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,CAFE_FLR_1,188.86,142.3,1016.077,5.380,7.140,0.000,0.500,0.000,0.500,MiscPlug,0.000,1016.077,203.215,965.273,203.215,914.469,1016.077,1016.077,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, LOBBY_FLR_1_MISCPLUG_EQUIP,BLDG_EQUIP_SCH,LOBBY_FLR_1,1308.19,422.4,10557.062,8.070,24.991,0.000,0.500,0.000,0.500,MiscPlug,0.000,10557.062,2111.412,10029.209,2111.412,9501.356,10557.062,10557.062,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, ROOM_1_FLR_3_PLUGMISC_EQUIP,GUESTROOM_EQP_SCH_ADVA,ROOM_1_FLR_3,39.02,1.5,263.399,6.750,175.599,0.000,0.500,0.000,0.500,MiscPlug,0.000,263.399,31.608,237.059,34.242,237.059,263.399,263.399,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, ROOM_2_FLR_3_PLUGMISC_EQUIP,GUESTROOM_EQP_SCH_ADVA,ROOM_2_FLR_3,39.02,1.5,263.368,6.750,175.579,0.000,0.500,0.000,0.500,MiscPlug,0.000,263.368,31.604,237.031,34.238,237.031,263.368,263.368,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, ROOM_3_MULT19_FLR_3_PLUGMISC_EQUIP,GUESTROOM_EQP_SCH_ADVA,ROOM_3_MULT19_FLR_3,24.52,1.5,257.991,10.520,171.994,0.000,0.500,0.000,0.500,MiscPlug,0.000,257.991,30.959,232.192,33.539,232.192,257.991,257.991,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, ROOM_4_MULT19_FLR_3_PLUGMISC_EQUIP,GUESTROOM_EQP_SCH_ADVA,ROOM_4_MULT19_FLR_3,24.53,1.5,258.061,10.520,172.041,0.000,0.500,0.000,0.500,MiscPlug,0.000,258.061,30.967,232.255,33.548,232.255,258.061,258.061,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, ROOM_5_FLR_3_PLUGMISC_EQUIP,GUESTROOM_EQP_SCH_ADVA,ROOM_5_FLR_3,39.02,1.5,263.399,6.750,175.599,0.000,0.500,0.000,0.500,MiscPlug,0.000,263.399,31.608,237.059,34.242,237.059,263.399,263.399,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, ROOM_6_FLR_3_PLUGMISC_EQUIP,GUESTROOM_EQP_SCH_ADVA,ROOM_6_FLR_3,39.02,1.5,263.368,6.750,175.579,0.000,0.500,0.000,0.500,MiscPlug,0.000,263.368,31.604,237.031,34.238,237.031,263.368,263.368,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, ROOM_1_FLR_6_PLUGMISC_EQUIP,GUESTROOM_EQP_SCH_ADVA,ROOM_1_FLR_6,39.02,1.5,263.399,6.750,175.599,0.000,0.500,0.000,0.500,MiscPlug,0.000,263.399,31.608,237.059,34.242,237.059,263.399,263.399,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, ROOM_2_FLR_6_PLUGMISC_EQUIP,GUESTROOM_EQP_SCH_ADVA,ROOM_2_FLR_6,39.02,1.5,263.368,6.750,175.579,0.000,0.500,0.000,0.500,MiscPlug,0.000,263.368,31.604,237.031,34.238,237.031,263.368,263.368,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, ROOM_3_MULT9_FLR_6_PLUGMISC_EQUIP,GUESTROOM_EQP_SCH_ADVA,ROOM_3_MULT9_FLR_6,24.53,1.5,258.061,10.520,172.041,0.000,0.500,0.000,0.500,MiscPlug,0.000,258.061,30.967,232.255,33.548,232.255,258.061,258.061,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, BANQUET_FLR_6_MISCPLUG_EQUIP,KITCHEN_ELEC_EQUIP_SCH,BANQUET_FLR_6,331.66,249.9,22493.008,67.820,90.009,0.000,0.500,0.000,0.500,Cooking,0.000,6747.903,2249.301,6747.903,2249.301,6747.903,6747.903,6747.903,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, DINING_FLR_6_MISCPLUG_EQUIP,KITCHEN_ELEC_EQUIP_SCH,DINING_FLR_6,331.66,249.9,22493.008,67.820,90.009,0.000,0.500,0.000,0.500,Cooking,0.000,6747.903,2249.301,6747.903,2249.301,6747.903,6747.903,6747.903,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, KITCHEN_FLR_6_MISCELEC_EQUIP,KITCHEN_ELEC_EQUIP_SCH,KITCHEN_FLR_6,103.30,22.2,52482.799,508.040,2360.050,0.200,0.500,0.100,0.200,Cooking,0.000,15744.840,5248.280,15744.840,5248.280,15744.840,15744.840,15744.840,0.000,0.000
+ ElectricEquipment Internal Gains Nominal, KITCHEN_FLR_6_REACH-IN-FREEZER,ALWAYS_ON,KITCHEN_FLR_6,103.30,22.2,277.500,2.686,12.479,0.000,0.250,0.000,0.750,ReachInFreezer,277.500,277.500,277.500,277.500,277.500,277.500,277.500,277.500,277.500,277.500
+ ElectricEquipment Internal Gains Nominal, KITCHEN_FLR_6_REACH-IN-REFRIGERATOR,ALWAYS_ON,KITCHEN_FLR_6,103.30,22.2,156.700,1.517,7.046,0.000,0.250,0.000,0.750,ReachInRefrigerator,156.700,156.700,156.700,156.700,156.700,156.700,156.700,156.700,156.700,156.700
+! <GasEquipment Internal Gains Nominal>,Name,Schedule Name,Zone Name,Zone Floor Area {m2},# Zone Occupants,Equipment Level {W},Equipment/Floor Area {W/m2},Equipment per person {W/person},Fraction Latent,Fraction Radiant,Fraction Lost,Fraction Convected,End-Use SubCategory,Minimum Equipment Level for All Day Types {W},Maximum Equipment Level for All Day Types {W},Minimum Equipment Level for Weekdays {W}, Maximum Equipment Level for Weekdays {W},Minimum Equipment Level for Weekends/Holidays {W}, Maximum Equipment Level for Weekends /Holidays {W},Minimum Equipment Level for Summer Design Days {W}, Maximum Equipment Level for Summer Design Days {W},Minimum Equipment Level for Winter Design Days {W}, Maximum Equipment Level for Winter Design Days {W}
+ GasEquipment Internal Gains Nominal, LAUNDRY_FLR_1_MISCGAS_EQUIP,BLDG_EQUIP_SCH,LAUNDRY_FLR_1,78.04,8.4,41817.449,535.850,4978.268,0.000,0.500,0.000,0.500,Laundry,0.000,41817.449,8363.490,39726.576,8363.490,37635.704,41817.449,41817.449,0.000,0.000
+ GasEquipment Internal Gains Nominal, KITCHEN_FLR_6_MISCGAS_EQUIP,KITCHEN_GAS_EQUIP_SCH,KITCHEN_FLR_6,103.30,22.2,249920.353,2419.260,11238.437,0.100,0.200,0.700,0.000,Cooking,0.000,74976.106,4998.407,74976.106,4998.407,74976.106,62480.088,62480.088,0.000,0.000
+! <Enclosure/Window Adjacency Daylighting Counts>, Enclosure Name, Number of Exterior Windows, Number of Exterior Windows in Adjacent Enclosures
+Enclosure/Window Adjacency Daylighting Counts, CAFE_FLR_1,1,0
+Enclosure/Window Adjacency Daylighting Counts, LOBBY_FLR_1,1,0
+Enclosure/Window Adjacency Daylighting Counts, BANQUET_FLR_6,1,0
+Enclosure/Window Adjacency Daylighting Counts, DINING_FLR_6,1,0
+! <Enclosure/Window Adjacency Daylighting Matrix>, Enclosure Name, Number of Adjacent Enclosures with Windows,Adjacent Enclosure Names - 1st 100 (max)
+Enclosure/Window Adjacency Daylighting Matrix, CAFE_FLR_1,0
+Enclosure/Window Adjacency Daylighting Matrix, LOBBY_FLR_1,0
+Enclosure/Window Adjacency Daylighting Matrix, BANQUET_FLR_6,0
+Enclosure/Window Adjacency Daylighting Matrix, DINING_FLR_6,0
+! <ZoneInfiltration Airflow Stats Nominal>,Name,Schedule Name,Zone Name, Zone Floor Area {m2}, # Zone Occupants,Design Volume Flow Rate {m3/s},Volume Flow Rate/Floor Area {m3/s-m2},Volume Flow Rate/Exterior Surface Area {m3/s-m2},ACH - Air Changes per Hour,Equation A - Constant Term Coefficient {},Equation B - Temperature Term Coefficient {1/C},Equation C - Velocity Term Coefficient {s/m}, Equation D - Velocity Squared Term Coefficient {s2/m2}
+ ZoneInfiltration Airflow Stats Nominal, RETAIL_1_FLR_1_INFILTRATION,INFIL_QUARTER_ON_SCH,RETAIL_1_FLR_1,67.07,10.8,3.921E-002,5.846E-004,2.885E-004,0.531,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, RETAIL_2_FLR_1_INFILTRATION,INFIL_QUARTER_ON_SCH,RETAIL_2_FLR_1,77.67,12.5,1.513E-002,1.949E-004,5.306E-004,0.177,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, MECH_FLR_1_INFILTRATION,INFIL_QUARTER_ON_SCH,MECH_FLR_1,164.24,2.7,3.577E-002,2.178E-004,5.696E-004,0.198,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, STORAGE_FLR_1_INFILTRATION,INFIL_QUARTER_ON_SCH,STORAGE_FLR_1,94.76,2.0,2.064E-002,2.178E-004,4.726E-004,0.198,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, LAUNDRY_FLR_1_INFILTRATION,INFIL_QUARTER_ON_SCH,LAUNDRY_FLR_1,78.04,8.4,4.884E-002,6.258E-004,5.569E-004,0.569,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, CAFE_FLR_1_INFILTRATION,INFIL_QUARTER_ON_SCH,CAFE_FLR_1,188.86,142.3,8.667E-002,4.589E-004,2.527E-004,0.417,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, LOBBY_FLR_1_INFILTRATION,INFIL_QUARTER_ON_SCH,LOBBY_FLR_1,1308.19,422.4,0.248,1.893E-004,3.620E-004,0.172,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, ROOM_1_FLR_3_INFILTRATION,INFIL_QUARTER_ON_SCH,ROOM_1_FLR_3,39.02,1.5,2.275E-002,5.831E-004,5.696E-004,0.689,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, ROOM_2_FLR_3_INFILTRATION,INFIL_QUARTER_ON_SCH,ROOM_2_FLR_3,39.02,1.5,2.275E-002,5.831E-004,5.696E-004,0.689,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, ROOM_3_MULT19_FLR_3_INFILTRATION,INFIL_QUARTER_ON_SCH,ROOM_3_MULT19_FLR_3,24.52,1.5,6.349E-003,2.589E-004,5.696E-004,0.306,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, ROOM_4_MULT19_FLR_3_INFILTRATION,INFIL_QUARTER_ON_SCH,ROOM_4_MULT19_FLR_3,24.53,1.5,6.350E-003,2.589E-004,5.696E-004,0.306,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, ROOM_5_FLR_3_INFILTRATION,INFIL_QUARTER_ON_SCH,ROOM_5_FLR_3,39.02,1.5,2.275E-002,5.831E-004,5.696E-004,0.689,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, ROOM_6_FLR_3_INFILTRATION,INFIL_QUARTER_ON_SCH,ROOM_6_FLR_3,39.02,1.5,2.275E-002,5.831E-004,5.696E-004,0.689,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, CORRIDOR_FLR_3_INFILTRATION,INFIL_QUARTER_ON_SCH,CORRIDOR_FLR_3,389.40,21.0,2.751E-002,7.066E-005,5.696E-004,8.345E-002,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, ROOM_1_FLR_6_INFILTRATION,INFIL_QUARTER_ON_SCH,ROOM_1_FLR_6,39.02,1.5,2.275E-002,5.831E-004,2.881E-004,0.689,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, ROOM_2_FLR_6_INFILTRATION,INFIL_QUARTER_ON_SCH,ROOM_2_FLR_6,39.02,1.5,2.275E-002,5.831E-004,2.881E-004,0.689,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, ROOM_3_MULT9_FLR_6_INFILTRATION,INFIL_QUARTER_ON_SCH,ROOM_3_MULT9_FLR_6,24.53,1.5,1.164E-002,4.746E-004,2.589E-004,0.561,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, BANQUET_FLR_6_INFILTRATION,INFIL_QUARTER_ON_SCH,BANQUET_FLR_6,331.66,249.9,5.556E-002,1.675E-004,1.295E-004,0.198,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, DINING_FLR_6_INFILTRATION,INFIL_QUARTER_ON_SCH,DINING_FLR_6,331.66,249.9,5.556E-002,1.675E-004,1.295E-004,0.198,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, KITCHEN_FLR_6_INFILTRATION,INFIL_QUARTER_ON_SCH,KITCHEN_FLR_6,103.30,22.2,4.974E-002,4.815E-004,2.609E-004,0.569,1.000,0.000,0.000,0.000
+ ZoneInfiltration Airflow Stats Nominal, CORRIDOR_FLR_6_INFILTRATION,INFIL_QUARTER_ON_SCH,CORRIDOR_FLR_6,412.12,22.2,4.868E-002,1.181E-004,9.784E-005,0.140,1.000,0.000,0.000,0.000
+! <ZoneVentilation Airflow Stats Nominal>,Name,Schedule Name,Zone Name, Zone Floor Area {m2}, # Zone Occupants,Design Volume Flow Rate {m3/s},Volume Flow Rate/Floor Area {m3/s-m2},Volume Flow Rate/person Area {m3/s-person},ACH - Air Changes per Hour,Fan Type {Exhaust;Intake;Natural},Fan Pressure Rise {Pa},Fan Efficiency {},Equation A - Constant Term Coefficient {},Equation B - Temperature Term Coefficient {1/C},Equation C - Velocity Term Coefficient {s/m}, Equation D - Velocity Squared Term Coefficient {s2/m2},Minimum Indoor Temperature{C}/Schedule,Maximum Indoor Temperature{C}/Schedule,Delta Temperature{C}/Schedule,Minimum Outdoor Temperature{C}/Schedule,Maximum Outdoor Temperature{C}/Schedule,Maximum WindSpeed{m/s}
+ ZoneVentilation Airflow Stats Nominal, ROOM_1_FLR_3 SLIDING DOOR VENTILATION,Constant-0.0,ROOM_1_FLR_3,39.02,1.5,0.000,0.000,0.000,0.000,Natural,0.000,0.0,0.000,0.000,0.000,0.000,18.89,25.56,-100.00,15.56,23.89,40.00
+ ZoneVentilation Airflow Stats Nominal, ROOM_2_FLR_3 SLIDING DOOR VENTILATION,Constant-0.0,ROOM_2_FLR_3,39.02,1.5,0.000,0.000,0.000,0.000,Natural,0.000,0.0,0.000,0.000,0.000,0.000,18.89,25.56,-100.00,15.56,23.89,40.00
+ ZoneVentilation Airflow Stats Nominal, ROOM_3_MULT19_FLR_3 SLIDING DOOR VENTILATION,Constant-0.0,ROOM_3_MULT19_FLR_3,24.52,1.5,0.000,0.000,0.000,0.000,Natural,0.000,0.0,0.000,0.000,0.000,0.000,18.89,25.56,-100.00,15.56,23.89,40.00
+ ZoneVentilation Airflow Stats Nominal, ROOM_4_MULT19_FLR_3 SLIDING DOOR VENTILATION,Constant-0.0,ROOM_4_MULT19_FLR_3,24.53,1.5,0.000,0.000,0.000,0.000,Natural,0.000,0.0,0.000,0.000,0.000,0.000,18.89,25.56,-100.00,15.56,23.89,40.00
+ ZoneVentilation Airflow Stats Nominal, ROOM_5_FLR_3 SLIDING DOOR VENTILATION,Constant-0.0,ROOM_5_FLR_3,39.02,1.5,0.000,0.000,0.000,0.000,Natural,0.000,0.0,0.000,0.000,0.000,0.000,18.89,25.56,-100.00,15.56,23.89,40.00
+ ZoneVentilation Airflow Stats Nominal, ROOM_6_FLR_3 SLIDING DOOR VENTILATION,Constant-0.0,ROOM_6_FLR_3,39.02,1.5,0.000,0.000,0.000,0.000,Natural,0.000,0.0,0.000,0.000,0.000,0.000,18.89,25.56,-100.00,15.56,23.89,40.00
+ ZoneVentilation Airflow Stats Nominal, ROOM_1_FLR_6 SLIDING DOOR VENTILATION,Constant-0.0,ROOM_1_FLR_6,39.02,1.5,0.000,0.000,0.000,0.000,Natural,0.000,0.0,0.000,0.000,0.000,0.000,18.89,25.56,-100.00,15.56,23.89,40.00
+ ZoneVentilation Airflow Stats Nominal, ROOM_2_FLR_6 SLIDING DOOR VENTILATION,Constant-0.0,ROOM_2_FLR_6,39.02,1.5,0.000,0.000,0.000,0.000,Natural,0.000,0.0,0.000,0.000,0.000,0.000,18.89,25.56,-100.00,15.56,23.89,40.00
+ ZoneVentilation Airflow Stats Nominal, ROOM_3_MULT9_FLR_6 SLIDING DOOR VENTILATION,Constant-0.0,ROOM_3_MULT9_FLR_6,24.53,1.5,0.000,0.000,0.000,0.000,Natural,0.000,0.0,0.000,0.000,0.000,0.000,18.89,25.56,-100.00,15.56,23.89,40.00
+! <AirFlow Model>, Simple
+ AirFlow Model, Simple
+! <RoomAir Model>, Zone Name, Mixing/Mundt/UCSDDV/UCSDCV/UCSDUFI/UCSDUFE/User Defined
+RoomAir Model,BASEMENT,Mixing/Well-Stirred
+RoomAir Model,RETAIL_1_FLR_1,Mixing/Well-Stirred
+RoomAir Model,RETAIL_2_FLR_1,Mixing/Well-Stirred
+RoomAir Model,MECH_FLR_1,Mixing/Well-Stirred
+RoomAir Model,STORAGE_FLR_1,Mixing/Well-Stirred
+RoomAir Model,LAUNDRY_FLR_1,Mixing/Well-Stirred
+RoomAir Model,CAFE_FLR_1,Mixing/Well-Stirred
+RoomAir Model,LOBBY_FLR_1,Mixing/Well-Stirred
+RoomAir Model,ROOM_1_FLR_3,Mixing/Well-Stirred
+RoomAir Model,ROOM_2_FLR_3,Mixing/Well-Stirred
+RoomAir Model,ROOM_3_MULT19_FLR_3,Mixing/Well-Stirred
+RoomAir Model,ROOM_4_MULT19_FLR_3,Mixing/Well-Stirred
+RoomAir Model,ROOM_5_FLR_3,Mixing/Well-Stirred
+RoomAir Model,ROOM_6_FLR_3,Mixing/Well-Stirred
+RoomAir Model,CORRIDOR_FLR_3,Mixing/Well-Stirred
+RoomAir Model,ROOM_1_FLR_6,Mixing/Well-Stirred
+RoomAir Model,ROOM_2_FLR_6,Mixing/Well-Stirred
+RoomAir Model,ROOM_3_MULT9_FLR_6,Mixing/Well-Stirred
+RoomAir Model,BANQUET_FLR_6,Mixing/Well-Stirred
+RoomAir Model,DINING_FLR_6,Mixing/Well-Stirred
+RoomAir Model,KITCHEN_FLR_6,Mixing/Well-Stirred
+RoomAir Model,CORRIDOR_FLR_6,Mixing/Well-Stirred
+! <AirflowNetwork Model:Control>, No Multizone or Distribution/Multizone with Distribution/Multizone without Distribution/Multizone with Distribution only during Fan Operation
+AirflowNetwork Model:Control,NoMultizoneOrDistribution
+! <Zone Volume Capacitance Multiplier>, Sensible Heat Capacity Multiplier, Moisture Capacity Multiplier, Carbon Dioxide Capacity Multiplier, Generic Contaminant Capacity Multiplier
+Zone Volume Capacitance Multiplier,   1.000 ,   1.000,   1.000,   1.000
+! <Zone Sizing DOAS Inputs>, Zone Name, DOAS Design Control Strategy, DOAS Design Low Setpoint Temperature {C}, DOAS Design High Setpoint Temperature {C} 
+ Zone Sizing DOAS Inputs, BASEMENT, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, RETAIL_1_FLR_1, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, RETAIL_2_FLR_1, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, MECH_FLR_1, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, STORAGE_FLR_1, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, LAUNDRY_FLR_1, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, CAFE_FLR_1, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, LOBBY_FLR_1, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, CORRIDOR_FLR_3, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, CORRIDOR_FLR_6, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, BANQUET_FLR_6, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, DINING_FLR_6, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, KITCHEN_FLR_6, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, ROOM_1_FLR_3, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, ROOM_2_FLR_3, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, ROOM_3_MULT19_FLR_3, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, ROOM_4_MULT19_FLR_3, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, ROOM_5_FLR_3, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, ROOM_6_FLR_3, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, ROOM_1_FLR_6, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, ROOM_2_FLR_6, NeutralSupplyAir, 21.100, 23.900
+ Zone Sizing DOAS Inputs, ROOM_3_MULT9_FLR_6, NeutralSupplyAir, 21.100, 23.900
+! <Load Timesteps in Zone Design Calculation Averaging Window>, Value
+ Load Timesteps in Zone Design Calculation Averaging Window,    6
+! <Heating Sizing Factor Information>, Sizing Factor ID, Value
+ Heating Sizing Factor Information, Global,   1.0000    
+! <Cooling Sizing Factor Information>, Sizing Factor ID, Value
+ Cooling Sizing Factor Information, Global,   1.0000    
+! <Sky Daylight Factors>, Sky Type, MonthAndDay, Daylighting Control Name, Enclosure Name, Window Name, Reference Point, Daylight Factor
+ Sky Daylight Factors,Clear Sky,01/21,LOBBY_FLR_1_DAYLCTRL,LOBBY_FLR_1,LOBBY_FLR_1_WALL_SOUTH_WINDOW,LOBBY_FLR_1_DAYLREFPT1,4.4984E-002
+ Sky Daylight Factors,Clear Sky,01/21,LOBBY_FLR_1_DAYLCTRL,LOBBY_FLR_1,LOBBY_FLR_1_WALL_SOUTH_WINDOW,LOBBY_FLR_1_DAYLREFPT2,1.8451E-002
+ Sky Daylight Factors,Clear Turbid Sky,01/21,LOBBY_FLR_1_DAYLCTRL,LOBBY_FLR_1,LOBBY_FLR_1_WALL_SOUTH_WINDOW,LOBBY_FLR_1_DAYLREFPT1,4.3443E-002
+ Sky Daylight Factors,Clear Turbid Sky,01/21,LOBBY_FLR_1_DAYLCTRL,LOBBY_FLR_1,LOBBY_FLR_1_WALL_SOUTH_WINDOW,LOBBY_FLR_1_DAYLREFPT2,1.6869E-002
+ Sky Daylight Factors,Intermediate Sky,01/21,LOBBY_FLR_1_DAYLCTRL,LOBBY_FLR_1,LOBBY_FLR_1_WALL_SOUTH_WINDOW,LOBBY_FLR_1_DAYLREFPT1,3.7859E-002
+ Sky Daylight Factors,Intermediate Sky,01/21,LOBBY_FLR_1_DAYLCTRL,LOBBY_FLR_1,LOBBY_FLR_1_WALL_SOUTH_WINDOW,LOBBY_FLR_1_DAYLREFPT2,1.2952E-002
+ Sky Daylight Factors,Overcast Sky,01/21,LOBBY_FLR_1_DAYLCTRL,LOBBY_FLR_1,LOBBY_FLR_1_WALL_SOUTH_WINDOW,LOBBY_FLR_1_DAYLREFPT1,2.9121E-002
+ Sky Daylight Factors,Overcast Sky,01/21,LOBBY_FLR_1_DAYLCTRL,LOBBY_FLR_1,LOBBY_FLR_1_WALL_SOUTH_WINDOW,LOBBY_FLR_1_DAYLREFPT2,9.7843E-003
+ Sky Daylight Factors,Clear Sky,01/21,CAFE_FLR_1_DAYLCTRL,CAFE_FLR_1,CAFE_FLR_1_WALL_SOUTH_WINDOW,CAFE_FLR_1_DAYLREFPT1,5.0238E-002
+ Sky Daylight Factors,Clear Sky,01/21,CAFE_FLR_1_DAYLCTRL,CAFE_FLR_1,CAFE_FLR_1_WALL_SOUTH_WINDOW,CAFE_FLR_1_DAYLREFPT2,2.3707E-002
+ Sky Daylight Factors,Clear Turbid Sky,01/21,CAFE_FLR_1_DAYLCTRL,CAFE_FLR_1,CAFE_FLR_1_WALL_SOUTH_WINDOW,CAFE_FLR_1_DAYLREFPT1,4.8529E-002
+ Sky Daylight Factors,Clear Turbid Sky,01/21,CAFE_FLR_1_DAYLCTRL,CAFE_FLR_1,CAFE_FLR_1_WALL_SOUTH_WINDOW,CAFE_FLR_1_DAYLREFPT2,2.1972E-002
+ Sky Daylight Factors,Intermediate Sky,01/21,CAFE_FLR_1_DAYLCTRL,CAFE_FLR_1,CAFE_FLR_1_WALL_SOUTH_WINDOW,CAFE_FLR_1_DAYLREFPT1,4.2284E-002
+ Sky Daylight Factors,Intermediate Sky,01/21,CAFE_FLR_1_DAYLCTRL,CAFE_FLR_1,CAFE_FLR_1_WALL_SOUTH_WINDOW,CAFE_FLR_1_DAYLREFPT2,1.7357E-002
+ Sky Daylight Factors,Overcast Sky,01/21,CAFE_FLR_1_DAYLCTRL,CAFE_FLR_1,CAFE_FLR_1_WALL_SOUTH_WINDOW,CAFE_FLR_1_DAYLREFPT1,3.2628E-002
+ Sky Daylight Factors,Overcast Sky,01/21,CAFE_FLR_1_DAYLCTRL,CAFE_FLR_1,CAFE_FLR_1_WALL_SOUTH_WINDOW,CAFE_FLR_1_DAYLREFPT2,1.3264E-002
+ Sky Daylight Factors,Clear Sky,01/21,DINING_FLR_6_DAYLCTRL,DINING_FLR_6,DINING_FLR_6_WALL_NORTH_WINDOW,DINING_FLR_6_DAYLREFPT1,2.1873E-002
+ Sky Daylight Factors,Clear Sky,01/21,DINING_FLR_6_DAYLCTRL,DINING_FLR_6,DINING_FLR_6_WALL_NORTH_WINDOW,DINING_FLR_6_DAYLREFPT2,1.1499E-002
+ Sky Daylight Factors,Clear Turbid Sky,01/21,DINING_FLR_6_DAYLCTRL,DINING_FLR_6,DINING_FLR_6_WALL_NORTH_WINDOW,DINING_FLR_6_DAYLREFPT1,1.7862E-002
+ Sky Daylight Factors,Clear Turbid Sky,01/21,DINING_FLR_6_DAYLCTRL,DINING_FLR_6,DINING_FLR_6_WALL_NORTH_WINDOW,DINING_FLR_6_DAYLREFPT2,9.1503E-003
+ Sky Daylight Factors,Intermediate Sky,01/21,DINING_FLR_6_DAYLCTRL,DINING_FLR_6,DINING_FLR_6_WALL_NORTH_WINDOW,DINING_FLR_6_DAYLREFPT1,1.5369E-002
+ Sky Daylight Factors,Intermediate Sky,01/21,DINING_FLR_6_DAYLCTRL,DINING_FLR_6,DINING_FLR_6_WALL_NORTH_WINDOW,DINING_FLR_6_DAYLREFPT2,6.0642E-003
+ Sky Daylight Factors,Overcast Sky,01/21,DINING_FLR_6_DAYLCTRL,DINING_FLR_6,DINING_FLR_6_WALL_NORTH_WINDOW,DINING_FLR_6_DAYLREFPT1,2.8610E-002
+ Sky Daylight Factors,Overcast Sky,01/21,DINING_FLR_6_DAYLCTRL,DINING_FLR_6,DINING_FLR_6_WALL_NORTH_WINDOW,DINING_FLR_6_DAYLREFPT2,1.0256E-002
+ Sky Daylight Factors,Clear Sky,01/21,BANQUET_FLR_6_DAYLCTRL,BANQUET_FLR_6,BANQUET_FLR_6_WALL_NORTH_WINDOW,BANQUET_FLR_6_DAYLREFPT1,2.1873E-002
+ Sky Daylight Factors,Clear Sky,01/21,BANQUET_FLR_6_DAYLCTRL,BANQUET_FLR_6,BANQUET_FLR_6_WALL_NORTH_WINDOW,BANQUET_FLR_6_DAYLREFPT2,1.1499E-002
+ Sky Daylight Factors,Clear Turbid Sky,01/21,BANQUET_FLR_6_DAYLCTRL,BANQUET_FLR_6,BANQUET_FLR_6_WALL_NORTH_WINDOW,BANQUET_FLR_6_DAYLREFPT1,1.7862E-002
+ Sky Daylight Factors,Clear Turbid Sky,01/21,BANQUET_FLR_6_DAYLCTRL,BANQUET_FLR_6,BANQUET_FLR_6_WALL_NORTH_WINDOW,BANQUET_FLR_6_DAYLREFPT2,9.1503E-003
+ Sky Daylight Factors,Intermediate Sky,01/21,BANQUET_FLR_6_DAYLCTRL,BANQUET_FLR_6,BANQUET_FLR_6_WALL_NORTH_WINDOW,BANQUET_FLR_6_DAYLREFPT1,1.5369E-002
+ Sky Daylight Factors,Intermediate Sky,01/21,BANQUET_FLR_6_DAYLCTRL,BANQUET_FLR_6,BANQUET_FLR_6_WALL_NORTH_WINDOW,BANQUET_FLR_6_DAYLREFPT2,6.0642E-003
+ Sky Daylight Factors,Overcast Sky,01/21,BANQUET_FLR_6_DAYLCTRL,BANQUET_FLR_6,BANQUET_FLR_6_WALL_NORTH_WINDOW,BANQUET_FLR_6_DAYLREFPT1,2.8610E-002
+ Sky Daylight Factors,Overcast Sky,01/21,BANQUET_FLR_6_DAYLCTRL,BANQUET_FLR_6,BANQUET_FLR_6_WALL_NORTH_WINDOW,BANQUET_FLR_6_DAYLREFPT2,1.0256E-002
+! <Zone Sizing Information>, Zone Name, Load Type, Calc Des Load {W}, User Des Load {W}, Calc Des Air Flow Rate {m3/s}, User Des Air Flow Rate {m3/s}, Design Day Name, Date/Time of Peak, Temperature at Peak {C}, Humidity Ratio at Peak {kgWater/kgDryAir}, Floor Area {m2}, # Occupants, Calc Outdoor Air Flow Rate {m3/s}, Calc DOAS Heat Addition Rate {W}
+ Zone Sizing Information, BASEMENT, Cooling, 26951.99796, 26951.99796, 1.96306, 1.96306, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 22:20:00, 26.89533, 1.41103E-002, 1978.83018, 106.49900, 0.85446, -101.71577
+ Zone Sizing Information, BASEMENT, Heating, 1772.28496, 1772.28496, 7.61319E-002, 0.85446, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 1978.83018, 106.49900, 0.85446, 104.25717
+ Zone Sizing Information, RETAIL_1_FLR_1, Cooling, 2999.51353, 2999.51353, 0.21853, 0.21853, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 15:40:00, 31.80400, 1.41191E-002, 67.07136, 10.82900, 7.92179E-002, -9.11640
+ Zone Sizing Information, RETAIL_1_FLR_1, Heating, 2481.87235, 2481.87235, 0.10657, 0.10657, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 67.07136, 10.82900, 7.92179E-002, 10.35287
+ Zone Sizing Information, RETAIL_2_FLR_1, Cooling, 2651.66646, 2651.66646, 0.19318, 0.19318, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 17:50:00, 30.44733, 1.41167E-002, 77.66889, 12.54000, 9.17335E-002, -10.60745
+ Zone Sizing Information, RETAIL_2_FLR_1, Heating, 899.09153, 899.09153, 3.86149E-002, 9.17335E-002, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 77.66889, 12.54000, 9.17335E-002, 11.59190
+ Zone Sizing Information, MECH_FLR_1, Cooling, 3033.13522, 3033.13522, 0.22085, 0.22085, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 19:20:00, 28.94267, 1.41140E-002, 164.24319, 2.65200, 0.00000, 0.00000
+ Zone Sizing Information, MECH_FLR_1, Heating, 1727.33439, 1727.33439, 7.42013E-002, 7.42013E-002, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 164.24319, 2.65200, 0.00000, 0.00000
+ Zone Sizing Information, STORAGE_FLR_1, Cooling, 1486.41326, 1486.41326, 0.10825, 0.10825, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 16:30:00, 31.36000, 1.41183E-002, 94.75927, 2.04000, 5.77652E-002, -6.95240
+ Zone Sizing Information, STORAGE_FLR_1, Heating, 1132.13430, 1132.13430, 4.86257E-002, 5.77652E-002, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 94.75927, 2.04000, 5.77652E-002, 7.24779
+ Zone Sizing Information, LAUNDRY_FLR_1, Cooling, 44670.66380, 44670.66380, 3.25303, 3.25303, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 17:10:00, 30.94067, 1.41176E-002, 78.03947, 8.40000, 0.00000, 0.00000
+ Zone Sizing Information, LAUNDRY_FLR_1, Heating, 2257.97184, 2257.97184, 9.69907E-002, 9.69907E-002, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 78.03947, 8.40000, 0.00000, 0.00000
+ Zone Sizing Information, CAFE_FLR_1, Cooling, 15422.53838, 15422.53838, 1.12493, 1.12493, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 15:20:00, 31.95200, 1.41194E-002, 188.86188, 142.30000, 0.67638, -66.94059
+ Zone Sizing Information, CAFE_FLR_1, Heating, 6076.17955, 6076.17955, 0.26087, 0.67638, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 188.86188, 142.30000, 0.67638, 91.21930
+ Zone Sizing Information, LOBBY_FLR_1, Cooling, 57047.67689, 57047.67689, 4.15745, 4.15745, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 15:50:00, 31.73000, 1.41190E-002, 1308.18612, 422.43500, 1.89399, -210.57676
+ Zone Sizing Information, LOBBY_FLR_1, Heating, 15146.58370, 15146.58370, 0.65051, 1.89399, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 1308.18612, 422.43500, 1.89399, 240.49288
+ Zone Sizing Information, ROOM_1_FLR_3, Cooling, 7513.19848, 7513.19848, 0.73747, 0.73747, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 17:20:00, 30.81733, 1.41173E-002, 39.02202, 1.50000, 6.17350E-002, 213.54060
+ Zone Sizing Information, ROOM_1_FLR_3, Heating, 5219.48874, 5219.48874, 0.22548, 0.22548, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 39.02202, 1.50000, 6.17350E-002, -0.43631
+ Zone Sizing Information, ROOM_2_FLR_3, Cooling, 8196.52667, 8196.52667, 0.80454, 0.80454, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 17:10:00, 30.94067, 1.41176E-002, 39.01745, 1.50000, 6.17278E-002, 213.51500
+ Zone Sizing Information, ROOM_2_FLR_3, Heating, 5225.50075, 5225.50075, 0.22574, 0.22574, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 39.01745, 1.50000, 6.17278E-002, -0.43618
+ Zone Sizing Information, ROOM_3_MULT19_FLR_3, Cooling, 43401.11516, 43401.11516, 4.25989, 4.25989, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 15:40:00, 31.80400, 1.41191E-002, 24.52384, 1.50000, 0.83707, 2894.98174
+ Zone Sizing Information, ROOM_3_MULT19_FLR_3, Heating, 29725.82770, 29725.82770, 1.28421, 1.28421, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 24.52384, 1.50000, 0.83707, -7.04809
+ Zone Sizing Information, ROOM_4_MULT19_FLR_3, Cooling, 65379.22368, 65379.22368, 6.41752, 6.41752, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 15:40:00, 31.80400, 1.41191E-002, 24.53055, 1.50000, 0.83730, 2896.37543
+ Zone Sizing Information, ROOM_4_MULT19_FLR_3, Heating, 29853.28361, 29853.28361, 1.28972, 1.28972, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 24.53055, 1.50000, 0.83730, -7.04478
+ Zone Sizing Information, ROOM_5_FLR_3, Cooling, 6996.73999, 6996.73999, 0.68678, 0.68678, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 10:50:00, 30.21300, 1.41162E-002, 39.02202, 1.50000, 6.17350E-002, 213.54064
+ Zone Sizing Information, ROOM_5_FLR_3, Heating, 5206.75644, 5206.75644, 0.22493, 0.22493, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 39.02202, 1.50000, 6.17350E-002, -0.43645
+ Zone Sizing Information, ROOM_6_FLR_3, Cooling, 7567.82377, 7567.82377, 0.74283, 0.74283, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 11:00:00, 30.39800, 1.41166E-002, 39.01745, 1.50000, 6.17278E-002, 213.51479
+ Zone Sizing Information, ROOM_6_FLR_3, Heating, 5212.77148, 5212.77148, 0.22519, 0.22519, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 39.01745, 1.50000, 6.17278E-002, -0.43632
+ Zone Sizing Information, CORRIDOR_FLR_3, Cooling, 14732.48999, 14732.48999, 1.07292, 1.07292, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 16:20:00, 31.45867, 1.41185E-002, 389.40468, 20.95700, 0.47476, -57.30953
+ Zone Sizing Information, CORRIDOR_FLR_3, Heating, 8251.42130, 8251.42130, 0.35443, 0.47476, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 389.40468, 20.95700, 0.47476, 58.69956
+ Zone Sizing Information, ROOM_1_FLR_6, Cooling, 1963.69044, 1963.69044, 0.19275, 0.19275, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 17:10:00, 30.94067, 1.41176E-002, 39.02202, 1.50000, 1.54338E-002, 53.38509
+ Zone Sizing Information, ROOM_1_FLR_6, Heating, 1595.79807, 1595.79807, 6.89371E-002, 6.89371E-002, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 39.02202, 1.50000, 1.54338E-002, -0.10753
+ Zone Sizing Information, ROOM_2_FLR_6, Cooling, 2144.94843, 2144.94843, 0.21054, 0.21054, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 17:10:00, 30.94067, 1.41176E-002, 39.01745, 1.50000, 1.54319E-002, 53.37842
+ Zone Sizing Information, ROOM_2_FLR_6, Heating, 1597.71762, 1597.71762, 6.90200E-002, 6.90200E-002, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 39.01745, 1.50000, 1.54319E-002, -0.10750
+ Zone Sizing Information, ROOM_3_MULT9_FLR_6, Cooling, 8651.60796, 8651.60796, 0.84924, 0.84924, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 15:20:00, 31.95200, 1.41194E-002, 24.53055, 1.50000, 9.91540E-002, 343.00979
+ Zone Sizing Information, ROOM_3_MULT9_FLR_6, Heating, 7647.86342, 7647.86342, 0.33038, 0.33038, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 24.53055, 1.50000, 9.91540E-002, -0.70518
+ Zone Sizing Information, BANQUET_FLR_6, Cooling, 29350.58028, 29350.58028, 2.14183, 2.14183, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 15:10:00, 32.02600, 1.41195E-002, 331.65745, 249.89600, 1.18780, -110.06255
+ Zone Sizing Information, BANQUET_FLR_6, Heating, 5322.40822, 5322.40822, 0.22854, 1.18780, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 331.65745, 249.89600, 1.18780, 156.15747
+ Zone Sizing Information, DINING_FLR_6, Cooling, 30832.76547, 30832.76547, 2.25002, 2.25002, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 15:10:00, 32.02600, 1.41195E-002, 331.65745, 249.89600, 1.18780, -109.86944
+ Zone Sizing Information, DINING_FLR_6, Heating, 5439.56917, 5439.56917, 0.23357, 1.18780, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 331.65745, 249.89600, 1.18780, 156.34839
+ Zone Sizing Information, KITCHEN_FLR_6, Cooling, 26569.07661, 26569.07661, 1.94167, 1.94167, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 11:20:00, 30.64467, 1.41170E-002, 103.30446, 22.23800, 0.36735, -26.68215
+ Zone Sizing Information, KITCHEN_FLR_6, Heating, 3123.76681, 3123.76681, 0.13410, 0.36735, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 103.30446, 22.23800, 0.36735, 50.11428
+ Zone Sizing Information, CORRIDOR_FLR_6, Cooling, 8490.14536, 8490.14536, 0.61833, 0.61833, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 15:10:00, 32.02600, 1.41195E-002, 412.12471, 22.18000, 0.12562, -15.11593
+ Zone Sizing Information, CORRIDOR_FLR_6, Heating, 5742.10091, 5742.10091, 0.24663, 0.24663, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00, -10.70000, 1.50390E-003, 412.12471, 22.18000, 0.12562, 15.67944
+! <System Sizing Information>, System Name, Load Type, Peak Load Kind, User Design Capacity [W], Calc Des Air Flow Rate [m3/s], User Des Air Flow Rate [m3/s], Design Day Name, Date/Time of Peak
+ System Sizing Information, DOAS SYSTEM 0, Cooling, Sensible, 14540.84, 1.96306, 0.85446, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 15:00:00
+ System Sizing Information, DOAS SYSTEM 0, Heating, Sensible, 24242.76, 0.85446, 0.85446, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 00:10:00
+ System Sizing Information, DOAS SYSTEM 1, Cooling, Sensible, 62804.35, 9.27624, 2.79909, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 15:00:00
+ System Sizing Information, DOAS SYSTEM 1, Heating, Sensible, 79415.91, 2.99764, 2.79909, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00
+ System Sizing Information, DOAS SYSTEM 3, Cooling, Sensible, 54202.86, 14.72194, 2.39606, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 15:00:00
+ System Sizing Information, DOAS SYSTEM 3, Heating, Sensible, 67981.16, 3.95002, 2.39606, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00
+ System Sizing Information, DOAS SYSTEM 6, Cooling, Sensible, 68198.57, 8.20438, 2.99858, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN CLG .4% CONDNS DB=>MWB, 7/21 15:00:00
+ System Sizing Information, DOAS SYSTEM 6, Heating, Sensible, 85075.89, 3.45792, 2.99858, NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA ANN HTG 99.6% CONDNS DB, 1/21 24:00:00
+! <Component Sizing Information>, Component Type, Component Name, Input Field Description, Value
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, BASEMENT TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 0.85446
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, BASEMENT TERMINAL, Design Size Constant Minimum Air Flow Fraction, 1.00000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, BASEMENT TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, BASEMENT TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 0.25634
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, BASEMENT FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 1.96306
+ Component Sizing Information, Fan:ConstantVolume, BASEMENT FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 1.96306
+ Component Sizing Information, Fan:ConstantVolume, BASEMENT FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 1635.88245
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, BASEMENT FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 0.85446
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, BASEMENT FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 6.44952E-004
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, BASEMENT FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 2.15169E-003
+ Component Sizing Information, Coil:Cooling:Water, BASEMENT FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 25.93299
+ Component Sizing Information, Coil:Cooling:Water, BASEMENT FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, BASEMENT FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 1.22550E-002
+ Component Sizing Information, Coil:Cooling:Water, BASEMENT FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, BASEMENT FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, BASEMENT FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 2.15169E-003
+ Component Sizing Information, Coil:Cooling:Water, BASEMENT FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 1.96306
+! <Water Cooling Coil Capacity Information>,Component Type,Name,Nominal Total Capacity {W},Nominal Sensible Capacity {W},Nominal Latent Capacity {W},Nominal Sensible Heat Ratio, Nominal Coil UA Value {W/C}, Nominal Coil Surface Area {m2}
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,BASEMENT FOURPIPEFANCOIL COOLING COIL,52996.96,35893.99,17102.98,0.68,5556.43,56.36
+ Component Sizing Information, Coil:Heating:Water, BASEMENT FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 53075.55933
+ Component Sizing Information, Coil:Heating:Water, BASEMENT FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 6.44952E-004
+ Component Sizing Information, Coil:Heating:Water, BASEMENT FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 2890.55739
+! <Water Heating Coil Capacity Information>,Component Type,Name,Nominal Total Capacity {W}
+Water Heating Coil Capacity Information,Coil:Heating:Water,BASEMENT FOURPIPEFANCOIL HEATING COIL,57813.51
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, RETAIL_1_FLR_1 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 7.92179E-002
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, RETAIL_1_FLR_1 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 0.64516
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, RETAIL_1_FLR_1 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, RETAIL_1_FLR_1 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 2.37654E-002
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, RETAIL_1_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 0.21853
+ Component Sizing Information, Fan:ConstantVolume, RETAIL_1_FLR_1 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 0.21853
+ Component Sizing Information, Fan:ConstantVolume, RETAIL_1_FLR_1 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 182.11095
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, RETAIL_1_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 7.92179E-002
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, RETAIL_1_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 6.75354E-005
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, RETAIL_1_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 2.47926E-004
+ Component Sizing Information, Coil:Cooling:Water, RETAIL_1_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 27.49974
+ Component Sizing Information, Coil:Cooling:Water, RETAIL_1_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, RETAIL_1_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 1.19396E-002
+ Component Sizing Information, Coil:Cooling:Water, RETAIL_1_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, RETAIL_1_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, RETAIL_1_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 2.47926E-004
+ Component Sizing Information, Coil:Cooling:Water, RETAIL_1_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 0.21853
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,RETAIL_1_FLR_1 FOURPIPEFANCOIL COOLING COIL,5948.09,4016.75,1931.33,0.68,619.44,6.28
+ Component Sizing Information, Coil:Heating:Water, RETAIL_1_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 5557.75129
+ Component Sizing Information, Coil:Heating:Water, RETAIL_1_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 6.75354E-005
+ Component Sizing Information, Coil:Heating:Water, RETAIL_1_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 350.54792
+Water Heating Coil Capacity Information,Coil:Heating:Water,RETAIL_1_FLR_1 FOURPIPEFANCOIL HEATING COIL,6986.45
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, RETAIL_2_FLR_1 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 9.17335E-002
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, RETAIL_2_FLR_1 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 0.64517
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, RETAIL_2_FLR_1 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, RETAIL_2_FLR_1 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 2.75201E-002
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, RETAIL_2_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 0.19318
+ Component Sizing Information, Fan:ConstantVolume, RETAIL_2_FLR_1 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 0.19318
+ Component Sizing Information, Fan:ConstantVolume, RETAIL_2_FLR_1 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 160.98551
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, RETAIL_2_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 9.17335E-002
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, RETAIL_2_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 6.92411E-005
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, RETAIL_2_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 2.34976E-004
+ Component Sizing Information, Coil:Cooling:Water, RETAIL_2_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 27.73267
+ Component Sizing Information, Coil:Cooling:Water, RETAIL_2_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, RETAIL_2_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 1.25181E-002
+ Component Sizing Information, Coil:Cooling:Water, RETAIL_2_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, RETAIL_2_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, RETAIL_2_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 2.34976E-004
+ Component Sizing Information, Coil:Cooling:Water, RETAIL_2_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 0.19318
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,RETAIL_2_FLR_1 FOURPIPEFANCOIL COOLING COIL,5402.10,3619.22,1782.87,0.67,566.48,5.75
+ Component Sizing Information, Coil:Heating:Water, RETAIL_2_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 5698.11960
+ Component Sizing Information, Coil:Heating:Water, RETAIL_2_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 6.92411E-005
+ Component Sizing Information, Coil:Heating:Water, RETAIL_2_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 310.32630
+Water Heating Coil Capacity Information,Coil:Heating:Water,RETAIL_2_FLR_1 FOURPIPEFANCOIL HEATING COIL,6206.78
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, MECH_FLR_1 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 7.42013E-002
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, MECH_FLR_1 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 1.00000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, MECH_FLR_1 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, MECH_FLR_1 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 2.22604E-002
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, MECH_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 0.22085
+ Component Sizing Information, Fan:ConstantVolume, MECH_FLR_1 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 0.22085
+ Component Sizing Information, Fan:ConstantVolume, MECH_FLR_1 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 184.04525
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, MECH_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 0.00000
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, MECH_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 2.09898E-005
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, MECH_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 1.38441E-004
+ Component Sizing Information, Coil:Cooling:Water, MECH_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 24.67847
+ Component Sizing Information, Coil:Cooling:Water, MECH_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, MECH_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 8.89901E-003
+ Component Sizing Information, Coil:Cooling:Water, MECH_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, MECH_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, MECH_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 1.38441E-004
+ Component Sizing Information, Coil:Cooling:Water, MECH_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 0.22085
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,MECH_FLR_1 FOURPIPEFANCOIL COOLING COIL,4575.32,3376.57,1198.76,0.74,472.57,4.79
+ Component Sizing Information, Coil:Heating:Water, MECH_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 1727.33439
+ Component Sizing Information, Coil:Heating:Water, MECH_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 2.09898E-005
+ Component Sizing Information, Coil:Heating:Water, MECH_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 246.72239
+Water Heating Coil Capacity Information,Coil:Heating:Water,MECH_FLR_1 FOURPIPEFANCOIL HEATING COIL,3936.65
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, STORAGE_FLR_1 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 5.77652E-002
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, STORAGE_FLR_1 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 1.00000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, STORAGE_FLR_1 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, STORAGE_FLR_1 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 1.73295E-002
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, STORAGE_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 0.10825
+ Component Sizing Information, Fan:ConstantVolume, STORAGE_FLR_1 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 0.10825
+ Component Sizing Information, Fan:ConstantVolume, STORAGE_FLR_1 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 90.21102
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, STORAGE_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 5.77652E-002
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, STORAGE_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 4.36016E-005
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, STORAGE_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 1.36723E-004
+ Component Sizing Information, Coil:Cooling:Water, STORAGE_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 28.60064
+ Component Sizing Information, Coil:Cooling:Water, STORAGE_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, STORAGE_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 1.25515E-002
+ Component Sizing Information, Coil:Cooling:Water, STORAGE_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, STORAGE_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, STORAGE_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 1.36723E-004
+ Component Sizing Information, Coil:Cooling:Water, STORAGE_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 0.10825
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,STORAGE_FLR_1 FOURPIPEFANCOIL COOLING COIL,3062.62,2044.59,1018.03,0.67,321.13,3.26
+ Component Sizing Information, Coil:Heating:Water, STORAGE_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 3588.13998
+ Component Sizing Information, Coil:Heating:Water, STORAGE_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 4.36016E-005
+ Component Sizing Information, Coil:Heating:Water, STORAGE_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 195.41432
+Water Heating Coil Capacity Information,Coil:Heating:Water,STORAGE_FLR_1 FOURPIPEFANCOIL HEATING COIL,3908.45
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, LAUNDRY_FLR_1 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 0.98160
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, LAUNDRY_FLR_1 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 6.05809E-002
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, LAUNDRY_FLR_1 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, LAUNDRY_FLR_1 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 0.29448
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, LAUNDRY_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 3.25303
+ Component Sizing Information, Fan:ConstantVolume, LAUNDRY_FLR_1 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 3.25303
+ Component Sizing Information, Fan:ConstantVolume, LAUNDRY_FLR_1 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 2710.86103
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, LAUNDRY_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 0.00000
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, LAUNDRY_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 2.74379E-005
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, LAUNDRY_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 1.90591E-003
+ Component Sizing Information, Coil:Cooling:Water, LAUNDRY_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 24.67754
+ Component Sizing Information, Coil:Cooling:Water, LAUNDRY_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, LAUNDRY_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 8.56228E-003
+ Component Sizing Information, Coil:Cooling:Water, LAUNDRY_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, LAUNDRY_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, LAUNDRY_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 1.90591E-003
+ Component Sizing Information, Coil:Cooling:Water, LAUNDRY_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 3.25303
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,LAUNDRY_FLR_1 FOURPIPEFANCOIL COOLING COIL,64861.03,48452.97,16408.06,0.75,6658.54,67.53
+ Component Sizing Information, Coil:Heating:Water, LAUNDRY_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 2257.97184
+ Component Sizing Information, Coil:Heating:Water, LAUNDRY_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 2.74379E-005
+ Component Sizing Information, Coil:Heating:Water, LAUNDRY_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 322.52370
+Water Heating Coil Capacity Information,Coil:Heating:Water,LAUNDRY_FLR_1 FOURPIPEFANCOIL HEATING COIL,5145.91
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, CAFE_FLR_1 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 0.67638
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, CAFE_FLR_1 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 0.21277
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, CAFE_FLR_1 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, CAFE_FLR_1 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 0.20291
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, CAFE_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 1.12493
+ Component Sizing Information, Fan:ConstantVolume, CAFE_FLR_1 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 1.12493
+ Component Sizing Information, Fan:ConstantVolume, CAFE_FLR_1 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 937.44544
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, CAFE_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 0.67638
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, CAFE_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 5.10537E-004
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, CAFE_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 1.56308E-003
+ Component Sizing Information, Coil:Cooling:Water, CAFE_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 29.44696
+ Component Sizing Information, Coil:Cooling:Water, CAFE_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, CAFE_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 1.32485E-002
+ Component Sizing Information, Coil:Cooling:Water, CAFE_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, CAFE_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, CAFE_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 1.56308E-003
+ Component Sizing Information, Coil:Cooling:Water, CAFE_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 1.12493
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,CAFE_FLR_1 FOURPIPEFANCOIL COOLING COIL,32900.57,21757.59,11142.98,0.66,3486.72,35.36
+ Component Sizing Information, Coil:Heating:Water, CAFE_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 42014.07906
+ Component Sizing Information, Coil:Heating:Water, CAFE_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 5.10537E-004
+ Component Sizing Information, Coil:Heating:Water, CAFE_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 2288.13617
+Water Heating Coil Capacity Information,Coil:Heating:Water,CAFE_FLR_1 FOURPIPEFANCOIL HEATING COIL,45764.59
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, LOBBY_FLR_1 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 1.89399
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, LOBBY_FLR_1 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 0.52632
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, LOBBY_FLR_1 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, LOBBY_FLR_1 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 0.56820
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, LOBBY_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 4.15745
+ Component Sizing Information, Fan:ConstantVolume, LOBBY_FLR_1 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 4.15745
+ Component Sizing Information, Fan:ConstantVolume, LOBBY_FLR_1 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 3464.53790
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, LOBBY_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 1.89399
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, LOBBY_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 1.42960E-003
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, LOBBY_FLR_1 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 5.22102E-003
+ Component Sizing Information, Coil:Cooling:Water, LOBBY_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 28.19040
+ Component Sizing Information, Coil:Cooling:Water, LOBBY_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, LOBBY_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 1.26579E-002
+ Component Sizing Information, Coil:Cooling:Water, LOBBY_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, LOBBY_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, LOBBY_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 5.22102E-003
+ Component Sizing Information, Coil:Cooling:Water, LOBBY_FLR_1 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 4.15745
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,LOBBY_FLR_1 FOURPIPEFANCOIL COOLING COIL,117531.19,78488.02,39043.16,0.67,12345.32,125.21
+ Component Sizing Information, Coil:Heating:Water, LOBBY_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 117647.09943
+ Component Sizing Information, Coil:Heating:Water, LOBBY_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 1.42960E-003
+ Component Sizing Information, Coil:Heating:Water, LOBBY_FLR_1 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 6407.19942
+Water Heating Coil Capacity Information,Coil:Heating:Water,LOBBY_FLR_1 FOURPIPEFANCOIL HEATING COIL,128149.22
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_1_FLR_3 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 6.17350E-002
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_1_FLR_3 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 1.00000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_1_FLR_3 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_1_FLR_3 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 1.85205E-002
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_1_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 0.73747
+ Component Sizing Information, Fan:ConstantVolume, ROOM_1_FLR_3 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 0.73747
+ Component Sizing Information, Fan:ConstantVolume, ROOM_1_FLR_3 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 614.55831
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_1_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 6.17350E-002
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_1_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 9.26576E-005
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_1_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 4.47957E-004
+ Component Sizing Information, Coil:Cooling:Water, ROOM_1_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 22.59893
+ Component Sizing Information, Coil:Cooling:Water, ROOM_1_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, ROOM_1_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 9.57419E-003
+ Component Sizing Information, Coil:Cooling:Water, ROOM_1_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, ROOM_1_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, ROOM_1_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 4.47957E-004
+ Component Sizing Information, Coil:Cooling:Water, ROOM_1_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 0.73747
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,ROOM_1_FLR_3 FOURPIPEFANCOIL COOLING COIL,15184.28,11250.00,3934.28,0.74,1592.45,16.15
+ Component Sizing Information, Coil:Heating:Water, ROOM_1_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 7625.14678
+ Component Sizing Information, Coil:Heating:Water, ROOM_1_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 9.26576E-005
+ Component Sizing Information, Coil:Heating:Water, ROOM_1_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 717.94651
+Water Heating Coil Capacity Information,Coil:Heating:Water,ROOM_1_FLR_3 FOURPIPEFANCOIL HEATING COIL,13392.98
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_2_FLR_3 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 6.17278E-002
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_2_FLR_3 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 1.00000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_2_FLR_3 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_2_FLR_3 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 1.85183E-002
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_2_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 0.80454
+ Component Sizing Information, Fan:ConstantVolume, ROOM_2_FLR_3 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 0.80454
+ Component Sizing Information, Fan:ConstantVolume, ROOM_2_FLR_3 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 670.45192
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_2_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 6.17278E-002
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_2_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 9.27272E-005
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_2_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 4.78466E-004
+ Component Sizing Information, Coil:Cooling:Water, ROOM_2_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 22.54065
+ Component Sizing Information, Coil:Cooling:Water, ROOM_2_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, ROOM_2_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 9.49278E-003
+ Component Sizing Information, Coil:Cooling:Water, ROOM_2_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, ROOM_2_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, ROOM_2_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 4.78466E-004
+ Component Sizing Information, Coil:Cooling:Water, ROOM_2_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 0.80454
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,ROOM_2_FLR_3 FOURPIPEFANCOIL COOLING COIL,16375.63,12179.11,4196.52,0.74,1715.66,17.40
+ Component Sizing Information, Coil:Heating:Water, ROOM_2_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 7630.87685
+ Component Sizing Information, Coil:Heating:Water, ROOM_2_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 9.27272E-005
+ Component Sizing Information, Coil:Heating:Water, ROOM_2_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 718.77533
+Water Heating Coil Capacity Information,Coil:Heating:Water,ROOM_2_FLR_3 FOURPIPEFANCOIL HEATING COIL,13406.98
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_3_MULT19_FLR_3 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 0.83707
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_3_MULT19_FLR_3 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 1.00000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_3_MULT19_FLR_3 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_3_MULT19_FLR_3 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 0.25112
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_3_MULT19_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 4.25989
+ Component Sizing Information, Fan:ConstantVolume, ROOM_3_MULT19_FLR_3 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 4.25989
+ Component Sizing Information, Fan:ConstantVolume, ROOM_3_MULT19_FLR_3 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 3549.90447
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_3_MULT19_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 0.83707
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_3_MULT19_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 7.57597E-004
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_3_MULT19_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 3.29690E-003
+ Component Sizing Information, Coil:Cooling:Water, ROOM_3_MULT19_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 23.88720
+ Component Sizing Information, Coil:Cooling:Water, ROOM_3_MULT19_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, ROOM_3_MULT19_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 1.04280E-002
+ Component Sizing Information, Coil:Cooling:Water, ROOM_3_MULT19_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, ROOM_3_MULT19_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, ROOM_3_MULT19_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 3.29690E-003
+ Component Sizing Information, Coil:Cooling:Water, ROOM_3_MULT19_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 4.25989
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,ROOM_3_MULT19_FLR_3 FOURPIPEFANCOIL COOLING COIL,98878.62,70326.74,28551.88,0.71,10348.73,104.96
+ Component Sizing Information, Coil:Heating:Water, ROOM_3_MULT19_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 62345.53894
+ Component Sizing Information, Coil:Heating:Water, ROOM_3_MULT19_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 7.57597E-004
+ Component Sizing Information, Coil:Heating:Water, ROOM_3_MULT19_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 4184.28273
+Water Heating Coil Capacity Information,Coil:Heating:Water,ROOM_3_MULT19_FLR_3 FOURPIPEFANCOIL HEATING COIL,82998.92
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_4_MULT19_FLR_3 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 0.83730
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_4_MULT19_FLR_3 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 1.00000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_4_MULT19_FLR_3 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_4_MULT19_FLR_3 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 0.25119
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_4_MULT19_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 6.41752
+ Component Sizing Information, Fan:ConstantVolume, ROOM_4_MULT19_FLR_3 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 6.41752
+ Component Sizing Information, Fan:ConstantVolume, ROOM_4_MULT19_FLR_3 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 5347.93201
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_4_MULT19_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 0.83730
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_4_MULT19_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 7.59254E-004
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_4_MULT19_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 4.43543E-003
+ Component Sizing Information, Coil:Cooling:Water, ROOM_4_MULT19_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 23.18094
+ Component Sizing Information, Coil:Cooling:Water, ROOM_4_MULT19_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, ROOM_4_MULT19_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 1.00301E-002
+ Component Sizing Information, Coil:Cooling:Water, ROOM_4_MULT19_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, ROOM_4_MULT19_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, ROOM_4_MULT19_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 4.43543E-003
+ Component Sizing Information, Coil:Cooling:Water, ROOM_4_MULT19_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 6.41752
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,ROOM_4_MULT19_FLR_3 FOURPIPEFANCOIL COOLING COIL,141104.28,102291.62,38812.66,0.72,14887.73,151.00
+ Component Sizing Information, Coil:Heating:Water, ROOM_4_MULT19_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 62481.90936
+ Component Sizing Information, Coil:Heating:Water, ROOM_4_MULT19_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 7.59254E-004
+ Component Sizing Information, Coil:Heating:Water, ROOM_4_MULT19_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 4201.12257
+Water Heating Coil Capacity Information,Coil:Heating:Water,ROOM_4_MULT19_FLR_3 FOURPIPEFANCOIL HEATING COIL,83319.07
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_5_FLR_3 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 6.17350E-002
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_5_FLR_3 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 1.00000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_5_FLR_3 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_5_FLR_3 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 1.85205E-002
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_5_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 0.68678
+ Component Sizing Information, Fan:ConstantVolume, ROOM_5_FLR_3 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 0.68678
+ Component Sizing Information, Fan:ConstantVolume, ROOM_5_FLR_3 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 572.31435
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_5_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 6.17350E-002
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_5_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 9.25028E-005
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_5_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 4.23212E-004
+ Component Sizing Information, Coil:Cooling:Water, ROOM_5_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 22.60450
+ Component Sizing Information, Coil:Cooling:Water, ROOM_5_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, ROOM_5_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 9.64453E-003
+ Component Sizing Information, Coil:Cooling:Water, ROOM_5_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, ROOM_5_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, ROOM_5_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 4.23212E-004
+ Component Sizing Information, Coil:Cooling:Water, ROOM_5_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 0.68678
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,ROOM_5_FLR_3 FOURPIPEFANCOIL COOLING COIL,14253.41,10532.94,3720.47,0.74,1496.43,15.18
+ Component Sizing Information, Coil:Heating:Water, ROOM_5_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 7612.41464
+ Component Sizing Information, Coil:Heating:Water, ROOM_5_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 9.25028E-005
+ Component Sizing Information, Coil:Heating:Water, ROOM_5_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 716.19178
+Water Heating Coil Capacity Information,Coil:Heating:Water,ROOM_5_FLR_3 FOURPIPEFANCOIL HEATING COIL,13363.04
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_6_FLR_3 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 6.17278E-002
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_6_FLR_3 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 1.00000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_6_FLR_3 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_6_FLR_3 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 1.85183E-002
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_6_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 0.74283
+ Component Sizing Information, Fan:ConstantVolume, ROOM_6_FLR_3 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 0.74283
+ Component Sizing Information, Fan:ConstantVolume, ROOM_6_FLR_3 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 619.02652
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_6_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 6.17278E-002
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_6_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 9.25725E-005
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_6_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 4.49124E-004
+ Component Sizing Information, Coil:Cooling:Water, ROOM_6_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 22.55812
+ Component Sizing Information, Coil:Cooling:Water, ROOM_6_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, ROOM_6_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 9.56741E-003
+ Component Sizing Information, Coil:Cooling:Water, ROOM_6_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, ROOM_6_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, ROOM_6_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 4.49124E-004
+ Component Sizing Information, Coil:Cooling:Water, ROOM_6_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 0.74283
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,ROOM_6_FLR_3 FOURPIPEFANCOIL COOLING COIL,15258.58,11314.22,3944.36,0.74,1600.27,16.23
+ Component Sizing Information, Coil:Heating:Water, ROOM_6_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 7618.14773
+ Component Sizing Information, Coil:Heating:Water, ROOM_6_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 9.25725E-005
+ Component Sizing Information, Coil:Heating:Water, ROOM_6_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 717.02092
+Water Heating Coil Capacity Information,Coil:Heating:Water,ROOM_6_FLR_3 FOURPIPEFANCOIL HEATING COIL,13377.05
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, CORRIDOR_FLR_3 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 0.47476
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, CORRIDOR_FLR_3 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 1.00000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, CORRIDOR_FLR_3 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, CORRIDOR_FLR_3 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 0.14243
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, CORRIDOR_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 1.07292
+ Component Sizing Information, Fan:ConstantVolume, CORRIDOR_FLR_3 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 1.07292
+ Component Sizing Information, Fan:ConstantVolume, CORRIDOR_FLR_3 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 894.09779
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, CORRIDOR_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 0.47476
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, CORRIDOR_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 3.58354E-004
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, CORRIDOR_FLR_3 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 1.31223E-003
+ Component Sizing Information, Coil:Cooling:Water, CORRIDOR_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 27.97368
+ Component Sizing Information, Coil:Cooling:Water, CORRIDOR_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, CORRIDOR_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 1.24760E-002
+ Component Sizing Information, Coil:Cooling:Water, CORRIDOR_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, CORRIDOR_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, CORRIDOR_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 1.31223E-003
+ Component Sizing Information, Coil:Cooling:Water, CORRIDOR_FLR_3 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 1.07292
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,CORRIDOR_FLR_3 FOURPIPEFANCOIL COOLING COIL,30041.54,20118.05,9923.49,0.67,3147.75,31.93
+ Component Sizing Information, Coil:Heating:Water, CORRIDOR_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 29490.32330
+ Component Sizing Information, Coil:Heating:Water, CORRIDOR_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 3.58354E-004
+ Component Sizing Information, Coil:Heating:Water, CORRIDOR_FLR_3 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 1606.07770
+Water Heating Coil Capacity Information,Coil:Heating:Water,CORRIDOR_FLR_3 FOURPIPEFANCOIL HEATING COIL,32122.86
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_1_FLR_6 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 1.54338E-002
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_1_FLR_6 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 1.00000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_1_FLR_6 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_1_FLR_6 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 4.63013E-003
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_1_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 0.19275
+ Component Sizing Information, Fan:ConstantVolume, ROOM_1_FLR_6 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 0.19275
+ Component Sizing Information, Fan:ConstantVolume, ROOM_1_FLR_6 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 160.62422
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_1_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 1.54338E-002
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_1_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 2.66996E-005
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_1_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 1.15847E-004
+ Component Sizing Information, Coil:Cooling:Water, ROOM_1_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 22.57351
+ Component Sizing Information, Coil:Cooling:Water, ROOM_1_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, ROOM_1_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 9.53166E-003
+ Component Sizing Information, Coil:Cooling:Water, ROOM_1_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, ROOM_1_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, ROOM_1_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 1.15847E-004
+ Component Sizing Information, Coil:Cooling:Water, ROOM_1_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 0.19275
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,ROOM_1_FLR_6 FOURPIPEFANCOIL COOLING COIL,3945.81,2929.03,1016.78,0.74,413.59,4.19
+ Component Sizing Information, Coil:Heating:Water, ROOM_1_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 2197.21101
+ Component Sizing Information, Coil:Heating:Water, ROOM_1_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 2.66996E-005
+ Component Sizing Information, Coil:Heating:Water, ROOM_1_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 219.78443
+Water Heating Coil Capacity Information,Coil:Heating:Water,ROOM_1_FLR_6 FOURPIPEFANCOIL HEATING COIL,4029.48
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_2_FLR_6 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 1.54319E-002
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_2_FLR_6 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 1.00000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_2_FLR_6 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_2_FLR_6 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 4.62958E-003
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_2_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 0.21054
+ Component Sizing Information, Fan:ConstantVolume, ROOM_2_FLR_6 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 0.21054
+ Component Sizing Information, Fan:ConstantVolume, ROOM_2_FLR_6 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 175.45015
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_2_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 1.54319E-002
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_2_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 2.67220E-005
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_2_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 1.23852E-004
+ Component Sizing Information, Coil:Cooling:Water, ROOM_2_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 22.50701
+ Component Sizing Information, Coil:Cooling:Water, ROOM_2_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, ROOM_2_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 9.45315E-003
+ Component Sizing Information, Coil:Cooling:Water, ROOM_2_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, ROOM_2_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, ROOM_2_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 1.23852E-004
+ Component Sizing Information, Coil:Cooling:Water, ROOM_2_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 0.21054
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,ROOM_2_FLR_6 FOURPIPEFANCOIL COOLING COIL,4259.88,3174.52,1085.36,0.75,446.11,4.52
+ Component Sizing Information, Coil:Heating:Water, ROOM_2_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 2199.06008
+ Component Sizing Information, Coil:Heating:Water, ROOM_2_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 2.67220E-005
+ Component Sizing Information, Coil:Heating:Water, ROOM_2_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 220.05179
+Water Heating Coil Capacity Information,Coil:Heating:Water,ROOM_2_FLR_6 FOURPIPEFANCOIL HEATING COIL,4033.92
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_3_MULT9_FLR_6 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 9.91540E-002
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_3_MULT9_FLR_6 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 1.00000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_3_MULT9_FLR_6 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, ROOM_3_MULT9_FLR_6 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 2.97462E-002
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_3_MULT9_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 0.84924
+ Component Sizing Information, Fan:ConstantVolume, ROOM_3_MULT9_FLR_6 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 0.84924
+ Component Sizing Information, Fan:ConstantVolume, ROOM_3_MULT9_FLR_6 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 707.70221
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_3_MULT9_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 9.91540E-002
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_3_MULT9_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 1.39885E-004
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, ROOM_3_MULT9_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 5.72184E-004
+ Component Sizing Information, Coil:Cooling:Water, ROOM_3_MULT9_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 23.05151
+ Component Sizing Information, Coil:Cooling:Water, ROOM_3_MULT9_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, ROOM_3_MULT9_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 9.93887E-003
+ Component Sizing Information, Coil:Cooling:Water, ROOM_3_MULT9_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, ROOM_3_MULT9_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, ROOM_3_MULT9_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 5.72184E-004
+ Component Sizing Information, Coil:Cooling:Water, ROOM_3_MULT9_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 0.84924
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,ROOM_3_MULT9_FLR_6 FOURPIPEFANCOIL COOLING COIL,18454.40,13431.65,5022.75,0.73,1946.61,19.74
+ Component Sizing Information, Coil:Heating:Water, ROOM_3_MULT9_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 11511.64901
+ Component Sizing Information, Coil:Heating:Water, ROOM_3_MULT9_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 1.39885E-004
+ Component Sizing Information, Coil:Heating:Water, ROOM_3_MULT9_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 1051.71775
+Water Heating Coil Capacity Information,Coil:Heating:Water,ROOM_3_MULT9_FLR_6 FOURPIPEFANCOIL HEATING COIL,19777.50
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, BANQUET_FLR_6 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 1.18780
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, BANQUET_FLR_6 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 0.21277
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, BANQUET_FLR_6 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, BANQUET_FLR_6 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 0.35634
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, BANQUET_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 2.14183
+ Component Sizing Information, Fan:ConstantVolume, BANQUET_FLR_6 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 2.14183
+ Component Sizing Information, Fan:ConstantVolume, BANQUET_FLR_6 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 1784.86210
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, BANQUET_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 1.18780
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, BANQUET_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 8.96558E-004
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, BANQUET_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 2.89273E-003
+ Component Sizing Information, Coil:Cooling:Water, BANQUET_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 29.11372
+ Component Sizing Information, Coil:Cooling:Water, BANQUET_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, BANQUET_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 1.30637E-002
+ Component Sizing Information, Coil:Cooling:Water, BANQUET_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, BANQUET_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, BANQUET_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 2.89273E-003
+ Component Sizing Information, Coil:Cooling:Water, BANQUET_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 2.14183
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,BANQUET_FLR_6 FOURPIPEFANCOIL COOLING COIL,62054.89,41147.28,20907.61,0.66,6556.91,66.50
+ Component Sizing Information, Coil:Heating:Water, BANQUET_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 73781.18764
+ Component Sizing Information, Coil:Heating:Water, BANQUET_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 8.96558E-004
+ Component Sizing Information, Coil:Heating:Water, BANQUET_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 4018.21027
+Water Heating Coil Capacity Information,Coil:Heating:Water,BANQUET_FLR_6 FOURPIPEFANCOIL HEATING COIL,80367.48
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, DINING_FLR_6 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 1.18780
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, DINING_FLR_6 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 0.21277
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, DINING_FLR_6 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, DINING_FLR_6 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 0.35634
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, DINING_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 2.25002
+ Component Sizing Information, Fan:ConstantVolume, DINING_FLR_6 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 2.25002
+ Component Sizing Information, Fan:ConstantVolume, DINING_FLR_6 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 1875.01849
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, DINING_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 1.18780
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, DINING_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 8.96558E-004
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, DINING_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 2.98462E-003
+ Component Sizing Information, Coil:Cooling:Water, DINING_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 28.89910
+ Component Sizing Information, Coil:Cooling:Water, DINING_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, DINING_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 1.29524E-002
+ Component Sizing Information, Coil:Cooling:Water, DINING_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, DINING_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, DINING_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 2.98462E-003
+ Component Sizing Information, Coil:Cooling:Water, DINING_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 2.25002
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,DINING_FLR_6 FOURPIPEFANCOIL COOLING COIL,64797.21,43039.83,21757.39,0.66,6834.88,69.32
+ Component Sizing Information, Coil:Heating:Water, DINING_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 73781.18764
+ Component Sizing Information, Coil:Heating:Water, DINING_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 8.96558E-004
+ Component Sizing Information, Coil:Heating:Water, DINING_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 4018.21027
+Water Heating Coil Capacity Information,Coil:Heating:Water,DINING_FLR_6 FOURPIPEFANCOIL HEATING COIL,80367.48
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, KITCHEN_FLR_6 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 0.36735
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, KITCHEN_FLR_6 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 0.38542
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, KITCHEN_FLR_6 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, KITCHEN_FLR_6 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 0.11021
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, KITCHEN_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 1.94167
+ Component Sizing Information, Fan:ConstantVolume, KITCHEN_FLR_6 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 1.94167
+ Component Sizing Information, Fan:ConstantVolume, KITCHEN_FLR_6 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 1618.05451
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, KITCHEN_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 0.36735
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, KITCHEN_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 2.77279E-004
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, KITCHEN_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 1.94860E-003
+ Component Sizing Information, Coil:Cooling:Water, KITCHEN_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 25.89947
+ Component Sizing Information, Coil:Cooling:Water, KITCHEN_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, KITCHEN_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 1.15077E-002
+ Component Sizing Information, Coil:Cooling:Water, KITCHEN_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, KITCHEN_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, KITCHEN_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 1.94860E-003
+ Component Sizing Information, Coil:Cooling:Water, KITCHEN_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 1.94167
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,KITCHEN_FLR_6 FOURPIPEFANCOIL COOLING COIL,50473.14,34577.67,15895.47,0.69,5249.67,53.25
+ Component Sizing Information, Coil:Heating:Water, KITCHEN_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 22818.33136
+ Component Sizing Information, Coil:Heating:Water, KITCHEN_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 2.77279E-004
+ Component Sizing Information, Coil:Heating:Water, KITCHEN_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 1242.71317
+Water Heating Coil Capacity Information,Coil:Heating:Water,KITCHEN_FLR_6 FOURPIPEFANCOIL HEATING COIL,24855.28
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, CORRIDOR_FLR_6 TERMINAL, Design Size Maximum Air Flow Rate [m3/s], 0.12562
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, CORRIDOR_FLR_6 TERMINAL, Design Size Constant Minimum Air Flow Fraction, 1.00000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, CORRIDOR_FLR_6 TERMINAL, User-Specified Constant Minimum Air Flow Fraction, 0.30000
+ Component Sizing Information, AirTerminal:SingleDuct:VAV:NoReheat, CORRIDOR_FLR_6 TERMINAL, Design Size Minimum Air Flow Rate [m3/s], 3.76847E-002
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, CORRIDOR_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Supply Air Flow Rate [m3/s], 0.61833
+ Component Sizing Information, Fan:ConstantVolume, CORRIDOR_FLR_6 FOURPIPEFANCOIL CONST SPEED FAN, Design Size Maximum Flow Rate [m3/s], 0.61833
+ Component Sizing Information, Fan:ConstantVolume, CORRIDOR_FLR_6 FOURPIPEFANCOIL CONST SPEED FAN, Design Electric Power Consumption [W], 515.27113
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, CORRIDOR_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Outdoor Air Flow Rate [m3/s], 0.12562
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, CORRIDOR_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Hot Water Flow [m3/s], 1.29053E-004
+ Component Sizing Information, ZoneHVAC:FourPipeFanCoil, CORRIDOR_FLR_6 FOURPIPEFANCOIL, Design Size Maximum Cold Water Flow [m3/s], 5.82737E-004
+ Component Sizing Information, Coil:Cooling:Water, CORRIDOR_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Temperature [C], 26.30492
+ Component Sizing Information, Coil:Cooling:Water, CORRIDOR_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, CORRIDOR_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 1.08420E-002
+ Component Sizing Information, Coil:Cooling:Water, CORRIDOR_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Temperature [C], 12.80000
+ Component Sizing Information, Coil:Cooling:Water, CORRIDOR_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, CORRIDOR_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Water Flow Rate [m3/s], 5.82737E-004
+ Component Sizing Information, Coil:Cooling:Water, CORRIDOR_FLR_6 FOURPIPEFANCOIL COOLING COIL, Design Size Design Air Flow Rate [m3/s], 0.61833
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,CORRIDOR_FLR_6 FOURPIPEFANCOIL COOLING COIL,15594.49,10781.35,4813.15,0.69,1609.79,16.33
+ Component Sizing Information, Coil:Heating:Water, CORRIDOR_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size Rated Capacity [W], 10620.25871
+ Component Sizing Information, Coil:Heating:Water, CORRIDOR_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size Maximum Water Flow Rate [m3/s], 1.29053E-004
+ Component Sizing Information, Coil:Heating:Water, CORRIDOR_FLR_6 FOURPIPEFANCOIL HEATING COIL, Design Size U-Factor Times Area Value [W/K], 793.25201
+Water Heating Coil Capacity Information,Coil:Heating:Water,CORRIDOR_FLR_6 FOURPIPEFANCOIL HEATING COIL,15536.32
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 0, Sum of Air Terminal Maximum Heating Flow Rates [m3/s], 0.25634
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 0, Sum of Air Terminal Minimum Heating Flow Rates [m3/s], 0.25634
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 0, Sum of Air Terminal Maximum Flow Rates [m3/s], 0.85446
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 0, Adjusted Heating Design Air Flow Rate [m3/s], 0.85446
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 0, Adjusted Cooling Design Air Flow Rate [m3/s], 0.85446
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 0, Adjusted Main Design Air Flow Rate [m3/s], 0.85446
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 0, Calculated Heating Air Flow Ratio [], 1.00000
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 0, User Heating Air Flow Ratio [], 1.00000
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 1, Sum of Air Terminal Maximum Heating Flow Rates [m3/s], 1.15647
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 1, Sum of Air Terminal Minimum Heating Flow Rates [m3/s], 1.15647
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 1, Sum of Air Terminal Maximum Flow Rates [m3/s], 3.85489
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 1, Adjusted Heating Design Air Flow Rate [m3/s], 2.79909
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 1, Adjusted Cooling Design Air Flow Rate [m3/s], 3.85489
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 1, Adjusted Main Design Air Flow Rate [m3/s], 3.85489
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 1, Calculated Heating Air Flow Ratio [], 0.72611
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 1, User Heating Air Flow Ratio [], 0.72611
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 3, Sum of Air Terminal Maximum Heating Flow Rates [m3/s], 0.71882
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 3, Sum of Air Terminal Minimum Heating Flow Rates [m3/s], 0.71882
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 3, Sum of Air Terminal Maximum Flow Rates [m3/s], 2.39606
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 3, Adjusted Heating Design Air Flow Rate [m3/s], 2.39606
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 3, Adjusted Cooling Design Air Flow Rate [m3/s], 2.39606
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 3, Adjusted Main Design Air Flow Rate [m3/s], 2.39606
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 3, Calculated Heating Air Flow Ratio [], 1.00000
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 3, User Heating Air Flow Ratio [], 1.00000
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 6, Sum of Air Terminal Maximum Heating Flow Rates [m3/s], 0.89957
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 6, Sum of Air Terminal Minimum Heating Flow Rates [m3/s], 0.89957
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 6, Sum of Air Terminal Maximum Flow Rates [m3/s], 2.99858
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 6, Adjusted Heating Design Air Flow Rate [m3/s], 2.99858
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 6, Adjusted Cooling Design Air Flow Rate [m3/s], 2.99858
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 6, Adjusted Main Design Air Flow Rate [m3/s], 2.99858
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 6, Calculated Heating Air Flow Ratio [], 1.00000
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 6, User Heating Air Flow Ratio [], 1.00000
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 0, Design Supply Air Flow Rate [m3/s], 0.85446
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 0, Central Heating Maximum System Air Flow Ratio, 1.00000
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 1, Design Supply Air Flow Rate [m3/s], 3.85489
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 1, Central Heating Maximum System Air Flow Ratio, 0.72611
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 3, Design Supply Air Flow Rate [m3/s], 2.39606
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 3, Central Heating Maximum System Air Flow Ratio, 1.00000
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 6, Design Supply Air Flow Rate [m3/s], 2.99858
+ Component Sizing Information, AirLoopHVAC, DOAS SYSTEM 6, Central Heating Maximum System Air Flow Ratio, 1.00000
+!<Controller:MechanicalVentilation>,Name,Availability Schedule Name,Demand Controlled Ventilation {Yes/No},System Outdoor Air Method,Zone Maximum Outdoor Air Fraction,Number of Zones,Zone Name,DSOA Name,DSZAD Name
+ Controller:MechanicalVentilation,VAV WITH REHEAT_DCV,ALWAYS_ON,Yes,Standard62.1VentilationRateProcedure,1.00,13,BASEMENT,SZ DSOA BASEMENT,CM DSZAD BUILDING,RETAIL_1_FLR_1,SZ DSOA RETAIL_1_FLR_1,CM DSZAD BUILDING,RETAIL_2_FLR_1,SZ DSOA RETAIL_2_FLR_1,CM DSZAD BUILDING,MECH_FLR_1,SZ DSOA MECH_FLR_1,CM DSZAD BUILDING,STORAGE_FLR_1,SZ DSOA STORAGE_FLR_1,CM DSZAD BUILDING,LAUNDRY_FLR_1,SZ DSOA LAUNDRY_FLR_1,CM DSZAD BUILDING,CAFE_FLR_1,SZ DSOA CAFE_FLR_1,CM DSZAD BUILDING,LOBBY_FLR_1,SZ DSOA LOBBY_FLR_1,CM DSZAD BUILDING,CORRIDOR_FLR_3,SZ DSOA CORRIDOR_FLR_3,CM DSZAD BUILDING,CORRIDOR_FLR_6,SZ DSOA CORRIDOR_FLR_6,CM DSZAD BUILDING,BANQUET_FLR_6,SZ DSOA BANQUET_FLR_6,CM DSZAD BUILDING,DINING_FLR_6,SZ DSOA DINING_FLR_6,CM DSZAD BUILDING,KITCHEN_FLR_6,SZ DSOA KITCHEN_FLR_6,CM DSZAD BUILDING
+ Component Sizing Information, Controller:OutdoorAir, DOAS SYSTEM 0 OUTDOOR AIR SYSTEM CONTROLLER, Maximum Outdoor Air Flow Rate [m3/s], 0.85446
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 0, Design Size Design Inlet Air Temperature [C], 26.89533
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 0, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 0, Design Size Design Outlet Air Temperature [C], 12.12731
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 0, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 1.41103E-002
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 0, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 0, Design Size Design Coil Load [W], 30166.51071
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 0, Design Size Design Water Flow Rate [m3/s], 1.19780E-003
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 0, Design Size Design Air Flow Rate [m3/s], 0.85446
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,AHU COOLING COIL 0,25637.74,16856.69,8781.05,0.66,2843.11,28.84
+ Component Sizing Information, Coil:Heating:Water, AHU HEATING COIL 0, Design Size Rated Capacity [W], 24242.76056
+ Component Sizing Information, Coil:Heating:Water, AHU HEATING COIL 0, Design Size Maximum Water Flow Rate [m3/s], 2.94588E-004
+ Component Sizing Information, Coil:Heating:Water, AHU HEATING COIL 0, Design Size U-Factor Times Area Value [W/K], 674.94604
+Water Heating Coil Capacity Information,Coil:Heating:Water,AHU HEATING COIL 0,26359.75
+ Component Sizing Information, Fan:VariableVolume, FAN 0, Design Size Maximum Flow Rate [m3/s], 0.85446
+ Component Sizing Information, Fan:VariableVolume, FAN 0, Design Electric Power Consumption [W], 712.04906
+ Component Sizing Information, Controller:WaterCoil, AHU COOLING COIL 0 CONTROLLER, Maximum Actuated Flow [m3/s], 1.19780E-003
+ Component Sizing Information, Controller:WaterCoil, AHU COOLING COIL 0 CONTROLLER, Controller Convergence Tolerance, 3.97556E-004
+ Component Sizing Information, Controller:WaterCoil, AHU HEATING COIL 0 CONTROLLER, Maximum Actuated Flow [m3/s], 2.94588E-004
+ Component Sizing Information, Controller:WaterCoil, AHU HEATING COIL 0 CONTROLLER, Controller Convergence Tolerance, 1.00000E-003
+ Component Sizing Information, Controller:OutdoorAir, DOAS SYSTEM 1 OUTDOOR AIR SYSTEM CONTROLLER, Maximum Outdoor Air Flow Rate [m3/s], 3.85489
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 1, Design Size Design Inlet Air Temperature [C], 31.38447
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 1, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 1, Design Size Design Outlet Air Temperature [C], 12.12732
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 1, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 1.41184E-002
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 1, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 1, Design Size Design Coil Load [W], 157629.44149
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 1, Design Size Design Water Flow Rate [m3/s], 6.25886E-003
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 1, Design Size Design Air Flow Rate [m3/s], 3.85489
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,AHU COOLING COIL 1,119824.18,77979.46,41844.72,0.65,13297.55,134.87
+ Component Sizing Information, Coil:Heating:Water, AHU HEATING COIL 1, Design Size Rated Capacity [W], 79415.90594
+ Component Sizing Information, Coil:Heating:Water, AHU HEATING COIL 1, Design Size Maximum Water Flow Rate [m3/s], 9.65029E-004
+ Component Sizing Information, Coil:Heating:Water, AHU HEATING COIL 1, Design Size U-Factor Times Area Value [W/K], 2211.02920
+Water Heating Coil Capacity Information,Coil:Heating:Water,AHU HEATING COIL 1,86350.88
+ Component Sizing Information, Fan:VariableVolume, FAN 1, Design Size Maximum Flow Rate [m3/s], 3.85489
+ Component Sizing Information, Fan:VariableVolume, FAN 1, Design Electric Power Consumption [W], 3212.40553
+ Component Sizing Information, Controller:WaterCoil, AHU COOLING COIL 1 CONTROLLER, Maximum Actuated Flow [m3/s], 6.25886E-003
+ Component Sizing Information, Controller:WaterCoil, AHU COOLING COIL 1 CONTROLLER, Controller Convergence Tolerance, 7.60826E-005
+ Component Sizing Information, Controller:WaterCoil, AHU HEATING COIL 1 CONTROLLER, Maximum Actuated Flow [m3/s], 9.65029E-004
+ Component Sizing Information, Controller:WaterCoil, AHU HEATING COIL 1 CONTROLLER, Controller Convergence Tolerance, 4.93447E-004
+ Component Sizing Information, Controller:OutdoorAir, DOAS SYSTEM 3 OUTDOOR AIR SYSTEM CONTROLLER, Maximum Outdoor Air Flow Rate [m3/s], 2.39606
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 3, Design Size Design Inlet Air Temperature [C], 31.53706
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 3, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 3, Design Size Design Outlet Air Temperature [C], 12.12732
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 3, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 1.41186E-002
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 3, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 3, Design Size Design Coil Load [W], 98431.79458
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 3, Design Size Design Water Flow Rate [m3/s], 3.90835E-003
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 3, Design Size Design Air Flow Rate [m3/s], 2.39606
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,AHU COOLING COIL 3,74557.55,48506.22,26051.33,0.65,8275.13,83.93
+ Component Sizing Information, Coil:Heating:Water, AHU HEATING COIL 3, Design Size Rated Capacity [W], 67981.15635
+ Component Sizing Information, Coil:Heating:Water, AHU HEATING COIL 3, Design Size Maximum Water Flow Rate [m3/s], 8.26078E-004
+ Component Sizing Information, Coil:Heating:Water, AHU HEATING COIL 3, Design Size U-Factor Times Area Value [W/K], 1892.67276
+Water Heating Coil Capacity Information,Coil:Heating:Water,AHU HEATING COIL 3,73917.59
+ Component Sizing Information, Fan:VariableVolume, FAN 3, Design Size Maximum Flow Rate [m3/s], 2.39606
+ Component Sizing Information, Fan:VariableVolume, FAN 3, Design Electric Power Consumption [W], 1996.71644
+ Component Sizing Information, Controller:WaterCoil, AHU COOLING COIL 3 CONTROLLER, Maximum Actuated Flow [m3/s], 3.90835E-003
+ Component Sizing Information, Controller:WaterCoil, AHU COOLING COIL 3 CONTROLLER, Controller Convergence Tolerance, 1.21839E-004
+ Component Sizing Information, Controller:WaterCoil, AHU HEATING COIL 3 CONTROLLER, Maximum Actuated Flow [m3/s], 8.26078E-004
+ Component Sizing Information, Controller:WaterCoil, AHU HEATING COIL 3 CONTROLLER, Controller Convergence Tolerance, 5.76447E-004
+ Component Sizing Information, Controller:OutdoorAir, DOAS SYSTEM 6 OUTDOOR AIR SYSTEM CONTROLLER, Maximum Outdoor Air Flow Rate [m3/s], 2.99858
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 6, Design Size Design Inlet Air Temperature [C], 31.63808
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 6, Design Size Design Inlet Water Temperature [C], 7.00000
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 6, Design Size Design Outlet Air Temperature [C], 12.12732
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 6, Design Size Design Inlet Air Humidity Ratio [kgWater/kgDryAir], 1.41188E-002
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 6, Design Size Design Outlet Air Humidity Ratio [kgWater/kgDryAir], 8.50000E-003
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 6, Design Size Design Coil Load [W], 123560.62936
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 6, Design Size Design Water Flow Rate [m3/s], 4.90612E-003
+ Component Sizing Information, Coil:Cooling:Water, AHU COOLING COIL 6, Design Size Design Air Flow Rate [m3/s], 2.99858
+Water Cooling Coil Capacity Information,Coil:Cooling:Water,AHU COOLING COIL 6,93371.17,60734.19,32636.98,0.65,10364.15,105.12
+ Component Sizing Information, Coil:Heating:Water, AHU HEATING COIL 6, Design Size Rated Capacity [W], 85075.89010
+ Component Sizing Information, Coil:Heating:Water, AHU HEATING COIL 6, Design Size Maximum Water Flow Rate [m3/s], 1.03381E-003
+ Component Sizing Information, Coil:Heating:Water, AHU HEATING COIL 6, Design Size U-Factor Times Area Value [W/K], 2368.60960
+Water Heating Coil Capacity Information,Coil:Heating:Water,AHU HEATING COIL 6,92505.12
+ Component Sizing Information, Fan:VariableVolume, FAN 6, Design Size Maximum Flow Rate [m3/s], 2.99858
+ Component Sizing Information, Fan:VariableVolume, FAN 6, Design Electric Power Consumption [W], 2498.81640
+ Component Sizing Information, Controller:WaterCoil, AHU COOLING COIL 6 CONTROLLER, Maximum Actuated Flow [m3/s], 4.90612E-003
+ Component Sizing Information, Controller:WaterCoil, AHU COOLING COIL 6 CONTROLLER, Controller Convergence Tolerance, 9.70605E-005
+ Component Sizing Information, Controller:WaterCoil, AHU HEATING COIL 6 CONTROLLER, Maximum Actuated Flow [m3/s], 1.03381E-003
+ Component Sizing Information, Controller:WaterCoil, AHU HEATING COIL 6 CONTROLLER, Controller Convergence Tolerance, 4.60619E-004
+ Component Sizing Information, PlantLoop, YMCA CHILLED WATER LOOP, Maximum Loop Flow Rate [m3/s], 4.79348E-002
+ Component Sizing Information, PlantLoop, YMCA CHILLED WATER LOOP, Plant Loop Volume [m3], 5.75217
+ Component Sizing Information, PlantLoop, YMCA CHILLED WATER LOOP, Design Supply Temperature [C], 7.00000
+ Component Sizing Information, PlantLoop, YMCA CHILLED WATER LOOP, Design Return Temperature [C], 1.00000
+ Component Sizing Information, PlantLoop, YMCA CHILLED WATER LOOP, Sizing option (Coincident/NonCoincident), 1.00000
+ Component Sizing Information, PlantLoop, YMCA CHILLED WATER LOOP, Minimum Loop Flow Rate [m3/s], 0.00000
+ Component Sizing Information, PlantLoop, YMCA CHILLED WATER LOOP, Design Capacity [W], 1207237.76738
+ Component Sizing Information, Chiller:Electric:EIR, CHILLER 1, Design Size Reference Chilled Water Flow Rate [m3/s], 4.79348E-002
+ Component Sizing Information, Chiller:Electric:EIR, CHILLER 1, Design Size Reference Capacity [W], 1207237.76738
+ Component Sizing Information, Chiller:Electric:EIR, CHILLER 1, User-Specified Reference Capacity [W], 562696.40000
+ Component Sizing Information, Chiller:Electric:EIR, CHILLER 1, Design Size Reference Condenser Fluid Flow Rate [m3/s], 1.03984E-002
+! <Chiller Standard Rating Information>, Component Type, Component Name, IPLV in SI Units {W/W}, IPLV in IP Units {Btu/W-h}
+ Chiller Standard Rating Information, Chiller:Electric:EIR, CHILLER 1, 7.25, 24.65
+ Component Sizing Information, Chiller:Electric:EIR, CHILLER 2, Design Size Reference Chilled Water Flow Rate [m3/s], 4.79348E-002
+ Component Sizing Information, Chiller:Electric:EIR, CHILLER 2, Design Size Reference Capacity [W], 1207237.76738
+ Component Sizing Information, Chiller:Electric:EIR, CHILLER 2, User-Specified Reference Capacity [W], 562696.40000
+ Component Sizing Information, Chiller:Electric:EIR, CHILLER 2, Design Size Reference Condenser Fluid Flow Rate [m3/s], 1.03984E-002
+ Chiller Standard Rating Information, Chiller:Electric:EIR, CHILLER 2, 7.25, 24.65
+ Component Sizing Information, PlantLoop, YMCA CONDENSER WATER LOOP, Maximum Loop Flow Rate [m3/s], 2.07969E-002
+ Component Sizing Information, PlantLoop, YMCA CONDENSER WATER LOOP, Plant Loop Volume [m3], 2.49563
+ Component Sizing Information, PlantLoop, YMCA CONDENSER WATER LOOP, Design Supply Temperature [C], 30.00000
+ Component Sizing Information, PlantLoop, YMCA CONDENSER WATER LOOP, Design Return Temperature [C], 15.00000
+ Component Sizing Information, PlantLoop, YMCA CONDENSER WATER LOOP, Sizing option (Coincident/NonCoincident), 1.00000
+ Component Sizing Information, PlantLoop, YMCA CONDENSER WATER LOOP, Minimum Loop Flow Rate [m3/s], 0.00000
+ Component Sizing Information, PlantLoop, YMCA CONDENSER WATER LOOP, Design Capacity [W], 1309424.36871
+ Component Sizing Information, Pump:VariableSpeed, CW PUMP, Design Flow Rate [m3/s], 2.07969E-002
+ Component Sizing Information, Pump:VariableSpeed, CW PUMP, Design Power Consumption [W], 5313.33721
+ Component Sizing Information, CoolingTower:SingleSpeed, COOLING TOWER 1, Design Water Flow Rate [m3/s], 2.07969E-002
+ Component Sizing Information, CoolingTower:SingleSpeed, COOLING TOWER 1, Fan Power at Design Air Flow Rate [W], 13690.23198
+ Component Sizing Information, CoolingTower:SingleSpeed, COOLING TOWER 1, Design Air Flow Rate [m3/s], 36.11162
+ Component Sizing Information, CoolingTower:SingleSpeed, COOLING TOWER 1, U-Factor Times Area Value at Design Air Flow Rate [W/C], 34261.70238
+ Component Sizing Information, CoolingTower:SingleSpeed, COOLING TOWER 1, Free Convection Regime Air Flow Rate [m3/s], 3.61116
+ Component Sizing Information, CoolingTower:SingleSpeed, COOLING TOWER 1, Free Convection U-Factor Times Area Value [W/K], 3426.17024
+ Component Sizing Information, PlantLoop, TEST HOT WATER LOOP, Maximum Loop Flow Rate [m3/s], 1.05718E-002
+ Component Sizing Information, PlantLoop, TEST HOT WATER LOOP, Plant Loop Volume [m3], 1.26862
+ Component Sizing Information, PlantLoop, TEST HOT WATER LOOP, Design Supply Temperature [C], 50.00000
+ Component Sizing Information, PlantLoop, TEST HOT WATER LOOP, Design Return Temperature [C], 0.00000
+ Component Sizing Information, PlantLoop, TEST HOT WATER LOOP, Sizing option (Coincident/NonCoincident), 1.00000
+ Component Sizing Information, PlantLoop, TEST HOT WATER LOOP, Minimum Loop Flow Rate [m3/s], 0.00000
+ Component Sizing Information, PlantLoop, TEST HOT WATER LOOP, Design Capacity [W], 2218760.01539
+ Component Sizing Information, Pump:VariableSpeed, HW PUMP, Design Flow Rate [m3/s], 1.05718E-002
+ Component Sizing Information, Pump:VariableSpeed, HW PUMP, Design Power Consumption [W], 2700.96245
+ Component Sizing Information, DistrictHeating:Water, DISTRICT HEATING, Design Size Nominal Capacity [W], 2218760.01539
+! <Environment>,Environment Name,Environment Type, Start Date, End Date, Start DayOfWeek, Duration {#days}, Source:Start DayOfWeek,  Use Daylight Saving, Use Holidays, Apply Weekend Holiday Rule,  Use Rain Values, Use Snow Values, Sky Temperature Model
+! <Environment:Special Days>, Special Day Name, Special Day Type, Source, Start Date, Duration {#days}
+! <Environment:Daylight Saving>, Daylight Saving Indicator, Source, Start Date, End Date
+! <Environment:WarmupDays>, NumberofWarmupDays
+Environment,RUNPERIOD 1,WeatherFileRunPeriod,01/01/2017,12/31/2017,Sunday,365,Use RunPeriod Specified Day,No,No,No,Yes,Yes,Clark and Allen
+Environment:Daylight Saving,Yes,InputFile,03/12,11/05
+Environment:Special Days,NEW YEARS DAY,Holiday,InputFile,01/01,  1
+Environment:Special Days,VETERANS DAY,Holiday,InputFile,11/11,  1
+Environment:Special Days,CHRISTMAS,Holiday,InputFile,12/25,  1
+Environment:Special Days,INDEPENDENCE DAY,Holiday,InputFile,07/04,  1
+Environment:Special Days,MLK DAY,Holiday,InputFile,01/16,  1
+Environment:Special Days,PRESIDENTS DAY,Holiday,InputFile,02/20,  1
+Environment:Special Days,MEMORIAL DAY,Holiday,InputFile,05/29,  1
+Environment:Special Days,LABOR DAY,Holiday,InputFile,09/04,  1
+Environment:Special Days,COLUMBUS DAY,Holiday,InputFile,10/09,  1
+Environment:Special Days,THANKSGIVING,Holiday,InputFile,11/23,  1
+Environment:WarmupDays,  6
+! <Tabular Report>,Style,Unit Conversion
+Tabular Report,Commaandhtml,commaandhtml
+! <Warmup Convergence Information>,Zone Name,Environment Type/Name,Average Warmup Temperature Difference {deltaC},Std Dev Warmup Temperature Difference {deltaC},Max Temperature Pass/Fail Convergence,Min Temperature Pass/Fail Convergence,Average Warmup Load Difference {W},Std Dev Warmup Load Difference {W},Heating Load Pass/Fail Convergence,Cooling Load Pass/Fail Convergence
+ Warmup Convergence Information,BASEMENT,RunPeriod: RUNPERIOD 1,2.7376597015E-004,6.9623975353E-004,Pass,Pass,1.5213915580E-002,4.0765962614E-002,Pass,Pass
+ Warmup Convergence Information,RETAIL_1_FLR_1,RunPeriod: RUNPERIOD 1,4.7618904490E-004,1.1474561734E-003,Pass,Pass,1.5338024810E-002,1.6530251125E-002,Pass,Pass
+ Warmup Convergence Information,RETAIL_2_FLR_1,RunPeriod: RUNPERIOD 1,5.0432994631E-004,1.2582609206E-003,Pass,Pass,1.1218351034E-002,2.6580953327E-002,Pass,Pass
+ Warmup Convergence Information,MECH_FLR_1,RunPeriod: RUNPERIOD 1,5.3295052259E-005,1.3013927319E-004,Pass,Pass,1.1053984689E-002,2.4908997782E-002,Pass,Pass
+ Warmup Convergence Information,STORAGE_FLR_1,RunPeriod: RUNPERIOD 1,2.2729394168E-004,5.7581756227E-004,Pass,Pass,9.4007241711E-003,1.4602164300E-002,Pass,Pass
+ Warmup Convergence Information,LAUNDRY_FLR_1,RunPeriod: RUNPERIOD 1,2.3369408688E-004,3.7862717496E-004,Pass,Pass,1.9016737346E-002,5.5280280669E-002,Pass,Pass
+ Warmup Convergence Information,CAFE_FLR_1,RunPeriod: RUNPERIOD 1,1.3832037871E-003,3.2799017216E-003,Pass,Pass,1.3996565564E-002,2.9697162526E-002,Pass,Pass
+ Warmup Convergence Information,LOBBY_FLR_1,RunPeriod: RUNPERIOD 1,6.8834847932E-004,1.7192744733E-003,Pass,Pass,1.2674994336E-002,3.1434776229E-002,Pass,Pass
+ Warmup Convergence Information,ROOM_1_FLR_3,RunPeriod: RUNPERIOD 1,9.2591473600E-002,0.3199508564,Pass,Pass,0.1251898764,0.5624273331,Pass,Pass
+ Warmup Convergence Information,ROOM_2_FLR_3,RunPeriod: RUNPERIOD 1,9.2569571733E-002,0.3261653776,Pass,Pass,0.1185457120,0.4327269662,Pass,Pass
+ Warmup Convergence Information,ROOM_3_MULT19_FLR_3,RunPeriod: RUNPERIOD 1,2.8331130562E-004,6.6451090200E-004,Pass,Pass,2.4512303684E-002,4.4657790508E-002,Pass,Pass
+ Warmup Convergence Information,ROOM_4_MULT19_FLR_3,RunPeriod: RUNPERIOD 1,9.2641201723E-002,0.2989940560,Pass,Pass,0.2333689178,0.8287371444,Pass,Pass
+ Warmup Convergence Information,ROOM_5_FLR_3,RunPeriod: RUNPERIOD 1,9.2596245371E-002,0.3229455708,Pass,Pass,0.1076448615,0.4340050374,Pass,Pass
+ Warmup Convergence Information,ROOM_6_FLR_3,RunPeriod: RUNPERIOD 1,9.2581818864E-002,0.3301571334,Pass,Pass,0.1379091660,0.6297009244,Pass,Pass
+ Warmup Convergence Information,CORRIDOR_FLR_3,RunPeriod: RUNPERIOD 1,1.7900343432E-004,4.4946497058E-004,Pass,Pass,1.4167835334E-002,2.6087861934E-002,Pass,Pass
+ Warmup Convergence Information,ROOM_1_FLR_6,RunPeriod: RUNPERIOD 1,9.2592849860E-002,0.3197471392,Pass,Pass,0.1241704736,0.4485622222,Pass,Pass
+ Warmup Convergence Information,ROOM_2_FLR_6,RunPeriod: RUNPERIOD 1,9.2596656403E-002,0.3249162186,Pass,Pass,0.1236408171,0.4184253712,Pass,Pass
+ Warmup Convergence Information,ROOM_3_MULT9_FLR_6,RunPeriod: RUNPERIOD 1,9.2588380449E-002,0.3080101998,Pass,Pass,0.1261895254,0.5299429494,Pass,Pass
+ Warmup Convergence Information,BANQUET_FLR_6,RunPeriod: RUNPERIOD 1,1.6568923901E-003,3.9929657778E-003,Pass,Pass,1.1789796137E-002,3.6619144211E-002,Pass,Pass
+ Warmup Convergence Information,DINING_FLR_6,RunPeriod: RUNPERIOD 1,1.6692090918E-003,4.0093050299E-003,Pass,Pass,1.1378535007E-002,3.4400571514E-002,Pass,Pass
+ Warmup Convergence Information,KITCHEN_FLR_6,RunPeriod: RUNPERIOD 1,1.1495918897E-003,2.5043671632E-003,Pass,Pass,1.7421992191E-002,3.8309428388E-002,Pass,Pass
+ Warmup Convergence Information,CORRIDOR_FLR_6,RunPeriod: RUNPERIOD 1,1.8520437205E-004,4.1868983847E-004,Pass,Pass,1.2652909581E-002,9.6531571548E-003,Pass,Pass

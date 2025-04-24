@@ -37,7 +37,16 @@ class NodeBranch:
                 branch['Component_1_Inlet_Node_Name'] = components[0]['object'][components[0]['air_inlet_field']]
                 branch['Component_1_Outlet_Node_Name'] = components[0]['object'][components[0]['air_outlet_field']]
         else:
+            # Find index of chiller:
+            chiller_index = []
             for i in range(len(components)):
+                if 'Chiller' in components[i]['type']:
+                    chiller_index.append(i)
+
+            for i in range(len(components)):
+                branch[f'Component_{i + 1}_Object_Type'] = components[i]['type']
+                branch[f'Component_{i + 1}_Name'] = components[i]['object'].Name
+
                 if i == 0:
                     if water_side:
                         if condenser_side:
@@ -55,8 +64,6 @@ class NodeBranch:
                     else:
                         inlet_name = components[i-1]['object'][components[i-1]['air_outlet_field']]
 
-                branch[f'Component_{i + 1}_Object_Type'] = components[0]['type']
-                branch[f'Component_{i + 1}_Name'] = components[0]['object'].Name
                 branch[f'Component_{i + 1}_Inlet_Node_Name'] = inlet_name
 
                 if water_side:
@@ -69,6 +76,32 @@ class NodeBranch:
                 else:
                     branch[f'Component_{i + 1}_Outlet_Node_Name'] = components[i]['object'][
                         components[i]['air_outlet_field']]
+
+            # Adjust inlet / outlet node name for chiller:
+            for idx in chiller_index:
+                branch[f'Component_{idx + 1}_Inlet_Node_Name'] = components[idx]['object'][
+                    components[idx]['water_inlet_field']]
+                branch[f'Component_{idx + 1}_Outlet_Node_Name'] = components[idx]['object'][
+                    components[idx]['water_outlet_field']]
+                if idx == 0:
+                    branch[f'Component_{idx + 2}_Inlet_Node_Name'] = components[idx]['object'][
+                        components[idx]['water_outlet_field']]
+                    components[idx+1]['object'][components[idx+1]['water_inlet_field']] = components[idx]['object'][
+                        components[idx]['water_outlet_field']]
+                elif idx == len(components) - 1:
+                    branch[f'Component_{idx}_Outlet_Node_Name'] = components[idx]['object'][
+                        components[idx]['water_inlet_field']]
+                    components[idx-1]['object'][components[idx-1]['water_outlet_field']] = components[idx]['object'][
+                        components[idx]['water_inlet_field']]
+                else:
+                    branch[f'Component_{idx}_Outlet_Node_Name'] = components[idx]['object'][
+                        components[idx]['water_inlet_field']]
+                    branch[f'Component_{idx + 2}_Inlet_Node_Name'] = components[idx]['object'][
+                        components[idx]['water_outlet_field']]
+                    components[idx-1]['object'][components[idx-1]['water_outlet_field']] = components[idx]['object'][
+                        components[idx]['water_inlet_field']]
+                    components[idx+1]['object'][components[idx+1]['water_inlet_field']] = components[idx]['object'][
+                        components[idx]['water_outlet_field']]
 
         # Adjust inlet / outlet node name if available:
         if isinstance(components, list):

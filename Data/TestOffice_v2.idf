@@ -1,6 +1,6 @@
 
 Version,
-  24.2;                                   !- Version Identifier
+  24.1;                                   !- Version Identifier
 
 Timestep,
   6;                                      !- Number of Timesteps per Hour
@@ -2119,7 +2119,8 @@ BranchList,
   Chilled Water Loop Supply Branches,     !- Name
   Chilled Water Loop Supply Inlet Branch, !- Branch Name 1
   Chilled Water Loop Supply Branch 1,     !- Branch Name 2
-  Chilled Water Loop Supply Outlet Branch; !- Branch Name 3
+  Chilled Water Loop Supply Branch 2,     !- Branch Name 3
+  Chilled Water Loop Supply Outlet Branch; !- Branch Name 4
 
 ConnectorList,
   Chilled Water Loop Supply Connector List, !- Name
@@ -2131,12 +2132,14 @@ ConnectorList,
 Connector:Splitter,
   Chilled Water Loop Supply Splitter,     !- Name
   Chilled Water Loop Supply Inlet Branch, !- Inlet Branch Name
-  Chilled Water Loop Supply Branch 1;     !- Outlet Branch Name 1
+  Chilled Water Loop Supply Branch 1,     !- Outlet Branch Name 1
+  Chilled Water Loop Supply Branch 2;     !- Outlet Branch Name 2
 
 Connector:Mixer,
   Chilled Water Loop Supply Mixer,        !- Name
   Chilled Water Loop Supply Outlet Branch, !- Outlet Branch Name
-  Chilled Water Loop Supply Branch 1;     !- Inlet Branch Name 1
+  Chilled Water Loop Supply Branch 1,     !- Inlet Branch Name 1
+  Chilled Water Loop Supply Branch 2;     !- Inlet Branch Name 2
 
 Branch,
   Chilled Water Loop Supply Inlet Branch, !- Name
@@ -2282,6 +2285,109 @@ Curve:Quadratic,
   1;                                      !- Maximum Value of x {BasedOnField A2}
 
 Branch,
+  Chilled Water Loop Supply Branch 2,     !- Name
+  ,                                       !- Pressure Drop Curve Name
+  Pump:ConstantSpeed,                     !- Component Object Type 1
+  Const Spd Pump 1,                       !- Component Name 1
+  Node 20,                                !- Component Inlet Node Name 1
+  Node 66,                                !- Component Outlet Node Name 1
+  Chiller:Electric:EIR,                   !- Component Object Type 2
+  Chiller - Water Cooled,                 !- Component Name 2
+  Node 66,                                !- Component Inlet Node Name 2
+  Node 21;                                !- Component Outlet Node Name 2
+
+Pump:ConstantSpeed,
+  Const Spd Pump 1,                       !- Name
+  Node 20,                                !- Inlet Node Name
+  Node 66,                                !- Outlet Node Name
+  Autosize,                               !- Design Flow Rate {m3/s}
+  179352,                                 !- Design Pump Head {Pa}
+  Autosize,                               !- Design Power Consumption {W}
+  0.9,                                    !- Motor Efficiency
+  0,                                      !- Fraction of Motor Inefficiencies to Fluid Stream
+  Intermittent,                           !- Pump Control Type
+  ,                                       !- Pump Flow Rate Schedule Name
+  ,                                       !- Pump Curve Name
+  ,                                       !- Impeller Diameter {m}
+  ,                                       !- Rotational Speed {rev/min}
+  ,                                       !- Zone Name
+  ,                                       !- Skin Loss Radiative Fraction
+  PowerPerFlowPerPressure,                !- Design Power Sizing Method
+  348701.1,                               !- Design Electric Power per Unit Flow Rate {W/(m3/s)}
+  1.282051282,                            !- Design Shaft Power per Unit Flow Rate per Unit Head {W-s/m3-Pa}
+  General;                                !- End-Use Subcategory
+
+Chiller:Electric:EIR,
+  Chiller - Water Cooled,                 !- Name
+  Autosize,                               !- Reference Capacity {W}
+  5.5,                                    !- Reference COP {W/W}
+  6.67,                                   !- Reference Leaving Chilled Water Temperature {C}
+  29.4,                                   !- Reference Entering Condenser Fluid Temperature {C}
+  Autosize,                               !- Reference Chilled Water Flow Rate {m3/s}
+  Autosize,                               !- Reference Condenser Fluid Flow Rate {m3/s}
+  Water Cooled Chiller CCFofT,            !- Cooling Capacity Function of Temperature Curve Name
+  Water Cooled Chiller EItoCoolingOutputRatioFofT, !- Electric Input to Cooling Output Ratio Function of Temperature Curve Name
+  Water Cooled Chiller EItoCoolingOutputRatioFofPLR, !- Electric Input to Cooling Output Ratio Function of Part Load Ratio Curve Name
+  0.1,                                    !- Minimum Part Load Ratio
+  1,                                      !- Maximum Part Load Ratio
+  1,                                      !- Optimum Part Load Ratio
+  0.2,                                    !- Minimum Unloading Ratio
+  Node 66,                                !- Chilled Water Inlet Node Name
+  Node 21,                                !- Chilled Water Outlet Node Name
+  Node 67,                                !- Condenser Inlet Node Name
+  Node 68,                                !- Condenser Outlet Node Name
+  WaterCooled,                            !- Condenser Type
+  0,                                      !- Condenser Fan Power Ratio {W/W}
+  1,                                      !- Fraction of Compressor Electric Consumption Rejected by Condenser
+  2,                                      !- Leaving Chilled Water Lower Temperature Limit {C}
+  NotModulated,                           !- Chiller Flow Mode
+  ,                                       !- Design Heat Recovery Water Flow Rate {m3/s}
+  ,                                       !- Heat Recovery Inlet Node Name
+  ,                                       !- Heat Recovery Outlet Node Name
+  1,                                      !- Sizing Factor
+  0,                                      !- Basin Heater Capacity {W/K}
+  10,                                     !- Basin Heater Setpoint Temperature {C}
+  ,                                       !- Basin Heater Operating Schedule Name
+  1,                                      !- Condenser Heat Recovery Relative Capacity Fraction
+  ,                                       !- Heat Recovery Inlet High Temperature Limit Schedule Name
+  ,                                       !- Heat Recovery Leaving Temperature Setpoint Node Name
+  General;                                !- End-Use Subcategory
+
+Curve:Biquadratic,
+  Water Cooled Chiller CCFofT,            !- Name
+  0.258,                                  !- Coefficient1 Constant
+  0.0389,                                 !- Coefficient2 x
+  -0.000217,                              !- Coefficient3 x**2
+  0.0469,                                 !- Coefficient4 y
+  -0.000943,                              !- Coefficient5 y**2
+  -0.000343,                              !- Coefficient6 x*y
+  5,                                      !- Minimum Value of x {BasedOnField A2}
+  10,                                     !- Maximum Value of x {BasedOnField A2}
+  24,                                     !- Minimum Value of y {BasedOnField A3}
+  35;                                     !- Maximum Value of y {BasedOnField A3}
+
+Curve:Biquadratic,
+  Water Cooled Chiller EItoCoolingOutputRatioFofT, !- Name
+  0.934,                                  !- Coefficient1 Constant
+  -0.0582,                                !- Coefficient2 x
+  0.0045,                                 !- Coefficient3 x**2
+  0.00243,                                !- Coefficient4 y
+  0.000486,                               !- Coefficient5 y**2
+  -0.00122,                               !- Coefficient6 x*y
+  5,                                      !- Minimum Value of x {BasedOnField A2}
+  10,                                     !- Maximum Value of x {BasedOnField A2}
+  24,                                     !- Minimum Value of y {BasedOnField A3}
+  35;                                     !- Maximum Value of y {BasedOnField A3}
+
+Curve:Quadratic,
+  Water Cooled Chiller EItoCoolingOutputRatioFofPLR, !- Name
+  0.222903,                               !- Coefficient1 Constant
+  0.313387,                               !- Coefficient2 x
+  0.46371,                                !- Coefficient3 x**2
+  0,                                      !- Minimum Value of x {BasedOnField A2}
+  1;                                      !- Maximum Value of x {BasedOnField A2}
+
+Branch,
   Chilled Water Loop Supply Outlet Branch, !- Name
   ,                                       !- Pressure Drop Curve Name
   Pipe:Adiabatic,                         !- Component Object Type 1
@@ -2404,7 +2510,9 @@ PlantEquipmentOperation:CoolingLoad,
 PlantEquipmentList,
   Chilled Water Loop Cooling Equipment List, !- Name
   Chiller:Electric:EIR,                   !- Equipment Object Type 1
-  Chiller Electric EIR 1;                 !- Equipment Name 1
+  Chiller Electric EIR 1,                 !- Equipment Name 1
+  Chiller:Electric:EIR,                   !- Equipment Object Type 2
+  Chiller - Water Cooled;                 !- Equipment Name 2
 
 PlantLoop,
   Condenser Water Loop,                   !- Name
@@ -2593,8 +2701,9 @@ BranchList,
   Condenser Water Loop Demand Inlet Branch, !- Branch Name 1
   Condenser Water Loop Demand Branch 1,   !- Branch Name 2
   Condenser Water Loop Demand Branch 2,   !- Branch Name 3
-  Condenser Water Loop Demand Bypass Branch, !- Branch Name 4
-  Condenser Water Loop Demand Outlet Branch; !- Branch Name 5
+  Condenser Water Loop Demand Branch 3,   !- Branch Name 4
+  Condenser Water Loop Demand Bypass Branch, !- Branch Name 5
+  Condenser Water Loop Demand Outlet Branch; !- Branch Name 6
 
 ConnectorList,
   Condenser Water Loop Demand Connector List, !- Name
@@ -2608,14 +2717,16 @@ Connector:Splitter,
   Condenser Water Loop Demand Inlet Branch, !- Inlet Branch Name
   Condenser Water Loop Demand Branch 1,   !- Outlet Branch Name 1
   Condenser Water Loop Demand Branch 2,   !- Outlet Branch Name 2
-  Condenser Water Loop Demand Bypass Branch; !- Outlet Branch Name 3
+  Condenser Water Loop Demand Branch 3,   !- Outlet Branch Name 3
+  Condenser Water Loop Demand Bypass Branch; !- Outlet Branch Name 4
 
 Connector:Mixer,
   Condenser Water Loop Demand Mixer,      !- Name
   Condenser Water Loop Demand Outlet Branch, !- Outlet Branch Name
   Condenser Water Loop Demand Branch 1,   !- Inlet Branch Name 1
   Condenser Water Loop Demand Branch 2,   !- Inlet Branch Name 2
-  Condenser Water Loop Demand Bypass Branch; !- Inlet Branch Name 3
+  Condenser Water Loop Demand Branch 3,   !- Inlet Branch Name 3
+  Condenser Water Loop Demand Bypass Branch; !- Inlet Branch Name 4
 
 Branch,
   Condenser Water Loop Demand Inlet Branch, !- Name
@@ -2650,6 +2761,14 @@ Pipe:Adiabatic,
   Pipe Adiabatic 13,                      !- Name
   Node 59,                                !- Inlet Node Name
   Node 60;                                !- Outlet Node Name
+
+Branch,
+  Condenser Water Loop Demand Branch 3,   !- Name
+  ,                                       !- Pressure Drop Curve Name
+  Chiller:Electric:EIR,                   !- Component Object Type 1
+  Chiller - Water Cooled,                 !- Component Name 1
+  Node 67,                                !- Component Inlet Node Name 1
+  Node 68;                                !- Component Outlet Node Name 1
 
 Branch,
   Condenser Water Loop Demand Bypass Branch, !- Name
