@@ -5,42 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20a373d1-d6e9-4a2c-8f6f-629a3b4b64a9" name="Changes" comment="some modifications">
-      <change afterPath="$PROJECT_DIR$/Output/Output.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project/YMCA_Singapore.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_ApartmentHighRise_STD2022_NewYork.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_ApartmentHighRise_STD2022_NewYork_test.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_ApartmentHighRise_STD2022_NewYork_test_v2.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_Hospital_STD2022_NewYork.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_Hospital_STD2022_NewYork_test.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_OfficeLarge_STD2022_NewYork_test.err" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_OfficeLarge_STD2022_NewYork_test.idf" beforeDir="false" afterPath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_OfficeLarge_STD2022_NewYork_test.idf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_OfficeLarge_STD2022_NewYork_testTable.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_OfficeMedium_STD2022_NewYork_test.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_OfficeSmall_STD2022_NewYork_test.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_OutPatientHealthCare_STD2022_NewYork_test.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_RestaurantFastFood_STD2022_NewYork.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_RestaurantFastFood_STD2022_NewYork_test.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_RestaurantSitDown_STD2022_NewYork.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_RetailStandalone_STD2022_NewYork.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_RetailStandalone_STD2022_NewYork_test.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_RetailStripmall_STD2022_NewYork_test.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_SchoolPrimary_STD2022_NewYork.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_SchoolPrimary_STD2022_NewYork_test.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_SchoolSecondary_STD2022_NewYork.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_SchoolSecondary_STD2022_NewYork_test.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_Warehouse_STD2022_NewYork - Copy.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_Warehouse_STD2022_NewYork.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_Warehouse_STD2022_NewYork_test.err" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/TestOffice_v2.idf" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_v2.idf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/TestOffice_v2.osm" beforeDir="false" afterPath="$PROJECT_DIR$/Data/TestOffice_v2.osm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HVACSystem/NodeBranch.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/NodeBranch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HVACSystem/PlantLoop.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/PlantLoop.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HVACSystem/SetpointManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/HVACSystem/SetpointManager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Schedules/Schedules.py" beforeDir="false" afterPath="$PROJECT_DIR$/Schedules/Schedules.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/演讲-康宛欣.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Output/Output.py" beforeDir="false" afterPath="$PROJECT_DIR$/Output/Output.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ref_bldg_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/ref_bldg_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_zone.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_zone.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

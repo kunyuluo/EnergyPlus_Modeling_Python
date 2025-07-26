@@ -1,0 +1,577 @@
+Program Version,EnergyPlus, Version 24.2.0-94a887817b, YMD=2025.05.07 11:09,
+   ************* Beginning Zone Sizing Calculations
+   ** Warning ** Weather file location will be used rather than entered (IDF) Location object.
+   **   ~~~   ** ..Location object=NEW.YORK-JOHN.F.KENNEDY.INTL.AP_NY_USA WMO=744860
+   **   ~~~   ** ..Weather File Location=New York J F Kennedy IntL Ar NY USA TMY3 WMO#=744860
+   **   ~~~   ** ..due to location differences, Latitude difference=[1.00E-002] degrees, Longitude difference=[0.00] degrees.
+   **   ~~~   ** ..Time Zone difference=[0.0] hour(s), Elevation difference=[28.57] percent, [2.00] meters.
+   ** Warning ** ProcessScheduleInput: Schedule:Constant="VAV_BOT WITH REHEAT MAX OA FRACTION", Blank Schedule Type Limits Name input -- will not be validated.
+   ** Warning ** ProcessScheduleInput: Schedule:Constant="VAV_MID WITH REHEAT MAX OA FRACTION", Blank Schedule Type Limits Name input -- will not be validated.
+   ** Warning ** ProcessScheduleInput: Schedule:Constant="VAV_TOP WITH REHEAT MAX OA FRACTION", Blank Schedule Type Limits Name input -- will not be validated.
+   ** Warning ** CheckUsedConstructions: There are 23 nominally unused constructions in input.
+   **   ~~~   ** Each Unused construction is shown.
+   ************* Construction=AIR_WALL
+   ************* Construction=OPAQUEDOOR
+   ************* Construction=ATTICROOFDECK
+   ************* Construction=EXT_SLAB_8IN
+   ************* Construction=EXT_SLAB_6IN_WITH_CARPET
+   ************* Construction=EXT_SLAB_6IN
+   ************* Construction=BASEMENT_WALL
+   ************* Construction=INT_WOOD_FLOOR
+   ************* Construction=EXT_SOFFIT_FLOOR
+   ************* Construction=RES_ROOF
+   ************* Construction=SEMIHEATED_ROOF
+   ************* Construction=RES_EXT_WALL_GRD
+   ************* Construction=RES_EXT_WALL_MID
+   ************* Construction=RES_EXT_WALL_TOP
+   ************* Construction=SEMIHEATED_EXT_WALL_GRD
+   ************* Construction=SEMIHEATED_EXT_WALL_MID
+   ************* Construction=SEMIHEATED_EXT_WALL_TOP
+   ************* Construction=NONRES_FLOOR
+   ************* Construction=RES_FLOOR
+   ************* Construction=SEMIHEATED_FLOOR
+   ************* Construction=NONRES_FLOOR_CEILING
+   ************* Construction=RES_FLOOR_CEILING
+   ************* Construction=SEMIHEATED_FLOOR_CEILING
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="PERIMETER_BOT_ZN_1_DAYLCTRL", only 0.524 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="PERIMETER_BOT_ZN_2_DAYLCTRL", only 0.524 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="PERIMETER_BOT_ZN_3_DAYLCTRL", only 0.524 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="PERIMETER_BOT_ZN_4_DAYLCTRL", only 0.524 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="PERIMETER_MID_ZN_1_DAYLCTRL", only 0.524 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="PERIMETER_MID_ZN_2_DAYLCTRL", only 0.524 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="PERIMETER_MID_ZN_3_DAYLCTRL", only 0.524 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="PERIMETER_MID_ZN_4_DAYLCTRL", only 0.524 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="PERIMETER_TOP_ZN_1_DAYLCTRL", only 0.524 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="PERIMETER_TOP_ZN_2_DAYLCTRL", only 0.524 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="PERIMETER_TOP_ZN_3_DAYLCTRL", only 0.524 of the zone or space is controlled.
+   ** Warning ** GetDaylightingControls: Fraction of zone or space controlled by the Daylighting reference points is < 1.0.
+   **   ~~~   ** ..discovered in Daylighting:Controls="PERIMETER_TOP_ZN_4_DAYLCTRL", only 0.524 of the zone or space is controlled.
+   ** Warning ** GeneratorController constructor ElectricLoadCenter:Generators, Availability Schedule for Generator:PVWatts 'PV_MODULE' will be be ignored (runs all the time).
+   ** Warning ** Calculated design heating load for zone=DATACENTER_BOT_ZN_6 is zero.
+   **   ~~~   ** Check Sizing:Zone and ZoneControl:Thermostat inputs.
+   ** Warning ** Calculated design heating load for zone=DATACENTER_MID_ZN_6 is zero.
+   **   ~~~   ** Check Sizing:Zone and ZoneControl:Thermostat inputs.
+   ** Warning ** Calculated design heating load for zone=DATACENTER_TOP_ZN_6 is zero.
+   **   ~~~   ** Check Sizing:Zone and ZoneControl:Thermostat inputs.
+   ** Warning ** Calculated design heating load for zone=DATACENTER_BASEMENT_ZN_6 is zero.
+   **   ~~~   ** Check Sizing:Zone and ZoneControl:Thermostat inputs.
+   ************* Beginning System Sizing Calculations
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = BASEMENT TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = DATACENTER_BASEMENT_ZN_6 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = CORE_BOTTOM TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = PERIMETER_BOT_ZN_3 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = PERIMETER_BOT_ZN_2 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = PERIMETER_BOT_ZN_1 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = PERIMETER_BOT_ZN_4 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = DATACENTER_BOT_ZN_6 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = CORE_MID TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = PERIMETER_MID_ZN_3 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = PERIMETER_MID_ZN_2 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = PERIMETER_MID_ZN_1 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = PERIMETER_MID_ZN_4 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = DATACENTER_MID_ZN_6 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = CORE_TOP TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = PERIMETER_TOP_ZN_3 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = PERIMETER_TOP_ZN_2 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = PERIMETER_TOP_ZN_1 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = PERIMETER_TOP_ZN_4 TERMINAL
+   ** Warning ** Since Zone Minimum Air Flow Input Method = CONSTANT, input for Fixed Minimum Air Flow Rate will be ignored.
+   **   ~~~   ** Occurs in AirTerminal:SingleDuct:VAV:NoReheat = DATACENTER_TOP_ZN_6 TERMINAL
+   ************* Beginning Plant Sizing Calculations
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "BASEMENT TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "CORE_BOTTOM TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "CORE_MID TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "CORE_TOP TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "PERIMETER_BOT_ZN_3 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "PERIMETER_BOT_ZN_2 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "PERIMETER_BOT_ZN_1 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "PERIMETER_BOT_ZN_4 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "PERIMETER_MID_ZN_3 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "PERIMETER_MID_ZN_2 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "PERIMETER_MID_ZN_1 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "PERIMETER_MID_ZN_4 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "PERIMETER_TOP_ZN_3 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "PERIMETER_TOP_ZN_2 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "PERIMETER_TOP_ZN_1 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "PERIMETER_TOP_ZN_4 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "DATACENTER_BOT_ZN_6 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "DATACENTER_MID_ZN_6 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "DATACENTER_TOP_ZN_6 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ************* SizeHVACSingleDuct: Potential issue with equipment sizing for AirTerminal:SingleDuct:VAV:NoReheat = "DATACENTER_BASEMENT_ZN_6 TERMINAL".
+   **   ~~~   ** User-Specified Minimum Cooling Air Flow Fraction of 0.30000
+   **   ~~~   ** differs from Design Size Minimum Cooling Air Flow Fraction of 1.00000
+   **   ~~~   ** This may, or may not, indicate mismatched component sizes.
+   **   ~~~   ** Verify that the value entered is intended and is consistent with other components.
+   ** Warning ** Controller:MechanicalVentilation="VAV_BOT WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="CORE_BOTTOM".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA CORE_BOTTOM".
+   ** Warning ** Controller:MechanicalVentilation="VAV_BOT WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="PERIMETER_BOT_ZN_3".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA PERIMETER_BOT_ZN_3".
+   ** Warning ** Controller:MechanicalVentilation="VAV_BOT WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="PERIMETER_BOT_ZN_2".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA PERIMETER_BOT_ZN_2".
+   ** Warning ** Controller:MechanicalVentilation="VAV_BOT WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="PERIMETER_BOT_ZN_1".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA PERIMETER_BOT_ZN_1".
+   ** Warning ** Controller:MechanicalVentilation="VAV_BOT WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="PERIMETER_BOT_ZN_4".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA PERIMETER_BOT_ZN_4".
+   ** Warning ** Controller:MechanicalVentilation="VAV_MID WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="CORE_MID".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA CORE_MID".
+   ** Warning ** Controller:MechanicalVentilation="VAV_MID WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="PERIMETER_MID_ZN_3".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA PERIMETER_MID_ZN_3".
+   ** Warning ** Controller:MechanicalVentilation="VAV_MID WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="PERIMETER_MID_ZN_2".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA PERIMETER_MID_ZN_2".
+   ** Warning ** Controller:MechanicalVentilation="VAV_MID WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="PERIMETER_MID_ZN_1".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA PERIMETER_MID_ZN_1".
+   ** Warning ** Controller:MechanicalVentilation="VAV_MID WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="PERIMETER_MID_ZN_4".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA PERIMETER_MID_ZN_4".
+   ** Warning ** Controller:MechanicalVentilation="VAV_TOP WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="CORE_TOP".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA CORE_TOP".
+   ** Warning ** Controller:MechanicalVentilation="VAV_TOP WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="PERIMETER_TOP_ZN_3".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA PERIMETER_TOP_ZN_3".
+   ** Warning ** Controller:MechanicalVentilation="VAV_TOP WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="PERIMETER_TOP_ZN_2".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA PERIMETER_TOP_ZN_2".
+   ** Warning ** Controller:MechanicalVentilation="VAV_TOP WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="PERIMETER_TOP_ZN_1".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA PERIMETER_TOP_ZN_1".
+   ** Warning ** Controller:MechanicalVentilation="VAV_TOP WITH REHEAT_DCV", Zone OA/person rate
+   **   ~~~   ** For Zone="PERIMETER_TOP_ZN_4".
+   **   ~~~   ** Zone outside air per person rate not set in Design Specification Outdoor Air Object="SZ DSOA PERIMETER_TOP_ZN_4".
+   ** Warning ** SizeWaterCoil: Potential issue with equipment sizing for Coil:Heating:Water AHU HEATING COIL OTHER
+   **   ~~~   ** ...Rated Total Heating Capacity = 0.00 [W]
+   **   ~~~   ** ...Air flow rate used for sizing = 1.53854 [m3/s]
+   **   ~~~   ** ...Outdoor air fraction used for sizing = 1.00
+   **   ~~~   ** ...Coil inlet air temperature used for sizing = 17.89 [C]
+   **   ~~~   ** ...Coil outlet air temperature used for sizing = 12.80 [C]
+   ** Warning ** The design coil load is zero for Coil:Heating:Water AHU HEATING COIL OTHER
+   **   ~~~   ** The autosize value for maximum water flow rate is zero
+   **   ~~~   ** To change this, input a value for UA, change the heating design day, or raise the
+   **   ~~~   **   system heating design supply air temperature. Also check to make sure the Preheat
+   **   ~~~   **   Design Temperature is not the same as the Central Heating Design Supply Air Temperature. 
+   ** Warning ** InitController: Controller:WaterCoil="AHU HEATING COIL OTHER CONTROLLER", Maximum Actuated Flow is zero.
+   ** Warning ** Chiller:Electric:EIR = CHILLER 1:  Integrated Part Load Value (IPLV) calculated is not at the AHRI test condition.
+   **   ~~~   **  Check limits in Cooling Capacity Function of Temperature Curve, Curve Type = Curve:Biquadratic, Curve Name = CHILLER 1 COOLINGCAPTEMPCURVE_ASHRAE90.1
+   **   ~~~   **  Check limits in EIR Function of Temperature Curve, Curve Type = Curve:Biquadratic, Curve Name = CHILLER 1 COOLINGEIRRATIOTEMPCURVE_ASHRAE90.1
+   ** Warning ** SetpointManager:Scheduled="AHU SETPOINT MANAGER DEHUM OTHER"
+   **   ~~~   ** ...setpoint node conflicts with another setpoint manager.
+   **   ~~~   ** ...conflicting setpoint manager = SetpointManager:MixedAir:"AHU COOLING COIL OTHER_AIR_OUTLET SPM"
+   **   ~~~   ** ...conflicting node name = AHU COOLING COIL OTHER_AIR_OUTLET
+   **   ~~~   ** ...control type variable = Temperature
+   ** Warning ** SetpointManager:Scheduled="AHU SETPOINT MANAGER DEHUM BOT"
+   **   ~~~   ** ...setpoint node conflicts with another setpoint manager.
+   **   ~~~   ** ...conflicting setpoint manager = SetpointManager:MixedAir:"AHU COOLING COIL BOT_AIR_OUTLET SPM"
+   **   ~~~   ** ...conflicting node name = AHU COOLING COIL BOT_AIR_OUTLET
+   **   ~~~   ** ...control type variable = Temperature
+   ** Warning ** SetpointManager:Scheduled="AHU SETPOINT MANAGER DEHUM MID"
+   **   ~~~   ** ...setpoint node conflicts with another setpoint manager.
+   **   ~~~   ** ...conflicting setpoint manager = SetpointManager:MixedAir:"AHU COOLING COIL MID_AIR_OUTLET SPM"
+   **   ~~~   ** ...conflicting node name = AHU COOLING COIL MID_AIR_OUTLET
+   **   ~~~   ** ...control type variable = Temperature
+   ** Warning ** SetpointManager:Scheduled="AHU SETPOINT MANAGER DEHUM TOP"
+   **   ~~~   ** ...setpoint node conflicts with another setpoint manager.
+   **   ~~~   ** ...conflicting setpoint manager = SetpointManager:MixedAir:"AHU COOLING COIL TOP_AIR_OUTLET SPM"
+   **   ~~~   ** ...conflicting node name = AHU COOLING COIL TOP_AIR_OUTLET
+   **   ~~~   ** ...control type variable = Temperature
+   ************* Testing Individual Branch Integrity
+   ************* All Branches passed integrity testing
+   ************* Testing Individual Supply Air Path Integrity
+   ************* All Supply Air Paths passed integrity testing
+   ************* Testing Individual Return Air Path Integrity
+   ************* All Return Air Paths passed integrity testing
+   ************* No node connection errors were found.
+   ************* Beginning Simulation
+   ** Warning ** Temperature out of range [-100. to 200.] (PsyPsatFnTemp)
+   **   ~~~   **  Routine=PsyTwbFnTdbWPb, Environment=RUNPERIOD 1, at Simulation time=03/12 12:00 - 12:10
+   **   ~~~   **  Input Temperature=-170.82
+   ** Severe  ** FindRootSimpleController: Controller error for controller = "AHU COOLING COIL MID CONTROLLER"
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=04/26 07:50 - 08:00
+   **   ~~~   **   Controller function is inconsistent with user specified controller action = Reverse action
+   **   ~~~   **   Actuator will be set to maximum action
+   **   ~~~   ** Controller control type=Humidity ratio
+   **   ~~~   ** Controller humidity ratio setpoint = -998.99 [kgWater/kgDryAir]
+   **   ~~~   ** Controller sensed humidity ratio = 6.95E-003 [kgWater/kgDryAir]
+   **   ~~~   ** Controller actuator mass flow rate set to 22.99 [kg/s]
+   ** Warning ** Cold Water control failed in fan coil unit DATACENTER_BASEMENT_ZN_6 FOURPIPEFANCOIL
+   **   ~~~   **   Iteration limit exceeded in calculating water flow rate 
+   **   ~~~   ** Load Request = -268782.61182809836, Final Capacity = -267535.79534349893
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/05 08:40 - 08:50
+   **   ~~~   ** Min water flow used during iterations = 1.5879907046400512, Max water flow used during iterations = 15.879907046400511
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/05 08:40 - 08:50
+   **   ~~~   ** Water flow rate on last iteration = 6.323580690089818
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/05 08:40 - 08:50
+   **   ~~~   ** ..Water flow rate set to last iteration value  Environment=RUNPERIOD 1, at Simulation time=07/05 08:40 - 08:50
+   ** Warning ** Cold Water control failed in fan coil unit DATACENTER_BOT_ZN_6 FOURPIPEFANCOIL
+   **   ~~~   **   Iteration limit exceeded in calculating water flow rate 
+   **   ~~~   ** Load Request = -5303.141787242079, Final Capacity = -5283.260448291918
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/05 09:30 - 09:40
+   **   ~~~   ** Min water flow used during iterations = 0.03652184372847648, Max water flow used during iterations = 0.3652184372847648
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/05 09:30 - 09:40
+   **   ~~~   ** Water flow rate on last iteration = 0.11320618883384773
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/05 09:30 - 09:40
+   **   ~~~   ** ..Water flow rate set to last iteration value  Environment=RUNPERIOD 1, at Simulation time=07/05 09:30 - 09:40
+   ** Warning ** Cold Water control failed in fan coil unit DATACENTER_TOP_ZN_6 FOURPIPEFANCOIL
+   **   ~~~   **   Iteration limit exceeded in calculating water flow rate 
+   **   ~~~   ** Load Request = -5059.995094604017, Final Capacity = -5046.818053676888
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/05 10:00 - 10:10
+   **   ~~~   ** Min water flow used during iterations = 0.035698894547154435, Max water flow used during iterations = 0.35698894547154436
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/05 10:00 - 10:10
+   **   ~~~   ** Water flow rate on last iteration = 0.10669256673924878
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/05 10:00 - 10:10
+   **   ~~~   ** ..Water flow rate set to last iteration value  Environment=RUNPERIOD 1, at Simulation time=07/05 10:00 - 10:10
+   ** Warning ** Cold Water control failed in fan coil unit PERIMETER_MID_ZN_3 FOURPIPEFANCOIL
+   **   ~~~   **   Iteration limit exceeded in calculating water flow rate 
+   **   ~~~   ** Load Request = -61480.24367883749, Final Capacity = -61595.56478393839
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/05 10:00 - 10:05
+   **   ~~~   ** Min water flow used during iterations = 0.7888003466629482, Max water flow used during iterations = 7.888003466629481
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/05 10:00 - 10:05
+   **   ~~~   ** Water flow rate on last iteration = 1.337112143388035
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/05 10:00 - 10:05
+   **   ~~~   ** ..Water flow rate set to last iteration value  Environment=RUNPERIOD 1, at Simulation time=07/05 10:00 - 10:05
+   ** Warning ** Cold Water control failed in fan coil unit PERIMETER_BOT_ZN_1 FOURPIPEFANCOIL
+   **   ~~~   **   Iteration limit exceeded in calculating water flow rate 
+   **   ~~~   ** Load Request = -9378.59177953028, Final Capacity = -9344.302280425763
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/05 10:05 - 10:10
+   **   ~~~   ** Min water flow used during iterations = 0.10458352874246951, Max water flow used during iterations = 1.045835287424695
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/05 10:05 - 10:10
+   **   ~~~   ** Water flow rate on last iteration = 0.2045682884883331
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/05 10:05 - 10:10
+   **   ~~~   ** ..Water flow rate set to last iteration value  Environment=RUNPERIOD 1, at Simulation time=07/05 10:05 - 10:10
+   ** Warning ** Cold Water control failed in fan coil unit PERIMETER_TOP_ZN_2 FOURPIPEFANCOIL
+   **   ~~~   **   Iteration limit exceeded in calculating water flow rate 
+   **   ~~~   ** Load Request = -6686.046282097126, Final Capacity = -6644.320785838436
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/20 08:20 - 08:30
+   **   ~~~   ** Min water flow used during iterations = 0.09257657965339981, Max water flow used during iterations = 0.925765796533998
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/20 08:20 - 08:30
+   **   ~~~   ** Water flow rate on last iteration = 0.13755729555305338
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/20 08:20 - 08:30
+   **   ~~~   ** ..Water flow rate set to last iteration value  Environment=RUNPERIOD 1, at Simulation time=07/20 08:20 - 08:30
+   ** Warning ** Cold Water control failed in fan coil unit PERIMETER_BOT_ZN_2 FOURPIPEFANCOIL
+   **   ~~~   **   Iteration limit exceeded in calculating water flow rate 
+   **   ~~~   ** Load Request = -7221.500096603149, Final Capacity = -7237.9895544939955
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/20 10:50 - 11:00
+   **   ~~~   ** Min water flow used during iterations = 0.08359177013072568, Max water flow used during iterations = 0.8359177013072567
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/20 10:50 - 11:00
+   **   ~~~   ** Water flow rate on last iteration = 0.15752202106193847
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/20 10:50 - 11:00
+   **   ~~~   ** ..Water flow rate set to last iteration value  Environment=RUNPERIOD 1, at Simulation time=07/20 10:50 - 11:00
+   ** Warning ** Cold Water control failed in fan coil unit PERIMETER_TOP_ZN_4 FOURPIPEFANCOIL
+   **   ~~~   **   Iteration limit exceeded in calculating water flow rate 
+   **   ~~~   ** Load Request = -5894.05114762464, Final Capacity = -5870.925329449929
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/20 10:50 - 11:00
+   **   ~~~   ** Min water flow used during iterations = 0.10094899919596508, Max water flow used during iterations = 1.0094899919596507
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/20 10:50 - 11:00
+   **   ~~~   ** Water flow rate on last iteration = 0.12405300936179936
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/20 10:50 - 11:00
+   **   ~~~   ** ..Water flow rate set to last iteration value  Environment=RUNPERIOD 1, at Simulation time=07/20 10:50 - 11:00
+   ** Warning ** Cold Water control failed in fan coil unit PERIMETER_BOT_ZN_4 FOURPIPEFANCOIL
+   **   ~~~   **   Iteration limit exceeded in calculating water flow rate 
+   **   ~~~   ** Load Request = -7376.235939764082, Final Capacity = -7416.802640084545
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/20 11:10 - 11:20
+   **   ~~~   ** Min water flow used during iterations = 0.10116188132347761, Max water flow used during iterations = 1.011618813234776
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/20 11:10 - 11:20
+   **   ~~~   ** Water flow rate on last iteration = 0.15702699963521896
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/20 11:10 - 11:20
+   **   ~~~   ** ..Water flow rate set to last iteration value  Environment=RUNPERIOD 1, at Simulation time=07/20 11:10 - 11:20
+   ** Warning ** Cold Water control failed in fan coil unit BASEMENT FOURPIPEFANCOIL
+   **   ~~~   **   Iteration limit exceeded in calculating water flow rate 
+   **   ~~~   ** Load Request = -29897.979626532146, Final Capacity = -29862.70564978211
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/31 06:20 - 06:30
+   **   ~~~   ** Min water flow used during iterations = 0.44215287224117716, Max water flow used during iterations = 4.421528722411772
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/31 06:20 - 06:30
+   **   ~~~   ** Water flow rate on last iteration = 0.6162288649057247
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/31 06:20 - 06:30
+   **   ~~~   ** ..Water flow rate set to last iteration value  Environment=RUNPERIOD 1, at Simulation time=07/31 06:20 - 06:30
+   ** Warning ** Cold Water control failed in fan coil unit CORE_BOTTOM FOURPIPEFANCOIL
+   **   ~~~   **   Iteration limit exceeded in calculating water flow rate 
+   **   ~~~   ** Load Request = -36050.31254457956, Final Capacity = -35910.711176613106
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/31 09:30 - 09:40
+   **   ~~~   ** Min water flow used during iterations = 0.45659829832085885, Max water flow used during iterations = 4.565982983208588
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/31 09:30 - 09:40
+   **   ~~~   ** Water flow rate on last iteration = 0.8230374793228636
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/31 09:30 - 09:40
+   **   ~~~   ** ..Water flow rate set to last iteration value  Environment=RUNPERIOD 1, at Simulation time=07/31 09:30 - 09:40
+   ** Warning ** Cold Water control failed in fan coil unit DATACENTER_MID_ZN_6 FOURPIPEFANCOIL
+   **   ~~~   **   Iteration limit exceeded in calculating water flow rate 
+   **   ~~~   ** Load Request = -50188.349666899405, Final Capacity = -49942.577025931576
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/31 11:00 - 11:10
+   **   ~~~   ** Min water flow used during iterations = 0.35068127912932423, Max water flow used during iterations = 3.506812791293242
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/31 11:00 - 11:10
+   **   ~~~   ** Water flow rate on last iteration = 1.0706339547035157
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/31 11:00 - 11:10
+   **   ~~~   ** ..Water flow rate set to last iteration value  Environment=RUNPERIOD 1, at Simulation time=07/31 11:00 - 11:10
+   ** Warning ** Cold Water control failed in fan coil unit PERIMETER_TOP_ZN_3 FOURPIPEFANCOIL
+   **   ~~~   **   Iteration limit exceeded in calculating water flow rate 
+   **   ~~~   ** Load Request = -7769.049527675324, Final Capacity = -7782.400131499115
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/31 11:10 - 11:20
+   **   ~~~   ** Min water flow used during iterations = 0.08774314993506173, Max water flow used during iterations = 0.8774314993506173
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/31 11:10 - 11:20
+   **   ~~~   ** Water flow rate on last iteration = 0.1824418988608198
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/31 11:10 - 11:20
+   **   ~~~   ** ..Water flow rate set to last iteration value  Environment=RUNPERIOD 1, at Simulation time=07/31 11:10 - 11:20
+   ** Warning ** Cold Water control failed in fan coil unit PERIMETER_MID_ZN_1 FOURPIPEFANCOIL
+   **   ~~~   **   Iteration limit exceeded in calculating water flow rate 
+   **   ~~~   ** Load Request = -103455.99266925213, Final Capacity = -103019.73965308219
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/31 14:00 - 14:10
+   **   ~~~   ** Min water flow used during iterations = 1.0650286700379379, Max water flow used during iterations = 10.650286700379379
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/31 14:00 - 14:10
+   **   ~~~   ** Water flow rate on last iteration = 2.3938000795655445
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=07/31 14:00 - 14:10
+   **   ~~~   ** ..Water flow rate set to last iteration value  Environment=RUNPERIOD 1, at Simulation time=07/31 14:00 - 14:10
+   ** Warning ** Cold Water control failed in fan coil unit PERIMETER_MID_ZN_4 FOURPIPEFANCOIL
+   **   ~~~   **   Iteration limit exceeded in calculating water flow rate 
+   **   ~~~   ** Load Request = -62224.31272969408, Final Capacity = -63113.66914675005
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=08/03 12:20 - 12:30
+   **   ~~~   ** Min water flow used during iterations = 0.9523402828562099, Max water flow used during iterations = 9.523402828562098
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=08/03 12:20 - 12:30
+   **   ~~~   ** Water flow rate on last iteration = 1.3198145620009887
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=08/03 12:20 - 12:30
+   **   ~~~   ** ..Water flow rate set to last iteration value  Environment=RUNPERIOD 1, at Simulation time=08/03 12:20 - 12:30
+   ** Warning ** Cold Water control failed in fan coil unit PERIMETER_BOT_ZN_3 FOURPIPEFANCOIL
+   **   ~~~   **   Iteration limit exceeded in calculating water flow rate 
+   **   ~~~   ** Load Request = -5438.401571152896, Final Capacity = -5445.381022950255
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=08/03 17:00 - 17:10
+   **   ~~~   ** Min water flow used during iterations = 0.07948731482495587, Max water flow used during iterations = 0.7948731482495587
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=08/03 17:00 - 17:10
+   **   ~~~   ** Water flow rate on last iteration = 0.12256550428655635
+   **   ~~~   **  Environment=RUNPERIOD 1, at Simulation time=08/03 17:00 - 17:10
+   **   ~~~   ** ..Water flow rate set to last iteration value  Environment=RUNPERIOD 1, at Simulation time=08/03 17:00 - 17:10
+   ** Warning ** Missing 'Humidity Ratio Setpoint' for node named named 'AHU COOLING COIL OTHER_AIR_OUTLET'.
+   ** Warning ** Missing 'Humidity Ratio Minimum Setpoint' for node named named 'AHU COOLING COIL OTHER_AIR_OUTLET'.
+   ** Warning ** Missing 'Humidity Ratio Setpoint' for node named named 'AHU COOLING COIL BOT_AIR_OUTLET'.
+   ** Warning ** Missing 'Humidity Ratio Minimum Setpoint' for node named named 'AHU COOLING COIL BOT_AIR_OUTLET'.
+   ** Warning ** Missing 'Humidity Ratio Setpoint' for node named named 'AHU COOLING COIL MID_AIR_OUTLET'.
+   ** Warning ** Missing 'Humidity Ratio Minimum Setpoint' for node named named 'AHU COOLING COIL MID_AIR_OUTLET'.
+   ** Warning ** Missing 'Humidity Ratio Setpoint' for node named named 'AHU COOLING COIL TOP_AIR_OUTLET'.
+   ** Warning ** Missing 'Humidity Ratio Minimum Setpoint' for node named named 'AHU COOLING COIL TOP_AIR_OUTLET'.
+   **  Fatal  ** checkSetpointNodesAtEnd: At least one node does not have a setpoint attached, neither via a SetpointManager, EMS:Actuator, or API
+   ...Summary of Errors that led to program termination:
+   ..... Reference severe error count=2
+   ..... Last severe error=FindRootSimpleController: Controller error for controller = "AHU COOLING COIL MID CONTROLLER"
+   ** Warning ** There is no BYPASS component in the demand-side of PlantLoop =TEST CHILLED WATER LOOP
+   **   ~~~   ** You may be able to fix the fatal error above by adding a demand-side BYPASS PIPE.
+   ** Warning ** There is no BYPASS component in the demand-side of PlantLoop =TEST CONDENSER WATER LOOP
+   **   ~~~   ** You may be able to fix the fatal error above by adding a demand-side BYPASS PIPE.
+   ** Warning ** There is no BYPASS component in the demand-side of PlantLoop =TEST HOT WATER LOOP
+   **   ~~~   ** You may be able to fix the fatal error above by adding a demand-side BYPASS PIPE.
+   *************
+   ************* ===== Recurring Error Summary =====
+   ************* The following recurring error messages occurred.
+   *************
+   *************  ** Warning ** Temperature out of range [-100. to 200.] (PsyPsatFnTemp)
+   *************  **   ~~~   **   This error occurred 1 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************  **   ~~~   **   Max=-170.820312 C  Min=-170.820312 C
+   *************
+   *************  ** Warning ** Cold water flow Iteration limit exceeded in fan coil unit DATACENTER_BASEMENT_ZN_6 FOURPIPEFANCOIL
+   *************  **   ~~~   **   This error occurred 2 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************
+   *************  ** Warning ** Cold water flow Iteration limit exceeded in fan coil unit DATACENTER_BOT_ZN_6 FOURPIPEFANCOIL
+   *************  **   ~~~   **   This error occurred 5 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************
+   *************  ** Warning ** Cold water flow Iteration limit exceeded in fan coil unit DATACENTER_TOP_ZN_6 FOURPIPEFANCOIL
+   *************  **   ~~~   **   This error occurred 11 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************
+   *************  ** Warning ** Cold water flow Iteration limit exceeded in fan coil unit PERIMETER_MID_ZN_3 FOURPIPEFANCOIL
+   *************  **   ~~~   **   This error occurred 11 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************
+   *************  ** Warning ** Cold water flow Iteration limit exceeded in fan coil unit PERIMETER_BOT_ZN_1 FOURPIPEFANCOIL
+   *************  **   ~~~   **   This error occurred 7 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************
+   *************  ** Warning ** Cold water flow Iteration limit exceeded in fan coil unit PERIMETER_TOP_ZN_2 FOURPIPEFANCOIL
+   *************  **   ~~~   **   This error occurred 9 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************
+   *************  ** Warning ** Cold water flow Iteration limit exceeded in fan coil unit PERIMETER_BOT_ZN_2 FOURPIPEFANCOIL
+   *************  **   ~~~   **   This error occurred 7 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************
+   *************  ** Warning ** Cold water flow Iteration limit exceeded in fan coil unit PERIMETER_TOP_ZN_4 FOURPIPEFANCOIL
+   *************  **   ~~~   **   This error occurred 3 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************
+   *************  ** Warning ** Cold water flow Iteration limit exceeded in fan coil unit PERIMETER_BOT_ZN_4 FOURPIPEFANCOIL
+   *************  **   ~~~   **   This error occurred 3 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************
+   *************  ** Warning ** Cold water flow Iteration limit exceeded in fan coil unit BASEMENT FOURPIPEFANCOIL
+   *************  **   ~~~   **   This error occurred 5 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************
+   *************  ** Warning ** Cold water flow Iteration limit exceeded in fan coil unit CORE_BOTTOM FOURPIPEFANCOIL
+   *************  **   ~~~   **   This error occurred 7 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************
+   *************  ** Warning ** Cold water flow Iteration limit exceeded in fan coil unit DATACENTER_MID_ZN_6 FOURPIPEFANCOIL
+   *************  **   ~~~   **   This error occurred 7 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************
+   *************  ** Warning ** Cold water flow Iteration limit exceeded in fan coil unit PERIMETER_TOP_ZN_3 FOURPIPEFANCOIL
+   *************  **   ~~~   **   This error occurred 1 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************
+   *************  ** Warning ** Cold water flow Iteration limit exceeded in fan coil unit PERIMETER_MID_ZN_1 FOURPIPEFANCOIL
+   *************  **   ~~~   **   This error occurred 3 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************
+   *************  ** Warning ** Cold water flow Iteration limit exceeded in fan coil unit PERIMETER_MID_ZN_4 FOURPIPEFANCOIL
+   *************  **   ~~~   **   This error occurred 1 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************
+   *************  ** Warning ** Cold water flow Iteration limit exceeded in fan coil unit PERIMETER_BOT_ZN_3 FOURPIPEFANCOIL
+   *************  **   ~~~   **   This error occurred 1 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************
+   *************  ** Severe  ** FindRootSimpleController: Previous controller action error continues for controller = AHU COOLING COIL MID CONTROLLER
+   *************  **   ~~~   **   This error occurred 1 total times;
+   *************  **   ~~~   **   during Warmup 0 times;
+   *************  **   ~~~   **   during Sizing 0 times.
+   *************
+   *************
+   ************* ===== Final Error Summary =====
+   ************* The following error categories occurred.  Consider correcting or noting.
+   ************* Nominally Unused Constructions
+   ************* ..The nominally unused constructions warning is provided to alert you to potential conditions that can cause
+   ************* ..extra time during simulation. Each construction is calculated by the algorithm indicated in the HeatBalanceAlgorithm
+   ************* ..object. You may remove the constructions indicated (when you use the DisplayExtraWarnings option).
+   *************
+   ************* EnergyPlus Warmup Error Summary. During Warmup: 0 Warning; 0 Severe Errors.
+   ************* EnergyPlus Sizing Error Summary. During Sizing: 42 Warning; 0 Severe Errors.
+   ************* EnergyPlus Terminated--Fatal Error Detected. 175 Warning; 2 Severe Errors; Elapsed Time=00hr 01min  1.22sec

@@ -163,6 +163,17 @@ Obj_Tree = {
         'OutdoorAir:NodeList',
         'OutdoorAir:Mixer',
     ],
+    'Unitary': [
+        'AirLoopHVAC:UnitarySystem',
+        'AirLoopHVAC:Unitary:Furnace:HeatCool',
+        'AirLoopHVAC:UnitaryHeatCool',
+        'AirLoopHVAC:UnitaryHeatPump:AirToAir',
+        'AirLoopHVAC:UnitaryHeatPump:AirToAir:MultiSpeed',
+        'AirLoopHVAC:Unitary:Furnace:HeatOnly',
+        'AirLoopHVAC:UnitaryHeatOnly',
+        'AirLoopHVAC:UnitaryHeatPump:WaterToAir',
+        'AirLoopHVAC:UnitaryHeatCool:VAVChangeoverBypass',
+    ],
     'Airflow_Network': [
         'AirflowNetwork:SimulationControl',
         'AirflowNetwork:MultiZone:Zone',
@@ -542,5 +553,8 @@ Obj_Tree = {
         'EnergyManagementSystem:MeteredOutputVariable',
         'EnergyManagementSystem:CurveOrTableIndexVariable',
         'EnergyManagementSystem:ConstructionIndexVariable',
-     ]
+     ],
+    'Geometry': [
+        'FenestrationSurface:Detailed',
+    ]
 }

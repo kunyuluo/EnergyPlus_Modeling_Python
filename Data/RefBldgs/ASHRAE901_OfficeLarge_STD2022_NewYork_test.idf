@@ -17407,6 +17407,11 @@ FluidProperties:GlycolConcentration,
     ,                         !- User Defined Glycol Name
     0.4;                      !- Glycol Concentration
 
+OUTPUT:ENERGYMANAGEMENTSYSTEM,
+    Verbose,                  !- Actuator Availability Dictionary Reporting
+    Verbose,                  !- Internal Variable Availability Dictionary Reporting
+    None;                     !- EMS Runtime Language Debug Output Level
+
 Output:Table:SummaryReports,
     AllSummaryAndMonthly,     !- Report 1 Name
     Standard62.1Summary;      !- Report 2 Name
@@ -17470,18 +17475,23 @@ OutputControl:Table:Style,
 
 OUTPUT:VARIABLE,
     *,                        !- Key Value
-    Chiller Electricity Rate,    !- Variable Name
-    Hourly;                   !- Reporting Frequency
+    Site Outdoor Air Drybulb Temperature,    !- Variable Name
+    Timestep;                 !- Reporting Frequency
 
 OUTPUT:VARIABLE,
     *,                        !- Key Value
-    Chiller COP,              !- Variable Name
-    Hourly;                   !- Reporting Frequency
+    Site Outdoor Air Wetbulb Temperature,    !- Variable Name
+    Timestep;                 !- Reporting Frequency
 
 OUTPUT:VARIABLE,
     *,                        !- Key Value
-    Chiller Evaporator Cooling Rate,    !- Variable Name
-    Hourly;                   !- Reporting Frequency
+    Plant Supply Side Cooling Demand Rate,    !- Variable Name
+    Timestep;                 !- Reporting Frequency
+
+OUTPUT:VARIABLE,
+    Chw pump_Water_Outlet,    !- Key Value
+    System Node Temperature,    !- Variable Name
+    Timestep;                 !- Reporting Frequency
 
 Output:Meter:MeterFileOnly,
     InteriorLights:Electricity,    !- Key Name

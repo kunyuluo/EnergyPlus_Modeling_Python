@@ -1,13 +1,14 @@
 import eppy
 from eppy.modeleditor import IDF
 from Helper import delete_hvac_objs, get_all_targets, set_always_on, sort_zone_by_condition
-from Helper import SortZoneByFloor
+from Helper import SortZoneByFloor, assign_opaque_construction, create_window_by_ratio, check_orientation
 from HVACSystem.PlantLoop import PlantLoop
 from HVACSystem.AirLoop import AirLoop
 from HVACSystem.PlantLoopComponents import PlantLoopComponent
 from HVACSystem.AirLoopComponents import AirLoopComponent
 from HVACSystem.SetpointManager import SetpointManager
 from HVACSystem.PerformanceCurves import PerformanceCurve
+from Construction.Construction import Construction
 from Output.Output import Output
 from configs import *
 
@@ -28,23 +29,22 @@ my_model = IDF(file_path)
 # my_model = IDF(file_path)
 # my_model.printidf()
 
-all_objs = my_model.idfobjects
+# all_objs = my_model.idfobjects
 
 # Get all thermal zones:
 #####################################################################
-# zones = get_all_targets(my_model, key='Zone')['object']
-zones = sort_zone_by_condition(my_model)
-sorting_func_name = func_by_type[bldg_type]
-sorting_func = getattr(SortZoneByFloor, sorting_func_name)
-sorted_zones = sorting_func(zones[0], display_field=True)
+# zones = sort_zone_by_condition(my_model)
+# sorting_func_name = func_by_type[bldg_type]
+# sorting_func = getattr(SortZoneByFloor, sorting_func_name)
+# sorted_zones = sorting_func(zones[0], display_field=True)
 # print(sorted_zones)
 
-schedule = set_always_on(my_model)
+# schedule = set_always_on(my_model)
 # print(schedule)
 
 # Deleting existing defined objects:
 #####################################################################
-delete_hvac_objs(my_model)
+# delete_hvac_objs(my_model)
 
 # # Creating new air loop:
 # #####################################################################
@@ -139,9 +139,28 @@ delete_hvac_objs(my_model)
 
 # print(hw_loop)
 
-object = my_model.newidfobject('Output:Variable')
-print(object.fieldnames)
-print(object)
+# object = my_model.newidfobject('FenestrationSurface:Detailed')
+# print(object.fieldnames)
+# print(object)
+
+# cons = Construction.opaque_no_mass_cons(my_model, 'Test Construction', 20, test_mode=False)
+# cons = Construction.window_cons_simple(my_model, 'Test Construction', 0.54, shgc=0.34, test_mode=False)
+# print(cons)
+
+# all_srfs = get_all_targets(my_model, 'FenestrationSurface:Detailed', 'Surface_Type')
+# print(all_srfs['object'])
+
+all_srfs = get_all_targets(my_model, 'BuildingSurface:Detailed', 'Name')
+print(all_srfs['object'][39])
+ori = check_orientation(all_srfs['object'][39])
+print(ori)
+
+# windows = create_window_by_ratio(my_model, 0.3, cons)
+# print(windows)
+
+# assign_opaque_construction(my_model, 1, cons)
+# create_window_by_ratio(my_model, 0.5)
+# delete_fenestration(my_model)
 
 # vrf = VRF.vrf_system(my_model, 'My VRF System', test_mode=True)
 # print(vrf)
@@ -149,5 +168,5 @@ print(object)
 # Save to a new file:
 #####################################################################
 # my_model.saveas('Data/TestOffice_vav_test.idf')
-# my_model.saveas('Data/RefBldgs/ASHRAE901_ApartmentHighRise_STD2022_NewYork_test_v2.idf')
+# my_model.saveas(f'Data/RefBldgs/ASHRAE901_{bldg_type}_STD2022_NewYork_win.idf')
 # print('New model is saved successfully.')

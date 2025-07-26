@@ -28,3 +28,19 @@ class Output:
 
         return output_vars
 
+    @staticmethod
+    def ems(
+            idf: IDF,
+            actuator: bool = True,
+            internal_variable: bool = True,
+            ems_runtime_lang: bool = True):
+        ems = idf.newidfobject('Output:EnergyManagementSystem')
+        if actuator:
+            ems.Actuator_Availability_Dictionary_Reporting = 'Verbose'
+        if internal_variable:
+            ems.Internal_Variable_Availability_Dictionary_Reporting = 'Verbose'
+        if ems_runtime_lang:
+            ems.EMS_Runtime_Language_Debug_Output_Level = 'Verbose'
+
+        return ems
+

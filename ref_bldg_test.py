@@ -151,8 +151,30 @@ hw_loop = PlantLoop.water_loop(
 
 # Output Variables:
 #####################################################################
-output_vars = ['Chiller Electricity Rate', 'Chiller COP', 'Chiller Evaporator Cooling Rate']
-var = Output.variable(my_model, variables=output_vars)
+# output_vars = ['Chiller Electricity Rate', 'Chiller COP', 'Chiller Evaporator Cooling Rate']
+# var = Output.variable(my_model, variables=output_vars)
+# print(var)
+
+out_var_1 = Output.variable(my_model, variables='Site Outdoor Air Drybulb Temperature', frequency=4)
+out_var_2 = Output.variable(my_model, variables='Site Outdoor Air Wetbulb Temperature', frequency=4)
+out_var_3 = Output.variable(my_model, variables='Plant Supply Side Cooling Demand Rate', frequency=4)
+out_var_4 = Output.variable(
+    my_model,
+    key_value=pump_chw['object'][pump_chw['water_outlet_field']],
+    variables='System Node Temperature',
+    frequency=4)
+
+# Air-side outputs:
+out_var_air_1 = Output.variable(my_model, variables='Fan Electricity Rate', frequency=4)
+out_var_air_2 = Output.variable(my_model, variables='Fan Air Mass Flow Rate', frequency=4)
+out_var_air_3 = Output.variable(my_model, variables='Cooling Coil Total Cooling Energy', frequency=4)
+out_var_air_4 = Output.variable(my_model, variables='Cooling Coil Sensible Cooling Energy', frequency=4)
+out_var_air_5 = Output.variable(my_model, variables='Heating Coil Total Heating Energy', frequency=4)
+out_var_air_6 = Output.variable(my_model, variables='Zone Air Terminal Sensible Cooling Energy', frequency=4)
+out_var_air_7 = Output.variable(my_model, variables='Zone Air Terminal Sensible Heating Energy', frequency=4)
+
+# EMS:
+ems = Output.ems(my_model, actuator=True, internal_variable=True, ems_runtime_lang=False)
 
 # Save to a new file:
 #####################################################################
