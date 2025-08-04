@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="20a373d1-d6e9-4a2c-8f6f-629a3b4b64a9" name="Changes" comment="some modifications">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_OfficeLarge_STD2022_NewYork_test.idf" beforeDir="false" afterPath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_OfficeLarge_STD2022_NewYork_test.idf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data/演讲-康宛欣.pptx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Output/Output.py" beforeDir="false" afterPath="$PROJECT_DIR$/Output/Output.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ref_bldg_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/ref_bldg_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Geometry/GeometryTools.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Construction/Construction.py" beforeDir="false" afterPath="$PROJECT_DIR$/Construction/Construction.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_OfficeLarge_STD2022_NewYork_win.idf" beforeDir="false" afterPath="$PROJECT_DIR$/Data/RefBldgs/ASHRAE901_OfficeLarge_STD2022_NewYork_win.idf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/Helper.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

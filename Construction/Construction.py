@@ -1,5 +1,6 @@
 from eppy.modeleditor import IDF
 from eppy.bunch_subclass import EpBunch
+from Helper import get_all_targets
 
 
 class Construction:
@@ -76,3 +77,40 @@ class Construction:
         else:
             return win
 
+
+def assign_opaque_construction(idf: IDF, surface_type: int, construction: EpBunch):
+    """
+    Surface type: 1: Exterior Wall 2: Exterior Roof 3: Exterior Floor 4: Interior Wall 5: Interior Floor
+    6: Interior Ceiling 7: Drop Ceiling 8: Underground Wall 9: Underground Floor
+    """
+    criteria = {1: ['Wall', 'Outdoors', 'SunExposed', 'WindExposed'],
+                2: ['Roof', 'Outdoors', 'SunExposed', 'WindExposed'],
+                3: ['Floor', 'Outdoors', 'SunExposed', 'WindExposed'],
+                4: ['Wall', 'Surface', 'NoSun', 'NoWind'],
+                5: ['Floor', 'Surface', 'NoSun', 'NoWind'],
+                6: ['Ceiling', 'Surface', 'NoSun', 'NoWind'],
+                7: ['Ceiling', 'Zone', 'NoSun', 'NoWind'],
+                8: ['Wall', 'GroundFCfactorMethod', 'NoSun', 'NoWind'],
+                9: ['Floor', 'GroundFCfactorMethod', 'NoSun', 'NoWind']}
+
+    all_srfs = get_all_targets(idf, 'BuildingSurface:Detailed', 'Name')['object']
+
+    for srf in all_srfs:
+        if (srf['Surface_Type'] == criteria[surface_type][0] and
+                srf['Outside_Boundary_Condition'] == criteria[surface_type][1] and
+                srf['Sun_Exposure'] == criteria[surface_type][2] and
+                srf['Wind_Exposure'] == criteria[surface_type][3]):
+            srf['Construction_Name'] = construction.Name
+
+
+def assign_fenestration_construction(idf: IDF, surface_type: int, construction: EpBunch):
+    """
+    Surface type: 1: Window 2: Door 3: GlassDoor 4: TubularDaylightDome 5: TubularDaylightDiffuser
+    """
+    criteria = {1: 'Window', 2: 'Door', 3: 'GlassDoor', 4: 'TubularDaylightDome', 5: 'TubularDaylightDiffuser'}
+
+    all_srfs = get_all_targets(idf, 'FenestrationSurface:Detailed', 'Name')['object']
+
+    for srf in all_srfs:
+        if srf['Surface_Type'] == criteria[surface_type]:
+            srf['Construction_Name'] = construction.Name

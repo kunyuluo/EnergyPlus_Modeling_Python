@@ -7343,18 +7343,18 @@ FENESTRATIONSURFACE:DETAILED,
     ,                         !- Frame and Divider Name
     1,                        !- Multiplier
     4,                        !- Number of Vertices
-    60.31344000000001,        !- Vertex 1 Xcoordinate
+    58.485760000000006,       !- Vertex 1 Xcoordinate
     48.7381,                  !- Vertex 1 Ycoordinate
-    2.0052307692307694,       !- Vertex 1 Zcoordinate
-    60.31344000000001,        !- Vertex 2 Xcoordinate
+    1.8293333333333335,       !- Vertex 1 Zcoordinate
+    58.485760000000006,       !- Vertex 2 Xcoordinate
     48.7381,                  !- Vertex 2 Ycoordinate
-    0.738769230769231,        !- Vertex 2 Zcoordinate
-    12.79376,                 !- Vertex 3 Xcoordinate
+    0.9146666666666667,       !- Vertex 2 Zcoordinate
+    14.621440000000002,       !- Vertex 3 Xcoordinate
     48.7381,                  !- Vertex 3 Ycoordinate
-    0.738769230769231,        !- Vertex 3 Zcoordinate
-    12.79376,                 !- Vertex 4 Xcoordinate
+    0.9146666666666667,       !- Vertex 3 Zcoordinate
+    14.621440000000002,       !- Vertex 4 Xcoordinate
     48.7381,                  !- Vertex 4 Ycoordinate
-    2.0052307692307694;       !- Vertex 4 Zcoordinate
+    1.8293333333333335;       !- Vertex 4 Zcoordinate
 
 FENESTRATIONSURFACE:DETAILED,
     Perimeter_bot_ZN_2_Wall_East_Window,    !- Name
@@ -7367,17 +7367,17 @@ FENESTRATIONSURFACE:DETAILED,
     1,                        !- Multiplier
     4,                        !- Number of Vertices
     73.1072,                  !- Vertex 1 Xcoordinate
-    8.5291675,                !- Vertex 1 Ycoordinate
-    2.0052307692307694,       !- Vertex 1 Zcoordinate
+    4.873809999999999,        !- Vertex 1 Ycoordinate
+    2.401,                    !- Vertex 1 Zcoordinate
     73.1072,                  !- Vertex 2 Xcoordinate
-    8.5291675,                !- Vertex 2 Ycoordinate
-    0.738769230769231,        !- Vertex 2 Zcoordinate
+    4.873809999999999,        !- Vertex 2 Ycoordinate
+    0.3430000000000002,       !- Vertex 2 Zcoordinate
     73.1072,                  !- Vertex 3 Xcoordinate
-    40.2089325,               !- Vertex 3 Ycoordinate
-    0.738769230769231,        !- Vertex 3 Zcoordinate
+    43.864290000000004,       !- Vertex 3 Ycoordinate
+    0.3430000000000002,       !- Vertex 3 Zcoordinate
     73.1072,                  !- Vertex 4 Xcoordinate
-    40.2089325,               !- Vertex 4 Ycoordinate
-    2.0052307692307694;       !- Vertex 4 Zcoordinate
+    43.864290000000004,       !- Vertex 4 Ycoordinate
+    2.401;                    !- Vertex 4 Zcoordinate
 
 FENESTRATIONSURFACE:DETAILED,
     Perimeter_bot_ZN_1_Wall_South_Window,    !- Name
@@ -7389,18 +7389,18 @@ FENESTRATIONSURFACE:DETAILED,
     ,                         !- Frame and Divider Name
     1,                        !- Multiplier
     4,                        !- Number of Vertices
-    12.79376,                 !- Vertex 1 Xcoordinate
+    3.6553599999999995,       !- Vertex 1 Xcoordinate
     0,                        !- Vertex 1 Ycoordinate
-    2.0052307692307694,       !- Vertex 1 Zcoordinate
-    12.79376,                 !- Vertex 2 Xcoordinate
+    2.591555555555556,        !- Vertex 1 Zcoordinate
+    3.6553599999999995,       !- Vertex 2 Xcoordinate
     0,                        !- Vertex 2 Ycoordinate
-    0.738769230769231,        !- Vertex 2 Zcoordinate
-    60.31344000000001,        !- Vertex 3 Xcoordinate
+    1.524444e-01,             !- Vertex 2 Zcoordinate
+    69.45184,                 !- Vertex 3 Xcoordinate
     0,                        !- Vertex 3 Ycoordinate
-    0.738769230769231,        !- Vertex 3 Zcoordinate
-    60.31344000000001,        !- Vertex 4 Xcoordinate
+    1.524444e-01,             !- Vertex 3 Zcoordinate
+    69.45184,                 !- Vertex 4 Xcoordinate
     0,                        !- Vertex 4 Ycoordinate
-    2.0052307692307694;       !- Vertex 4 Zcoordinate
+    2.591555555555556;        !- Vertex 4 Zcoordinate
 
 FENESTRATIONSURFACE:DETAILED,
     Perimeter_bot_ZN_4_Wall_West_Window,    !- Name
@@ -7413,17 +7413,17 @@ FENESTRATIONSURFACE:DETAILED,
     1,                        !- Multiplier
     4,                        !- Number of Vertices
     0,                        !- Vertex 1 Xcoordinate
-    40.2089325,               !- Vertex 1 Ycoordinate
-    2.0052307692307694,       !- Vertex 1 Zcoordinate
+    41.427385,                !- Vertex 1 Ycoordinate
+    2.156,                    !- Vertex 1 Zcoordinate
     0,                        !- Vertex 2 Xcoordinate
-    40.2089325,               !- Vertex 2 Ycoordinate
-    0.738769230769231,        !- Vertex 2 Zcoordinate
+    41.427385,                !- Vertex 2 Ycoordinate
+    0.588,                    !- Vertex 2 Zcoordinate
     0,                        !- Vertex 3 Xcoordinate
-    8.5291675,                !- Vertex 3 Ycoordinate
-    0.738769230769231,        !- Vertex 3 Zcoordinate
+    7.310715000000002,        !- Vertex 3 Ycoordinate
+    0.588,                    !- Vertex 3 Zcoordinate
     0,                        !- Vertex 4 Xcoordinate
-    8.5291675,                !- Vertex 4 Ycoordinate
-    2.0052307692307694;       !- Vertex 4 Zcoordinate
+    7.310715000000002,        !- Vertex 4 Ycoordinate
+    2.156;                    !- Vertex 4 Zcoordinate
 
 FENESTRATIONSURFACE:DETAILED,
     Perimeter_mid_ZN_3_Wall_North_Window,    !- Name
@@ -7435,18 +7435,18 @@ FENESTRATIONSURFACE:DETAILED,
     ,                         !- Frame and Divider Name
     1,                        !- Multiplier
     4,                        !- Number of Vertices
-    60.31344000000001,        !- Vertex 1 Xcoordinate
+    58.485760000000006,       !- Vertex 1 Xcoordinate
     48.7381,                  !- Vertex 1 Ycoordinate
-    18.773530769230767,       !- Vertex 1 Zcoordinate
-    60.31344000000001,        !- Vertex 2 Xcoordinate
+    18.597633333333334,       !- Vertex 1 Zcoordinate
+    58.485760000000006,       !- Vertex 2 Xcoordinate
     48.7381,                  !- Vertex 2 Ycoordinate
-    17.507069230769233,       !- Vertex 2 Zcoordinate
-    12.79376,                 !- Vertex 3 Xcoordinate
+    17.682966666666665,       !- Vertex 2 Zcoordinate
+    14.621440000000002,       !- Vertex 3 Xcoordinate
     48.7381,                  !- Vertex 3 Ycoordinate
-    17.507069230769233,       !- Vertex 3 Zcoordinate
-    12.79376,                 !- Vertex 4 Xcoordinate
+    17.682966666666665,       !- Vertex 3 Zcoordinate
+    14.621440000000002,       !- Vertex 4 Xcoordinate
     48.7381,                  !- Vertex 4 Ycoordinate
-    18.773530769230767;       !- Vertex 4 Zcoordinate
+    18.597633333333334;       !- Vertex 4 Zcoordinate
 
 FENESTRATIONSURFACE:DETAILED,
     Perimeter_mid_ZN_2_Wall_East_Window,    !- Name
@@ -7459,17 +7459,17 @@ FENESTRATIONSURFACE:DETAILED,
     1,                        !- Multiplier
     4,                        !- Number of Vertices
     73.1072,                  !- Vertex 1 Xcoordinate
-    8.5291675,                !- Vertex 1 Ycoordinate
-    18.773530769230767,       !- Vertex 1 Zcoordinate
+    4.873809999999999,        !- Vertex 1 Ycoordinate
+    19.1693,                  !- Vertex 1 Zcoordinate
     73.1072,                  !- Vertex 2 Xcoordinate
-    8.5291675,                !- Vertex 2 Ycoordinate
-    17.507069230769233,       !- Vertex 2 Zcoordinate
+    4.873809999999999,        !- Vertex 2 Ycoordinate
+    17.1113,                  !- Vertex 2 Zcoordinate
     73.1072,                  !- Vertex 3 Xcoordinate
-    40.2089325,               !- Vertex 3 Ycoordinate
-    17.507069230769233,       !- Vertex 3 Zcoordinate
+    43.864290000000004,       !- Vertex 3 Ycoordinate
+    17.1113,                  !- Vertex 3 Zcoordinate
     73.1072,                  !- Vertex 4 Xcoordinate
-    40.2089325,               !- Vertex 4 Ycoordinate
-    18.773530769230767;       !- Vertex 4 Zcoordinate
+    43.864290000000004,       !- Vertex 4 Ycoordinate
+    19.1693;                  !- Vertex 4 Zcoordinate
 
 FENESTRATIONSURFACE:DETAILED,
     Perimeter_mid_ZN_1_Wall_South_Window,    !- Name
@@ -7481,18 +7481,18 @@ FENESTRATIONSURFACE:DETAILED,
     ,                         !- Frame and Divider Name
     1,                        !- Multiplier
     4,                        !- Number of Vertices
-    12.79376,                 !- Vertex 1 Xcoordinate
+    3.6553599999999995,       !- Vertex 1 Xcoordinate
     0,                        !- Vertex 1 Ycoordinate
-    18.773530769230767,       !- Vertex 1 Zcoordinate
-    12.79376,                 !- Vertex 2 Xcoordinate
+    19.359855555555555,       !- Vertex 1 Zcoordinate
+    3.6553599999999995,       !- Vertex 2 Xcoordinate
     0,                        !- Vertex 2 Ycoordinate
-    17.507069230769233,       !- Vertex 2 Zcoordinate
-    60.31344000000001,        !- Vertex 3 Xcoordinate
+    16.920744444444445,       !- Vertex 2 Zcoordinate
+    69.45184,                 !- Vertex 3 Xcoordinate
     0,                        !- Vertex 3 Ycoordinate
-    17.507069230769233,       !- Vertex 3 Zcoordinate
-    60.31344000000001,        !- Vertex 4 Xcoordinate
+    16.920744444444445,       !- Vertex 3 Zcoordinate
+    69.45184,                 !- Vertex 4 Xcoordinate
     0,                        !- Vertex 4 Ycoordinate
-    18.773530769230767;       !- Vertex 4 Zcoordinate
+    19.359855555555555;       !- Vertex 4 Zcoordinate
 
 FENESTRATIONSURFACE:DETAILED,
     Perimeter_mid_ZN_4_Wall_West_Window,    !- Name
@@ -7505,17 +7505,17 @@ FENESTRATIONSURFACE:DETAILED,
     1,                        !- Multiplier
     4,                        !- Number of Vertices
     0,                        !- Vertex 1 Xcoordinate
-    40.2089325,               !- Vertex 1 Ycoordinate
-    18.773530769230767,       !- Vertex 1 Zcoordinate
+    41.427385,                !- Vertex 1 Ycoordinate
+    18.9243,                  !- Vertex 1 Zcoordinate
     0,                        !- Vertex 2 Xcoordinate
-    40.2089325,               !- Vertex 2 Ycoordinate
-    17.507069230769233,       !- Vertex 2 Zcoordinate
+    41.427385,                !- Vertex 2 Ycoordinate
+    17.3563,                  !- Vertex 2 Zcoordinate
     0,                        !- Vertex 3 Xcoordinate
-    8.5291675,                !- Vertex 3 Ycoordinate
-    17.507069230769233,       !- Vertex 3 Zcoordinate
+    7.310715000000002,        !- Vertex 3 Ycoordinate
+    17.3563,                  !- Vertex 3 Zcoordinate
     0,                        !- Vertex 4 Xcoordinate
-    8.5291675,                !- Vertex 4 Ycoordinate
-    18.773530769230767;       !- Vertex 4 Zcoordinate
+    7.310715000000002,        !- Vertex 4 Ycoordinate
+    18.9243;                  !- Vertex 4 Zcoordinate
 
 FENESTRATIONSURFACE:DETAILED,
     Perimeter_top_ZN_3_Wall_North_Window,    !- Name
@@ -7527,18 +7527,18 @@ FENESTRATIONSURFACE:DETAILED,
     ,                         !- Frame and Divider Name
     1,                        !- Multiplier
     4,                        !- Number of Vertices
-    60.31344000000001,        !- Vertex 1 Xcoordinate
+    58.485760000000006,       !- Vertex 1 Xcoordinate
     48.7381,                  !- Vertex 1 Ycoordinate
-    35.54183076923077,        !- Vertex 1 Zcoordinate
-    60.31344000000001,        !- Vertex 2 Xcoordinate
+    35.36593333333333,        !- Vertex 1 Zcoordinate
+    58.485760000000006,       !- Vertex 2 Xcoordinate
     48.7381,                  !- Vertex 2 Ycoordinate
-    34.27536923076923,        !- Vertex 2 Zcoordinate
-    12.79376,                 !- Vertex 3 Xcoordinate
+    34.45126666666667,        !- Vertex 2 Zcoordinate
+    14.621440000000002,       !- Vertex 3 Xcoordinate
     48.7381,                  !- Vertex 3 Ycoordinate
-    34.27536923076923,        !- Vertex 3 Zcoordinate
-    12.79376,                 !- Vertex 4 Xcoordinate
+    34.45126666666667,        !- Vertex 3 Zcoordinate
+    14.621440000000002,       !- Vertex 4 Xcoordinate
     48.7381,                  !- Vertex 4 Ycoordinate
-    35.54183076923077;        !- Vertex 4 Zcoordinate
+    35.36593333333333;        !- Vertex 4 Zcoordinate
 
 FENESTRATIONSURFACE:DETAILED,
     Perimeter_top_ZN_2_Wall_East_Window,    !- Name
@@ -7551,17 +7551,17 @@ FENESTRATIONSURFACE:DETAILED,
     1,                        !- Multiplier
     4,                        !- Number of Vertices
     73.1072,                  !- Vertex 1 Xcoordinate
-    8.5291675,                !- Vertex 1 Ycoordinate
-    35.54183076923077,        !- Vertex 1 Zcoordinate
+    4.873809999999999,        !- Vertex 1 Ycoordinate
+    35.937599999999996,       !- Vertex 1 Zcoordinate
     73.1072,                  !- Vertex 2 Xcoordinate
-    8.5291675,                !- Vertex 2 Ycoordinate
-    34.27536923076923,        !- Vertex 2 Zcoordinate
+    4.873809999999999,        !- Vertex 2 Ycoordinate
+    33.8796,                  !- Vertex 2 Zcoordinate
     73.1072,                  !- Vertex 3 Xcoordinate
-    40.2089325,               !- Vertex 3 Ycoordinate
-    34.27536923076923,        !- Vertex 3 Zcoordinate
+    43.864290000000004,       !- Vertex 3 Ycoordinate
+    33.8796,                  !- Vertex 3 Zcoordinate
     73.1072,                  !- Vertex 4 Xcoordinate
-    40.2089325,               !- Vertex 4 Ycoordinate
-    35.54183076923077;        !- Vertex 4 Zcoordinate
+    43.864290000000004,       !- Vertex 4 Ycoordinate
+    35.937599999999996;       !- Vertex 4 Zcoordinate
 
 FENESTRATIONSURFACE:DETAILED,
     Perimeter_top_ZN_1_Wall_South_Window,    !- Name
@@ -7573,18 +7573,18 @@ FENESTRATIONSURFACE:DETAILED,
     ,                         !- Frame and Divider Name
     1,                        !- Multiplier
     4,                        !- Number of Vertices
-    12.79376,                 !- Vertex 1 Xcoordinate
+    3.6553599999999995,       !- Vertex 1 Xcoordinate
     0,                        !- Vertex 1 Ycoordinate
-    35.54183076923077,        !- Vertex 1 Zcoordinate
-    12.79376,                 !- Vertex 2 Xcoordinate
+    36.12815555555556,        !- Vertex 1 Zcoordinate
+    3.6553599999999995,       !- Vertex 2 Xcoordinate
     0,                        !- Vertex 2 Ycoordinate
-    34.27536923076923,        !- Vertex 2 Zcoordinate
-    60.31344000000001,        !- Vertex 3 Xcoordinate
+    33.68904444444444,        !- Vertex 2 Zcoordinate
+    69.45184,                 !- Vertex 3 Xcoordinate
     0,                        !- Vertex 3 Ycoordinate
-    34.27536923076923,        !- Vertex 3 Zcoordinate
-    60.31344000000001,        !- Vertex 4 Xcoordinate
+    33.68904444444444,        !- Vertex 3 Zcoordinate
+    69.45184,                 !- Vertex 4 Xcoordinate
     0,                        !- Vertex 4 Ycoordinate
-    35.54183076923077;        !- Vertex 4 Zcoordinate
+    36.12815555555556;        !- Vertex 4 Zcoordinate
 
 FENESTRATIONSURFACE:DETAILED,
     Perimeter_top_ZN_4_Wall_West_Window,    !- Name
@@ -7597,17 +7597,17 @@ FENESTRATIONSURFACE:DETAILED,
     1,                        !- Multiplier
     4,                        !- Number of Vertices
     0,                        !- Vertex 1 Xcoordinate
-    40.2089325,               !- Vertex 1 Ycoordinate
-    35.54183076923077,        !- Vertex 1 Zcoordinate
+    41.427385,                !- Vertex 1 Ycoordinate
+    35.6926,                  !- Vertex 1 Zcoordinate
     0,                        !- Vertex 2 Xcoordinate
-    40.2089325,               !- Vertex 2 Ycoordinate
-    34.27536923076923,        !- Vertex 2 Zcoordinate
+    41.427385,                !- Vertex 2 Ycoordinate
+    34.1246,                  !- Vertex 2 Zcoordinate
     0,                        !- Vertex 3 Xcoordinate
-    8.5291675,                !- Vertex 3 Ycoordinate
-    34.27536923076923,        !- Vertex 3 Zcoordinate
+    7.310715000000002,        !- Vertex 3 Ycoordinate
+    34.1246,                  !- Vertex 3 Zcoordinate
     0,                        !- Vertex 4 Xcoordinate
-    8.5291675,                !- Vertex 4 Ycoordinate
-    35.54183076923077;        !- Vertex 4 Zcoordinate
+    7.310715000000002,        !- Vertex 4 Ycoordinate
+    35.6926;                  !- Vertex 4 Zcoordinate
 
 InternalMass,
     Basement_InternalMass_1,    !- Name

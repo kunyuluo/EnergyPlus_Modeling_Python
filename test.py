@@ -1,14 +1,15 @@
 import eppy
 from eppy.modeleditor import IDF
 from Helper import delete_hvac_objs, get_all_targets, set_always_on, sort_zone_by_condition
-from Helper import SortZoneByFloor, assign_opaque_construction, create_window_by_ratio, check_orientation
+from Helper import SortZoneByFloor, get_construction_by_type
+from Geometry.GeometryTools import GeometryTool
 from HVACSystem.PlantLoop import PlantLoop
 from HVACSystem.AirLoop import AirLoop
 from HVACSystem.PlantLoopComponents import PlantLoopComponent
 from HVACSystem.AirLoopComponents import AirLoopComponent
 from HVACSystem.SetpointManager import SetpointManager
 from HVACSystem.PerformanceCurves import PerformanceCurve
-from Construction.Construction import Construction
+from Construction.Construction import Construction, assign_opaque_construction
 from Output.Output import Output
 from configs import *
 
@@ -150,13 +151,17 @@ my_model = IDF(file_path)
 # all_srfs = get_all_targets(my_model, 'FenestrationSurface:Detailed', 'Surface_Type')
 # print(all_srfs['object'])
 
-all_srfs = get_all_targets(my_model, 'BuildingSurface:Detailed', 'Name')
-print(all_srfs['object'][39])
-ori = check_orientation(all_srfs['object'][39])
-print(ori)
+# all_srfs = get_all_targets(my_model, 'BuildingSurface:Detailed', 'Name')
+# print(all_srfs['object'][39])
+# ori = GeometryTool.check_orientation(all_srfs['object'][39])
+# print(ori)
 
-# windows = create_window_by_ratio(my_model, 0.3, cons)
-# print(windows)
+cons = get_construction_by_type(my_model, 10, get_object=True)
+print(cons)
+
+wwr = {'north': 0.2, 'south': 0.8, 'east': 0.6, 'west': 0.4}
+windows = GeometryTool.create_window_by_ratio(my_model, wwr, cons[0])
+print(windows)
 
 # assign_opaque_construction(my_model, 1, cons)
 # create_window_by_ratio(my_model, 0.5)
